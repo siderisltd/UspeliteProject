@@ -8,6 +8,7 @@
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        public string Username { get; internal set; }
     }
 
     public class ExternalLoginListViewModel
@@ -49,9 +50,8 @@
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Username")]
+        public string Username { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -64,13 +64,17 @@
 
     public class RegisterViewModel
     {
+        [Display(Name = "Username")]
+        [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
+        public string Username { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

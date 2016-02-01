@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
+    using Data.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
@@ -72,7 +73,7 @@
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await this.SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await this.SignInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -148,7 +149,7 @@
         {
             if (this.ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Username , Email = model.Email };
                 var result = await this.UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -364,7 +365,7 @@
                 {
                     return this.View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Username, Email = model.Email };
                 var result = await this.UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
