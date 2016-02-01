@@ -1,0 +1,16 @@
+C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Data\bin\Debug\Uspelite.Data.dll.config
+C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Data\bin\Debug\Uspelite.Data.dll
+C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Data\bin\Debug\Uspelite.Data.pdb
+C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Data\bin\Debug\EntityFramework.dll
+C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Data\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Data\bin\Debug\Uspelite.Data.Models.dll
+C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Data\bin\Debug\Uspelite.Data.Models.pdb
+C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Data\bin\Debug\EntityFramework.xml
+C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Data\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Data\obj\Debug\Uspelite.Data.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Data\obj\Debug\Uspelite.Data.dll
+C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Data\obj\Debug\Uspelite.Data.pdb
