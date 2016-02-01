@@ -19,9 +19,19 @@
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/JQueryUI/themes/base/jquery.ui.all.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery-ui").Include(
+                     "~/Scripts/jquery.ui.components/jquery.ui.core.js",
+                     "~/Scripts/jquery.ui.components/jquery.ui.widget.js",
+                     "~/Scripts/jquery.ui.components/jquery.ui.mouse.js",
+                     "~/Scripts/jquery.ui.components/jquery.ui.draggable.js",
+                     "~/Scripts/jquery.ui.components/jquery.ui.resizable.js"
+    ));
         }
     }
 }

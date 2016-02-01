@@ -1,24 +1,95 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding-top: 50px; padding-bottom: 20px;
 }
 
-/* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
 .dl-horizontal dt {
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
+
 input,
 select,
 textarea {
     max-width: 280px;
 }
+
+
+#divContainer {
+    height: 412px;
+    border: 1px solid black;
+    width: 550px;
+    float: right;
+    margin:0;
+    padding:0;
+}
+
+#chat-container {
+    margin: 0;
+    padding:0;
+}
+
+#video-container {
+    float: left;
+    display: block;
+}
+
+.messageBar {
+    margin: 0;
+    float:left;
+}
+
+#txtMessage {
+    width: 550px;
+    display: inline-block;
+    float:left;
+}
+
+#btnSendMsg {
+    margin-left: 20px;
+}
+
+#divusers {
+    padding: 0;
+    margin: 0;
+    float: right;
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid black;
+    height: 360px;
+    max-height: 360px;
+    position:relative;
+    overflow-y: scroll;
+    top:20px;
+}
+
+#divChat{
+    width:548px;
+}
+
+#divChatWindow{
+    border-bottom: 1px solid black;
+    height: 360px;
+    max-height: 360px;
+    overflow-y: scroll;
+}
+
+#send-line-wrapper{ 
+    position:relative;
+    top:2px;
+}
+
+.title {
+    background-color: cornflowerblue;
+}
+
+.loginUser {
+    color: dimgrey;
+    opacity: 0.7;
+}
+
+
