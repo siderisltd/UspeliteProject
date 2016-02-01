@@ -4,10 +4,7 @@
   <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-  <PostBuildEvent>
-    if not exist "$(WebProjectOutputDir)\bin\Roslyn" md "$(WebProjectOutputDir)\bin\Roslyn"
-  start /MIN xcopy /s /y /R "$(OutDir)roslyn\*.*" "$(WebProjectOutputDir)\bin\Roslyn"
-  </PostBuildEvent>
+  <MvcBuildViews>true</MvcBuildViews>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>
@@ -329,8 +326,7 @@
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target> -->
-  <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
-    <AspNetCompiler Condition="'$(IsDesktopBuild)' != 'false'" VirtualPath="temp" PhysicalPath="$(ProjectDir)\..\$(ProjectName)" />
-    <AspNetCompiler Condition="'$(IsDesktopBuild)' == 'false'" VirtualPath="temp" PhysicalPath="$(PublishDir)\_PublishedWebsites\$(ProjectName)" />
-  </Target>
+<Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+  <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+</Target>
 </Project>
