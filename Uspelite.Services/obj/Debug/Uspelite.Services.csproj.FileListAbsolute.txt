@@ -1,4 +1,0 @@
-C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Services\bin\Debug\Uspelite.Services.dll
-C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Services\bin\Debug\Uspelite.Services.pdb
-C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Services\obj\Debug\Uspelite.Services.dll
-C:\Users\Alex\Desktop\UspeliteAllFiles\UspeliteProject\Uspelite.Services\obj\Debug\Uspelite.Services.pdb
