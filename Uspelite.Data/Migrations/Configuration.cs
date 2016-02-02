@@ -1,6 +1,9 @@
 namespace Uspelite.Data.Migrations
 {
     using System.Data.Entity.Migrations;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Roles;
 
     public sealed class Configuration : DbMigrationsConfiguration<Uspelite.Data.UspeliteDbContext>
     {
@@ -10,20 +13,23 @@ namespace Uspelite.Data.Migrations
             this.AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(Uspelite.Data.UspeliteDbContext context)
+        protected override void Seed(UspeliteDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            this.AddOrUpdateRoles(context);
+        }
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+        private void AddOrUpdateRoles(UspeliteDbContext context)
+        {
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            
+            foreach (var roleName in AppRoles.AllRoles)
+            {
+                if (!roleManager.RoleExists(roleName))
+                {
+                    context.Roles.Add(new IdentityRole(roleName));
+                }
+            }
         }
     }
 }
+

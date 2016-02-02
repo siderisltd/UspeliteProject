@@ -1,11 +1,16 @@
 ﻿namespace Uspelite.Web.Controllers
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
+    using System.Web.Security;
+    using Data;
     using Data.Models;
+    using Data.Roles;
     using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
     using Models;
@@ -20,7 +25,7 @@
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             this.UserManager = userManager;
             this.SignInManager = signInManager;
@@ -151,10 +156,13 @@
             {
                 var user = new User { UserName = model.Username , Email = model.Email };
                 var result = await this.UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
+                    await this.UserManager.AddToRoleAsync(user.Id, AppRoles.CLIENT_ROLE);
                     await this.SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
+      
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

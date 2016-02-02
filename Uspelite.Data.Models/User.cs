@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Security.Claims;
     using System.Threading.Tasks;
     using Microsoft.AspNet.Identity;
@@ -47,6 +48,29 @@
         {
             get { return this.rates; }
             set { this.rates = value; }
+        }
+
+        [NotMapped]
+        public float Rating
+        {
+            get
+            {
+                float sum = 0.0f;
+                int count = 0;
+                foreach (Post post in this.Posts)
+                {
+                    sum += post.CalculatedRating;
+                    count++;
+                }
+
+                foreach (Video video in this.Videos)
+                {
+                    sum += video.CalculatedRating;
+                    count++;
+                }
+
+                return sum / count;
+            }
         }
 
         public ClaimsIdentity GenerateUserIdentity(UserManager<User> manager)

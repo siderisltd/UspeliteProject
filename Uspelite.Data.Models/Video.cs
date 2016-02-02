@@ -58,5 +58,22 @@
             get { return this.rates; }
             set { this.rates = value; }
         }
+
+        [NotMapped]
+        public float CalculatedRating
+        {
+            get
+            {
+                float sum = 0.0f;
+                int count = 0;
+                foreach (Rate rating in this.Rates)
+                {
+                    sum += rating.Value;
+                    count++;
+                }
+
+                return sum / count;
+            }
+        }
     }
 }
