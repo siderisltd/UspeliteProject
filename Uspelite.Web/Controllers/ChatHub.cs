@@ -1,4 +1,6 @@
-﻿//namespace Uspelite.Web
+﻿
+
+//namespace Uspelite.Web
 //{
 //    using System.Threading.Tasks;
 //    using Microsoft.AspNet.SignalR;
