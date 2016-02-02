@@ -92,4 +92,25 @@ textarea {
     opacity: 0.7;
 }
 
+/*Nav styles*/
 
+.navbar-inverse {
+    background-color: white;
+    font-size: 10px;
+    padding: 3px;
+    margin-bottom: 200px;
+}
+.navbar-inverse li:hover {
+    background-color: green;
+}
+
+.jumbotron {
+    margin-top: 200px;
+}
+
+#logo {
+    background: url("Pics/uspeliteLogo.png") no-repeat; 
+    display:block; 
+    height:150px; 
+    width: 300px;
+}

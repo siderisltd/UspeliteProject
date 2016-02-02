@@ -8,5 +8,10 @@
         {
             return this.View();
         }
+
+        public ActionResult About()
+        {
+            return this.View();
+        }
     }
 }

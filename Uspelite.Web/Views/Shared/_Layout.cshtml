@@ -17,15 +17,54 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Uspelite", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>v
+                @Html.ActionLink("  ", "Index", "Home", new {area = ""}, new {@class = "navbar-brand", @id="logo"})
+            </div>
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Live", "Index", "Live")</li>
+                        <li>@Html.ActionLink("Постове", "Index", "Posts")</li>
+                        <li>@Html.ActionLink("Позитивни новини", "Index", "News")</li>
+                        <li>@Html.ActionLink("Видео", "Index", "Video")</li>
+                        <li>@Html.ActionLink("Лайв", "Index", "Live")</li>
+                        <li>@Html.ActionLink("Категории", "Index", "Categories")</li>
+                        <li>@Html.ActionLink("За нас", "About", "Home")</li>
+
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Интервюта<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Защото избрах българия</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">На лафче с</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Статии<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Бизнес</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Великите непознати</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Тайните кътчета</a></li>
+                            </ul>
+                        </li>
+
+                        <li>@Html.ActionLink("Спорт", "Sport", "News")</li>
+                        <li>@Html.ActionLink("Сцената", "FromUsers", "Posts")</li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Култура<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Фолклор изкуство</a></li>
+                            </ul>
+                        </li>
+
+                        <li>@Html.ActionLink("Партньори", "Partners", "Home")</li>
                     }
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
