@@ -6,14 +6,6 @@
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-
-            //         <script src="assets/js/jquery.min.js"></script>
-            //<script src="assets/js/bootstrap.min.js"></script>
-            //<script src="assets/js/bootstrap-datepicker.js"></script>
-
-
-
-
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/Libraries/jquery-{version}.js"));
 
