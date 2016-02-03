@@ -6,7 +6,7 @@
     public class UspeliteDbContext : IdentityDbContext<User>, IUspeliteDbContext
     {
         public UspeliteDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("UspeliteDbConnection", throwIfV1Schema: false)
         {
         }
 
