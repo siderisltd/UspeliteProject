@@ -210,7 +210,51 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Pics\UspeliteLionWhite.png" />
+    <Content Include="Content\Pics\UspeliteLionWhite2.png" />
     <Content Include="Content\Pics\uspeliteLogo.png" />
+    <Content Include="Content\Theme\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Theme\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Theme\fonts\weathericons-regular-webfont.svg" />
+    <Content Include="Content\Theme\images\dummy\100x80.jpg" />
+    <Content Include="Content\Theme\images\dummy\100x80_2.jpg" />
+    <Content Include="Content\Theme\images\dummy\115x115.jpg" />
+    <Content Include="Content\Theme\images\dummy\1170x400.jpg" />
+    <Content Include="Content\Theme\images\dummy\1170x480.jpg" />
+    <Content Include="Content\Theme\images\dummy\120x105.jpg" />
+    <Content Include="Content\Theme\images\dummy\170x150.jpg" />
+    <Content Include="Content\Theme\images\dummy\265x160.jpg" />
+    <Content Include="Content\Theme\images\dummy\270x165.jpg" />
+    <Content Include="Content\Theme\images\dummy\291x452.jpg" />
+    <Content Include="Content\Theme\images\dummy\292x240.jpg" />
+    <Content Include="Content\Theme\images\dummy\300x200.jpg" />
+    <Content Include="Content\Theme\images\dummy\334x301.jpg" />
+    <Content Include="Content\Theme\images\dummy\350x150.jpg" />
+    <Content Include="Content\Theme\images\dummy\390x200.jpg" />
+    <Content Include="Content\Theme\images\dummy\560x390.jpg" />
+    <Content Include="Content\Theme\images\dummy\584x350.jpg" />
+    <Content Include="Content\Theme\images\dummy\585x480.jpg" />
+    <Content Include="Content\Theme\images\dummy\75x75.jpg" />
+    <Content Include="Content\Theme\images\dummy\770x470.jpg" />
+    <Content Include="Content\Theme\images\dummy\819x452.jpg" />
+    <Content Include="Content\Theme\images\dummy\banner_160x600.png" />
+    <Content Include="Content\Theme\images\dummy\banner_300x250.png" />
+    <Content Include="Content\Theme\images\dummy\banner_560x100.png" />
+    <Content Include="Content\Theme\images\dummy\photo-big.jpg" />
+    <Content Include="Content\Theme\images\logo-black.png" />
+    <Content Include="Content\Theme\images\logo-white-mobile.png" />
+    <Content Include="Content\Theme\images\logo-white.png" />
+    <Content Include="Content\Theme\images\photobox\loading.gif" />
+    <Content Include="Content\Theme\images\stars.png" />
+    <Content Include="Content\Theme\styles\bootstrap.min.css" />
+    <Content Include="Content\Theme\styles\colors.css" />
+    <Content Include="Content\Theme\styles\datepicker.css" />
+    <Content Include="Content\Theme\styles\font-awesome.min.css" />
+    <Content Include="Content\Theme\styles\jquery.sidr.dark.css" />
+    <Content Include="Content\Theme\styles\photobox.css" />
+    <Content Include="Content\Theme\styles\photobox.ie.css" />
+    <Content Include="Content\Theme\styles\style.css" />
+    <Content Include="Content\Theme\styles\weather-icons.min.css" />
     <Content Include="Controllers\ChatHub.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DbConfig.cs" />
@@ -363,32 +407,56 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Libraries\bootstrap-datepicker.js" />
+    <Content Include="Scripts\Libraries\bootstrap.js" />
+    <Content Include="Scripts\Libraries\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Content\Theme\images\dummy\Thumbs.db" />
+    <Content Include="Content\Theme\images\photobox\Thumbs.db" />
+    <Content Include="Content\Theme\images\Thumbs.db" />
+    <Content Include="Content\Theme\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Theme\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Theme\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Theme\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Theme\fonts\FontAwesome.otf" />
+    <Content Include="Content\Theme\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Theme\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Theme\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Theme\fonts\weathericons-regular-webfont.eot" />
+    <Content Include="Content\Theme\fonts\weathericons-regular-webfont.ttf" />
+    <Content Include="Content\Theme\fonts\weathericons-regular-webfont.woff" />
+    <None Include="Scripts\Libraries\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\chatLogic.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.signalR-2.2.0.js" />
-    <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
+    <Content Include="Scripts\Libraries\functions.js" />
+    <Content Include="Scripts\Libraries\html5shiv.js" />
+    <Content Include="Scripts\Libraries\jquery-1.10.2.js" />
+    <Content Include="Scripts\Libraries\jquery-1.10.2.min.js" />
+    <None Include="Scripts\Libraries\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\Libraries\jquery.carouFredSel-6.2.1-packed.js" />
+    <Content Include="Scripts\Libraries\jquery.min.js" />
+    <Content Include="Scripts\Libraries\jquery.photobox.js" />
+    <Content Include="Scripts\Libraries\jquery.sidr.min.js" />
+    <Content Include="Scripts\Libraries\jquery.signalR-2.2.0.js" />
+    <Content Include="Scripts\Libraries\jquery.signalR-2.2.0.min.js" />
+    <Content Include="Scripts\Libraries\jquery.touchSwipe.min.js" />
     <Content Include="Scripts\jquery.ui.components\jquery.ui.core.js" />
     <Content Include="Scripts\jquery.ui.components\jquery.ui.dialog.js" />
     <Content Include="Scripts\jquery.ui.components\jquery.ui.draggable.js" />
     <Content Include="Scripts\jquery.ui.components\jquery.ui.mouse.js" />
     <Content Include="Scripts\jquery.ui.components\jquery.ui.resizable.js" />
     <Content Include="Scripts\jquery.ui.components\jquery.ui.widget.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Libraries\jquery.validate.js" />
+    <Content Include="Scripts\Libraries\jquery.validate.min.js" />
+    <Content Include="Scripts\Libraries\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\Libraries\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Libraries\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Libraries\modernizr.js" />
+    <Content Include="Scripts\Libraries\respond.js" />
+    <Content Include="Scripts\Libraries\respond.min.js" />
+    <Content Include="Scripts\Libraries\theia-sticky-sidebar.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -442,7 +510,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\Libraries\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\" />

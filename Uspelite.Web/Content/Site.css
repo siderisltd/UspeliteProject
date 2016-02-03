@@ -94,7 +94,7 @@ textarea {
 
 /*Nav styles*/
 
-.navbar-inverse {
+/*.navbar-inverse {
     background-color: white;
     font-size: 10px;
     padding: 3px;
@@ -113,4 +113,11 @@ textarea {
     display:block; 
     height:150px; 
     width: 300px;
+}*/
+
+#logo-img {
+    display: block;
+    position: relative;
+    top: -15px;
+    left: -45px;
 }

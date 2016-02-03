@@ -1,86 +1,682 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js ie9 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="bg-BG">
+<!--<![endif]-->
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uspelite</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Младите успели българи,Успелите Българи, Седмични Новини, Дневни Новини, Новини, Блог, Шок новини, Весели новини, Хубави новини" />
+    <meta name="description" content="Младите успели българи">
+    <meta name="author" content="Младите успели българи">
+    <title>Успелите</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,500italic,400italic,700,700italic%7CRoboto+Condensed:400,700%7CRoboto+Slab' rel='stylesheet' type='text/css'>
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/Theme")
 
+    <!-- start:stylesheets -->
+    <!-- end:stylesheets -->
+    <!--[if lte IE 8]>
+    <script src="assets/js/respond.js"></script>
+    <![endif]-->
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="assets/css/photobox.ie.css">
+    <script src="assets/js/html5shiv.js"></script>
+    <![endif]-->
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div id="page-outer-wrap">
+        <div id="page-inner-wrap">
+        <header id="page-header" class="hidden-xs">
+        <div id="header-branding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <!-- start:logo -->
+                        <h1>
+                            <a href="~/"><img id="logo-img" src="~/Content/Pics/UspeliteLionWhite2.png" alt="Младите успели българи"></a>
+                        </h1>
+                        <!-- end:logo -->
+                    </div>
+                    <!-- end:col -->
+                    <!-- start:col -->
+                    <div class="col-sm-6 col-md-4 text-center">
+
+                        <form id="search-form">
+                            <input type="text" name="qsearch" placeholder="Търсене">
+                            <button><span class="glyphicon glyphicon-search"></span></button>
+                        </form>
+
+                    </div>
+                    <!-- end:col -->
+                    <!-- start:col -->
+                    <div class="visible-md visible-lg col-md-4 text-right">
+
+                        <div class="weather">
+                            <i class="icon wi-day-cloudy"></i>
+                            <h3><span class="glyphicon glyphicon-map-marker"></span> LA, California <span class="temp">+12° C</span></h3>
+                            <span class="date">Thursday, 20.4.2014.</span>
+                        </div>
+
+                    </div>
+                    <!-- end:col -->
+
+                </div>
+                <!-- end:row -->
+
+            </div>
+            <!-- end:container -->
+
+        </div>
+        <!-- end:header-branding -->
+        <!-- start:header-navigation -->
+        <div id="header-navigation">
+
+        <!-- start:container -->
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("  ", "Index", "Home", new {area = ""}, new {@class = "navbar-brand", @id="logo"})
+
+        <!-- start:menu -->
+        <nav id="menu">
+        <ul class="nav clearfix">
+        <li class="home"><a href="~/"><span class="glyphicon glyphicon-home"></span></a></li>
+        <li class="cat-news">
+            <a href="~/News">Новини</a>
+            <!-- start:submenu-news -->
+            <div class="subnav-container">
+                <ul class="subnav-menu">
+                    <li class="current">
+                        <a href="~/News/National">Национални</a>
+                        <div class="subnav-posts">
+                            <!-- start:article template-->
+                            <article>
+                                <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="190" height="140" alt=""></a>
+                                <h3>
+                                    <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                                </h3>
+                            </article>
+                            <!-- end:article -->
+                        </div>
+                    </li>
+                    <li>
+                        <a href="~/News/World">Световни</a>
+                        <div class="subnav-posts">
+                            <!-- start:article template-->
+                            <article>
+                                <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="190" height="140" alt=""></a>
+                                <h3>
+                                    <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                                </h3>
+                            </article>
+                            <!-- end:article -->
+                        </div>
+                    </li>
+                    <li>
+                        <a href="~/News/Sport">Спорт</a>
+                        <div class="subnav-posts">
+                            <!-- start:article -->
+                            <article>
+                                <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="190" height="140" alt=""></a>
+                                <h3>
+                                    <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                                </h3>
+                            </article>
+                            <!-- end:article -->
+                        </div>
+                    </li>
+                    <li>
+                        <a href="~/News/FromUsers">От вас за вас</a>
+                        <div class="subnav-posts">
+                            <!-- start:article -->
+                            <article>
+                                <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="190" height="140" alt=""></a>
+                                <h3>
+                                    <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                                </h3>
+                            </article>
+                            <!-- end:article -->
+                        </div>
+                    </li>
+                    <li>
+                        <a href="~/News/PhotoGallery">Фото галерия</a>
+                        <div class="subnav-posts">
+                            <!-- start:article -->
+                            <article>
+                                <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="190" height="140" alt=""></a>
+                                <h3>
+                                    <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                                </h3>
+                            </article>
+                            <!-- end:article -->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- end:submenu-news -->
+        </li>
+        <li class="cat-sports">
+            <a href="~/Sport">Спорт</a>
+            <!-- start:submenu-sports -->
+            <div class="subnav-container">
+                <ul class="subnav-menu">
+                    <li class="current">
+                        <a href="~/News/Sport/Football">Футбол</a>
+                        <div class="subnav-posts">
+                            <!-- start:article -->
+                            <article>
+                                <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="190" height="140" alt=""></a>
+                                <h3>
+                                    <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                                </h3>
+                            </article>
+                            <!-- end:article -->
+                        </div>
+                    </li>
+                    <li>
+                        <a href="~/News/Sport/Football">Баскетбол</a>
+                        <div class="subnav-posts">
+                            <!-- start:article -->
+                            <article>
+                                <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="190" height="140" alt=""></a>
+                                <h3>
+                                    <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                                </h3>
+                            </article>
+                            <!-- end:article -->
+                        </div>
+                    </li>
+                    <li>
+                        <a href="~/News/Sport/ValleyBall">Волейбол</a>
+                        <div class="subnav-posts">
+                            <!-- start:article -->
+                            <article>
+                                <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="190" height="140" alt=""></a>
+                                <h3>
+                                    <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                                </h3>
+                            </article>
+                            <!-- end:article -->
+                        </div>
+                    </li>
+                    <li>
+
+                    <li>
+                        <a href="~/PhotoGallery/Sport">Фото галерия</a>
+                        <div class="subnav-posts">
+                            <!-- start:article -->
+                            <article>
+                                <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="190" height="140" alt=""></a>
+                                <h3>
+                                    <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                                </h3>
+                            </article>
+                            <!-- end:article -->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- end:submenu-sports -->
+        </li>
+
+        <li class="cat-showtime">
+            <a href="~/Interviews">Интервюта</a>
+            <!-- start:submenu-showtime -->
+            <div class="subnav-container">
+                <ul class="subnav-menu">
+                    <li class="current">
+                        <a href="~/Interviews/WhyBulgaria">Защото избрах българия</a>
+                        <div class="subnav-posts">
+                            <!-- start:article -->
+                            <article>
+                                <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="190" height="140" alt=""></a>
+                                <h3>
+                                    <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                                </h3>
+                            </article>
+                            <!-- end:article -->
+                        </div>
+                    </li>
+                    <li>
+                        <a href="~/Interviews/TalkWith">На лавче с</a>
+                        <div class="subnav-posts">
+                            <!-- start:article -->
+                            <article>
+                                <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="190" height="140" alt=""></a>
+                                <h3>
+                                    <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                                </h3>
+                            </article>
+                            <!-- end:article -->
+                        </div>
+                    </li>
+                    <li>
+                        <a href="~/Gallery/Interviews">Фото галерия</a>
+                        <div class="subnav-posts">
+                            <!-- start:article -->
+                            <article>
+                                <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="190" height="140" alt=""></a>
+                                <h3>
+                                    <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                                </h3>
+                            </article>
+                            <!-- end:article -->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- end:submenu-showtime -->
+        </li>
+        <li class="cat-tech">
+            <a href="~/News/Technology">Нови технологии</a>
+            <!-- start:submenu-tech -->
+            <div class="dropnav-container">
+                <ul class="dropnav-menu">
+                    <li><a href="~/News/Technologies/Mobile">Мобилни</a></li>
+                    <li><a href="~/News/Technologies/Web">Уеб</a></li>
+                    <li><a href="~/News/Technologies/Seccessed">Успелите</a></li>
+                    <li><a href="~/News/Technologies/Seccessed">Фото галерия</a></li>
+                </ul>
+            </div>
+            <!-- end:submenu-tech -->
+        </li>
+        <li class="cat-business">
+            <a href="#">Сцената</a>
+            <!-- start:submenu-business -->
+            <div class="dropnav-container" style="display: none;">
+                <ul class="dropnav-menu">
+                    <li><a href="#">От вас за вас</a></li>
+                    <li><a href="#">Галерия</a></li>
+                </ul>
+            </div>
+            <!-- end:submenu-business -->
+        </li>
+        <li class="cat-extra">
+            <a href="~/Video">Видео</a>
+            <!-- start:submenu-extra -->
+            <div class="dropnav-container">
+                <ul class="dropnav-menu">
+                    <li><a href="archive.html">Излъчване на живо</a></li>
+                    <li><a href="author.html">Колекции</a></li>
+                </ul>
+            </div>
+            <!-- end:submenu-extra -->
+        </li>
+        <li class="options">
+            <a href="~/Account/Login"><span class="glyphicon glyphicon-asterisk"></span> Sign in </a> | <a href="~/Account/Register"><span class="glyphicon glyphicon-pencil"></span> Register</a></li>
+        </ul>
+        </nav>
+        <!-- end:menu -->
+        </div>
+        <!-- end:container -->
+        </div>
+        <!-- end:header-navigation -->
+        </header>
+
+
+        @*@Html.Partial("_LoginPartial")*@
+
+
+            <div id="sidebar">
+
+                <!-- start:advertising -->
+                <div class="ad">
+                    <a href=""><img src="~/Content/Theme/images/dummy/banner_300x250.png" width="300" height="250" alt=""></a>
+                </div>
+                <!-- end:advertising -->
+                <!-- start:section-module-timeline -->
+                <section class="module-timeline">
+                    <!-- start:header -->
+                    <header>
+                        <h2>Newsweek timeline</h2>
+                        <span class="borderline"></span>
+                    </header>
+                    <!-- end:header -->
+                    <!-- start:articles -->
+                    <div class="articles">
+                        <article>
+                            <span class="published">Today</span>
+                            <span class="published-time">15:00</span>
+                            <div class="cnt">
+                                <i class="bullet bullet-sports"></i>
+                                <span class="category cat-sports"><a href="#">Sport</a></span>
+                                <h3>
+                                    <a href="#">A wonderful serenity has taken possession of my entire soul has taken possession</a>
+                                </h3>
+                            </div>
+                        </article>
+
+                        <article>
+                            <span class="published">Yesterday</span>
+                            <span class="published-time">15:00</span>
+                            <div class="cnt">
+                                <i class="bullet bullet-showtime"></i>
+                                <span class="category cat-showtime"><a href="#">Showtime</a></span>
+                                <h3>
+                                    <a href="#">A wonderful serenity has taken possession of my entire soul has taken possession</a>
+                                </h3>
+                            </div>
+                        </article>
+
+                        <article>
+                            <span class="published">Feb 18th</span>
+                            <span class="published-time">15:00</span>
+                            <div class="cnt">
+                                <i class="bullet bullet-lifestyle"></i>
+                                <span class="category cat-lifestyle"><a href="#">Lifestyle</a></span>
+                                <h3>
+                                    <a href="#">A wonderful serenity has taken possession of my entire soul has taken possession</a>
+                                </h3>
+                            </div>
+                        </article>
+
+                        <article>
+                            <span class="published">Feb 15th</span>
+                            <span class="published-time">15:00</span>
+                            <div class="cnt">
+                                <i class="bullet bullet-business"></i>
+                                <span class="category cat-business"><a href="#">Business</a></span>
+                                <h3>
+                                    <a href="#">A wonderful serenity has taken possession of my entire soul has taken possession</a>
+                                </h3>
+                            </div>
+                        </article>
+
+                        <article>
+                            <span class="published">Feb 10th</span>
+                            <span class="published-time">15:00</span>
+                            <div class="cnt">
+                                <i class="bullet bullet-tech"></i>
+                                <span class="category cat-tech"><a href="#">Tech</a></span>
+                                <h3>
+                                    <a href="#">A wonderful serenity has taken possession of my entire soul has taken possession</a>
+                                </h3>
+                            </div>
+                        </article>
+                    </div>
+                    <!-- end:articles -->
+
+                </section>
+                <!-- end:section-module-timeline -->
+                <!-- start:section-module-quote -->
+                <section class="module-quote">
+                    <!-- start:header -->
+                    <header>
+                        <h2>Weekly quote</h2>
+                        <span class="borderline"></span>
+                    </header>
+                    <!-- end:header -->
+                    <!-- start:blockquote-quote -->
+                    <blockquote>
+                        <p>Resentment and complaint are appropriate neither for oneself nor others.</p>
+                        <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                    </blockquote>
+                    <!-- end:blockquote-quote -->
+                </section>
+                <!-- end:section-module-quote -->
+                <!-- start:section-module-singles -->
+                <section class="module-singles">
+                    <!-- start:header -->
+                    <header>
+                        <h2>Top singles</h2>
+                        <span class="borderline"></span>
+                    </header>
+                    <!-- end:header -->
+                    <!-- start:singles-container -->
+                    <ul class="singles-container">
+                        <li>
+                            <span class="glyphicon glyphicon-play-circle"></span>
+                            <a href="">Meet Me Halfway</a>
+                            <span class="author">Black Eyed Peas</span>
+                        </li>
+                        <li>
+                            <span class="glyphicon glyphicon-play-circle"></span>
+                            <a href="">Empire State Of Mind (Live)</a>
+                            <span class="author">Jay Z</span>
+                        </li>
+                        <li>
+                            <span class="glyphicon glyphicon-play-circle"></span>
+                            <a href="">Need You Know</a>
+                            <span class="author">Lady Antebellum</span>
+                        </li>
+                        <li>
+                            <span class="glyphicon glyphicon-play-circle"></span>
+                            <a href="">Already Gone</a>
+                            <span class="author">Kelly Clarkson</span>
+                        </li>
+                        <li>
+                            <span class="glyphicon glyphicon-play-circle"></span>
+                            <a href="">Party In The U.S.A.</a>
+                            <span class="author">Miley Cyrus</span>
+                        </li>
+                    </ul>
+                    <!-- end:singles-container -->
+                </section>
+                <!-- end:section-module-singles -->
+                <!-- start:section-module-news -->
+                <section class="module-news top-margin">
+                    <!-- start:header -->
+                    <header>
+                        <h2>Don't miss this stories</h2>
+                        <span class="borderline"></span>
+                    </header>
+                    <!-- end:header -->
+                    <!-- start:article-container -->
+                    <div class="article-container">
+                        <!-- start:article -->
+                        <article class="clearfix">
+                            <a href="#"><img src="~/Content/Theme/images/dummy/100x80_2.jpg" width="100" height="80" alt="" /></a>
+                            <span class="published">Feb 18, 2014 <span class="category cat-sports"><a href="#">Sports</a></span></span>
+                            <h3>
+                                <a href="#">A wonderful serenity has taken possession of my entire soul has taken possession</a>
+                            </h3>
+                        </article>
+                        <!-- end:article -->
+                        <!-- start:article -->
+                        <article class="clearfix">
+                            <a href="#"><img src="~/Content/Theme/images/dummy/100x80_2.jpg" width="100" height="80" alt="" /></a>
+                            <span class="published">Feb 18, 2014 <span class="category cat-news"><a href="#">News</a></span></span>
+                            <h3>
+                                <a href="#">A wonderful serenity has taken possession of my entire soul has taken possession</a>
+                            </h3>
+                        </article>
+                        <!-- end:article -->
+                        <!-- start:article -->
+                        <article class="clearfix">
+                            <a href="#"><img src="~/Content/Theme/images/dummy/100x80_2.jpg" width="100" height="80" alt="" /></a>
+                            <span class="published">Feb 18, 2014 <span class="category cat-lifestyle"><a href="#">Lifestyle</a></span></span>
+                            <h3>
+                                <a href="#">A wonderful serenity has taken possession of my entire soul has taken possession</a>
+                            </h3>
+                        </article>
+                        <!-- end:article -->
+                        <!-- start:article -->
+                        <article class="clearfix">
+                            <a href="#"><img src="~/Content/Theme/images/dummy/100x80_2.jpg" width="100" height="80" alt="" /></a>
+                            <span class="published">Feb 18, 2014 <span class="category cat-showtime"><a href="#">Showtime</a></span></span>
+                            <h3>
+                                <a href="#">A wonderful serenity has taken possession of my entire soul has taken possession</a>
+                            </h3>
+                        </article>
+                        <!-- end:article -->
+                    </div>
+                    <!-- end:article-container -->
+                </section>
+                <!-- end:section-module-news -->
+                <!-- start:advertising -->
+                <div class="ad ad-separator">
+                    <a href=""><img src="~/Content/Theme/images/dummy/banner_300x250.png" width="300" height="250" alt=""></a>
+                </div>
+                <!-- end:advertising -->
+                <!-- start:section-module-photos -->
+                <section class="module-photos">
+                    <!-- start:header -->
+                    <header>
+                        <h2>Weekly photos</h2>
+                        <span class="borderline"></span>
+                    </header>
+                    <!-- end:header -->
+                    <!-- start:article-container -->
+                    <div id="weekly-gallery" class="article-container">
+                        <!-- start:row -->
+                        <div class="row">
+                            <!-- start:article -->
+                            <article class="clearfix">
+                                <p>Aliquam sollicitudin, enim sit amet hendrerit consequat, velit orci posuere elit, eu facilisis lacus odio ac nunc. </p>
+                                <a href="~/Content/Theme/images/dummy/photo-big.jpg">
+                                    <img src="~/Content/Theme/images/dummy/300x200.jpg" width="300" height="200" alt="Responsive image" class="img-responsive" />
+                                </a>
+                            </article>
+                            <!-- end:article -->
+                        </div>
+                        <!-- end:row -->
+                        <!-- start:row -->
+                        <div class="row">
+                            <!-- start:col -->
+                            <div class="col-xs-4">
+                                <!-- start:article -->
+                                <article class="clearfix">
+                                    <a href="~/Content/Theme/images/dummy/photo-big.jpg"><img src="~/Content/Theme/images/dummy/100x80_2.jpg" width="100" height="80" alt="Responsive image" class="img-responsive" /></a>
+                                </article>
+                                <!-- end:article -->
+                            </div>
+                            <!-- end:col -->
+                            <!-- start:col -->
+                            <div class="col-xs-4">
+                                <!-- start:article -->
+                                <article class="clearfix">
+                                    <a href="~/Content/Theme/images/dummy/photo-big.jpg"><img src="~/Content/Theme/images/dummy/100x80_2.jpg" width="100" height="80" alt="Responsive image" class="img-responsive" /></a>
+                                </article>
+                                <!-- end:article -->
+                            </div>
+                            <!-- end:col -->
+                            <!-- start:col -->
+                            <div class="col-xs-4">
+                                <!-- start:article -->
+                                <article class="clearfix">
+                                    <a href="~/Content/Theme/images/dummy/photo-big.jpg"><img src="~/Content/Theme/images/dummy/100x80_2.jpg" width="100" height="80" alt="Responsive image" class="img-responsive" /></a>
+                                </article>
+                                <!-- end:article -->
+                            </div>
+                            <!-- end:col -->
+                        </div>
+                        <!-- end:row -->
+                    </div>
+                    <!-- end:article-container -->
+                </section>
+                <!-- end:section-module-photos -->
+
+
+            </div>
+            <!-- end:sidebar -->
+
+
+
+
+
+            <div class="container">
+                @RenderBody()
             </div>
 
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Постове", "Index", "Posts")</li>
-                        <li>@Html.ActionLink("Позитивни новини", "Index", "News")</li>
-                        <li>@Html.ActionLink("Видео", "Index", "Video")</li>
-                        <li>@Html.ActionLink("Лайв", "Index", "Live")</li>
-                        <li>@Html.ActionLink("Категории", "Index", "Categories")</li>
-                        <li>@Html.ActionLink("За нас", "About", "Home")</li>
+            <div id="page-content" class="clearfix">
 
 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Интервюта<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Защото избрах българия</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">На лафче с</a></li>
+
+
+
+
+                <footer id="page-footer" class="site-footer">
+
+                    <!-- start:container -->
+                    <div class="container">
+
+                        <nav id="foot-menu" class="hidden-xs">
+                            <ul class="clearfix">
+                                <li class="home current"><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+                                <li class="cat-news"><a href="#">News</a></li>
+                                <li class="cat-sports"><a href="#">Sports</a></li>
+                                <li class="cat-lifestyle"><a href="#">Lifestyle</a></li>
+                                <li class="cat-showtime"><a href="#">Showtime</a></li>
+                                <li class="cat-tech"><a href="#">Tech</a></li>
+                                <li class="cat-business"><a href="#">Business</a></li>
+                                <li class="cat-extra"><a href="#">Extra +</a></li>
+                                <li class="options"><a href="#" class="scrollToTop">Back to top <span class="glyphicon glyphicon-chevron-up"></span></a></li>
                             </ul>
-                        </li>
+                        </nav>
 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Статии<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Бизнес</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Великите непознати</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Тайните кътчета</a></li>
-                            </ul>
-                        </li>
+                        <!-- start:row -->
+                        <div class="about row">
 
-                        <li>@Html.ActionLink("Спорт", "Sport", "News")</li>
-                        <li>@Html.ActionLink("Сцената", "FromUsers", "Posts")</li>
+                            <!-- start:col -->
+                            <div class="col-sm-12 col-md-3">
+                                <h3>
+                                    <a href="#"><img src="~/Content/Theme/images/logo-black.png" alt="Weekly News"></a>
+                                </h3>
+                            </div>
+                            <!-- end:col -->
+                            <!-- start:col -->
+                            <div class="col-sm-6 col-md-5">
+                                <h4>About Weekly News</h4>
+                                <p>Aliquam erat volutpat. Aliquam porta nibh id odio ornare ullamcorper. Etiam sit amet consectetur arcu. Suspendisse dolor nisl, eleifend quis metus a, sollicitudin semper orci.</p>
+                                <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
+                                <a href="#"><i class="fa fa-facebook-square fa-lg"></i></a>
+                                <a href="#"><i class="fa fa-linkedin-square fa-lg"></i></a>
+                                <a href="#"><i class="fa fa-google-plus-square fa-lg"></i></a>
+                                <a href="#"><i class="fa fa-vimeo-square fa-lg"></i></a>
+                                <a href="#"><i class="fa fa-youtube fa-lg"></i></a>
+                            </div>
+                            <!-- end:col -->
+                            <!-- start:col -->
+                            <div class="col-sm-6 col-md-4">
+                                <h4>Additional information</h4>
+                                <ul>
+                                    <li><a href="#">About us</a></li>
+                                    <li><a href="#">Legal agreement</a></li>
+                                    <li><a href="#">Our staff</a></li>
+                                    <li><a href="#">Privacy policy</a></li>
+                                    <li><a href="#">Contact us</a></li>
+                                    <li><a href="#">Terms of Service</a></li>
+                                    <li><a href="#">Become a member</a></li>
+                                    <li><a href="#">Press Releases</a></li>
+                                </ul>
+                            </div>
+                            <!-- end:col -->
 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Култура<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Фолклор изкуство</a></li>
-                            </ul>
-                        </li>
+                        </div>
+                        <!-- end:row -->
+                        <!-- start:row -->
+                        <div class="copyright row">
 
-                        <li>@Html.ActionLink("Партньори", "Partners", "Home")</li>
-                    }
+                            <!-- start:col -->
+                            <div class="col-sm-6">
+                                © <a href="#">Weekly News</a> 2014. All rights reserved.
+                            </div>
+                            <!-- end:col -->
+                            <!-- start:col -->
+                            <div class="col-sm-6 text-right">
+                                Produced by <a href="http://themes.mipdesign.com">Mip Themes</a>.
+                            </div>
+                            <!-- end:col -->
 
-                </ul>
-                @Html.Partial("_LoginPartial")
+                        </div>
+                        <!-- end:row -->
+
+                    </div>
+                    <!-- end:container -->
+
+                </footer>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p> @DateTime.Now.Year - &copy; Uspelite All rights reserved</p>
-        </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jquery-ui");
+    @Scripts.Render("~/bundles/theme");
 
     @RenderSection("scripts", required: false)
 </body>
