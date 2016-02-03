@@ -36,7 +36,7 @@
                      "~/Scripts/Libraries/functions.js"
                 ));
 
-            bundles.Add(new StyleBundle("~/Content/Theme").Include(
+            bundles.Add(new StyleBundle("~/theme/styles").Include(
                    "~/Content/Theme/styles/bootstrap.min.css",
                    "~/Content/Theme/styles/font-awesome.min.css",
                    "~/Content/Theme/styles/weather-icons.min.css",
@@ -49,7 +49,7 @@
                 ));
 
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/site/styles").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/JQueryUI/themes/base/jquery.ui.all.css"));
@@ -60,7 +60,9 @@
                      "~/Scripts/Libraries/jquery.ui.components/jquery.ui.mouse.js",
                      "~/Scripts/Libraries/jquery.ui.components/jquery.ui.draggable.js",
                      "~/Scripts/Libraries/jquery.ui.components/jquery.ui.resizable.js"
-    ));
+                  ));
+
+            BundleTable.EnableOptimizations = true;
         }
     }
 }
