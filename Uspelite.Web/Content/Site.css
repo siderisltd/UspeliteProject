@@ -1,12 +1,17 @@
-﻿body {
-    padding: 0;
-    margin : 0;
+﻿html, body, div, span,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, address, em, img, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li, input,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, figure, figcaption, footer, header, hgroup, 
+menu, nav, section{
+ margin: 0;
+ padding: 0;
 }
 
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
 
 .dl-horizontal dt {
     white-space: normal;
@@ -17,6 +22,12 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+#render-body-container {
+    margin:0;
+    padding: 0;
+    width: 1000px;
 }
 
 
