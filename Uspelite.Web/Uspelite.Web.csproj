@@ -493,6 +493,9 @@
     <Content Include="Views\Live\Index.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Partners.cshtml" />
+    <Content Include="Views\Shared\Partials\_Header.cshtml" />
+    <Content Include="Views\Shared\Partials\_Sidebar.cshtml" />
+    <Content Include="Views\Shared\Partials\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Uspelite.Data.Models\Uspelite.Data.Models.csproj">
