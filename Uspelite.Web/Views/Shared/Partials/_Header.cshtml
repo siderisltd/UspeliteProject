@@ -267,7 +267,7 @@
                     <!-- start:submenu-extra -->
                     <div class="dropnav-container">
                         <ul class="dropnav-menu">
-                            <li><a href="Live/Index">Излъчване на живо</a></li>
+                            <li>@Html.ActionLink("Излъчване на живо",  "Index", "Live")</li>
                             <li><a href="author.html">Колекции</a></li>
                         </ul>
                     </div>
@@ -275,7 +275,7 @@
                 </li>
 
                 @Html.Partial("~/Views/Shared/_LoginPartial.cshtml")    
- 
+                </ul>
             </nav>
             <!-- end:menu -->
         </div>
