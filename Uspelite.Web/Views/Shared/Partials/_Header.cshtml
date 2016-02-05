@@ -262,21 +262,20 @@
                         </div>
                         <!-- end:submenu-business -->
                     </li>
-                    <li class="cat-extra">
-                        <a href="~/Video">Видео</a>
-                        <!-- start:submenu-extra -->
-                        <div class="dropnav-container">
-                            <ul class="dropnav-menu">
-                                <li><a href="Live/Index">Излъчване на живо</a></li>
-                                <li><a href="author.html">Колекции</a></li>
-                            </ul>
-                        </div>
-                        <!-- end:submenu-extra -->
-                    </li>
-                    <li class="options">
-                        <a href="~/Account/Login"><span class="glyphicon glyphicon-asterisk"></span> Sign in </a> | <a href="~/Account/Register"><span class="glyphicon glyphicon-pencil"></span> Register</a>
-                    </li>
-                </ul>
+                <li class="cat-extra">
+                    <a href="~/Video">Видео</a>
+                    <!-- start:submenu-extra -->
+                    <div class="dropnav-container">
+                        <ul class="dropnav-menu">
+                            <li><a href="Live/Index">Излъчване на живо</a></li>
+                            <li><a href="author.html">Колекции</a></li>
+                        </ul>
+                    </div>
+                    <!-- end:submenu-extra -->
+                </li>
+
+                @Html.Partial("~/Views/Shared/_LoginPartial.cshtml")    
+ 
             </nav>
             <!-- end:menu -->
         </div>
