@@ -2,7 +2,7 @@
 {
     using System.Web.Mvc;
 
-    [Authorize(Roles = "Client")]
+    [Authorize]
     public class LiveController : Controller
     {
         public ActionResult Index()
