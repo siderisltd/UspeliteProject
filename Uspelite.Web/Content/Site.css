@@ -104,7 +104,13 @@ textarea {
     opacity: 0.7;
 }
 
-/*Nav styles*/
+
+
+
+
+
+
+/*Nav styles* comment to the pic/
 
 /*.navbar-inverse {
     background-color: white;
@@ -127,9 +133,20 @@ textarea {
     width: 300px;
 }*/
 
+
+
+
+
+
+
 #logo-img {
     display: block;
     position: relative;
     top: -15px;
     left: -45px;
+}
+
+div.container {
+    padding-left: 0;
+    padding-right: 0;
 }

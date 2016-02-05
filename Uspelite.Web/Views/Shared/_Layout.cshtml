@@ -37,13 +37,19 @@
             @Html.Partial("~/Views/Shared/Partials/_Header.cshtml");
             @*@Html.Partial("_LoginPartial")*@
 
-            @Html.Partial("~/Views/Shared/Partials/_Sidebar.cshtml")
+
+
+            @Html.Partial("~/Views/Shared/Partials/_PageSlider.cshtml");
 
             <div class="container">
-                @RenderBody()
+                <div id="page-content">
+                    <div id="main">
+                        @RenderBody()
+                    </div>
+                    @Html.Partial("~/Views/Shared/Partials/_Sidebar.cshtml")
+                </div>
             </div>
-
-            <div id="page-content" class="clearfix"></div>
+            <div class="clearfix"></div>
             @Html.Partial("~/Views/Shared/Partials/_Footer.cshtml")
         </div>
     </div>

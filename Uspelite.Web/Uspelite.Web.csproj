@@ -496,6 +496,7 @@
     <Content Include="Views\Shared\Partials\_Header.cshtml" />
     <Content Include="Views\Shared\Partials\_Sidebar.cshtml" />
     <Content Include="Views\Shared\Partials\_Footer.cshtml" />
+    <Content Include="Views\Shared\Partials\_PageSlider.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Uspelite.Data.Models\Uspelite.Data.Models.csproj">
