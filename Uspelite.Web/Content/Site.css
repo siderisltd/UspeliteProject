@@ -34,6 +34,8 @@ textarea {
 #divContainer {
     height: 412px;
     border: 1px solid black;
+    position: relative;
+    left: -220px;
     width: 550px;
     float: right;
     margin:0;
@@ -69,6 +71,7 @@ textarea {
     padding: 0;
     margin: 0;
     float: right;
+    width: 180px;
     display: inline-block;
     vertical-align: top;
     border: 1px solid black;
@@ -87,6 +90,7 @@ textarea {
     border-bottom: 1px solid black;
     height: 360px;
     max-height: 360px;
+    width: 368px;
     overflow-y: scroll;
 }
 
@@ -97,6 +101,7 @@ textarea {
 
 .title {
     background-color: cornflowerblue;
+    width: 548px;
 }
 
 .loginUser {
