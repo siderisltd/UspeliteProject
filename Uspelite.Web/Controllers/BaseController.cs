@@ -1,23 +1,41 @@
 ﻿namespace Uspelite.Web.Controllers
 {
     using System;
+    using System.Security.Principal;
     using System.Web.Mvc;
     using System.Web.Routing;
     using Data.Models;
     using Ninject;
     using Services.Data.Contracts;
+    using Services.Web.Contracts;
 
     public abstract class BaseController : Controller
     {
         [Inject]
-        private IUsersService usersService { get; set; }
+        public IHttpCacheService Cache { get; set; }
+
+        [Inject]
+        public IUsersService UsersService { get; set; }
 
         protected User UserProfile { get; private set; }
 
-        protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
+        private IPrincipal user;
+
+        protected override void Initialize(RequestContext requestContext)
         {
-            this.UserProfile = this.usersService.GetByUsername(this.User.Identity.Name);
-            return base.BeginExecute(requestContext, callback, state);
+            this.user = requestContext.HttpContext.User;
+          
+            base.Initialize(requestContext);
+        }
+
+        protected override void EndExecute(IAsyncResult asyncResult)
+        {
+            if (this.user != null)
+            {
+                this.UserProfile = this.UsersService.GetByUsername(this.user.Identity.Name);
+            }
+
+            base.EndExecute(asyncResult);
         }
     }
 }

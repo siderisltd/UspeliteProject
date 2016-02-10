@@ -3,7 +3,7 @@
     using System.Web.Mvc;
     using Services.Data.Contracts;
 
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly IPostsService postsService;
 

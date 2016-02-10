@@ -305,8 +305,23 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\ChatHub.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Account\Account\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="Models\Account\Account\ExternalLoginListViewModel.cs" />
+    <Compile Include="Models\Account\Account\ForgotPasswordViewModel.cs" />
+    <Compile Include="Models\Account\Account\ForgotViewModel.cs" />
+    <Compile Include="Models\Account\Account\LoginViewModel.cs" />
+    <Compile Include="Models\Account\Account\RegisterViewModel.cs" />
+    <Compile Include="Models\Account\Account\ResetPasswordViewModel.cs" />
+    <Compile Include="Models\Account\Account\SendCodeViewModel.cs" />
+    <Compile Include="Models\Account\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="Models\Account\Manage\AddPhoneNumberViewModel.cs" />
+    <Compile Include="Models\Account\Manage\ChangePasswordViewModel.cs" />
+    <Compile Include="Models\Account\Manage\ConfigureTwoFactorViewModel.cs" />
+    <Compile Include="Models\Account\Manage\FactorViewModel.cs" />
+    <Compile Include="Models\Account\Manage\IndexViewModel.cs" />
+    <Compile Include="Models\Account\Manage\ManageLoginsViewModel.cs" />
+    <Compile Include="Models\Account\Manage\SetPasswordViewModel.cs" />
+    <Compile Include="Models\Account\Manage\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Models\MessageDetails.cs" />
     <Compile Include="Models\UserDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,10 +5,11 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Uspelite.Web.Models;
 
 namespace Uspelite.Web.Controllers
 {
+    using Models.Account.Manage;
+
     [Authorize]
     public class ManageController : Controller
     {

@@ -8,7 +8,6 @@
     using Microsoft.Owin;
     using Microsoft.Owin.Security.Cookies;
     using Owin;
-    using Uspelite.Web.Models;
 
     public partial class Startup
     {

@@ -54,7 +54,7 @@
                      "~/Scripts/Libraries/jquery.ui.components/jquery.ui.resizable.js"
                   ));
 
-            BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = false;
         }
     }
 }
