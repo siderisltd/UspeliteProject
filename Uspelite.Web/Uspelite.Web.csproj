@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Elmah, Version=1.2.14706.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Glimpse.AspNet, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Glimpse.AspNet.1.8.0\lib\net45\Glimpse.AspNet.dll</HintPath>
       <Private>True</Private>
@@ -272,7 +276,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LiveController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="GlimpseSecurityPolicy.cs" />
+    <Compile Include="App_Start\GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -524,6 +528,10 @@
     <ProjectReference Include="..\Uspelite.Services\Uspelite.Services.Data.csproj">
       <Project>{0b37bed7-1558-4287-8c6c-8fa5b47e1d35}</Project>
       <Name>Uspelite.Services.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uspelite.Web.Infrastructure\Uspelite.Web.Infrastructure.csproj">
+      <Project>{c36e6839-760f-4728-8197-0654bf39aec0}</Project>
+      <Name>Uspelite.Web.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\Web.Mvc.ViewHelpers\Web.Mvc.ViewHelpers.csproj">
       <Project>{a465eaa8-1e70-4757-9daa-e7f5f325e2be}</Project>
