@@ -106,6 +106,10 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Mvc.Expressions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Web.Mvc.Expressions.1.0.1\lib\System.Web.Mvc.Expressions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -210,6 +214,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Imgs\testImage.jpg" />
     <Content Include="Content\Pics\UspeliteLionWhite.png" />
     <Content Include="Content\Pics\UspeliteLionWhite2.png" />
     <Content Include="Content\Pics\uspeliteLogo.png" />
@@ -262,6 +267,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LiveController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -497,8 +504,15 @@
     <Content Include="Views\Shared\Partials\_Sidebar.cshtml" />
     <Content Include="Views\Shared\Partials\_Footer.cshtml" />
     <Content Include="Views\Shared\Partials\_PageSlider.cshtml" />
+    <Content Include="Views\Error\General.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\InternalServerError.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Uspelite.Data.Common\Uspelite.Data.Common.csproj">
+      <Project>{4DE3FBB3-74E8-4F98-A3C1-F43FA9C71404}</Project>
+      <Name>Uspelite.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Uspelite.Data.Models\Uspelite.Data.Models.csproj">
       <Project>{b0ace681-dc84-4990-a67e-9927d15f626c}</Project>
       <Name>Uspelite.Data.Models</Name>
@@ -511,14 +525,16 @@
       <Project>{0b37bed7-1558-4287-8c6c-8fa5b47e1d35}</Project>
       <Name>Uspelite.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Web.Mvc.ViewHelpers\Web.Mvc.ViewHelpers.csproj">
+      <Project>{a465eaa8-1e70-4757-9daa-e7f5f325e2be}</Project>
+      <Name>Web.Mvc.ViewHelpers</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Scripts\Libraries\jquery-1.10.2.min.map" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

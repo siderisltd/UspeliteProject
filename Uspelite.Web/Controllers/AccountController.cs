@@ -7,8 +7,8 @@
     using System.Web.Mvc;
     using System.Web.Security;
     using Data;
+    using Data.Common.Roles;
     using Data.Models;
-    using Data.Roles;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;

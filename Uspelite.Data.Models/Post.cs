@@ -1,6 +1,7 @@
 ﻿namespace Uspelite.Data.Models
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
@@ -10,6 +11,8 @@
     public class Post
     {
         private ICollection<Comment> comments;
+
+        private ICollection<Picture> pictures;
 
         private ICollection<Category> categories;
 
@@ -31,23 +34,16 @@
         [ForeignKey("AuthorId")]
         public virtual User Author { get; set; }
 
-        [MaxLength(300)]
-        public string Title { get; set; }
-
         [Index(IsUnique = true)]
-        [StringLength(300)]
+        [StringLength(200)]
         [Required]
-        public string Route { get; set; }
+        public string Title { get; set; }
 
         [Required]
         [MaxLength(20000, ErrorMessage = "Maximum article content is 20000", ErrorMessageResourceType = typeof(ArgumentException))]
         public string Content { get; set; }
 
-        public int MainPictureId { get; set; }
-
-        [ForeignKey("MainPictureId")]
-        public virtual Picture MainPicture { get; set; }
-
+        [Required]
         [DefaultValue(PostStatus.Draft)]
         public PostStatus Status { get; set; }
 
@@ -61,6 +57,12 @@
             set { this.comments = value; }
         }
 
+        public virtual ICollection<Picture> Pictures
+        {
+            get { return this.pictures; }
+            set { this.pictures = value; }
+        }
+
         public virtual ICollection<Category> Categories
         {
             get { return this.categories; }
@@ -71,6 +73,12 @@
         {
             get { return this.rates; }
             set { this.rates = value; }
+        }
+
+        [NotMapped]
+        public Picture MainPicture
+        {
+            get { return this.Pictures.FirstOrDefault(x => x.IsMainPicture); }
         }
 
         [NotMapped]

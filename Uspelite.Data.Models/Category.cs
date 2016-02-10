@@ -20,12 +20,10 @@
 
         public int Id { get; set; }
 
-        public string Title { get; set; }
-
         [Index(IsUnique = true)]
         [StringLength(300)]
         [Required]
-        public string Route { get; set; }
+        public string Title { get; set; }
          
         public ICollection<Post> Posts
         {

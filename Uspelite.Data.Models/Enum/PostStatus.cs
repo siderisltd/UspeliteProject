@@ -2,7 +2,7 @@
 {
     public enum PostStatus
     {
-        Sent = 0,
+        Published = 0,
         Draft = 1,
         WaitingApproval = 2
     }

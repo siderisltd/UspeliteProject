@@ -18,6 +18,7 @@
         public int Id { get; set; }
 
         [MaxLength(1000)]
+        [Required]
         public string Content { get; set; }
 
         [Required]
@@ -26,7 +27,7 @@
         [ForeignKey("AuthorId")]
         public virtual User Author { get; set; }
 
-        public int ParentId { get; set; }
+        public int? ParentId { get; set; }
 
         [ForeignKey("ParentId")]
         public Comment Parent { get; set; }

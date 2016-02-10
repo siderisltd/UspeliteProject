@@ -1,5 +1,4 @@
 ﻿
-
 <header id="page-header" class="hidden-xs">
     <div id="header-branding">
         <div class="container">
@@ -262,19 +261,19 @@
                         </div>
                         <!-- end:submenu-business -->
                     </li>
-                <li class="cat-extra">
-                    <a href="~/Video">Видео</a>
-                    <!-- start:submenu-extra -->
-                    <div class="dropnav-container">
-                        <ul class="dropnav-menu">
-                            <li>@Html.ActionLink("Излъчване на живо",  "Index", "Live")</li>
-                            <li><a href="author.html">Колекции</a></li>
-                        </ul>
-                    </div>
-                    <!-- end:submenu-extra -->
-                </li>
+                    <li class="cat-extra">
+                        <a href="~/Video">Видео</a>
+                        <!-- start:submenu-extra -->
+                        <div class="dropnav-container">
+                            <ul class="dropnav-menu">
+                                <li>@Html.ActionLink("Излъчване на живо", "Index", "Live")</li>
+                                <li><a href="author.html">Колекции</a></li>
+                            </ul>
+                        </div>
+                        <!-- end:submenu-extra -->
+                    </li>
 
-                @Html.Partial("~/Views/Shared/_LoginPartial.cshtml")    
+                    @Html.Partial("~/Views/Shared/_LoginPartial.cshtml")
                 </ul>
             </nav>
             <!-- end:menu -->
@@ -283,4 +282,3 @@
     </div>
     <!-- end:header-navigation -->
 </header>
-

@@ -17,11 +17,15 @@
         {
             this.categories = new HashSet<Category>();
             this.comments = new HashSet<Comment>();
+            this.rates = new HashSet<Rate>();
             this.CreatedOn = DateTime.Now;
         }
 
         public int Id { get; set; }
 
+        [Index(IsUnique = true)]
+        [StringLength(100)]
+        [Required]
         public string Title { get; set; }
 
         [Required]
@@ -30,11 +34,7 @@
         [ForeignKey("AuthorId")]
         public virtual User Author { get; set; }
 
-        [Index(IsUnique = true)]
-        [StringLength(300)]
         [Required]
-        public string Route { get; set; }
-
         public string VideoUrl { get; set; }
 
         public DateTime CreatedOn { get; set; }
@@ -47,6 +47,7 @@
             set { this.comments = value; }
         }
 
+        [Required]
         public virtual ICollection<Category> Categories
         {
             get { return this.categories; }

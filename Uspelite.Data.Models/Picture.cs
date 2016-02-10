@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using Enum;
 
     public class Picture
@@ -16,13 +18,28 @@
 
         public int Id { get; set; }
 
-        public int Title { get; set; }
+        [Index(IsUnique = true)]
+        [StringLength(300)]
+        [Required]
+        public string Title { get; set; }
+
+        [Required]
+        public string Url { get; set; }
+
         //TODO: Add picture resizer with fixed 800 maxSize
         public ImageType ImageType { get; set; }
 
         public string AltTag { get; set; }
 
+        [Required]
+        public string AuthorId { get; set; }
+
+        [ForeignKey("AuthorId")]
+        public virtual User Author { get; set; }
+
         public DateTime CreatedOn { get; set; }
+
+        public bool IsMainPicture { get; set; }
 
         public virtual ICollection<Rate> Rates
         {

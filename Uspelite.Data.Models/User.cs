@@ -16,11 +16,17 @@
 
         public ICollection<Rate> rates;
 
+        public ICollection<Picture> pictures;
+
+        public ICollection<Comment> comments;
+
         public User()
         {
             this.rates = new HashSet<Rate>();
             this.videos = new HashSet<Video>();
             this.posts = new HashSet<Post>();
+            this.pictures = new HashSet<Picture>();
+            this.comments = new HashSet<Comment>();
         }
 
         [MaxLength(100)]
@@ -44,10 +50,22 @@
             set { this.videos = value; }
         }
 
+        public virtual ICollection<Picture> Pictures
+        {
+            get { return this.pictures; }
+            set { this.pictures = value; }
+        }
+
         public virtual ICollection<Rate> Rates
         {
             get { return this.rates; }
             set { this.rates = value; }
+        }
+
+        public virtual ICollection<Comment> Comments
+        {
+            get { return this.comments; }
+            set { this.comments = value; }
         }
 
         [NotMapped]

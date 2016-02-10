@@ -5,6 +5,8 @@
     [Authorize]
     public class LiveController : Controller
     {
+
+        //TODO: Add elmah
         public ActionResult Index()
         {
             return this.View();
