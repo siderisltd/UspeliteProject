@@ -4,7 +4,7 @@
     using System.Web.Mvc;
     using System.Web.Routing;
     using Data.Models;
-    using Services.Contracts;
+    using Services.Data.Contracts;
 
     public abstract class BaseController : Controller
     {

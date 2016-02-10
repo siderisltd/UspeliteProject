@@ -7,8 +7,8 @@
     <ProjectGuid>{0B37BED7-1558-4287-8C6C-8FA5B47E1D35}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Uspelite.Services</RootNamespace>
-    <AssemblyName>Uspelite.Services</AssemblyName>
+    <RootNamespace>Uspelite.Services.Data</RootNamespace>
+    <AssemblyName>Uspelite.Services.Data</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -85,9 +85,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoriesService.cs" />
+    <Compile Include="CommentsService.cs" />
+    <Compile Include="Contracts\ICategoriesService.cs" />
+    <Compile Include="Contracts\ICommentsService.cs" />
+    <Compile Include="Contracts\IPicturesService.cs" />
+    <Compile Include="Contracts\IPostsService.cs" />
+    <Compile Include="Contracts\IRatesService.cs" />
     <Compile Include="Contracts\IUsersService.cs" />
+    <Compile Include="Contracts\IVideosService.cs" />
+    <Compile Include="PicturesService.cs" />
+    <Compile Include="PostsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RatesService.cs" />
     <Compile Include="UsersService.cs" />
+    <Compile Include="VideosService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

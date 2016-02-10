@@ -1,28 +1,28 @@
-﻿namespace Uspelite.Services
+﻿namespace Uspelite.Services.Data
 {
     using System.Linq;
     using Contracts;
-    using Data.Models;
-    using Data.Repositories;
+    using Uspelite.Data.Models;
+    using Uspelite.Data.Repositories;
 
     public class UsersService : IUsersService
     {
-        private IRepository<User> usersRepo;
+        private readonly IRepository<User> repo;
 
-        public UsersService(IRepository<User> usersRepo)
+        public UsersService(IRepository<User> repo)
         {
-            this.usersRepo = usersRepo;
+            this.repo = repo;
         }
 
         public User GetById(string id)
         {
-            var user = this.usersRepo.GetById(id);
+            var user = this.repo.GetById(id);
             return user;
         }
 
         public User GetByUsername(string username)
         {
-            var user = this.usersRepo
+            var user = this.repo
                            .All()
                            .FirstOrDefault(x => x.UserName == username);
 

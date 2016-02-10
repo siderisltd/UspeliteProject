@@ -1,6 +1,6 @@
-﻿namespace Uspelite.Services.Contracts
+﻿namespace Uspelite.Services.Data.Contracts
 {
-    using Data.Models;
+    using Uspelite.Data.Models;
 
     public interface IUsersService
     {

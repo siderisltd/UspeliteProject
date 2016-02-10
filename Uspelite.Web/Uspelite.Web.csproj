@@ -521,9 +521,9 @@
       <Project>{26d682de-0e77-4651-9f0c-732ad3dc9c38}</Project>
       <Name>Uspelite.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Uspelite.Services\Uspelite.Services.csproj">
+    <ProjectReference Include="..\Uspelite.Services\Uspelite.Services.Data.csproj">
       <Project>{0b37bed7-1558-4287-8c6c-8fa5b47e1d35}</Project>
-      <Name>Uspelite.Services</Name>
+      <Name>Uspelite.Services.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Web.Mvc.ViewHelpers\Web.Mvc.ViewHelpers.csproj">
       <Project>{a465eaa8-1e70-4757-9daa-e7f5f325e2be}</Project>

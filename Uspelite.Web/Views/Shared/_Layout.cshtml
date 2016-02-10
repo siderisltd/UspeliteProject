@@ -35,11 +35,9 @@
         <div id="page-inner-wrap">
 
             @Html.Partial("~/Views/Shared/Partials/_Header.cshtml");
-            @*@Html.Partial("_LoginPartial")*@
 
 
-
-            @Html.Partial("~/Views/Shared/Partials/_PageSlider.cshtml");
+            @RenderSection("slider", required: false)
 
             <div class="container">
                 <div id="page-content">
