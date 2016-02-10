@@ -4,17 +4,15 @@
     using System.Web.Mvc;
     using System.Web.Routing;
     using Data.Models;
+    using Ninject;
     using Services.Data.Contracts;
 
     public abstract class BaseController : Controller
     {
-        private IUsersService usersService;
-        protected User UserProfile { get; private set; }
+        [Inject]
+        private IUsersService usersService { get; set; }
 
-        protected BaseController(IUsersService usersService)
-        {
-            this.usersService = usersService;
-        }
+        protected User UserProfile { get; private set; }
 
         protected override IAsyncResult BeginExecute(RequestContext requestContext, AsyncCallback callback, object state)
         {
