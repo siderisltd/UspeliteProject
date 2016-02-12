@@ -1,8 +1,10 @@
 ﻿namespace Uspelite.Services.Data
 {
+    using System.Linq;
     using Contracts;
     using Uspelite.Data.Models;
     using Uspelite.Data.Repositories;
+
 
     public class CategoriesService : ICategoriesService
     {
@@ -11,6 +13,11 @@
         public CategoriesService(IRepository<Category> repo)
         {
             this.repo = repo;
+        }
+
+        public IQueryable<Category> GetAllCategories()
+        {
+            return this.repo.All();
         }
     }
 }

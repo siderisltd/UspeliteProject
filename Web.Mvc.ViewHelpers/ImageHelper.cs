@@ -4,16 +4,11 @@
     using System.Collections.Generic;
     using System.Linq.Expressions;
     using System.Web.Mvc;
+    using System.Web.Routing;
 
     public static class ImageHelper
     {
-        public static MvcHtmlString Image<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper,
-            Expression<Func<TModel, TProperty>> expression, string alt, string width, string height)
-        {
-            return htmlHelper.Image(expression, alt, width, height, null);
-        }
-
-        public static MvcHtmlString Image<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, string alt, string width, string height, IDictionary<string, object> htmlAttributes)
+        public static MvcHtmlString Image<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, string alt, string width, string height, object htmlAttributes = null)
         {
             ModelMetadata fieldmetadata = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
             var fieldName = ExpressionHelper.GetExpressionText(expression);
@@ -27,7 +22,7 @@
             imageTag.MergeAttribute("height", height);
             imageTag.GenerateId(fullName);
 
-            imageTag.MergeAttributes(htmlAttributes);
+            imageTag.MergeAttributes(new RouteValueDictionary(htmlAttributes));
 
             if (!string.IsNullOrEmpty(fieldName))
             {

@@ -306,7 +306,7 @@ ul.rating li {
     width: 14px;
     height: 14px;
     margin-right: 1px;
-    background: url(../Content/Theme/images/stars.png) no-repeat 0 0;
+    background: url(../../../Content/Theme/images/stars.png) no-repeat 0 0;
 }
 
 ul.rating li.li-rated {

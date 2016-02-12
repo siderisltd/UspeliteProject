@@ -1,4 +1,7 @@
-﻿<div id="page-slider" class="slider-layout-1 clearfix">
+﻿@model Uspelite.Web.Models.ChildActions.SliderViewModel
+
+
+<div id="page-slider" class="slider-layout-1 clearfix">
 
     <!-- start:container -->
     <div class="container">
@@ -7,7 +10,12 @@
         <div class="caroufredsel_wrapper" style="display: block; text-align: start; float: none; position: relative; top: auto; right: auto; bottom: auto; left: auto; z-index: auto; width: 1170px; height: 452px; margin: 0px; overflow: hidden; cursor: move;">
             <div id="slider-carousel" style="text-align: left; float: none; position: absolute; top: 0px; right: auto; bottom: auto; left: 0px; margin: 0px; width: 8190px; height: 452px;">
 
-                <!-- start:row -->
+
+                @foreach (var VARIABLE in Model.Posts)
+                {
+  
+                }
+            <!-- start:row -->
                 <div class="row" style="width: 1200px;">
 
                     <!-- start:col -->
@@ -33,6 +41,8 @@
 
                     </div>
                     <!-- end:col -->
+
+
                     <!-- start:col -->
                     <div class="col-sm-4">
 
@@ -53,6 +63,8 @@
                             </div>
                         </article>
 
+
+
                         <article class="linkbox has-meta cat-sports">
                             <a href="#">
                                 <img src="~/Content/Theme/images/dummy/350x150.jpg" width="560" height="390" alt="Responsive image" class="img-responsive">
@@ -69,6 +81,8 @@
                                 <span class="icon fa-eye">471</span>
                             </div>
                         </article>
+
+
 
                         <article class="linkbox has-meta cat-sports">
                             <a href="#">
@@ -91,8 +105,18 @@
                     <!-- end:col -->
 
                 </div>
-                <!-- end:row -->
-                <!-- start:row -->
+            <!-- end:row -->
+
+
+
+
+
+
+
+
+
+
+            <!-- start:row -->
                 <div class="row" style="width: 1200px;">
 
                     <!-- start:col -->
@@ -156,8 +180,13 @@
                     <!-- end:col -->
 
                 </div>
-                <!-- end:row -->
-                <!-- start:row -->
+            <!-- end:row -->
+
+
+
+
+
+            <!-- start:row -->
                 <div class="row" style="width: 1200px;">
 
                     <!-- start:col -->
@@ -222,6 +251,11 @@
 
                 </div>
                 <!-- end:row -->
+
+
+
+
+
 
 
             </div>

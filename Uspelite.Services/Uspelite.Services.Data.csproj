@@ -89,11 +89,13 @@
     <Compile Include="CommentsService.cs" />
     <Compile Include="Contracts\ICategoriesService.cs" />
     <Compile Include="Contracts\ICommentsService.cs" />
+    <Compile Include="Contracts\INewsService.cs" />
     <Compile Include="Contracts\IPicturesService.cs" />
     <Compile Include="Contracts\IPostsService.cs" />
     <Compile Include="Contracts\IRatesService.cs" />
     <Compile Include="Contracts\IUsersService.cs" />
     <Compile Include="Contracts\IVideosService.cs" />
+    <Compile Include="NewsService.cs" />
     <Compile Include="PicturesService.cs" />
     <Compile Include="PostsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,6 +108,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Uspelite.Data.Common\Uspelite.Data.Common.csproj">
+      <Project>{4de3fbb3-74e8-4f98-a3c1-f43fa9c71404}</Project>
+      <Name>Uspelite.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Uspelite.Data.Models\Uspelite.Data.Models.csproj">
       <Project>{b0ace681-dc84-4990-a67e-9927d15f626c}</Project>
       <Name>Uspelite.Data.Models</Name>
@@ -113,6 +119,10 @@
     <ProjectReference Include="..\Uspelite.Data\Uspelite.Data.csproj">
       <Project>{26d682de-0e77-4651-9f0c-732ad3dc9c38}</Project>
       <Name>Uspelite.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uspelite.Services.Web\Uspelite.Services.Web.csproj">
+      <Project>{21255945-ff44-463d-b6be-f82ce66db93d}</Project>
+      <Name>Uspelite.Services.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
