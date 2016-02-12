@@ -9,6 +9,10 @@
     @(Html.Action<ChildActionsController>(x => x.GetSlider()))
 }
 
+@section sidebar{
+    @(Html.Action<ChildActionsController>(x => x.GetSideBar()))
+}
+
 <div class="row">
     <div class="col-md-9 separator-right">
         <article class="linkbox large cat-news">

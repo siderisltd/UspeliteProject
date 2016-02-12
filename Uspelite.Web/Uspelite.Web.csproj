@@ -556,7 +556,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Partners.cshtml" />
     <Content Include="Views\Shared\Partials\_Header.cshtml" />
-    <Content Include="Views\Shared\Partials\_Sidebar.cshtml" />
+    <Content Include="Views\ChildActions\_Sidebar.cshtml" />
     <Content Include="Views\Shared\Partials\_Footer.cshtml" />
     <Content Include="Views\ChildActions\_Slider.cshtml" />
     <Content Include="Views\Error\General.cshtml" />

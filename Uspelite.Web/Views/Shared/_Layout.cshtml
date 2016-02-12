@@ -44,7 +44,7 @@
                     <div id="main">
                         @RenderBody()
                     </div>
-                    @Html.Partial("~/Views/Shared/Partials/_Sidebar.cshtml")
+                    @RenderSection("sidebar", required: false)
                 </div>
             </div>
             <div class="clearfix"></div>
