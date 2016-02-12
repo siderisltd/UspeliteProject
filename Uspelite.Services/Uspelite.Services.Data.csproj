@@ -95,6 +95,7 @@
     <Compile Include="Contracts\IRatesService.cs" />
     <Compile Include="Contracts\IUsersService.cs" />
     <Compile Include="Contracts\IVideosService.cs" />
+    <Compile Include="DTO\CategoryAndPostsDTO.cs" />
     <Compile Include="NewsService.cs" />
     <Compile Include="PicturesService.cs" />
     <Compile Include="PostsService.cs" />

@@ -247,6 +247,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Categories\CategoriesViewModel.cs" />
+    <Compile Include="Models\ChildActions\CategoryAndPostsViewModel.cs" />
     <Compile Include="Models\ChildActions\SliderViewModel.cs" />
     <Content Include="Content\Imgs\no-photo-available.jpg" />
     <Content Include="Content\Imgs\testImage.jpg" />

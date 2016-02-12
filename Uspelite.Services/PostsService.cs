@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Contracts;
+    using DTO;
     using Uspelite.Data.Models;
     using Uspelite.Data.Repositories;
 
@@ -62,19 +63,19 @@
             return query;
         }
 
-        public IQueryable<IGrouping<ICollection<Category>, Post>> GetTopCountPostsByRatingInEveryCategory(int count = 3, IEnumerable<Category> categories = null)
+        public IQueryable<CategoryAndPostsDTO> GetTopCountPostsByRatingInEveryCategory(int count = 3, IEnumerable<Category> categories = null)
         {
-            if(categories == null)
+            if (categories == null)
             {
                 categories = this.categoriesService.GetAllCategories().AsEnumerable();
             }
 
-            IQueryable<IGrouping<ICollection<Category>, Post>> query = this.repo
-                .All()
-                .OrderByDescending(x => x.Rates.Sum(y => y.Value))
-                .Where(x => x.Categories.Any(y => categories.Contains(y)))
-                .GroupBy(x => x.Categories)
-                .Take(count);
+            IQueryable<CategoryAndPostsDTO> query = this.repo
+                            .All()
+                            .Where(x => x.Categories.Any(y => categories.Contains(y)))
+                            .OrderByDescending(x => x.Rates.Sum(y => y.Value))
+                            .GroupBy(x => x.Categories.FirstOrDefault().Title)
+                            .Select(x => new CategoryAndPostsDTO {CategoryName = x.Key, Posts = x.Take(count)});
 
             return query;
         }

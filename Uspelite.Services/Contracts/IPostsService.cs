@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using DTO;
     using Uspelite.Data.Models;
 
     public interface IPostsService
@@ -12,6 +13,6 @@
 
         IQueryable<Post> GetMostCommented(int count = 6, string category = null);
 
-        IQueryable<IGrouping<ICollection<Category>, Post>> GetTopCountPostsByRatingInEveryCategory(int count = 3, IEnumerable<Category> categories = null);
+        IQueryable<CategoryAndPostsDTO> GetTopCountPostsByRatingInEveryCategory(int count = 3, IEnumerable<Category> categories = null);
     }
 }
