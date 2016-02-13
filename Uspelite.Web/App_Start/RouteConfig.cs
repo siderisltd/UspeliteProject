@@ -9,6 +9,13 @@
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+            routes.MapRoute(
+                name: "SingleArticle",
+                url: "Articles/{title}",
+                defaults: new { controller = "Posts", action = "GetByTitle" }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

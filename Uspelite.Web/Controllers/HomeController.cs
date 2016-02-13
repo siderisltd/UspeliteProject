@@ -55,5 +55,15 @@
         {
             return this.View();
         }
-    }
+
+
+        //var processedImages = await this.imagesService.ProcessImages(project.Images.Select(FileRequestModel.ToRawFile));
+        //var downloadableFiles = await this.downloadableFilesService.AddNew(
+        //      project.Files != null
+        //      ? project.Files.Select(FileRequestModel.ToRawFile)
+        //      : new List<RawFile>());
+
+        //await this.fileSystemService.SaveImages(processedImages);
+        //await this.fileSystemService.SaveDownloadableFiles(downloadableFiles);
+        }
 }

@@ -4,7 +4,9 @@
     using System.Security.Principal;
     using System.Web.Mvc;
     using System.Web.Routing;
+    using AutoMapper;
     using Data.Models;
+    using Infrastructure.Mapping;
     using Ninject;
     using Services.Data.Contracts;
     using Services.Web.Contracts;
@@ -20,6 +22,14 @@
         protected User UserProfile { get; private set; }
 
         private IPrincipal user;
+
+        protected IMapper Mapper
+        {
+            get
+            {
+                return AutoMapperConfig.Configuration.CreateMapper();
+            }
+        }
 
         protected override void Initialize(RequestContext requestContext)
         {

@@ -1,35 +1,62 @@
 ﻿namespace Uspelite.Web.Infrastructure
 {
     using System;
+    using Contracts;
     using Ninject;
 
-    public static class ObjectFactory
+    public class ObjectFactory : IObjectFactory
     {
-        private static IKernel kernel;
+        private static IKernel staticKernel;
+        private readonly IKernel kernel;
 
-        public static void InitializeKernel(IKernel appKernel)
+        public ObjectFactory(IKernel kernel)
         {
-            kernel = appKernel;
+            this.kernel = kernel;
         }
 
-        public static T GetInstance<T>()
+        public static void Initialize(IKernel staticKernelInstance)
         {
-            return kernel.Get<T>();
+            staticKernel = staticKernelInstance;
         }
 
-        public static object GetInstance(Type type)
+        public static T Get<T>()
         {
-            return kernel.Get(type);
+            return staticKernel.Get<T>();
         }
 
-        public static T TryGetInstance<T>()
+        public static object Get(Type type)
         {
-            return kernel.TryGet<T>();
+            return staticKernel.Get(type);
         }
 
-        public static object TryGetInstance(Type type)
+        public static T TryGet<T>()
         {
-            return kernel.TryGet(type);
+            return staticKernel.TryGet<T>();
+        }
+
+        public static object TryGet(Type type)
+        {
+            return staticKernel.TryGet(type);
+        }
+
+        public T GetInstance<T>()
+        {
+            return this.kernel.Get<T>();
+        }
+
+        public object GetInstance(Type type)
+        {
+            return this.kernel.Get(type);
+        }
+
+        public T TryGetInstance<T>()
+        {
+            return this.kernel.TryGet<T>();
+        }
+
+        public object TryGetInstance(Type type)
+        {
+            return this.kernel.TryGet(type);
         }
     }
 }
