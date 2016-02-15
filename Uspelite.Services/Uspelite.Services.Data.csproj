@@ -54,8 +54,8 @@
       <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -124,10 +124,6 @@
     <ProjectReference Include="..\Uspelite.Services.Web\Uspelite.Services.Web.csproj">
       <Project>{21255945-ff44-463d-b6be-f82ce66db93d}</Project>
       <Name>Uspelite.Services.Web</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Uspelite.Web.Infrastructure\Uspelite.Web.Infrastructure.csproj">
-      <Project>{C36E6839-760F-4728-8197-0654BF39AEC0}</Project>
-      <Name>Uspelite.Web.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

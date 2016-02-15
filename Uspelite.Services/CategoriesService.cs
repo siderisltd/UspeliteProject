@@ -19,10 +19,5 @@
         {
             return this.repo.All();
         }
-
-        public IQueryable<Category> GetByTitle(string title)
-        {
-            return this.repo.All().Where(x => x.Title == title);
-        }
     }
 }

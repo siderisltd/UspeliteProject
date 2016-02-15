@@ -79,14 +79,5 @@
 
             return query;
         }
-
-        public IQueryable<Post> GetByTitle(string title)
-        {
-            var query = this.repo
-                            .All()
-                            .Where(x => x.Title == title);
-
-            return query;
-        }
     }
 }

@@ -246,8 +246,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\CategoriesController.cs" />
-    <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Models\Categories\CategoriesViewModel.cs" />
     <Compile Include="Models\ChildActions\CategoryAndPostsViewModel.cs" />
     <Compile Include="Models\ChildActions\SliderViewModel.cs" />
@@ -333,7 +331,6 @@
     <Compile Include="Models\Account\Manage\ManageLoginsViewModel.cs" />
     <Compile Include="Models\Account\Manage\SetPasswordViewModel.cs" />
     <Compile Include="Models\Account\Manage\VerifyPhoneNumberViewModel.cs" />
-    <Compile Include="Models\FileRequestModel.cs" />
     <Compile Include="Models\Home\HomeIndexViewModel.cs" />
     <Compile Include="Models\Home\PostViewModel.cs" />
     <Compile Include="Models\MessageDetails.cs" />
@@ -565,14 +562,8 @@
     <Content Include="Views\Error\General.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\InternalServerError.cshtml" />
-    <None Include="Views\Categories\ShowCategory.cshtml" />
-    <None Include="Views\Posts\GetByTitle.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Services.Common\Services.Common.csproj">
-      <Project>{D64E7491-3C6A-4943-B1D7-B3FBE8D13736}</Project>
-      <Name>Services.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Uspelite.Data.Common\Uspelite.Data.Common.csproj">
       <Project>{4DE3FBB3-74E8-4F98-A3C1-F43FA9C71404}</Project>
       <Name>Uspelite.Data.Common</Name>

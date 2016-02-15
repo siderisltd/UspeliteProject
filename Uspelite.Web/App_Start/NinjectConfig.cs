@@ -55,8 +55,7 @@ namespace Uspelite.Web
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
-               
-                ObjectFactory.Initialize(kernel);
+                ObjectFactory.InitializeKernel(kernel);
                 return kernel;
             }
             catch
