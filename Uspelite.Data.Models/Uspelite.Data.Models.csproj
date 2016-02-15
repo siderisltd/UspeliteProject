@@ -61,6 +61,7 @@
     <Compile Include="Comment.cs" />
     <Compile Include="Enum\ImageType.cs" />
     <Compile Include="Enum\PostStatus.cs" />
+    <Compile Include="Image.cs" />
     <Compile Include="News.cs" />
     <Compile Include="Picture.cs" />
     <Compile Include="Post.cs" />
@@ -72,6 +73,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Uspelite.Data.Common\Uspelite.Data.Common.csproj">
+      <Project>{4de3fbb3-74e8-4f98-a3c1-f43fa9c71404}</Project>
+      <Name>Uspelite.Data.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

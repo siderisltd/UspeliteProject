@@ -15,6 +15,8 @@
 
         IDbSet<Rate> Rates { get; set; }
 
+        IDbSet<Image> Images { get; set; }
+
         IDbSet<Picture> Pictures { get; set; }
 
         IDbSet<Comment> Comments { get; set; }

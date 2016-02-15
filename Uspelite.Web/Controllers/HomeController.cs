@@ -3,6 +3,7 @@
     using System.Web.Mvc;
     using Services.Data.Contracts;
     using System.Linq;
+    using System.Web.Hosting;
     using Models.Home;
     using Infrastructure.Mapping.Contracts;
 
@@ -47,6 +48,7 @@
                 HighRatedInCategory = highRatedInCategory,
                 TopArticle = topArticleByRating
             };
+
 
             return this.View(indexViewModel);
         }

@@ -246,6 +246,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Models\Categories\CategoriesViewModel.cs" />
     <Compile Include="Models\ChildActions\CategoryAndPostsViewModel.cs" />
     <Compile Include="Models\ChildActions\SliderViewModel.cs" />
@@ -333,6 +334,7 @@
     <Compile Include="Models\Account\Manage\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Models\Home\HomeIndexViewModel.cs" />
     <Compile Include="Models\Home\PostViewModel.cs" />
+    <Compile Include="Models\Images\AddImageModel.cs" />
     <Compile Include="Models\MessageDetails.cs" />
     <Compile Include="Models\PictureViewModel.cs" />
     <Compile Include="Models\UserDetails.cs" />
@@ -562,6 +564,8 @@
     <Content Include="Views\Error\General.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\InternalServerError.cshtml" />
+    <None Include="Views\Images\Index.cshtml" />
+    <None Include="Views\Images\_SaveImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Uspelite.Data.Common\Uspelite.Data.Common.csproj">
@@ -575,6 +579,10 @@
     <ProjectReference Include="..\Uspelite.Data\Uspelite.Data.csproj">
       <Project>{26d682de-0e77-4651-9f0c-732ad3dc9c38}</Project>
       <Name>Uspelite.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uspelite.Services.Common\Uspelite.Services.Common.csproj">
+      <Project>{c554f37c-32ae-48db-a2ae-e6a2a3221714}</Project>
+      <Name>Uspelite.Services.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Uspelite.Services.Web\Uspelite.Services.Web.csproj">
       <Project>{21255945-ff44-463d-b6be-f82ce66db93d}</Project>

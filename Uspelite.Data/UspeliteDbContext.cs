@@ -17,6 +17,8 @@
 
         public IDbSet<Picture> Pictures { get; set; }
 
+        public IDbSet<Image> Images { get; set; }
+
         public IDbSet<Comment> Comments { get; set; }
 
         public IDbSet<Category> Categories { get; set; }
