@@ -13,7 +13,7 @@
             ModelMetadata fieldmetadata = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
             var fieldName = ExpressionHelper.GetExpressionText(expression);
             var fullName = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(fieldName);
-            var value = fieldmetadata.Model.ToString();
+            var value = "/" + fieldmetadata.Model;
 
             TagBuilder imageTag = new TagBuilder("img");
             imageTag.MergeAttribute("src", value);

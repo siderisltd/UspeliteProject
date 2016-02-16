@@ -10,7 +10,6 @@
 }, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    @Html.TextBox("imageFiles.CategoryName")
     <input type="file" name="model" id="third-image" multiple="multiple"/>
     <input type="submit" />
 }

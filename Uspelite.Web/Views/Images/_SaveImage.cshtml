@@ -1,19 +1,11 @@
-﻿@model dynamic
+﻿@model Uspelite.Services.Data.DTO.PictureDTO
 
 @{
     ViewBag.Title = "title";
 }
 
-<img src="@ViewBag.Resized1"/>
-<br />
-<img src="@ViewBag.Resized2"/>
-<br />
-<img src="@ViewBag.Resized3"/>
-
-<br />
-<img src="@ViewBag.Original1"/>
-<br />
-<img src="@ViewBag.Original2"/>
-<br />
-<img src="@ViewBag.Original3" />
-
+@*<img src="@Url.Content(ViewBag.Original1)"/>*@
+@*<img src="@Html.Action("GetResizedPicture400", "ChildActions", new { title = "f_jellyfish---copy.jpg"})" />*@
+@Html.Image(x => Model.ResizedImage400, "Alt responsive picture", "400", "400", new { @class = "img-responsive" })
+@*@Html.Action("GetResizedPicture400", "ChildActions", new { title = "f_jellyfish---copy.jpg" })"*@
+@*@Html.Action("GetResizedPicture400", "ChildActions");*@

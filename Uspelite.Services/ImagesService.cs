@@ -68,8 +68,8 @@
                 .Where(x => x.Title == title)
                 .Select(x => new PictureDTO
                 {
-                    OriginalPath =  x.PathOriginalSize,
-                    ResizedImage400 = this.rootImagesFolder + x.PathResizedImage
+                    OriginalPath = Constants.IMAGES_PREFIX_FROM_ROOT + x.PathOriginalSize,
+                    ResizedImage400 = Constants.IMAGES_PREFIX_FROM_ROOT + x.PathResizedImage
                 })
                 .FirstOrDefault();
       

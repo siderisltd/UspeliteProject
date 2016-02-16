@@ -1,6 +1,9 @@
 ﻿namespace Uspelite.Web.Controllers
 {
 
+    using System.Drawing;
+    using System.Drawing.Imaging;
+    using System.IO;
     using System.Linq;
     using System.Web.Mvc;
     using Infrastructure.Mapping.Contracts;
@@ -11,9 +14,11 @@
     public class ChildActionsController : Controller
     {
         private readonly IPostsService postsService;
+        private readonly IImagesService imagesService;
 
-        public ChildActionsController(IPostsService postsService)
+        public ChildActionsController(IPostsService postsService, IImagesService imagesService)
         {
+            this.imagesService = imagesService;
             this.postsService = postsService;
         }
 

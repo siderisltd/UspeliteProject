@@ -14,7 +14,7 @@
 
         private PictureViewModel mainPicture = new PictureViewModel
         {
-            Url = "/Content/Imgs/no-photo-available.jpg",
+            Url = "Content/Imgs/no-photo-available.jpg",
             IsMainPicture = true,
             Title = "No photo available"
         };
