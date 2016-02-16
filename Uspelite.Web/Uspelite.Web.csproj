@@ -68,6 +68,9 @@
       <HintPath>..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Kendo.Mvc">
+      <HintPath>..\Libraries\Kendo\Kendo.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -246,12 +249,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Administration\Models\Users\UserViewModel.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
+    <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Models\Categories\CategoriesViewModel.cs" />
     <Compile Include="Models\ChildActions\CategoryAndPostsViewModel.cs" />
     <Compile Include="Models\ChildActions\SliderViewModel.cs" />
     <Content Include="Content\Imgs\no-photo-available.jpg" />
     <Content Include="Content\Imgs\testImage.jpg" />
+    <Content Include="Content\Kendo\kendo.silver.min.css" />
+    <Content Include="Content\Kendo\kendo.silver.mobile.min.css" />
+    <Content Include="Content\Kendo\Silver\editor.png" />
+    <Content Include="Content\Kendo\Silver\imagebrowser.png" />
+    <Content Include="Content\Kendo\Silver\indeterminate.gif" />
+    <Content Include="Content\Kendo\kendo.common.min.css" />
+    <Content Include="Content\Kendo\Silver\loading-image.gif" />
+    <Content Include="Content\Kendo\Silver\loading.gif" />
+    <Content Include="Content\Kendo\Silver\loading_2x.gif" />
+    <Content Include="Content\Kendo\Silver\markers.png" />
+    <Content Include="Content\Kendo\Silver\markers_2x.png" />
+    <Content Include="Content\Kendo\Silver\slider-h.gif" />
+    <Content Include="Content\Kendo\Silver\slider-v.gif" />
+    <Content Include="Content\Kendo\Silver\sprite.png" />
+    <Content Include="Content\Kendo\Silver\sprite_2x.png" />
+    <Content Include="Content\Kendo\Silver\sprite_kpi.png" />
+    <Content Include="Content\Kendo\Silver\sprite_kpi_2x.png" />
     <Content Include="Content\Pics\UspeliteLionWhite.png" />
     <Content Include="Content\Pics\UspeliteLionWhite2.png" />
     <Content Include="Content\Pics\uspeliteLogo.png" />
@@ -491,6 +516,14 @@
     <Content Include="Content\Theme\fonts\weathericons-regular-webfont.eot" />
     <Content Include="Content\Theme\fonts\weathericons-regular-webfont.ttf" />
     <Content Include="Content\Theme\fonts\weathericons-regular-webfont.woff" />
+    <Content Include="Areas\Administration\Views\web.config" />
+    <Content Include="Areas\Administration\Views\Home\Index.cshtml" />
+    <Content Include="Content\Kendo\kendo.silver.min.css.map" />
+    <Content Include="Content\Kendo\kendo.silver.mobile.min.css.map" />
+    <Content Include="Content\Kendo\kendo.common.min.css.map" />
+    <Content Include="Areas\Administration\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <None Include="Scripts\Libraries\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\chatLogic.js" />
     <Content Include="Scripts\Libraries\functions.js" />
@@ -515,6 +548,8 @@
     <Content Include="Scripts\Libraries\jquery.validate.min.js" />
     <Content Include="Scripts\Libraries\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\Libraries\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Libraries\Kendo\kendo.aspnetmvc.min.js" />
+    <Content Include="Scripts\Libraries\Kendo\kendo.web.min.js" />
     <Content Include="Scripts\Libraries\modernizr-2.6.2.js" />
     <Content Include="Scripts\Libraries\modernizr.js" />
     <Content Include="Scripts\Libraries\respond.js" />
@@ -554,8 +589,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Live\Index.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Partners.cshtml" />
     <Content Include="Views\Shared\Partials\_Header.cshtml" />
     <Content Include="Views\ChildActions\_Sidebar.cshtml" />
     <Content Include="Views\Shared\Partials\_Footer.cshtml" />
@@ -563,8 +596,24 @@
     <Content Include="Views\Error\General.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\InternalServerError.cshtml" />
+    <Content Include="Scripts\Libraries\Kendo\kendo.web.min.js.map" />
+    <Content Include="Scripts\Libraries\Kendo\kendo.aspnetmvc.min.js.map" />
     <None Include="Views\Images\Index.cshtml" />
     <None Include="Views\Images\_SaveImage.cshtml" />
+    <Content Include="Views\Posts\GetByTitle.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Email.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EmailAddress.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\GridForeignKey.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Integer.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Number.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Uspelite.Data.Common\Uspelite.Data.Common.csproj">

@@ -28,5 +28,10 @@
 
             return user;
         }
+
+        public IQueryable<User> All()
+        {
+            return this.repo.All();
+        }
     }
 }

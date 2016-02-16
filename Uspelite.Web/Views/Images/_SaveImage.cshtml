@@ -4,8 +4,4 @@
     ViewBag.Title = "title";
 }
 
-@*<img src="@Url.Content(ViewBag.Original1)"/>*@
-@*<img src="@Html.Action("GetResizedPicture400", "ChildActions", new { title = "f_jellyfish---copy.jpg"})" />*@
 @Html.Image(x => Model.ResizedImage400, "Alt responsive picture", "400", "400", new { @class = "img-responsive" })
-@*@Html.Action("GetResizedPicture400", "ChildActions", new { title = "f_jellyfish---copy.jpg" })"*@
-@*@Html.Action("GetResizedPicture400", "ChildActions");*@

@@ -53,9 +53,5 @@
             return this.View(indexViewModel);
         }
 
-        public ActionResult About()
-        {
-            return this.View();
-        }
     }
 }

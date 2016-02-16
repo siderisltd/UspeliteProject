@@ -7,7 +7,7 @@
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/Libraries/jquery-{version}.js"));
+                        "~/Scripts/Libraries/jquery.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/Libraries/jquery.validate*"));
@@ -26,6 +26,15 @@
                      "~/Scripts/Libraries/jquery.touchSwipe.min.js",
                      "~/Scripts/Libraries/jquery.photobox.js",
                      "~/Scripts/Libraries/functions.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
+            "~/Scripts/Libraries/Kendo/kendo.web.min.js",
+            "~/Scripts/Libraries/Kendo/kendo.aspnetmvc.min.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/kendoStyles").Include(
+                     "~/Content/Kendo/kendo.common.min.css",
+                     "~/Content/Kendo/kendo.silver.min.css"
                 ));
 
             bundles.Add(new StyleBundle("~/theme/styles").Include(

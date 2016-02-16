@@ -14,11 +14,9 @@
     public class ChildActionsController : Controller
     {
         private readonly IPostsService postsService;
-        private readonly IImagesService imagesService;
 
-        public ChildActionsController(IPostsService postsService, IImagesService imagesService)
+        public ChildActionsController(IPostsService postsService)
         {
-            this.imagesService = imagesService;
             this.postsService = postsService;
         }
 

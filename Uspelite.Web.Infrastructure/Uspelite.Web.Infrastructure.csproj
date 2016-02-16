@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="Mapping\AutoMapperConfig.cs" />
     <Compile Include="Mapping\Contracts\IHaveCustomMappings.cs" />
     <Compile Include="Mapping\Contracts\IMapFrom.cs" />
