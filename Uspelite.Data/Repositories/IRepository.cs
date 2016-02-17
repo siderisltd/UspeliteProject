@@ -2,8 +2,9 @@
 {
     using System;
     using System.Linq;
+    using Common.Contracts;
 
-    public interface IRepository<T> : IDisposable where T : class
+    public interface IRepository<T> : IDisposable where T : class, IBaseModel
     {
         IQueryable<T> All();
 
@@ -13,9 +14,13 @@
 
         void Update(T entity);
 
-        void Delete(T entity);
+        IQueryable<T> AllWithDeleted();
 
-        void Delete(object id);
+        void HardDelete(T entity);
+
+        void HardDelete(object id);
+
+        void Delete(object Id);
 
         void Detach(T entity);
 

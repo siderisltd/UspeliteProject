@@ -4,8 +4,9 @@
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Linq;
+    using Common.Contracts;
 
-    public class GenericRepository<T> : IRepository<T> where T : class
+    public sealed class GenericRepository<T> : IRepository<T> where T : class, IBaseModel
     {
         public GenericRepository(IUspeliteDbContext context)
         {
@@ -18,21 +19,26 @@
             this.DbSet = this.Context.Set<T>();
         }
 
-        protected IDbSet<T> DbSet { get; set; }
+        private IDbSet<T> DbSet { get; set; }
 
-        protected IUspeliteDbContext Context { get; set; }
+        private IUspeliteDbContext Context { get; set; }
 
-        public virtual IQueryable<T> All()
+        public IQueryable<T> All()
         {
-            return this.DbSet.AsQueryable();
+            return this.DbSet.Where(x => !x.IsDeleted);
         }
 
-        public virtual T GetById(object id)
+        public IQueryable<T> AllWithDeleted()
+        {
+            return this.DbSet.Where(x => x.IsDeleted);
+        }
+
+        public T GetById(object id)
         {
             return this.DbSet.Find(id);
         }
 
-        public virtual void Add(T entity)
+        public void Add(T entity)
         {
             DbEntityEntry entry = this.Context.Entry(entity);
             if (entry.State != EntityState.Detached)
@@ -45,7 +51,7 @@
             }
         }
 
-        public virtual void Update(T entity)
+        public void Update(T entity)
         {
             DbEntityEntry entry = this.Context.Entry(entity);
             if (entry.State == EntityState.Detached)
@@ -56,7 +62,14 @@
             entry.State = EntityState.Modified;
         }
 
-        public virtual void Delete(T entity)
+        public void Delete(object Id)
+        {
+            var entity = this.GetById(Id);
+            entity.IsDeleted = true;
+            entity.DeletedOn = DateTime.Now;
+        }
+
+        public void HardDelete(T entity)
         {
             DbEntityEntry entry = this.Context.Entry(entity);
             if (entry.State != EntityState.Deleted)
@@ -70,17 +83,17 @@
             }
         }
 
-        public virtual void Delete(object id)
+        public void HardDelete(object id)
         {
             var entity = this.GetById(id);
 
             if (entity != null)
             {
-                this.Delete(entity);
+                this.HardDelete(entity);
             }
         }
 
-        public virtual void Detach(T entity)
+        public void Detach(T entity)
         {
             DbEntityEntry entry = this.Context.Entry(entity);
 

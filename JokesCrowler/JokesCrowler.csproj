@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4DE3FBB3-74E8-4F98-A3C1-F43FA9C71404}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{87DCBBFD-93CA-4EB6-B1D2-AB91843D6D8E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Uspelite.Data.Common</RootNamespace>
-    <AssemblyName>Uspelite.Data.Common</AssemblyName>
+    <RootNamespace>JokesCrowler</RootNamespace>
+    <AssemblyName>JokesCrowler</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,8 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="AngleSharp, Version=0.9.4.42449, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
+      <HintPath>..\packages\AngleSharp.0.9.4\lib\net45\AngleSharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,15 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseModel.cs" />
-    <Compile Include="Constants.cs" />
-    <Compile Include="Contracts\IAuditInfo.cs" />
-    <Compile Include="Contracts\IBaseModel.cs" />
-    <Compile Include="Contracts\IDeletableEntity.cs" />
-    <Compile Include="Contracts\IRandomGenerator.cs" />
+    <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RandomGenerator.cs" />
-    <Compile Include="Roles\AppRoles.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Uspelite.Data\Uspelite.Data.csproj">
+      <Project>{26D682DE-0E77-4651-9F0C-732AD3DC9C38}</Project>
+      <Name>Uspelite.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
