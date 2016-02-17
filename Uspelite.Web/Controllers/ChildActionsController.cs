@@ -13,9 +13,9 @@
     [ChildActionOnly]
     public class ChildActionsController : Controller
     {
-        private readonly IPostsService postsService;
+        private readonly IArticlesService postsService;
 
-        public ChildActionsController(IPostsService postsService)
+        public ChildActionsController(IArticlesService postsService)
         {
             this.postsService = postsService;
         }

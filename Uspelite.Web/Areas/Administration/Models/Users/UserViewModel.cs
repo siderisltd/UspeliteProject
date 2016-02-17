@@ -26,7 +26,7 @@
         {
             configuration.CreateMap<User, UserViewModel>()
                          .ForMember(x => x.FullName, opt => opt.MapFrom(x => x.FirstName + " " + x.LastName))
-                         .ForMember(x => x.Posts, opt => opt.MapFrom(x => x.Posts.Count))
+                         .ForMember(x => x.Posts, opt => opt.MapFrom(x => x.Articles.Count))
                          .ForMember(x => x.Videos, opt => opt.MapFrom(x => x.Videos.Count));
         }
     }

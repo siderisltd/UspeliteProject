@@ -12,7 +12,7 @@ namespace Uspelite.Data.Migrations
     using Models;
     using Models.Enum;
 
-    public sealed class Configuration : DbMigrationsConfiguration<Uspelite.Data.UspeliteDbContext>
+    public sealed class Configuration : DbMigrationsConfiguration<UspeliteDbContext>
     {
         private IRandomGenerator randomGenerator;
 
@@ -25,258 +25,147 @@ namespace Uspelite.Data.Migrations
 
         protected override void Seed(UspeliteDbContext context)
         {
-            var seedCondition = context.Roles.Count() < 3 && context.Users.Count() < 5 && context.Categories.Count() < 5;
-
-            if (seedCondition)
+            IList<User> seededUsers = new List<User>();
+            if (!context.Users.Any())
             {
                 var userManager = new UserManager<User>(new UserStore<User>(context));
                 this.SeedAppRoles(context);
-                IList<User> seededUsers = this.SeedAppUsers(context, userManager);
+                seededUsers = this.SeedAppUsers(context, userManager);
 
 
-                var seededCategories = this.SeedCategories(context, 30);
-
-                var allVideoUrls = this.GetAllVideoUrls();
-                var seededVideos = this.SeedVideos(context, seededUsers, allVideoUrls, seededCategories);
-
-                context.SaveChanges();
-
-                var allPictures = this.GetAllPictures(30, seededUsers);
-                this.SeedPictures(context, seededUsers, allPictures);
-                IList<Post> seededPosts = this.SeedPosts(context, seededUsers, seededCategories, allPictures);
-
-                context.SaveChanges();
-
-
-
-                this.SeedComments(context, seededUsers, seededPosts, seededVideos);
-                this.SeedRates(context, seededUsers, seededPosts, seededVideos);
-                try
+                IList<Category> seededCategories = new List<Category>();
+                if (!context.Categories.Any())
                 {
+                    var categoryNames = new string[] { "Новини", "Интервюта", "Статии", "Спорт", "Сцената", "Култура", "По света", "От вас за вас", "Бизнес", "Великите непознати", "Защо избрах българия", "Тайните кътчета", "Вицове", "Изкуство", "Фолклор" };
+
+                    foreach (var name in categoryNames)
+                    {
+                        var category = new Category { Title = name };
+                        context.Categories.Add(category);
+                        seededCategories.Add(category);
+                    }
 
                     context.SaveChanges();
                 }
-                catch (Exception)
-                {
-                    
-                    throw;
-                }
-            }
 
-        }
-
-        private void SeedRates(UspeliteDbContext context, IList<User> seededUsers, IList<Post> seededPosts, IList<Video> seededVideos)
-        {
-            foreach (var post in seededPosts)
-            {
-                var ratesCount = this.randomGenerator.RandomIntegerBetween(0, 10);
-                for (int i = 0; i < ratesCount; i++)
+                IList<Article> seededArticles = new List<Article>();
+                if (!context.Articles.Any())
                 {
-                    var randomUser = seededUsers[this.randomGenerator.RandomIntegerBetween(0, seededUsers.Count - 1)];
-                    var randomNumber = this.randomGenerator.RandomIntegerBetween(1, 5);
-                    var rateToAdd = new Rate();
-                    if (randomNumber % 2 == 0)
+                    for (int i = 0; i < 50; i++)
                     {
-                        //positive rate
-                        rateToAdd.IsPositive = true;
-                        rateToAdd.Value = randomNumber;
-                        rateToAdd.Author = randomUser;
-                    }
-                    else
-                    {
-                        //negative rate
-                        rateToAdd.IsPositive = false;
-                        rateToAdd.Value = randomNumber;
-                        rateToAdd.Author = randomUser;
+                        var randomAuthor = seededUsers[i % (seededUsers.Count - 1)].Id;
+
+                        var article = new Article()
+                        {
+                            AuthorId = randomAuthor,
+                            Title = "Примерно заглавие на статия #" + i,
+                            Content = this.randomGenerator.RandomText(25),
+                            CategoryId = seededCategories[i % (seededCategories.Count - 1)].Id,
+                        };
+
+                        seededArticles.Add(article);
+                        context.Articles.Add(article);
+
                     }
 
-                    post.Rates.Add(rateToAdd);
+                    context.SaveChanges();
                 }
-            }
 
-            foreach (var video in seededVideos)
-            {
-                var ratesCount = this.randomGenerator.RandomIntegerBetween(0, 10);
-                for (int i = 0; i < ratesCount; i++)
+                IList<Video> seededVideos = new List<Video>();
+                if (!context.Videos.Any())
                 {
-                    var randomUser = seededUsers[this.randomGenerator.RandomIntegerBetween(0, seededUsers.Count - 1)];
-                    var randomNumber = this.randomGenerator.RandomIntegerBetween(1, 5);
-                    var rateToAdd = new Rate();
-                    if (randomNumber % 2 == 0)
+                    var allVideoUrls = this.GetAllVideoUrls();
+
+                    for (int i = 0; i < allVideoUrls.Count; i++)
                     {
-                        //positive rate
-                        rateToAdd.IsPositive = true;
-                        rateToAdd.Value = randomNumber;
-                        rateToAdd.Author = randomUser;
-                    }
-                    else
-                    {
-                        //negative rate
-                        rateToAdd.IsPositive = false;
-                        rateToAdd.Value = randomNumber;
-                        rateToAdd.Author = randomUser;
+                        var videoUrl = allVideoUrls[i];
+                        var video = new Video
+                        {
+                            Author = seededUsers[i % (seededUsers.Count - 1)],
+                            Title = "Примерно заглавие на видео #" + i,
+                            VideoUrl = videoUrl,
+                            CategoryId = seededCategories[this.randomGenerator.RandomIntegerBetween(0, seededCategories.Count - 1)].Id
+                        };
+
+                        seededVideos.Add(video);
+                        context.Videos.Add(video);
                     }
 
-                    video.Rates.Add(rateToAdd);
+                    context.SaveChanges();
                 }
-            }
-        }
 
-        private void SeedComments(UspeliteDbContext context, IList<User> seededUsers, IList<Post> seededPosts, IList<Video> seededVideos)
-        {
-            foreach (var post in seededPosts)
-            {
-                var postsCount = this.randomGenerator.RandomIntegerBetween(0, 20);
-                for (int i = 0; i < postsCount; i++)
+                if (!context.Rates.Any())
                 {
-                    var randomUser = seededUsers[this.randomGenerator.RandomIntegerBetween(0, seededUsers.Count - 1)];
-
-                    var commentToAdd = new Comment()
+                    for (int i = 0; i < 100; i++)
                     {
-                        Author = randomUser,
-                        Content = this.randomGenerator.RandomText(20, 5, 10)
-                    };
-
-                    post.Comments.Add(commentToAdd);
+                        var randomVideo = seededVideos[this.randomGenerator.RandomIntegerBetween(0, seededVideos.Count - 1)];
+                        randomVideo.Ratings.Add(new Rate()
+                        {
+                            Author = seededUsers[i % (seededUsers.Count - 1)],
+                            IsPositive = this.randomGenerator.RandomIntegerBetween(0, 1) != 0,
+                            Value = this.randomGenerator.RandomIntegerBetween(1, 5),
+                        });
+                    }
+                    context.SaveChanges();
+                    for (int i = 0; i < 100; i++)
+                    {
+                        var randomArticle = seededArticles[this.randomGenerator.RandomIntegerBetween(0, seededArticles.Count - 1)];
+                        randomArticle.Ratings.Add(new Rate()
+                        {
+                            Author = seededUsers[i % (seededUsers.Count - 1)],
+                            IsPositive = this.randomGenerator.RandomIntegerBetween(0, 1) != 0,
+                            Value = this.randomGenerator.RandomIntegerBetween(1, 5),
+                        });
+                    }
+                    context.SaveChanges();
+                    for (int i = 0; i < 100; i++)
+                    {
+                        var randomCategory = seededCategories[this.randomGenerator.RandomIntegerBetween(0, seededCategories.Count - 1)];
+                        randomCategory.Ratings.Add(new Rate()
+                        {
+                            Author = seededUsers[i % (seededUsers.Count - 1)],
+                            IsPositive = this.randomGenerator.RandomIntegerBetween(0, 1) != 0,
+                            Value = this.randomGenerator.RandomIntegerBetween(1, 5),
+                        });
+                    }
+                    context.SaveChanges();
                 }
-            }
 
-            foreach (var video in seededVideos)
-            {
-                var postsCount = this.randomGenerator.RandomIntegerBetween(0, 200);
-                for (int i = 0; i < postsCount; i++)
+                if (!context.Comments.Any())
                 {
-                    var randomUser = seededUsers[this.randomGenerator.RandomIntegerBetween(0, seededUsers.Count - 1)];
-
-                    var commentToAdd = new Comment()
+                    for (int i = 0; i < 20; i++)
                     {
-                        Author = randomUser,
-                        Content = this.randomGenerator.RandomText(20, 5, 10)
-                    };
+                        var randomArticle = seededArticles[this.randomGenerator.RandomIntegerBetween(0, seededArticles.Count - 1)];
 
-                    video.Comments.Add(commentToAdd);
-                }
-            }
-        }
-
-        private Picture[] GetAllPictures(int count, IList<User> allUsers)
-        {
-
-
-            IList<Picture> result = new List<Picture>();
-
-            for (int i = 0; i < count; i++)
-            {
-                var randomUser = allUsers[this.randomGenerator.RandomIntegerBetween(0, allUsers.Count - 1)];
-                var picture = new Picture
-                {
-                    AltTag = this.randomGenerator.RandomString(),
-                    Title = "PictureTitle" + i,
-                    ImageType = ImageType.Jpeg,
-                    Author = randomUser,
-                    Url = "/1/testImage.jpg",
-                };
-
-                result.Add(picture);
-            }
-
-            return result.ToArray();
-        }
-
-        private void SeedPictures(UspeliteDbContext context, IList<User> allUsers, Picture[] allPictures)
-        {
-            for (int i = 0; i < 30; i++)
-            {
-                context.Pictures.AddOrUpdate(x => x.Title, allPictures);
-            }
-        }
-
-        private IList<Post> SeedPosts(UspeliteDbContext context, IList<User> allUsers, IList<Category> allCategories, Picture[] allPictures)
-        {
-            var maxPostsPerUser = this.randomGenerator.RandomIntegerBetween(0, 30);
-
-            IList<Post> postsToAdd = new List<Post>();
-
-            foreach (var user in allUsers)
-            {
-                for (int i = 0; i < maxPostsPerUser; i++)
-                {
-                    var randomCategories = new HashSet<Category>();
-                    var randomCategoriesCount = this.randomGenerator.RandomIntegerBetween(1, 4);
-                    for (int j = 0; j < randomCategoriesCount; j++)
-                    {
-                        randomCategories.Add(allCategories[this.randomGenerator.RandomIntegerBetween(0, allCategories.Count - 1)]);
+                        randomArticle.Comments.Add(new Comment
+                        {
+                            Author = seededUsers[i % (seededUsers.Count - 1)],
+                            Content = this.randomGenerator.RandomText(15)
+                        });
                     }
 
-                    var wordsInPost = i % 2 == 0 ? 2 : 3;
-                    var post = new Post
+                    for (int i = 0; i < 20; i++)
                     {
-                        Author = user,
-                        Title = this.randomGenerator.RandomText(wordsInPost) + i,
-                        Content = this.randomGenerator.RandomText(50, 2, 12),
-                        Status = Models.Enum.PostStatus.Published,
-                        Categories = randomCategories,
-
-                    };
-
-                    postsToAdd.Add(post);
+                        var randomVideo = seededVideos[this.randomGenerator.RandomIntegerBetween(0, seededVideos.Count - 1)];
+                        randomVideo.Comments.Add(new Comment
+                        {
+                            Author = seededUsers[i % (seededUsers.Count - 1)],
+                            Content = this.randomGenerator.RandomText(15)
+                        });
+                        context.SaveChanges();
+                    }
                 }
+
+                context.SaveChanges();
             }
-
-            context.Posts.AddOrUpdate(x => x.Title, postsToAdd.ToArray());
-
-            return postsToAdd;
         }
 
-        private IList<Category> SeedCategories(UspeliteDbContext context, int count)
-        {
-            IList<Category> result = new List<Category>();
-            for (int i = 0; i < count; i++)
-            {
-                var category = new Category() { Title = "Test" + i };
-                context.Categories.AddOrUpdate(x => x.Title, category);
-                result.Add(category);
-            }
-            return result;
-        }
-
-        private IList<Video> SeedVideos(UspeliteDbContext context, IList<User> allUsers, IList<string> allVideoUrls, IList<Category> allCategories)
-        {
-            if (allUsers.Count == 0)
-            {
-                return new List<Video>();
-            }
-
-            IList<Video> result = new List<Video>();
-
-            var videosCountPerUser = this.randomGenerator.RandomIntegerBetween(0, allUsers.Count - 1);
-            for (int i = 0; i < videosCountPerUser; i++)
-            {
-                var randomCategories = new HashSet<Category>();
-                var randomCategoriesCount = this.randomGenerator.RandomIntegerBetween(1, 4);
-                for (int j = 0; j < randomCategoriesCount; j++)
-                {
-                    randomCategories.Add(allCategories[this.randomGenerator.RandomIntegerBetween(0, allCategories.Count - 1)]);
-                }
-                var currentVideo = new Video
-                {
-                    Author = allUsers[i],
-                    Title = this.randomGenerator.RandomText(2, 4, 7) + i,
-                    VideoUrl = allVideoUrls[this.randomGenerator.RandomIntegerBetween(0, allVideoUrls.Count - 1)],
-                    Categories = randomCategories
-                };
-
-                context.Videos.AddOrUpdate(x => x.Title, currentVideo);
-                result.Add(currentVideo);
-            }
-
-            return result;
-        }
+      
 
         private IList<User> SeedAppUsers(UspeliteDbContext context, UserManager<User> userManager)
         {
             var result = new List<User>();
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 5; i++)
             {
                 var currentUser = new User
                 {

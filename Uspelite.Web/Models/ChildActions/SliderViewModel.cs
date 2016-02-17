@@ -5,6 +5,6 @@
 
     public class SliderViewModel
     {
-        public IList<PostViewModel> Posts { get; set; }
+        public IList<ArticleViewModel> Posts { get; set; }
     }
 }

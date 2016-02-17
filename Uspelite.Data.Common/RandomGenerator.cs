@@ -2,8 +2,9 @@
 {
     using System;
     using System.Text;
+    using System.Threading;
     using Contracts;
-
+    
     public class RandomGenerator : IRandomGenerator
     {
         private static readonly Random random = new Random();
@@ -36,6 +37,8 @@
 
         public int RandomIntegerBetween(int min, int max)
         {
+            //TODO: Change it with CryptoRandom dryn dryn
+            Thread.Sleep(5);
             return random.Next(min, max + 1);
         }
     }

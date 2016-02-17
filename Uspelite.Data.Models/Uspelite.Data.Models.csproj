@@ -57,14 +57,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseModels\BaseModel.cs" />
+    <Compile Include="BaseModels\CommentableRateableBaseModel.cs" />
+    <Compile Include="BaseModels\Contracts\IAuditInfo.cs" />
+    <Compile Include="BaseModels\Contracts\IBaseModel.cs" />
+    <Compile Include="BaseModels\Contracts\ICommentableEntity.cs" />
+    <Compile Include="BaseModels\Contracts\ICommentableRateableBaseModel.cs" />
+    <Compile Include="BaseModels\Contracts\IDeletableEntity.cs" />
+    <Compile Include="BaseModels\Contracts\IRateableEntity.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="Enum\ImageType.cs" />
     <Compile Include="Enum\PostStatus.cs" />
     <Compile Include="Image.cs" />
-    <Compile Include="News.cs" />
-    <Compile Include="Picture.cs" />
-    <Compile Include="Post.cs" />
+    <Compile Include="Article.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rate.cs" />
     <Compile Include="User.cs" />

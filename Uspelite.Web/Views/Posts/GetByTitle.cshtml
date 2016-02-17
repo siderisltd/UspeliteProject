@@ -1,4 +1,4 @@
-﻿@model Uspelite.Web.Models.Home.PostViewModel
+﻿@model Uspelite.Web.Models.Home.ArticleViewModel
 
 @{
     ViewBag.Title = "Posts";
@@ -13,7 +13,7 @@
 <article id="article-post" class="cat-sports">
 
     <div class="head-image thumb-wrap relative">
-        <a href="article-sport.php">@Html.Image(x => Model.MainPicture.Url, "Alt responsive picture", "770", "470", new { @class = "img-responsive" })</a>
+        <a href="article-sport.php">@Html.Image(x => Model.MainArticlePic.Url, "Alt responsive picture", "770", "470", new { @class = "img-responsive" })</a>
         <a href="#" class="theme">@Model.Category</a>
     </div>
 

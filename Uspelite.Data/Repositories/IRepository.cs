@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using Common.Contracts;
+    using Models.BaseModels.Contracts;
 
     public interface IRepository<T> : IDisposable where T : class, IBaseModel
     {

@@ -9,9 +9,9 @@
 
     public class HomeController : BaseController
     {
-        private readonly IPostsService postsService;
+        private readonly IArticlesService postsService;
 
-        public HomeController(IPostsService postsService)
+        public HomeController(IArticlesService postsService)
         {
             this.postsService = postsService;
         }
@@ -21,24 +21,24 @@
             //Should get even number of items
             var newestPosts = this.Cache.Get(
                 "newestPosts",
-                () => this.postsService.GetNewestPosts(6).To<PostViewModel>().ToList(), 10);
+                () => this.postsService.GetNewestPosts(6).To<ArticleViewModel>().ToList(), 10);
 
             //Should get even number of items
             var highRatedPosts = this.Cache.Get(
                 "highRatedPosts",
-                () => this.postsService.GetTopPostsByRating(6).To<PostViewModel>().ToList(), 10);
+                () => this.postsService.GetTopPostsByRating(6).To<ArticleViewModel>().ToList(), 10);
 
             var mostCommentedPosts = this.Cache.Get(
                 "mostCommentedPosts",
-                () => this.postsService.GetMostCommented(6).To<PostViewModel>().ToList(), 10);
+                () => this.postsService.GetMostCommented(6).To<ArticleViewModel>().ToList(), 10);
 
             var highRatedInCategory = this.Cache.Get(
                  "highRatedPostsInCategory",
-                 () => this.postsService.GetTopPostsByRating(6, "Test1").To<PostViewModel>().ToList(), 10);
+                 () => this.postsService.GetTopPostsByRating(6, "Test1").To<ArticleViewModel>().ToList(), 10);
 
             var topArticleByRating = this.Cache.Get(
                 "topArticleByRating",
-                () => this.postsService.GetTopPostsByRating(1).To<PostViewModel>().FirstOrDefault(), 10);
+                () => this.postsService.GetTopPostsByRating(1).To<ArticleViewModel>().FirstOrDefault(), 10);
 
             var indexViewModel = new HomeIndexViewModel
             {

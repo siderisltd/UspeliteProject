@@ -358,9 +358,9 @@
     <Compile Include="Models\Account\Manage\SetPasswordViewModel.cs" />
     <Compile Include="Models\Account\Manage\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Models\Home\HomeIndexViewModel.cs" />
-    <Compile Include="Models\Home\PostViewModel.cs" />
+    <Compile Include="Models\Home\ArticleViewModel.cs" />
     <Compile Include="Models\MessageDetails.cs" />
-    <Compile Include="Models\PictureViewModel.cs" />
+    <Compile Include="Models\ImageViewModel.cs" />
     <Compile Include="Models\UserDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

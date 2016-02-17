@@ -7,6 +7,6 @@
     {
         public string CategoryName { get; set; }
 
-        public IEnumerable<Post> Posts { get; set; }
+        public IEnumerable<Article> Posts { get; set; }
     }
 }

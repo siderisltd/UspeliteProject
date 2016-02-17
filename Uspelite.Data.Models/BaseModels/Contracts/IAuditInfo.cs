@@ -1,4 +1,4 @@
-﻿namespace Uspelite.Data.Common.Contracts
+﻿namespace Uspelite.Data.Models.BaseModels.Contracts
 {
     using System;
 

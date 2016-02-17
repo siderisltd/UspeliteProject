@@ -34,11 +34,11 @@
                                 <a href="#">
                                     @if (isMainPost)
                                     {
-                                        @Html.Image(x => post.MainPicture.Url, "Alt responsive picture", "819", "452", new { @class = "img-responsive" })
+                                        @Html.Image(x => post.MainArticlePic.Url, "Alt responsive picture", "819", "452", new { @class = "img-responsive" })
                                     }
                                     else
                                     {
-                                        @Html.Image(x => post.MainPicture.Url, "Alt responsive picture", "560", "390", new { @class = "img-responsive" })
+                                        @Html.Image(x => post.MainArticlePic.Url, "Alt responsive picture", "560", "390", new { @class = "img-responsive" })
                                     }
                                    
                                     <div class="overlay">

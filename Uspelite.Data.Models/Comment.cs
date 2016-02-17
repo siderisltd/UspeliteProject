@@ -1,20 +1,14 @@
 ﻿namespace Uspelite.Data.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using BaseModels;
+    using BaseModels.Contracts;
+    using Common;
 
-    public class Comment
+    public class Comment : CommentableRateableBaseModel, IBaseModel, ICommentableEntity, IRateableEntity, IAuditInfo, IDeletableEntity
     {
-        private ICollection<Rate> rates;
-
-        public Comment()
-        {
-            this.rates = new HashSet<Rate>();
-            this.CreatedOn = DateTime.Now;
-        }
-
         public int Id { get; set; }
 
         [MaxLength(1000)]
@@ -32,18 +26,19 @@
         [ForeignKey("ParentId")]
         public Comment Parent { get; set; }
 
-        public virtual Post Post { get; set; }
+        public int? ArticleId { get; set; }
 
+        [ForeignKey("ArticleId")]
+        public virtual Article Article { get; set; }
+
+        public int? VideoId { get; set; }
+
+        [ForeignKey("VideoId")]
         public virtual Video Video { get; set; }
 
-        public DateTime CreatedOn { get; set; }
+        public int? ImageId { get; set; }
 
-        public DateTime? ModifiedOn { get; set; }
-
-        public virtual ICollection<Rate> Rates
-        {
-            get { return this.rates; }
-            set { this.rates = value; }
-        }
+        [ForeignKey("ImageId")]
+        public virtual Image Image { get; set; }
     }
 }

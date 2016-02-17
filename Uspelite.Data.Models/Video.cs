@@ -1,26 +1,12 @@
 ﻿namespace Uspelite.Data.Models
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using BaseModels;
+    using BaseModels.Contracts;
 
-    public class Video
+    public class Video : CommentableRateableBaseModel, IBaseModel, ICommentableEntity, IRateableEntity, IAuditInfo, IDeletableEntity
     {
-        private ICollection<Comment> comments;
-
-        private ICollection<Category> categories;
-
-        private ICollection<Rate> rates;
-
-        public Video()
-        {
-            this.categories = new HashSet<Category>();
-            this.comments = new HashSet<Comment>();
-            this.rates = new HashSet<Rate>();
-            this.CreatedOn = DateTime.Now;
-        }
-
         public int Id { get; set; }
 
         [Index(IsUnique = true)]
@@ -37,44 +23,10 @@
         [Required]
         public string VideoUrl { get; set; }
 
-        public DateTime CreatedOn { get; set; }
-
-        public DateTime? ModifiedOn { get; set; }
-
-        public virtual ICollection<Comment> Comments
-        {
-            get { return this.comments; }
-            set { this.comments = value; }
-        }
+        public int CategoryId { get; set; }
 
         [Required]
-        public virtual ICollection<Category> Categories
-        {
-            get { return this.categories; }
-            set { this.categories = value; }
-        }
-
-        public virtual ICollection<Rate> Rates
-        {
-            get { return this.rates; }
-            set { this.rates = value; }
-        }
-
-        [NotMapped]
-        public float CalculatedRating
-        {
-            get
-            {
-                float sum = 0.0f;
-                int count = 0;
-                foreach (Rate rating in this.Rates)
-                {
-                    sum += rating.Value;
-                    count++;
-                }
-
-                return sum / count;
-            }
-        }
+        [ForeignKey("CategoryId")]
+        public virtual Category Category { get; set; }
     }
 }

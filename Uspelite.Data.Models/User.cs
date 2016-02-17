@@ -1,32 +1,35 @@
 ﻿namespace Uspelite.Data.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Security.Claims;
     using System.Threading.Tasks;
+    using BaseModels.Contracts;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    public class User : IdentityUser
+    public class User : IdentityUser , ICommentableRateableBaseModel, IBaseModel
     {
-        public ICollection<Post> posts;
+        public ICollection<Article> articles;
 
         public ICollection<Video> videos;
 
-        public ICollection<Rate> rates;
+        public ICollection<Rate> ratings;
 
-        public ICollection<Picture> pictures;
+        public ICollection<Image> images;
 
         public ICollection<Comment> comments;
 
         public User()
         {
-            this.rates = new HashSet<Rate>();
+            this.ratings = new HashSet<Rate>();
             this.videos = new HashSet<Video>();
-            this.posts = new HashSet<Post>();
-            this.pictures = new HashSet<Picture>();
+            this.articles = new HashSet<Article>();
+            this.images = new HashSet<Image>();
             this.comments = new HashSet<Comment>();
+            this.CreatedOn = DateTime.Now;
         }
 
         [MaxLength(100)]
@@ -35,13 +38,10 @@
         [MaxLength(100)]
         public string LastName { get; set; }
 
-        [MaxLength(100)]
-        public string Ip { get; set; }
-
-        public virtual ICollection<Post> Posts
+        public virtual ICollection<Article> Articles
         {
-            get { return this.posts; }
-            set { this.posts = value; }
+            get { return this.articles; }
+            set { this.articles = value; }
         }
 
         public virtual ICollection<Video> Videos
@@ -50,16 +50,16 @@
             set { this.videos = value; }
         }
 
-        public virtual ICollection<Picture> Pictures
+        public virtual ICollection<Image> Images
         {
-            get { return this.pictures; }
-            set { this.pictures = value; }
+            get { return this.images; }
+            set { this.images = value; }
         }
 
-        public virtual ICollection<Rate> Rates
+        public virtual ICollection<Rate> Ratings
         {
-            get { return this.rates; }
-            set { this.rates = value; }
+            get { return this.ratings; }
+            set { this.ratings = value; }
         }
 
         public virtual ICollection<Comment> Comments
@@ -68,14 +68,15 @@
             set { this.comments = value; }
         }
 
+
         [NotMapped]
-        public float Rating
+        public virtual float CalculatedRating
         {
             get
             {
                 float sum = 0.0f;
                 int count = 0;
-                foreach (Post post in this.Posts)
+                foreach (Article post in this.Articles)
                 {
                     sum += post.CalculatedRating;
                     count++;
@@ -86,10 +87,23 @@
                     sum += video.CalculatedRating;
                     count++;
                 }
-
+                if(this.Videos.Count == 0 && this.Articles.Count == 0)
+                {
+                    return 0;
+                }
                 return sum / count;
             }
         }
+
+        public DateTime CreatedOn { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public bool IsBanned { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
 
         public ClaimsIdentity GenerateUserIdentity(UserManager<User> manager)
         {

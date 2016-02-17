@@ -9,16 +9,16 @@
     //TODO: Rename to ArticlesController and every post stuffs also
     public class PostsController : BaseController
     {
-        private readonly IPostsService postService;
+        private readonly IArticlesService postService;
 
-        public PostsController(IPostsService postService)
+        public PostsController(IArticlesService postService)
         {
             this.postService = postService;
         }
 
         public ActionResult GetByTitle(string title)
         {
-            var model = this.postService.GetByTitle(title).To<PostViewModel>().FirstOrDefault();
+            var model = this.postService.GetByTitle(title).To<ArticleViewModel>().FirstOrDefault();
             return this.View(model);
         }
     }

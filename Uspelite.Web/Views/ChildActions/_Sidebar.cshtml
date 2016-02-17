@@ -27,7 +27,7 @@
                 foreach (var post in Model[i].Posts)
                 {
                     <article class="clearfix">
-                        <a href="#">@Html.Image(x => post.MainPicture.Url, "Alt responsive picture", "100", "80")</a>
+                        <a href="#">@Html.Image(x => post.MainArticlePic.Url, "Alt responsive picture", "100", "80")</a>
                         <span class="published">@post.CreatedOn.ToString("MMMM dd yyyy", CultureInfo.InvariantCulture)<span class="category cat-sports"><a href="#">@category</a></span></span>
                         <h3>
                             <a href="#">@post.PartialContent</a>

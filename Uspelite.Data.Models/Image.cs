@@ -1,25 +1,19 @@
 ﻿namespace Uspelite.Data.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.IO;
     using System.Text;
+    using BaseModels;
+    using BaseModels.Contracts;
     using Common;
     using Enum;
 
-    public class Image
+    public class Image : CommentableRateableBaseModel, IBaseModel, ICommentableEntity, IRateableEntity, IAuditInfo, IDeletableEntity
     {
-        private ICollection<Rate> rates;
 
         private string title;
-
-        public Image()
-        {
-            this.rates = new HashSet<Rate>();
-            this.CreatedOn = DateTime.Now;
-        }
 
         public int Id { get; set; }
 
@@ -57,27 +51,32 @@
 
         public string AltTag { get; set; }
 
+        public string Url { get; set; }
+
         public string PathOriginalSize { get; set; }
 
         public string PathResizedImage { get; set; }
 
-        [Required]
         public string AuthorId { get; set; }
 
+        [Required]
         [ForeignKey("AuthorId")]
         public virtual User Author { get; set; }
 
-        public DateTime CreatedOn { get; set; }
+        public int? CategoryId { get; set; }
 
-        public bool IsMainPicture { get; set; }
+        [ForeignKey("CategoryId")]
+        public virtual Category Category { get; set; }
+
+        public int? ArticleId { get; set; }
+
+        [ForeignKey("ArticleId")]
+        public virtual Article Article { get; set; }
+
+        public bool IsMain { get; set; }
 
         [NotMapped]
         public Stream Stream { get; set; }
 
-        public virtual ICollection<Rate> Rates
-        {
-            get { return this.rates; }
-            set { this.rates = value; }
-        }
     }
 }

@@ -17,13 +17,11 @@
 
         IDbSet<Image> Images { get; set; }
 
-        IDbSet<Picture> Pictures { get; set; }
-
         IDbSet<Comment> Comments { get; set; }
 
         IDbSet<Category> Categories { get; set; }
 
-        IDbSet<Post> Posts { get; set; }
+        IDbSet<Article> Articles { get; set; }
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 

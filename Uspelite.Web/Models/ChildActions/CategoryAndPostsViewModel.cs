@@ -9,6 +9,6 @@
     {
         public string CategoryName { get; set; }
 
-        public IEnumerable<PostViewModel> Posts { get; set; }
+        public IEnumerable<ArticleViewModel> Posts { get; set; }
     }
 }

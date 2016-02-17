@@ -6,13 +6,13 @@
     using Data.Models;
     using System.Linq;
 
-    public class PostViewModel : IMapFrom<Post>, IMapTo<Post>, IHaveCustomMappings
+    public class ArticleViewModel : IMapFrom<Article>, IMapTo<Article>, IHaveCustomMappings
     {
         private int rating = 0;
         private int likesCount = 0;
         private int dislikesCount = 0;
 
-        private PictureViewModel mainPicture = new PictureViewModel
+        private ImageViewModel _mainArticlePic = new ImageViewModel
         {
             Url = "Content/Imgs/no-photo-available.jpg",
             IsMainPicture = true,
@@ -23,14 +23,14 @@
 
         public string Title { get; set; }
 
-        public PictureViewModel MainPicture
+        public ImageViewModel MainArticlePic
         {
-            get { return this.mainPicture; }
+            get { return this._mainArticlePic; }
             set
             {
                 if (value != null)
                 {
-                    this.mainPicture = value;
+                    this._mainArticlePic = value;
                 }
             }
         }
@@ -82,12 +82,11 @@
 
         public void CreateMappings(IMapperConfiguration configuration)
         {
-            configuration.CreateMap<Post, PostViewModel>()
-           .ForMember(x => x.Rating, opt => opt.MapFrom(x => x.Rates.Sum(y => y.Value) / x.Rates.Count))
-           .ForMember(x => x.LikesCount, opt => opt.MapFrom(x => x.Rates.Count(y => y.IsPositive)))
-           .ForMember(x => x.DislikesCount, opt => opt.MapFrom(x => x.Rates.Count(y => y.IsPositive == false)))
-           .ForMember(x => x.MainPicture, opt => opt.MapFrom(x => x.Pictures.Where(y => y.IsMainPicture).Select(z => new PictureViewModel { Title = z.Title, IsMainPicture = z.IsMainPicture, Url = z.Url }).FirstOrDefault()))
-           .ForMember(x => x.Category, opt => opt.MapFrom(x => x.Categories.FirstOrDefault().Title))
+            configuration.CreateMap<Article, ArticleViewModel>()
+           .ForMember(x => x.Rating, opt => opt.MapFrom(x => x.Ratings.Sum(y => y.Value) / x.Ratings.Count))
+           .ForMember(x => x.LikesCount, opt => opt.MapFrom(x => x.Ratings.Count(y => y.IsPositive)))
+           .ForMember(x => x.DislikesCount, opt => opt.MapFrom(x => x.Ratings.Count(y => y.IsPositive == false)))
+           .ForMember(x => x.Category, opt => opt.MapFrom(x => x.Category.Title))
            .ForMember(x => x.PartialContent, opt => opt.MapFrom(x => x.Content.Substring(0, 45) + "..."));
         }
     }

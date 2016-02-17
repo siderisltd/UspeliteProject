@@ -8,38 +8,38 @@
     using Uspelite.Data.Models;
     using Uspelite.Data.Repositories;
 
-    public class PostsService : IPostsService
+    public class ArticlesService : IArticlesService
     {
-        private readonly IRepository<Post> repo;
+        private readonly IRepository<Article> repo;
         private readonly ICategoriesService categoriesService;
 
-        public PostsService(IRepository<Post> repo, ICategoriesService categoriesService)
+        public ArticlesService(IRepository<Article> repo, ICategoriesService categoriesService)
         {
             this.repo = repo;
             this.categoriesService = categoriesService;
         }
 
-        public IQueryable<Post> GetTopPostsByRating(int count = 6, string category = null)
+        public IQueryable<Article> GetTopPostsByRating(int count = 6, string category = null)
         {
             var query = this.repo.All();
 
             if (!string.IsNullOrEmpty(category))
             {
-                query = query.Where(x => x.Categories.Any(cat => cat.Title == category));
+                query = query.Where(x => x.Category.Title == category);
             }
             query = query
-                   .OrderByDescending(x => x.Rates.Sum(y => y.Value))
+                   .OrderByDescending(x => x.Ratings.Sum(y => y.Value) / x.Ratings.Count)
                    .Take(count);
 
             return query;
         }
 
-        public IQueryable<Post> GetNewestPosts(int count = 6, string category = null)
+        public IQueryable<Article> GetNewestPosts(int count = 6, string category = null)
         {
             var query = this.repo.All();
             if (!string.IsNullOrEmpty(category))
             {
-                query = query.Where(x => x.Categories.Any(cat => cat.Title == category));
+                query = query.Where(x => x.Category.Title == category);
             }
             query = query
                       .OrderByDescending(x => x.CreatedOn)
@@ -48,13 +48,13 @@
             return query;
         }
 
-        public IQueryable<Post> GetMostCommented(int count = 6, string category = null)
+        public IQueryable<Article> GetMostCommented(int count = 6, string category = null)
         {
             var query = this.repo.All();
 
             if (!string.IsNullOrEmpty(category))
             {
-                query = query.Where(x => x.Categories.Any(cat => cat.Title == category));
+                query = query.Where(x => x.Category.Title == category);
             }
             query = query
                    .OrderByDescending(x => x.Comments.Count)
@@ -72,15 +72,15 @@
 
             IQueryable<CategoryAndPostsDTO> query = this.repo
                             .All()
-                            .Where(x => x.Categories.Any(y => categories.Contains(y)))
-                            .OrderByDescending(x => x.Rates.Sum(y => y.Value))
-                            .GroupBy(x => x.Categories.FirstOrDefault().Title)
+                            .Where(x =>  categories.Contains(x.Category))
+                            .OrderByDescending(x => x.Ratings.Sum(y => y.Value) / x.Ratings.Count)
+                            .GroupBy(x => x.Category.Title)
                             .Select(x => new CategoryAndPostsDTO {CategoryName = x.Key, Posts = x.Take(count)});
 
             return query;
         }
 
-        public IQueryable<Post> GetByTitle(string title)
+        public IQueryable<Article> GetByTitle(string title)
         {
             var query = this.repo
                             .All()

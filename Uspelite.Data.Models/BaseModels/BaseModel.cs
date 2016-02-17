@@ -1,10 +1,10 @@
-﻿namespace Uspelite.Data.Common
+﻿namespace Uspelite.Data.Models.BaseModels
 {
     using System;
     using System.ComponentModel.DataAnnotations.Schema;
     using Contracts;
 
-    public class BaseModel : IBaseModel, IAuditInfo, IDeletableEntity
+    public abstract class BaseModel : IBaseModel, IAuditInfo, IDeletableEntity
     {
         public DateTime CreatedOn { get; set; }
 

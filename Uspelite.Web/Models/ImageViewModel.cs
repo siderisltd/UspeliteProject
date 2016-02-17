@@ -5,15 +5,15 @@
     using Data.Models;
     using Infrastructure.Mapping.Contracts;
 
-    public class PictureViewModel : IMapFrom<Picture>, IMapTo<Picture>
+    public class ImageViewModel : IMapFrom<Image>, IMapTo<Image>
     {
-        public static Expression<Func<Picture, PictureViewModel>> FromModel
+        public static Expression<Func<Image, ImageViewModel>> FromModel
         {
             get
             { 
-                return x => new PictureViewModel
+                return x => new ImageViewModel
                     {
-                        IsMainPicture = x.IsMainPicture, 
+                        IsMainPicture = x.IsMain, 
                         Title = x.Title,
                         Url = x.Url
                     };

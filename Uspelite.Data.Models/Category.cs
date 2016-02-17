@@ -1,34 +1,40 @@
 ﻿namespace Uspelite.Data.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using BaseModels;
+    using BaseModels.Contracts;
 
-    public class Category
+    public class Category : BaseModel, IRateableEntity
     {
-        private ICollection<Post> posts;
+        private ICollection<Article> articles;
 
         private ICollection<Video> videos;
 
+        private ICollection<Image> images;
+
+        private ICollection<Rate> ratings;
+
         public Category()
         {
-            this.CreatedOn = DateTime.Now;
             this.videos = new HashSet<Video>();
-            this.posts = new HashSet<Post>();
+            this.articles = new HashSet<Article>();
+            this.images = new HashSet<Image>();
+            this.ratings = new HashSet<Rate>();
         }
 
         public int Id { get; set; }
 
         [Index(IsUnique = true)]
-        [StringLength(300)]
+        [StringLength(100)]
         [Required]
         public string Title { get; set; }
          
-        public ICollection<Post> Posts
+        public ICollection<Article> Articles
         {
-            get { return this.posts; }
-            set { this.posts = value; }
+            get { return this.articles; }
+            set { this.articles = value; }
         }
 
         public ICollection<Video> Videos
@@ -37,8 +43,38 @@
             set { this.videos = value; }
         }
 
-        public DateTime CreatedOn { get; set; }
+        public ICollection<Image> Images
+        {
+            get { return this.images; }
+            set { this.images = value; }
+        }
 
-        public DateTime? ModifiedOn { get; set; }
+        public ICollection<Rate> Ratings
+        {
+            get { return this.ratings; }
+            set { this.ratings = value; }
+        }
+
+        [NotMapped]
+        public float CalculatedRating
+        {
+            get
+            {
+                float sum = 0.0f;
+                int count = 0;
+                foreach (Rate rating in this.Ratings)
+                {
+                    sum += rating.Value;
+                    count++;
+                }
+
+                if(this.Ratings.Count == 0)
+                {
+                    return 0;
+                }
+
+                return sum / count;
+            }
+        }
     }
 }
