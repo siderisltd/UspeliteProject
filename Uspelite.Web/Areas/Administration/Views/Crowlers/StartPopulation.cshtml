@@ -3,6 +3,7 @@
 
 <h1 id="title" data-model-id="@Model" data-user-id="@User.Identity.GetUserId()">Population procedure started ...</h1>
 
+<div id="loading-element" style="display:none">Loading...</div>
 <span>Currently populated articles :</span> <span id="count-span"></span>
 <div id="success"></div>
 
@@ -10,7 +11,7 @@
     <script>
         function getAddMovieForm() {
             var id = $('#title').attr('data-model-id');
-            $('#count-span').html("Loading...");
+            $('#loading-element').html("Loading...");
             $('#count-span').load('/Administration/Crowlers/GetParsedNewsCount/' + id);
         }
 

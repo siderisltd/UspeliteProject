@@ -34,7 +34,7 @@
         public string Title { get; set; }
 
         [Required]
-        [MaxLength(20000, ErrorMessage = "Maximum article content is 20000", ErrorMessageResourceType = typeof(ArgumentException))]
+        [MaxLength(30000)]
         public string Content { get; set; }
 
         [Required]

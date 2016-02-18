@@ -42,7 +42,8 @@
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="/Administration/Users">Users Grid</a></li>
-                            <li><a href="/Administration/Crowlers/">Crawlers</a></li>
+                            <li><a href="/Administration/Crowlers/">Crowlers</a></li>
+                            <li><a href="/Administration/Rss/">Rss</a></li>
                         </ul>
                     </div>
                 </div>
@@ -65,6 +66,8 @@
     @Scripts.Render("~/bundles/jquery-ui");
     @Scripts.Render("~/bundles/theme");
     @Scripts.Render("~/bundles/kendo")
-    @RenderSection("scripts", required: false)
+
+    @Scripts.Render("~/bundles/ajax");
+    @RenderSection("adminScripts", required: false)
 </body>
 </html>

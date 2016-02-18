@@ -63,6 +63,10 @@
                      "~/Scripts/Libraries/jquery.ui.components/jquery.ui.resizable.js"
                   ));
 
+            bundles.Add(new ScriptBundle("~/bundles/ajax").Include(
+                     "~/Scripts/Libraries/jquery.unobtrusive-ajax.js"
+                ));
+
             BundleTable.EnableOptimizations = false;
         }
     }

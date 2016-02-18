@@ -2,6 +2,8 @@
 {
     public enum CrawlType
     {
-        DarikNews = 23
+        DarikNews = 23,
+        NewsBg = 45,
+        StandardNews = 54
     }
 }

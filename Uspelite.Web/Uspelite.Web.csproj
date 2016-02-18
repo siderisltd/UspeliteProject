@@ -253,6 +253,7 @@
     <Compile Include="Areas\Administration\Controllers\AdministratorController.cs" />
     <Compile Include="Areas\Administration\Controllers\CrowlersController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administration\Controllers\RssController.cs" />
     <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
     <Compile Include="Areas\Administration\Models\Crawlers\CrowlerViewModel.cs" />
     <Compile Include="Areas\Administration\Models\Users\UserViewModel.cs" />
@@ -498,6 +499,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="Scripts\Libraries\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\Libraries\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\Libraries\bootstrap-datepicker.js" />
     <Content Include="Scripts\Libraries\bootstrap.js" />
     <Content Include="Scripts\Libraries\bootstrap.min.js" />
@@ -529,6 +532,8 @@
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <None Include="Areas\Administration\Views\Crowlers\Index.cshtml" />
     <None Include="Areas\Administration\Views\Crowlers\StartPopulation.cshtml" />
+    <None Include="Areas\Administration\Views\Rss\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Rss\_FeedResults.cshtml" />
     <None Include="Scripts\Libraries\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\chatLogic.js" />
     <Content Include="Scripts\Libraries\functions.js" />
@@ -683,7 +688,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50232</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50525/</IISUrl>
+          <IISUrl>http://localhost:5046/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

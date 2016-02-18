@@ -110,10 +110,15 @@
     <Compile Include="DTO\CategoryAndPostsDTO.cs" />
     <Compile Include="DTO\CrowlerDTO.cs" />
     <Compile Include="DTO\PictureDTO.cs" />
+    <Compile Include="DTO\RssDTO.cs" />
     <Compile Include="ImagesService.cs" />
     <Compile Include="ArticlesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RatesService.cs" />
+    <Compile Include="Rss\IRssService.cs" />
+    <Compile Include="Rss\IRssXmlReader.cs" />
+    <Compile Include="Rss\RssService.cs" />
+    <Compile Include="Rss\RssXmlReader.cs" />
     <Compile Include="UsersService.cs" />
     <Compile Include="VideosService.cs" />
   </ItemGroup>

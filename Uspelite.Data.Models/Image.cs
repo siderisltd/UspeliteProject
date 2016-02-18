@@ -28,7 +28,7 @@
             }
             set
             {
-                var words = value.ToLower().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                var words = value.ToLower().Split(new char[] { ' ', '/', '"', ',', '!', '_', ':', ';', '\\', '+', '?', '<', '>' }, StringSplitOptions.RemoveEmptyEntries);
                 var cycleCount = words.Length < Constants.MAX_WORDS_IN_IMAGE_NAME ? words.Length : Constants.MAX_WORDS_IN_IMAGE_NAME;
                 StringBuilder sb = new StringBuilder();
                 var randomGen = new RandomGenerator();
@@ -43,6 +43,7 @@
                         sb.Append('-');
                     }
                 }
+                sb.Append(".jpg");
                 this.title = sb.ToString();
             }
         }

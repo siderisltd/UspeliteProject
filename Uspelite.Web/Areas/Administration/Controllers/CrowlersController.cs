@@ -11,7 +11,7 @@
 
     public class CrowlersController : AdministratorController
     {
-        const int PARSE_PORTION_COUNT = 5000;
+        const int PARSE_PORTION_COUNT = 30000;
 
         private readonly ICrawlService crawlNewsService;
 
