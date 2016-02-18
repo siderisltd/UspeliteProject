@@ -15,7 +15,7 @@
         private ImageViewModel _mainArticlePic = new ImageViewModel
         {
             Url = "Content/Imgs/no-photo-available.jpg",
-            IsMainPicture = true,
+            IsMain = true,
             Title = "No photo available"
         };
 
@@ -87,7 +87,8 @@
            .ForMember(x => x.LikesCount, opt => opt.MapFrom(x => x.Ratings.Count(y => y.IsPositive)))
            .ForMember(x => x.DislikesCount, opt => opt.MapFrom(x => x.Ratings.Count(y => y.IsPositive == false)))
            .ForMember(x => x.Category, opt => opt.MapFrom(x => x.Category.Title))
-           .ForMember(x => x.PartialContent, opt => opt.MapFrom(x => x.Content.Substring(0, 45) + "..."));
+           .ForMember(x => x.PartialContent, opt => opt.MapFrom(x => x.Content.Substring(0, 45) + "..."))
+           .ForMember(x => x.MainArticlePic, opt => opt.MapFrom(x => x.Images.FirstOrDefault(u => u.IsMain)));
         }
     }
 }

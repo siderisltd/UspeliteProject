@@ -26,6 +26,7 @@ namespace Uspelite.Data.Migrations
         protected override void Seed(UspeliteDbContext context)
         {
             IList<User> seededUsers = new List<User>();
+
             if (!context.Users.Any())
             {
                 var userManager = new UserManager<User>(new UserStore<User>(context));
@@ -51,7 +52,7 @@ namespace Uspelite.Data.Migrations
                 IList<Article> seededArticles = new List<Article>();
                 if (!context.Articles.Any())
                 {
-                    for (int i = 0; i < 50; i++)
+                    for (int i = 0; i < 5; i++)
                     {
                         var randomAuthor = seededUsers[i % (seededUsers.Count - 1)].Id;
 
@@ -107,7 +108,7 @@ namespace Uspelite.Data.Migrations
                         });
                     }
                     context.SaveChanges();
-                    for (int i = 0; i < 100; i++)
+                    for (int i = 0; i < 50; i++)
                     {
                         var randomArticle = seededArticles[this.randomGenerator.RandomIntegerBetween(0, seededArticles.Count - 1)];
                         randomArticle.Ratings.Add(new Rate()
@@ -133,7 +134,7 @@ namespace Uspelite.Data.Migrations
 
                 if (!context.Comments.Any())
                 {
-                    for (int i = 0; i < 20; i++)
+                    for (int i = 0; i < 10; i++)
                     {
                         var randomArticle = seededArticles[this.randomGenerator.RandomIntegerBetween(0, seededArticles.Count - 1)];
 

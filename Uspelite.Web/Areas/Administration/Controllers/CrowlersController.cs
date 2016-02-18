@@ -5,6 +5,7 @@
     using System.Web.Mvc;
     using Models.Crawlers;
     using Services.Data.Crawl;
+    using Microsoft.AspNet.Identity;
     using Infrastructure.Mapping.Contracts;
     using Services.Data.DTO;
     using Web.Models.Home;
@@ -33,8 +34,9 @@
             return this.View(int.Parse(Crawlers));
         }
 
-        public void StartPopulate(string id, string userId)
+        public void StartPopulate(string id)
         {
+            var userId = this.User.Identity.GetUserId();
             this.crawlNewsService.UpdateCount(int.Parse(id), PARSE_PORTION_COUNT);
             this.crawlNewsService.ParseNews(int.Parse(id), userId, PARSE_PORTION_COUNT);
         }

@@ -1,13 +1,12 @@
-﻿@using Microsoft.AspNet.Identity;
-@model Int32
+﻿@model Int32
 
-<h1 id="title" data-model-id="@Model" data-user-id="@User.Identity.GetUserId()">Population procedure started ...</h1>
+<h1 id="title" data-model-id="@Model" >Population procedure started ...</h1>
 
 <div id="loading-element" style="display:none">Loading...</div>
 <span>Currently populated articles :</span> <span id="count-span"></span>
 <div id="success"></div>
 
-@section scripts {
+@section adminScripts {
     <script>
         function getAddMovieForm() {
             var id = $('#title').attr('data-model-id');
@@ -17,8 +16,8 @@
 
         $(function () {
             var id = $('#title').attr('data-model-id');
-            var userId = $('#title').attr('data-user-id');
-            $.post('/Administration/Crowlers/StartPopulate/', { id: id, userId: userId }, function (success) {
+            //var userId = $('#title').attr('data-user-id');
+            $.post('/Administration/Crowlers/StartPopulate/', { id: id }, function (success) {
                 $('#success').html('SUCCESS');
             });
         });

@@ -147,9 +147,10 @@
                         categoryId = this.categoriesService.GetAll().FirstOrDefault(x => x.Title == categoryTitle).Id;
                     }
                     
-                    var picture = this.imagesService.SaveImageFromWeb(imageUrl, title, ImageFormat.Jpeg, userId);
+                    var image = this.imagesService.SaveImageFromWeb(imageUrl, title, ImageFormat.Jpeg, userId);
+                    image.IsMain = true;
 
-                    var createdArticleId = this.articlesService.Add(title, userId, content, PostStatus.Draft, categoryId, picture);
+                    var createdArticleId = this.articlesService.Add(title, userId, content, PostStatus.Draft, categoryId, image);
                 }
             }
             this.UpdateCount(id, to);
