@@ -12,9 +12,6 @@
 
     public class Image : CommentableRateableBaseModel, ISeoEntity, IBaseModel, ICommentableEntity, IRateableEntity, IAuditInfo, IDeletableEntity
     {
-
-        private string title;
-
         public int Id { get; set; }
 
         [StringLength(300)]

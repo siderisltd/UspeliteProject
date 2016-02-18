@@ -33,10 +33,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uspelite.Web.Common", "Uspe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uspelite.Services.Common", "Uspelite.Services.Common\Uspelite.Services.Common.csproj", "{C554F37C-32AE-48DB-A2AE-E6A2A3221714}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{B3C3B958-05CD-4D9F-9DEC-FAAFDE6296A0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crowlers", "JokesCrowler\Crowlers.csproj", "{87DCBBFD-93CA-4EB6-B1D2-AB91843D6D8E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,10 +83,6 @@ Global
 		{C554F37C-32AE-48DB-A2AE-E6A2A3221714}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C554F37C-32AE-48DB-A2AE-E6A2A3221714}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C554F37C-32AE-48DB-A2AE-E6A2A3221714}.Release|Any CPU.Build.0 = Release|Any CPU
-		{87DCBBFD-93CA-4EB6-B1D2-AB91843D6D8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{87DCBBFD-93CA-4EB6-B1D2-AB91843D6D8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{87DCBBFD-93CA-4EB6-B1D2-AB91843D6D8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{87DCBBFD-93CA-4EB6-B1D2-AB91843D6D8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +99,5 @@ Global
 		{C36E6839-760F-4728-8197-0654BF39AEC0} = {73EC3886-2060-4280-B6A5-8E000251E952}
 		{9F3F4576-0C24-4619-9EDE-CECF0CBF0A08} = {73EC3886-2060-4280-B6A5-8E000251E952}
 		{C554F37C-32AE-48DB-A2AE-E6A2A3221714} = {74FD5040-AFC0-4B11-9ECB-BDA744799A0B}
-		{87DCBBFD-93CA-4EB6-B1D2-AB91843D6D8E} = {B3C3B958-05CD-4D9F-9DEC-FAAFDE6296A0}
 	EndGlobalSection
 EndGlobal

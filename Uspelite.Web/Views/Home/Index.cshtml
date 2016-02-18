@@ -16,7 +16,7 @@
     <div class="col-md-9 separator-right">
         <article class="linkbox large cat-news">
             <a href="/Articles/@Model.TopArticle.Slug">
-                @Html.Image(x => Model.TopArticle.MainArticlePic.Url, "Alt responsive picture", "560", "390", new {@class = "img-responsive"})
+                @Html.Image(x => Model.TopArticle.MainArticlePic.OriginalSizedPicture, "Alt responsive picture", "560", "390", new {@class = "img-responsive"})
                 <div class="overlay">
                     <h2>@Model.TopArticle.Title</h2>
                 </div>
@@ -36,7 +36,7 @@
             <div class="col-sm-6">
                 <article class="linkbox cat-sports">
                     <a href="~/Articles/@post.Slug">
-                        @Html.Image(x => post.MainArticlePic.Url, "Alt responsive picture", "265", "160", new {@class = "img-responsive"})
+                        @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new {@class = "img-responsive"})
 
                         <div class="overlay">
                             <h3>@post.Title</h3>
@@ -59,7 +59,7 @@
 
                     <article class="linkbox cat-showtime">
                         <a href="~/Articles/@Model.TopArticle.Slug">
-                            @Html.Image(x => Model.TopArticle.MainArticlePic.Url, "Alt responsive picture", "334", "301", new {@class = "img-responsive"})
+                            @Html.Image(x => Model.TopArticle.MainArticlePic.Resized400Picture, "Alt responsive picture", "334", "301", new {@class = "img-responsive"})
                             <div class="overlay">
                                 <h2>@Model.TopArticle.Title</h2>
                             </div>
@@ -75,9 +75,9 @@
                         var current = Model.HighRatedPosts[i];
                         <article class="linkbox cat-showtime">
                             <a href="/Articles/@current.Slug">
-                                @Html.Image(x => current.MainArticlePic.Url, "Alt responsive picture", "274", "150", new {@class = "img-responsive"})
+                                @Html.Image(x => current.MainArticlePic.Resized400Picture, "Alt responsive picture", "274", "150", new {@class = "img-responsive"})
                                 <div class="overlay">
-                                    <h3>@current.PartialContent</h3>
+                                    <h3>@current.SanitizedPartialContent</h3>
                                 </div>
                             </a>
                             <a href="/Categories/Show/@current.Category" class="theme">@current.Category</a>
@@ -101,7 +101,7 @@
                     <div class="col-xs-6 col-sm-3">
                         <article class="review">
                             <a href="/Articles/@current.Slug">
-                                @Html.Image(x => current.MainArticlePic.Url, "Alt responsive picture", "120", "105", new { @class = "img-responsive" })
+                                @Html.Image(x => current.MainArticlePic.Resized400Picture, "Alt responsive picture", "120", "105", new { @class = "img-responsive" })
                                 <h3>@current.Title</h3>
                             </a>
                             <div class="review-rating">
@@ -143,8 +143,8 @@
                                 @(Html.ActionLink<ArticlesController>(post.Title, x => x.Show(post.Slug)))
                             </h3>
 
-                            <a href="#">@Html.Image(x => post.MainArticlePic.Url, "Alt responsive picture", "100", "80")</a>
-                            <span class="text">@post.PartialContent</span>
+                            <a href="#">@Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "100", "80")</a>
+                            <span class="text">@post.SanitizedPartialContent</span>
                             <span class="published">@Html.DisplayFor(x => post.CreatedOn)</span>
                         </article>
                     }
@@ -166,8 +166,8 @@
                         <article class="clearfix">
                             <h3>@(Html.ActionLink<ArticlesController>(post.Title, x => x.Show(post.Slug)))</h3>
 
-                            <a href="#">@Html.Image(x => post.MainArticlePic.Url, "Alt responsive picture", "100", "80")</a>
-                            <span class="text">@post.PartialContent</span>
+                            <a href="#">@Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "100", "80")</a>
+                            <span class="text">@post.SanitizedPartialContent</span>
                             <span class="published">@Html.DisplayFor(x => post.CreatedOn)</span>
                         </article>
                     }
@@ -188,7 +188,7 @@
                     <div class="col-xs-4 col-sm-12">
                         <article>
                             <h3>@(Html.ActionLink<ArticlesController>(post.Title, x => x.Show(post.Slug)))</h3>
-                            <span class="text">@post.PartialContent</span>
+                            <span class="text">@post.SanitizedPartialContent</span>
                             <span class="published">@Html.DisplayFor(x => post.CreatedOn)</span>
                         </article>
                     </div>
@@ -212,7 +212,7 @@
                     <div class="col-xs-4 col-sm-12">
                         <article>
                             <h3>@(Html.ActionLink<ArticlesController>(post.Title, x => x.Show(post.Slug)))</h3>
-                            <span class="text">@post.PartialContent</span>
+                            <span class="text">@post.SanitizedPartialContent</span>
                             <span class="published">@Html.DisplayFor(x => post.CreatedOn)</span>
                         </article>
                     </div>

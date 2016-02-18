@@ -260,6 +260,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Models\Articles\ConcreteArticleViewModel.cs" />
     <Compile Include="Models\Categories\PageableCategoryArticlesViewModel.cs" />
     <Compile Include="Models\ChildActions\CategoryAndPostsViewModel.cs" />
     <Compile Include="Models\ChildActions\SliderViewModel.cs" />
@@ -363,7 +364,7 @@
     <Compile Include="Models\Account\Manage\SetPasswordViewModel.cs" />
     <Compile Include="Models\Account\Manage\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Models\Home\HomeIndexViewModel.cs" />
-    <Compile Include="Models\Home\ArticleViewModel.cs" />
+    <Compile Include="Models\Articles\ArticleViewModel.cs" />
     <Compile Include="Models\MessageDetails.cs" />
     <Compile Include="Models\ImageViewModel.cs" />
     <Compile Include="Models\UserDetails.cs" />
@@ -690,7 +691,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50232</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:5047/</IISUrl>
+          <IISUrl>http://localhost:5048/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -1,20 +1,35 @@
-﻿namespace Uspelite.Web.Models.Home
+﻿namespace Uspelite.Web.Models.Articles
 {
     using System;
-    using Infrastructure.Mapping.Contracts;
+    using System.Linq;
     using AutoMapper;
     using Data.Models;
-    using System.Linq;
+    using Infrastructure.Mapping.Contracts;
+    using Services.Web;
+    using Services.Web.Contracts;
 
     public class ArticleViewModel : IMapFrom<Article>, IMapTo<Article>, IHaveCustomMappings
     {
+        protected readonly ISanitizer sanitizer;
+
+        public ArticleViewModel()
+            :this(new HtmlSanitizerAdapter())
+        {
+
+        }
+
+        public ArticleViewModel(ISanitizer sanitizer)
+        {
+            this.sanitizer = sanitizer;
+        }
+
         private int rating = 0;
         private int likesCount = 0;
         private int dislikesCount = 0;
 
         private ImageViewModel _mainArticlePic = new ImageViewModel
         {
-            Url = "Content/Imgs/no-photo-available.jpg",
+            Resized400Picture = "Content/Imgs/no-photo-available.jpg",
             IsMain = true,
             Title = "No photo available"
         };
@@ -42,6 +57,11 @@
         public string Category { get; set; }
 
         public string PartialContent { get; set; }
+
+        public string SanitizedPartialContent
+        {
+            get { return this.sanitizer.Sanitize(this.PartialContent); }
+        }
 
         public int? Rating
         {
@@ -82,7 +102,7 @@
             }
         }
 
-        public void CreateMappings(IMapperConfiguration configuration)
+        public virtual void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Article, ArticleViewModel>()
            .ForMember(x => x.Rating, opt => opt.MapFrom(x => x.Ratings.Sum(y => y.Value) / x.Ratings.Count))

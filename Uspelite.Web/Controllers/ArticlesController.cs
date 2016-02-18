@@ -3,6 +3,7 @@
     using System.Linq;
     using System.Web.Mvc;
     using Infrastructure.Mapping.Contracts;
+    using Models.Articles;
     using Models.Home;
     using Services.Data.Contracts;
 
@@ -18,7 +19,7 @@
 
         public ActionResult Show(string slug)
         {
-            var model = this.articlesService.GetBySlug(slug).To<ArticleViewModel>().FirstOrDefault();
+            var model = this.articlesService.GetBySlug(slug).To<ConcreteArticleViewModel>().FirstOrDefault();
             return this.View(model);
         }
     }

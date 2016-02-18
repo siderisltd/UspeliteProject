@@ -1,6 +1,7 @@
 ﻿namespace Uspelite.Web.Models.Home
 {
     using System.Collections.Generic;
+    using Articles;
 
     public class HomeIndexViewModel
     {

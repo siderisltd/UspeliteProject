@@ -34,18 +34,18 @@
                                 <a href="/Articles/@post.Slug">
                                     @if (isMainPost)
                                     {
-                                        @Html.Image(x => post.MainArticlePic.Url, "Alt responsive picture", "819", "452", new {@class = "img-responsive"})
+                                        @Html.Image(x => post.MainArticlePic.OriginalSizedPicture, "Alt responsive picture", "819", "452", new {@class = "img-responsive"})
                                     }
                                     else
                                     {
-                                        @Html.Image(x => post.MainArticlePic.Url, "Alt responsive picture", "560", "390", new {@class = "img-responsive"})
+                                        @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "560", "390", new {@class = "img-responsive"})
                                     }
 
                                     <div class="overlay">
                                         @if (isMainPost)
                                         {
                                             <h2>@post.Title</h2>
-                                            <p>@post.PartialContent</p>
+                                            <p>@post.SanitizedPartialContent</p>
                                         }
                                         else
                                         {

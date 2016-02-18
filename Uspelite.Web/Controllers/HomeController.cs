@@ -7,6 +7,7 @@
     using Data.Models;
     using Models.Home;
     using Infrastructure.Mapping.Contracts;
+    using Models.Articles;
 
     public class HomeController : BaseController
     {

@@ -9,7 +9,7 @@
 
     @*<article class="linkbox large cat-showtime">
         <a href="/Articles/@Model.TopArticle.Slug">
-            @Html.Image(x => Model.TopArticle.MainArticlePic.Url, "Alt responsive picture", "560", "390", new { @class = "img-responsive" })
+            @Html.Image(x => Model.TopArticle.MainArticlePic.Resized400Picture, "Alt responsive picture", "560", "390", new { @class = "img-responsive" })
             <div class="overlay">
                 <h2>@Model.TopArticle.Title</h2>
             </div>
@@ -28,7 +28,7 @@
                 <!-- start:article.linkbox -->
                 <article class="linkbox cat-showtime">
                     <a href="/Articles/@mod.Slug">
-                        @Html.Image(x => mod.MainArticlePic.Url, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
+                        @Html.Image(x => mod.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
                         <div class="overlay">
                             <h3>@mod.Title</h3>
                         </div>
@@ -65,7 +65,7 @@
                     </a>
                 </li>
             }
-            @for (int i = 1; i <= Model.TotalPages; i++)
+            @for (int i = 1; i < Model.TotalPages; i++)
             {
                 var className = string.Empty;
                 if (Model.CurrentPage == i)
