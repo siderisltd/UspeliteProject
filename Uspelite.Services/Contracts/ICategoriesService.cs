@@ -8,5 +8,7 @@ namespace Uspelite.Services.Data.Contracts
         IQueryable<Category> GetAll();
 
         int Add(Category category);
+
+        IQueryable<Category> GetBySlug(string title);
     }
 }

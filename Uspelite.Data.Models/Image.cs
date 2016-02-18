@@ -10,43 +10,21 @@
     using Common;
     using Enum;
 
-    public class Image : CommentableRateableBaseModel, IBaseModel, ICommentableEntity, IRateableEntity, IAuditInfo, IDeletableEntity
+    public class Image : CommentableRateableBaseModel, ISeoEntity, IBaseModel, ICommentableEntity, IRateableEntity, IAuditInfo, IDeletableEntity
     {
 
         private string title;
 
         public int Id { get; set; }
 
-        [Index(IsUnique = true)]
         [StringLength(300)]
         [Required]
-        public string Title
-        {
-            get
-            {
-                return this.title;
-            }
-            set
-            {
-                var words = value.ToLower().Split(new char[] { ' ', '/', '"', ',', '!', '_', ':', ';', '\\', '+', '?', '<', '>' }, StringSplitOptions.RemoveEmptyEntries);
-                var cycleCount = words.Length < Constants.MAX_WORDS_IN_IMAGE_NAME ? words.Length : Constants.MAX_WORDS_IN_IMAGE_NAME;
-                StringBuilder sb = new StringBuilder();
-                var randomGen = new RandomGenerator();
-                var randomStr = randomGen.RandomString(1, 5);
-                sb.Append(randomStr);
-                sb.Append('_');
-                for (int i = 0; i < cycleCount; i++)
-                {
-                    sb.Append(words[i]);
-                    if(i != cycleCount - 1)
-                    {
-                        sb.Append('-');
-                    }
-                }
-                sb.Append(".jpg");
-                this.title = sb.ToString();
-            }
-        }
+        public string Title { get; set; }
+
+        [Index(IsUnique = true)]
+        [StringLength(100)]
+        [Required]
+        public string Slug { get; set; }
 
         public ImageType ImageType { get; set; }
 

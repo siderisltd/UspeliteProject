@@ -36,8 +36,8 @@
             this.repo.Add(image);
             this.repo.SaveChanges();
             var imagePath = date + "\\" + (image.Id % Constants.MAX_FILES_IN_DIRECTORY);
-            image.PathOriginalSize = imagePath + "\\ori_" + image.Title;
-            image.PathResizedImage = imagePath + "\\400_" + image.Title;
+            image.PathOriginalSize = imagePath + "\\ori_" + image.Slug + ".jpg";
+            image.PathResizedImage = imagePath + "\\400_" + image.Slug + ".jpg";
 
 
             var directory = this.rootImagesFolder + imagePath;
@@ -67,8 +67,8 @@
                     this.repo.Add(image);
                     this.repo.SaveChanges();
                     var imagePath = date + "\\" + (image.Id % Constants.MAX_FILES_IN_DIRECTORY);
-                    image.PathOriginalSize = imagePath + "\\ori_" + image.Title;
-                    image.PathResizedImage = imagePath + "\\400_" + image.Title;
+                    image.PathOriginalSize = imagePath + "\\ori_" + image.Slug + ".jpg";
+                    image.PathResizedImage = imagePath + "\\400_" + image.Slug + ".jpg";
 
 
                     var directory = this.rootImagesFolder + imagePath;
@@ -90,11 +90,11 @@
             this.repo.SaveChanges();
         }
 
-        public PictureDTO GetPicturePathsFromTitle(string title)
+        public PictureDTO GetPicturePathsFromSlug(string slug)
         {
             var image = this.repo
                 .All()
-                .Where(x => x.Title == title)
+                .Where(x => x.Slug == slug)
                 .Select(x => new PictureDTO
                 {
                     Id = x.Id,

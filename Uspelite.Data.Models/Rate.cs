@@ -39,7 +39,6 @@
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
 
-
         public int? ArticleId { get; set; }
 
         [ForeignKey("ArticleId")]

@@ -49,7 +49,7 @@
             this.imagesService.SaveImage(imagesToDatabase, ImageFormat.Png);
 
 
-            PictureDTO viewModel = this.imagesService.GetPicturePathsFromTitle("QOjZ_desert.jpg");
+            PictureDTO viewModel = this.imagesService.GetPicturePathsFromSlug("QOjZ_desert.jpg");
 
 
             return this.PartialView("_SaveImage", viewModel);

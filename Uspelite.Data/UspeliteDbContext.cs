@@ -3,6 +3,7 @@
     using System;
     using System.Data.Entity;
     using System.Linq;
+    using Common;
     using Common.Contracts;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
@@ -56,15 +57,24 @@
                 this.ChangeTracker.Entries().Where(e => e.Entity is IAuditInfo && ((e.State == EntityState.Added) || (e.State == EntityState.Modified))))
             {
                 var entity = (IAuditInfo)entry.Entity;
+
                 if (entry.State == EntityState.Added && entity.CreatedOn == default(DateTime))
                 {
                     entity.CreatedOn = DateTime.Now;
+                    var entityAsSeoEntity = entity as ISeoEntity;
+                    if (entityAsSeoEntity != null)
+                    {
+                        entityAsSeoEntity.Slug = SlugHelper.CreateSlug(entityAsSeoEntity.Title, Constants.SLUG_MAX_LENGTH);
+
+                    }
                 }
                 else
                 {
                     entity.ModifiedOn = DateTime.Now;
                 }
             }
+
+          
         }
     }
 }

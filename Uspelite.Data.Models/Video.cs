@@ -5,14 +5,18 @@
     using BaseModels;
     using BaseModels.Contracts;
 
-    public class Video : CommentableRateableBaseModel, IBaseModel, ICommentableEntity, IRateableEntity, IAuditInfo, IDeletableEntity
+    public class Video : CommentableRateableBaseModel, ISeoEntity, IBaseModel, ICommentableEntity, IRateableEntity, IAuditInfo, IDeletableEntity
     {
         public int Id { get; set; }
+
+        [StringLength(200)]
+        [Required]
+        public string Title { get; set; }
 
         [Index(IsUnique = true)]
         [StringLength(100)]
         [Required]
-        public string Title { get; set; }
+        public string Slug { get; set; }
 
         [Required]
         public string AuthorId { get; set; }

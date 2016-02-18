@@ -10,7 +10,7 @@
     using BaseModels.Contracts;
     using Enum;
 
-    public class Article : CommentableRateableBaseModel, IBaseModel, ICommentableEntity, IRateableEntity, IAuditInfo, IDeletableEntity
+    public class Article : CommentableRateableBaseModel, ISeoEntity, IBaseModel, ICommentableEntity, IRateableEntity, IAuditInfo, IDeletableEntity
     {
         private ICollection<Image> images;
 
@@ -25,13 +25,17 @@
         [Required]
         public string AuthorId { get; set; }
 
-        [ForeignKey("AuthorId")]
-        public virtual User Author { get; set; }
-
-        [Index(IsUnique = true)]
         [StringLength(200)]
         [Required]
         public string Title { get; set; }
+
+        [Index(IsUnique = true)]
+        [StringLength(100)]
+        [Required]
+        public string Slug { get; set; }
+
+        [ForeignKey("AuthorId")]
+        public virtual User Author { get; set; }
 
         [Required]
         [MaxLength(30000)]

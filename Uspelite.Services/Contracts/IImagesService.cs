@@ -9,7 +9,7 @@
     {
         void SaveImage(IEnumerable<Image> models, ImageFormat imageFormat);
 
-        PictureDTO GetPicturePathsFromTitle(string title);
+        PictureDTO GetPicturePathsFromSlug(string title);
 
         Image SaveImageFromWeb(string url, string title, ImageFormat imageFormat, string authorId);
     }

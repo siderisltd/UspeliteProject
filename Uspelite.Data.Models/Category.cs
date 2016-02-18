@@ -6,7 +6,7 @@
     using BaseModels;
     using BaseModels.Contracts;
 
-    public class Category : BaseModel, IRateableEntity
+    public class Category : BaseModel, ISeoEntity, IRateableEntity
     {
         private ICollection<Article> articles;
 
@@ -26,11 +26,15 @@
 
         public int Id { get; set; }
 
-        [Index(IsUnique = true)]
         [StringLength(100)]
         [Required]
         public string Title { get; set; }
-         
+
+        [Index(IsUnique = true)]
+        [StringLength(100)]
+        [Required]
+        public string Slug { get; set; }
+
         public ICollection<Article> Articles
         {
             get { return this.articles; }

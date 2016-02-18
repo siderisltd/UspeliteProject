@@ -65,6 +65,7 @@
     <Compile Include="BaseModels\Contracts\ICommentableRateableBaseModel.cs" />
     <Compile Include="BaseModels\Contracts\IDeletableEntity.cs" />
     <Compile Include="BaseModels\Contracts\IRateableEntity.cs" />
+    <Compile Include="BaseModels\Contracts\ISeoEntity.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="CrawlNews.cs" />

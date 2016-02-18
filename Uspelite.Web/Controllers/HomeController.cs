@@ -12,9 +12,9 @@
     {
         private readonly IArticlesService articlesService;
 
-        public HomeController(IArticlesService postsService)
+        public HomeController(IArticlesService articlesService)
         {
-            this.articlesService = postsService;
+            this.articlesService = articlesService;
         }
 
         public ActionResult Index()

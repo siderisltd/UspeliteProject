@@ -13,25 +13,25 @@
     [ChildActionOnly]
     public class ChildActionsController : Controller
     {
-        private readonly IArticlesService postsService;
+        private readonly IArticlesService articlesService;
 
-        public ChildActionsController(IArticlesService postsService)
+        public ChildActionsController(IArticlesService articlesService)
         {
-            this.postsService = postsService;
+            this.articlesService = articlesService;
         }
 
         //TODO: Make generic cache that recaches the top from all categories
         [OutputCache(Duration = 5 * 60, VaryByParam = "none")]
         public ActionResult GetSlider()
         {
-            var model = this.postsService.GetTopCountPostsByRatingInEveryCategory(4).To<CategoryAndPostsViewModel>().ToList();
+            var model = this.articlesService.GetTopCountPostsByRatingInEveryCategory(4).To<CategoryAndPostsViewModel>().ToList();
             return this.PartialView("_Slider", model);
         }
 
         [OutputCache(Duration = 5 * 60, VaryByParam = "none")]
         public ActionResult GetSideBar()
         {
-            var model = this.postsService.GetTopCountPostsByRatingInEveryCategory(4).To<CategoryAndPostsViewModel>().ToList();
+            var model = this.articlesService.GetTopCountPostsByRatingInEveryCategory(4).To<CategoryAndPostsViewModel>().ToList();
             return this.PartialView("_Sidebar", model);
         }
     }

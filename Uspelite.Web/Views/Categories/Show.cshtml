@@ -1,0 +1,69 @@
+﻿@model Uspelite.Web.Models.Categories.CategoryViewModel
+
+
+@section sidebar{
+    @(Html.Action<ChildActionsController>(x => x.GetSideBar()))
+}
+
+
+
+<div class="col-md-12 separator-right">
+
+    <article class="linkbox large cat-showtime">
+        <a href="/Articles/@Model.TopArticle.Slug">
+            @Html.Image(x => Model.TopArticle.MainArticlePic.Url, "Alt responsive picture", "560", "390", new { @class = "img-responsive" })
+            <div class="overlay">
+                <h2>@Model.TopArticle.Title</h2>
+            </div>
+        </a>
+        <a href="/Categories/Show/@Model.TopArticle.Category" class="theme">@Model.TopArticle.Category</a>
+    </article>
+
+
+    @{ int counter = 1; }
+
+    <div class="row">
+        @foreach (var mod in Model.Articles)
+        {
+            <!-- start:col -->
+            <div class="col-sm-6">
+                <!-- start:article.linkbox -->
+                <article class="linkbox cat-showtime">
+                    <a href="/Articles/@mod.Slug">
+                        @Html.Image(x => mod.MainArticlePic.Url, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
+                        <div class="overlay">
+                            <h3>@mod.Title</h3>
+                        </div>
+                    </a>
+                    <a href="/Categories/Show/@mod.Category" class="theme">@mod.Category</a>
+                </article>
+                <!-- end:article.linkbox -->
+            </div>
+            <!-- end:col -->
+
+            if (counter%2 == 0)
+            {
+                @: </div>
+                if (counter % 6 == 0)
+                {
+                    <div class="ad bottom-margin">
+                        <a href=""><img src="~/Content/Theme/images/dummy/banner_560x100.png" width="560" height="100" alt=""></a>
+                    </div>
+                }
+                @: <div class="row">
+            }
+            counter += 1;
+        }
+ 
+    </div>
+    <!-- end:row -->
+    <!-- start:row -->
+    
+
+    @*<!-- start:load-more -->
+    <div class="text-center">
+        <a href="#" class="show-more cat-showtime" title="Show More News">Show More News</a>
+    </div>
+    <!-- end:load-more -->*@
+
+</div>

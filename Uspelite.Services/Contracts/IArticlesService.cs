@@ -16,7 +16,7 @@
 
         IQueryable<CategoryAndPostsDTO> GetTopCountPostsByRatingInEveryCategory(int count = 3, IEnumerable<Category> categories = null);
 
-        IQueryable<Article> GetByTitle(string title);
+        IQueryable<Article> GetBySlug(string title);
 
         int Add(string title, string authorId, string content, PostStatus status, int categoryId, Image image);
 

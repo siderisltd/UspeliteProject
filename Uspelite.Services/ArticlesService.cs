@@ -103,11 +103,11 @@
             return query;
         }
 
-        public IQueryable<Article> GetByTitle(string title)
+        public IQueryable<Article> GetBySlug(string slug)
         {
             var query = this.repo
                             .All()
-                            .Where(x => x.Title == title);
+                            .Where(x => x.Slug == slug);
 
             return query;
         }

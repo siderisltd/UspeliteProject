@@ -195,3 +195,5 @@ FakesAssemblies/
 # Visual Studio 6 workspace options file
 *.opt
 /packages
+/Uspelite.Web/Content/Uploads
+/Uspelite.Web/Content/Uploads/Images/02.2016/0/*.jpg

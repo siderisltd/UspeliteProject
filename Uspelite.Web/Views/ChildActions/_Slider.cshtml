@@ -31,16 +31,16 @@
                             }
 
                             <article class="linkbox large has-meta cat-sports">
-                                <a href="#">
+                                <a href="/Articles/@post.Slug">
                                     @if (isMainPost)
                                     {
-                                        @Html.Image(x => post.MainArticlePic.Url, "Alt responsive picture", "819", "452", new { @class = "img-responsive" })
+                                        @Html.Image(x => post.MainArticlePic.Url, "Alt responsive picture", "819", "452", new {@class = "img-responsive"})
                                     }
                                     else
                                     {
-                                        @Html.Image(x => post.MainArticlePic.Url, "Alt responsive picture", "560", "390", new { @class = "img-responsive" })
+                                        @Html.Image(x => post.MainArticlePic.Url, "Alt responsive picture", "560", "390", new {@class = "img-responsive"})
                                     }
-                                   
+
                                     <div class="overlay">
                                         @if (isMainPost)
                                         {
@@ -53,7 +53,7 @@
                                         }
                                     </div>
                                 </a>
-                                <a href="#" class="theme">@category</a>
+                                <a href="/Categories/Show/@category" class="theme">@category</a>
                                 <div class="postmeta">
                                     <span class="fa-calendar" itemprop="dateCreated">@post.CreatedOn.ToString("MMMM dd yyyy", CultureInfo.InvariantCulture)</span>
                                     <span class="fa-comments"><a href="#">@post.LikesCount</a></span> <!--CommentsCount should be here-->

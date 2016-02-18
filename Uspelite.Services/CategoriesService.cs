@@ -26,5 +26,14 @@
             this.repo.SaveChanges();
             return category.Id;
         }
+
+        public IQueryable<Category> GetBySlug(string slug)
+        {
+            var result = this.repo.All().Where(x => x.Slug == slug);
+
+            return result;
+        }
+
+
     }
 }

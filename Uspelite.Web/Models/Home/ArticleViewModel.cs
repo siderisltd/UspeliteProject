@@ -23,6 +23,8 @@
 
         public string Title { get; set; }
 
+        public string Slug { get; set; }
+
         public ImageViewModel MainArticlePic
         {
             get { return this._mainArticlePic; }
@@ -86,7 +88,7 @@
            .ForMember(x => x.Rating, opt => opt.MapFrom(x => x.Ratings.Sum(y => y.Value) / x.Ratings.Count))
            .ForMember(x => x.LikesCount, opt => opt.MapFrom(x => x.Ratings.Count(y => y.IsPositive)))
            .ForMember(x => x.DislikesCount, opt => opt.MapFrom(x => x.Ratings.Count(y => y.IsPositive == false)))
-           .ForMember(x => x.Category, opt => opt.MapFrom(x => x.Category.Title))
+           .ForMember(x => x.Category, opt => opt.MapFrom(x => x.Category.Slug))
            .ForMember(x => x.PartialContent, opt => opt.MapFrom(x => x.Content.Substring(0, 45) + "..."))
            .ForMember(x => x.MainArticlePic, opt => opt.MapFrom(x => x.Images.FirstOrDefault(u => u.IsMain)));
         }

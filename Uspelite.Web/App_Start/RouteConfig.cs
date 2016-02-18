@@ -10,9 +10,15 @@
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "SingleCategory",
+                url: "Categories/Show/{slug}",
+                defaults: new { controller = "Categories", action = "Show" }
+            );
+
+            routes.MapRoute(
                 name: "SingleArticle",
-                url: "Articles/{title}",
-                defaults: new { controller = "Posts", action = "GetByTitle" }
+                url: "Articles/{slug}",
+                defaults: new { controller = "Articles", action = "Show" }
             );
 
             routes.MapRoute(

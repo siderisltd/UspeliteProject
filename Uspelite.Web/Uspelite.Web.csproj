@@ -257,9 +257,10 @@
     <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
     <Compile Include="Areas\Administration\Models\Crawlers\CrowlerViewModel.cs" />
     <Compile Include="Areas\Administration\Models\Users\UserViewModel.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
-    <Compile Include="Controllers\PostsController.cs" />
-    <Compile Include="Models\Categories\CategoriesViewModel.cs" />
+    <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Models\Categories\CategoryViewModel.cs" />
     <Compile Include="Models\ChildActions\CategoryAndPostsViewModel.cs" />
     <Compile Include="Models\ChildActions\SliderViewModel.cs" />
     <Content Include="Content\Imgs\no-photo-available.jpg" />
@@ -608,9 +609,10 @@
     <Content Include="Views\Error\InternalServerError.cshtml" />
     <Content Include="Scripts\Libraries\Kendo\kendo.web.min.js.map" />
     <Content Include="Scripts\Libraries\Kendo\kendo.aspnetmvc.min.js.map" />
+    <Content Include="Views\Categories\Show.cshtml" />
     <None Include="Views\Images\Index.cshtml" />
     <None Include="Views\Images\_SaveImage.cshtml" />
-    <Content Include="Views\Posts\GetByTitle.cshtml" />
+    <Content Include="Views\Articles\Show.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
