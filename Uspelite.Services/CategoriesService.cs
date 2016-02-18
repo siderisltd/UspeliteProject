@@ -1,7 +1,9 @@
 ﻿namespace Uspelite.Services.Data
 {
+    using System;
     using System.Linq;
     using Contracts;
+    using DTO;
     using Uspelite.Data.Models;
     using Uspelite.Data.Repositories;
 
@@ -34,6 +36,23 @@
             return result;
         }
 
+        public IQueryable<PagedCategoryDTO> GetPaged(string slug, int page, int pageCount)
+        {
+            var itemsToSkip = (page - 1) * pageCount;
 
+            var result = this.repo
+                .All()
+                .Where(x => x.Slug == slug)
+                .Select(x => new PagedCategoryDTO
+                {
+                    Title = x.Title,
+                    AllItemsCount = x.Articles.Count,
+                    CurrentPage = page,
+                    TotalPages = (int)Math.Ceiling(x.Articles.Count / (decimal) pageCount),
+                    Articles = x.Articles.OrderBy(z => z.CreatedOn).Skip(itemsToSkip).Take(pageCount).AsQueryable()
+                }).AsQueryable();
+
+            return result;
+        }
     }
 }

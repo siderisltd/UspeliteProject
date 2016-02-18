@@ -28,7 +28,7 @@
                 {@post.Slug
                     <article class="clearfix">
                         <a href="/Articles/@post.Slug">@Html.Image(x => post.MainArticlePic.Url, "Alt responsive picture", "100", "80")</a>
-                        <span class="published">@Html.DisplayFor(x => post.CreatedOn)<span class="category cat-sports">@(Html.ActionLink<CategoriesController>(@category, x => x.Show(@category)))</span></span>
+                        <span class="published">@Html.DisplayFor(x => post.CreatedOn)<span class="category cat-sports">@Html.ActionLink(@category, "Show", "Categories", new { slug = category}, null)</span></span>
                         <h3>
                             <a href="/Articles/@post.Slug">@post.PartialContent</a>
                         </h3>

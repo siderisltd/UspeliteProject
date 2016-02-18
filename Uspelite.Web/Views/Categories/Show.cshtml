@@ -1,15 +1,13 @@
-﻿@model Uspelite.Web.Models.Categories.CategoryViewModel
+﻿@model Uspelite.Web.Models.Categories.PageableCategoryArticlesViewModel
 
 
 @section sidebar{
     @(Html.Action<ChildActionsController>(x => x.GetSideBar()))
 }
 
-
-
 <div class="col-md-12 separator-right">
 
-    <article class="linkbox large cat-showtime">
+    @*<article class="linkbox large cat-showtime">
         <a href="/Articles/@Model.TopArticle.Slug">
             @Html.Image(x => Model.TopArticle.MainArticlePic.Url, "Alt responsive picture", "560", "390", new { @class = "img-responsive" })
             <div class="overlay">
@@ -17,7 +15,7 @@
             </div>
         </a>
         <a href="/Categories/Show/@Model.TopArticle.Category" class="theme">@Model.TopArticle.Category</a>
-    </article>
+    </article>*@
 
 
     @{ int counter = 1; }
@@ -50,15 +48,43 @@
                         <a href=""><img src="~/Content/Theme/images/dummy/banner_560x100.png" width="560" height="100" alt=""></a>
                     </div>
                 }
-                @: <div class="row">
+                @:<div class="row">
             }
             counter += 1;
         }
- 
+
     </div>
-    <!-- end:row -->
-    <!-- start:row -->
-    
+
+    <nav>
+        <ul class="pagination">
+            @if (Model.CurrentPage != 1)
+            {
+                <li>
+                    <a href="/Categories/Show?slug=@Model.Slug&page=@(Model.CurrentPage - 1)&pageSize=@Model.PageSize" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                var className = string.Empty;
+                if (Model.CurrentPage == i)
+                {
+                    className = "active";
+                }
+                <li class="@className">@Html.ActionLink(i.ToString(), "Show", "Categories", new {slug = Model.Slug, page = i, pageSize = Model.PageSize}, null)</li>
+            }
+            @if (Model.CurrentPage != Model.TotalPages)
+            {
+                <li>
+                    <a href="/Categories/Show?slug=@Model.Slug&page=@(Model.CurrentPage + 1)&pageSize=@Model.PageSize" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+
+        </ul>
+    </nav>
 
     @*<!-- start:load-more -->
     <div class="text-center">
