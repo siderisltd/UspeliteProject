@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNet.Identity;
+@model Int32
+
+<h1 id="title" data-model-id="@Model" data-user-id="@User.Identity.GetUserId()">Population procedure started ...</h1>
+
+<span>Currently populated articles :</span> <span id="count-span"></span>
+<div id="success"></div>
+
+@section scripts {
+    <script>
+        function getAddMovieForm() {
+            var id = $('#title').attr('data-model-id');
+            $('#count-span').html("Loading...");
+            $('#count-span').load('/Administration/Crowlers/GetParsedNewsCount/' + id);
+        }
+
+        $(function () {
+            var id = $('#title').attr('data-model-id');
+            var userId = $('#title').attr('data-user-id');
+            $.post('/Administration/Crowlers/StartPopulate/', { id: id, userId: userId }, function (success) {
+                $('#success').html('SUCCESS');
+            });
+        });
+
+        setInterval(getAddMovieForm, 10000);
+    </script>
+}

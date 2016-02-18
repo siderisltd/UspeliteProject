@@ -5,6 +5,8 @@ namespace Uspelite.Services.Data.Contracts
 {
     public interface ICategoriesService
     {
-        IQueryable<Category> GetAllCategories();
+        IQueryable<Category> GetAll();
+
+        int Add(Category category);
     }
 }

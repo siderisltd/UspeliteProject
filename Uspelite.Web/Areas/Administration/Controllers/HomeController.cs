@@ -3,7 +3,7 @@
     using System.Web.Mvc;
     using Kendo.Mvc.UI;
 
-    public class HomeController : Controller
+    public class HomeController : AdministratorController
     {
         public ActionResult Index()
         {

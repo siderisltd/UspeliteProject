@@ -1,11 +1,11 @@
 ﻿namespace Uspelite.Services.Data
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Contracts;
     using DTO;
     using Uspelite.Data.Models;
+    using Uspelite.Data.Models.Enum;
     using Uspelite.Data.Repositories;
 
     public class ArticlesService : IArticlesService
@@ -17,6 +17,24 @@
         {
             this.repo = repo;
             this.categoriesService = categoriesService;
+        }
+
+        public int Add(string title, string authorId, string content, PostStatus status, int categoryId, Image image)
+        {
+            var article = new Article
+            {
+                Title = title,
+                AuthorId = authorId,
+                Content = content,
+                Status = status,
+                CategoryId = categoryId,
+                Images = new List<Image>() { image }
+            };
+
+            this.repo.Add(article);
+            this.repo.SaveChanges();
+
+            return article.Id;
         }
 
         public IQueryable<Article> GetTopPostsByRating(int count = 6, string category = null)
@@ -67,15 +85,15 @@
         {
             if (categories == null)
             {
-                categories = this.categoriesService.GetAllCategories().AsEnumerable();
+                categories = this.categoriesService.GetAll().AsEnumerable();
             }
 
             IQueryable<CategoryAndPostsDTO> query = this.repo
                             .All()
-                            .Where(x =>  categories.Contains(x.Category))
+                            .Where(x => categories.Contains(x.Category))
                             .OrderByDescending(x => x.Ratings.Sum(y => y.Value) / x.Ratings.Count)
                             .GroupBy(x => x.Category.Title)
-                            .Select(x => new CategoryAndPostsDTO {CategoryName = x.Key, Posts = x.Take(count)});
+                            .Select(x => new CategoryAndPostsDTO { CategoryName = x.Key, Posts = x.Take(count) });
 
             return query;
         }

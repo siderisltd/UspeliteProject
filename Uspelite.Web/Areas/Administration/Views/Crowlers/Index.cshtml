@@ -1,0 +1,33 @@
+﻿@model Uspelite.Web.Areas.Administration.Models.Crawlers.CrowlerViewModel
+
+@using (Html.BeginForm("StartPopulation", "Crowlers", FormMethod.Post, new { id = "start-populating-form" }))
+{
+    @Html.LabelFor(x => x.Crawlers, new { @class = "col-lg-2 control-label" })
+    @Html.DropDownListFor(x => x.Crawlers, new SelectList(Model.Crawlers, "Id", "Name", Model.Crawlers.FirstOrDefault()), new { @class = "btn btn-default dropdown-toggle" })
+
+    <input type="submit" class="btn btn-warning"/>
+}
+
+
+
+
+@section scripts{
+    @*<script>
+        function submitForm() {
+            var selectedElement = $("#news-source-select").find(":selected");
+            var id = selectedElement.attr('data-value');
+            var name = selectedElement.attr('data-name');
+            var count = selectedElement.attr('data-count');
+
+            var data = {
+                id: id,
+                name: name,
+                count: count
+            }
+
+            $("#start-populating-form").submit(data, function () {
+                alert('Submitted');
+            });
+        }
+    </script>*@
+}

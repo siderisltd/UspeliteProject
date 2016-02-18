@@ -35,7 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uspelite.Services.Common", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{B3C3B958-05CD-4D9F-9DEC-FAAFDE6296A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JokesCrowler", "JokesCrowler\JokesCrowler.csproj", "{87DCBBFD-93CA-4EB6-B1D2-AB91843D6D8E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crowlers", "JokesCrowler\Crowlers.csproj", "{87DCBBFD-93CA-4EB6-B1D2-AB91843D6D8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

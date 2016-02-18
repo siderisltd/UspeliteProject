@@ -57,9 +57,9 @@
 
         public string PathResizedImage { get; set; }
 
+        [Required]
         public string AuthorId { get; set; }
 
-        [Required]
         [ForeignKey("AuthorId")]
         public virtual User Author { get; set; }
 

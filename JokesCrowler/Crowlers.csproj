@@ -7,8 +7,8 @@
     <ProjectGuid>{87DCBBFD-93CA-4EB6-B1D2-AB91843D6D8E}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JokesCrowler</RootNamespace>
-    <AssemblyName>JokesCrowler</AssemblyName>
+    <RootNamespace>Crowlers</RootNamespace>
+    <AssemblyName>Crawlers</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DarikNewsCrawler.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -58,6 +59,14 @@
     <ProjectReference Include="..\Uspelite.Data\Uspelite.Data.csproj">
       <Project>{26D682DE-0E77-4651-9F0C-732AD3DC9C38}</Project>
       <Name>Uspelite.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uspelite.Services.Web\Uspelite.Services.Web.csproj">
+      <Project>{21255945-ff44-463d-b6be-f82ce66db93d}</Project>
+      <Name>Uspelite.Services.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uspelite.Services\Uspelite.Services.Data.csproj">
+      <Project>{0b37bed7-1558-4287-8c6c-8fa5b47e1d35}</Project>
+      <Name>Uspelite.Services.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

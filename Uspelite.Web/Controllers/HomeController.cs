@@ -4,6 +4,7 @@
     using Services.Data.Contracts;
     using System.Linq;
     using System.Web.Hosting;
+    using Data.Models;
     using Models.Home;
     using Infrastructure.Mapping.Contracts;
 
@@ -18,6 +19,10 @@
 
         public ActionResult Index()
         {
+            //var Article = new Article();
+            //var ArticleViewModel = new ArticleViewModel();
+            //var result = this.Mapper.Map<ArticleViewModel, Article>(ArticleViewModel, Article);
+
             //Should get even number of items
             var newestPosts = this.Cache.Get(
                 "newestPosts",

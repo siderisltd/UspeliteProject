@@ -15,9 +15,16 @@
             this.repo = repo;
         }
 
-        public IQueryable<Category> GetAllCategories()
+        public IQueryable<Category> GetAll()
         {
             return this.repo.All();
+        }
+
+        public int Add(Category category)
+        {
+            this.repo.Add(category);
+            this.repo.SaveChanges();
+            return category.Id;
         }
     }
 }

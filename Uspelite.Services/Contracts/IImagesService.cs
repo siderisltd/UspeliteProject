@@ -7,8 +7,10 @@
 
     public interface IImagesService
     {
-       void SaveImage(IEnumerable<Image> models, ImageFormat imageFormat);
+        void SaveImage(IEnumerable<Image> models, ImageFormat imageFormat);
 
         PictureDTO GetPicturePathsFromTitle(string title);
+
+        Image SaveImageFromWeb(string url, string title, ImageFormat imageFormat, string authorId);
     }
 }

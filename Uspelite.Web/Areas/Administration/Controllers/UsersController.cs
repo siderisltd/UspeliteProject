@@ -9,7 +9,8 @@
     using Models.Users;
     using Services.Data.Contracts;
 
-    public class UsersController : Controller
+
+    public class UsersController : AdministratorController
     {
         private readonly IUsersService usersService;
 

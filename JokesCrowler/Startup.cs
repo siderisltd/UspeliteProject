@@ -1,4 +1,4 @@
-﻿namespace JokesCrowler
+﻿namespace Crowlers
 {
     using System;
     using AngleSharp;
@@ -8,6 +8,7 @@
     {
         public static void Main()
         {
+            
             //var db = new UspeliteDbContext();
             //var repo = new DbRepository<JokeCategory>(db);
             //var categoriesService = new CategoriesService(repo);

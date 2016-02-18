@@ -15,6 +15,8 @@
         {
         }
 
+        public IDbSet<CrawlNews> CrawlNews { get; set; }
+
         public IDbSet<Video> Videos { get; set; }
 
         public IDbSet<Rate> Rates { get; set; }
@@ -35,7 +37,16 @@
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();
-            return base.SaveChanges();
+            try
+            {
+                return base.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                
+                throw;
+            }
+
         }
         
         

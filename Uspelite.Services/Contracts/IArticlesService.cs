@@ -4,6 +4,7 @@
     using System.Linq;
     using DTO;
     using Uspelite.Data.Models;
+    using Uspelite.Data.Models.Enum;
 
     public interface IArticlesService
     {
@@ -16,5 +17,7 @@
         IQueryable<CategoryAndPostsDTO> GetTopCountPostsByRatingInEveryCategory(int count = 3, IEnumerable<Category> categories = null);
 
         IQueryable<Article> GetByTitle(string title);
+
+        int Add(string title, string authorId, string content, PostStatus status, int categoryId, Image image);
     }
 }

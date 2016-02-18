@@ -67,6 +67,8 @@
     <Compile Include="BaseModels\Contracts\IRateableEntity.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Comment.cs" />
+    <Compile Include="CrawlNews.cs" />
+    <Compile Include="Enum\CrawlType.cs" />
     <Compile Include="Enum\ImageType.cs" />
     <Compile Include="Enum\PostStatus.cs" />
     <Compile Include="Image.cs" />

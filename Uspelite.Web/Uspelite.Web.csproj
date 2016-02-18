@@ -250,8 +250,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\AdministratorController.cs" />
+    <Compile Include="Areas\Administration\Controllers\CrowlersController.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administration\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Administration\Models\Crawlers\CrowlerViewModel.cs" />
     <Compile Include="Areas\Administration\Models\Users\UserViewModel.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
@@ -524,6 +527,8 @@
     <Content Include="Areas\Administration\Views\Users\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
+    <None Include="Areas\Administration\Views\Crowlers\Index.cshtml" />
+    <None Include="Areas\Administration\Views\Crowlers\StartPopulation.cshtml" />
     <None Include="Scripts\Libraries\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\chatLogic.js" />
     <Content Include="Scripts\Libraries\functions.js" />
@@ -678,7 +683,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50232</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50524/</IISUrl>
+          <IISUrl>http://localhost:50525/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
