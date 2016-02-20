@@ -16,10 +16,16 @@
 
         byte[] GetFromUrl(string url, int longestSide, ImageFormat format);
 
+        byte[] GetFromUrlAndBrandImage(string url, ImageFormat format, Image brandImage);
+
         byte[] StreamToByteArray(Stream input);
 
         byte[] ImageToByte(Image img, ImageFormat format);
 
         Image ByteToImage(byte[] array);
+
+        Image AddBranding(Image originalImage, Image brandImage, int posX = 0, int posY = 0);
+
+        Image AddBranding(string firstImagePath, string brandImage, int posX = 0, int posY = 0);
     }
 }

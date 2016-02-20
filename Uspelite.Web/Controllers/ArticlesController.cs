@@ -41,7 +41,7 @@
                                 Text = x.Title ,
                                 Value = x.Id.ToString()
                             })
-                            .AsEnumerable(), 2000);
+                            .ToList(), 2000);
 
             this.ViewBag.categories = allCategories;
 

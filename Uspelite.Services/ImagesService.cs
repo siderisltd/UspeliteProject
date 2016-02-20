@@ -1,6 +1,7 @@
 ﻿namespace Uspelite.Services.Data
 {
     using System;
+    using System.Runtime.Caching;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Drawing.Imaging;
@@ -46,7 +47,17 @@
                 Directory.CreateDirectory(directory);
             }
 
-            byte[] originalImageArray = this.imageHelper.GetFromUrl(url, imageFormat);
+            //TODO: Remove
+            ObjectCache cache = MemoryCache.Default;
+            System.Drawing.Image brandImage = cache["brandImage"] as System.Drawing.Image;
+            if(brandImage == null)
+            {
+                var brandImg =  System.Drawing.Image.FromFile(Constants.APP_ROOT_PATH + "Content\\Uploads\\Brand\\brand.png");
+                cache["brandImage"] = brandImg;
+                brandImage = brandImg;
+            }
+
+            byte[] originalImageArray = this.imageHelper.GetFromUrlAndBrandImage(url, imageFormat, brandImage);
             var resizedImageArray400 = this.imageHelper.ScaleImage(this.imageHelper.ByteToImage(originalImageArray), 400, imageFormat);
 
             File.WriteAllBytes(this.rootImagesFolder + "\\" + image.PathOriginalSize, originalImageArray);
