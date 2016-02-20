@@ -1,0 +1,78 @@
+﻿
+#divContainer {
+    height: 412px;
+    border: 1px solid black;
+    position: relative;
+    left: -220px;
+    width: 550px;
+    float: right;
+    margin:0;
+    padding:0;
+}
+
+#chat-container {
+    margin: 0;
+    padding:0;
+}
+
+#video-container {
+    float: left;
+    display: block;
+}
+
+.messageBar {
+    margin: 0;
+    float:left;
+}
+
+#txtMessage {
+    width: 550px;
+    display: inline-block;
+    float:left;
+}
+
+#btnSendMsg {
+    margin-left: 20px;
+}
+
+#divusers {
+    padding: 0;
+    margin: 0;
+    float: right;
+    width: 180px;
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid black;
+    height: 360px;
+    max-height: 360px;
+    position:relative;
+    overflow-y: scroll;
+    top:20px;
+}
+
+#divChat{
+    width:548px;
+}
+
+#divChatWindow{
+    border-bottom: 1px solid black;
+    height: 360px;
+    max-height: 360px;
+    width: 368px;
+    overflow-y: scroll;
+}
+
+#send-line-wrapper{ 
+    position:relative;
+    top:2px;
+}
+
+.title {
+    background-color: cornflowerblue;
+    width: 548px;
+}
+
+.loginUser {
+    color: dimgrey;
+    opacity: 0.7;
+}

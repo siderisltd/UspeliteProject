@@ -15,7 +15,7 @@ namespace Uspelite.Web.Areas.Administration
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "Administration_default",
+                "AdministrationRoute",
                 "Administration/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional },
                 namespaces: new string[] { "Uspelite.Web.Areas.Administration.Controllers" }

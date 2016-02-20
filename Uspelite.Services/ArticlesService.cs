@@ -42,6 +42,11 @@
             return this.repo.All().Any(x => x.Title == title);
         }
 
+        public IQueryable<Article> All()
+        {
+            return this.repo.All();
+        }
+
         public IQueryable<Article> GetTopPostsByRating(int count = 6, string category = null)
         {
             var query = this.repo.All();

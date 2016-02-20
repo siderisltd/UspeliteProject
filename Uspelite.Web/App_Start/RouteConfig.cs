@@ -17,7 +17,7 @@
 
             routes.MapRoute(
                 name: "SingleArticle",
-                url: "Articles/{slug}",
+                url: "Articles/Show/{slug}",
                 defaults: new { controller = "Articles", action = "Show" }
             );
 

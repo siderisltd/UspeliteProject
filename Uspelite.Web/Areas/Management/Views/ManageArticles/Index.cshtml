@@ -1,0 +1,16 @@
+﻿
+@using Uspelite.Web.Areas.Management.Models
+@model Uspelite.Web.Areas.Management.Models.ManageArticleViewModel
+
+@(Html.FullFeaturedGrid<ManageArticleViewModel>("ManageArticles", x => x.Id, columns =>
+{
+    columns.Bound(col => col.Id);
+    columns.Bound(col => col.Author);
+    columns.Bound(col => col.Title);
+    columns.Bound(col => col.Category);
+    columns.Bound(col => col.Status);
+    columns.Bound(col => col.CreatedOn);
+    columns.Command(c => c.Edit());
+    columns.Command(c => c.Destroy());
+    //columns.Bound(col => col.Rating);
+}))

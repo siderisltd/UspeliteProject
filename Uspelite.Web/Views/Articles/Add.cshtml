@@ -1,0 +1,32 @@
+﻿@model Uspelite.Web.Models.Articles.ArticlesBindingModel
+
+@using (Html.BeginForm("Add", "Articles", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.EditorForModel(Model)
+
+    <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+            <input type="reset" class="btn btn-danger" value="Reset form" />
+            <input type="submit" class="btn btn-success" value="Add article" />
+        </div>
+    </div>
+}
+
+@section styles {
+    @Styles.Render("~/bundles/kendoStyles")
+}
+
+@section overridingStyles{
+    <style>
+        .div#main {
+            width: 100%;
+        }
+    </style>
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/kendo")
+    @Scripts.Render("~/bundles/ajax")
+}

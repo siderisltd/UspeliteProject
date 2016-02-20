@@ -7,9 +7,9 @@
 <html class="no-js" lang="bg-BG">
 <!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="Младите успели българи,Успелите Българи, Седмични Новини, Дневни Новини, Новини, Блог, Шок новини, Весели новини, Хубави новини" />
+    <meta name="keywords" content="Младите успели българи,Успелите Българи, Седмични Новини, Дневни Новини, Новини, Блог, Шок новини, Весели новини, Хубави новини"/>
     <meta name="description" content="Младите успели българи">
     <meta name="author" content="Младите успели българи">
     <title>Успелите</title>
@@ -17,49 +17,64 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,500italic,400italic,700,700italic%7CRoboto+Condensed:400,700%7CRoboto+Slab' rel='stylesheet' type='text/css'>
 
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+
+
     @RenderSection("styles", required: false)
     @Styles.Render("~/theme/styles")
     @Styles.Render("~/site/styles")
 
-    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("overridingStyles", required: false)
 
     <!-- start:stylesheets -->
     <!-- end:stylesheets -->
     <!--[if lte IE 8]>
-    <script src="~/Scripts/Libraries/respond.js"></script>
+        <script src="~/Scripts/Libraries/respond.js"></script>
     <![endif]-->
     <!--[if lt IE 9]>
-    <link rel="stylesheet" href="~/Content/Theme/styles/photobox.ie.css">
-    <script src="~/Scripts/Libraries/html5shiv.js"></script>
+        <link rel="stylesheet" href="~/Content/Theme/styles/photobox.ie.css">
+        <script src="~/Scripts/Libraries/html5shiv.js"></script>
     <![endif]-->
 </head>
 <body>
-    <div id="page-outer-wrap">
-        <div id="page-inner-wrap">
+<div id="page-outer-wrap">
+    <div id="page-inner-wrap">
 
-            @Html.Partial("~/Views/Shared/Partials/_Header.cshtml");
+        @Html.Partial("~/Views/Shared/Partials/_Header.cshtml");
 
+        @if (this.TempData["Notification"] != null)
+        {
+            <div class="alert alert-success notification-label" role="alert">@this.TempData["Notification"]</div>
+        }
+        @RenderSection("slider", required: false)
 
-            @RenderSection("slider", required: false)
-
-            <div class="container">
-                <div id="page-content">
-                    <div id="main">
-                        @RenderBody()
-                    </div>
-                    @RenderSection("sidebar", required: false)
+        <div class="container">
+            <div id="page-content">
+                <div id="main">
+                    @RenderBody()
                 </div>
+                @RenderSection("sidebar", required: false)
             </div>
-            <div class="clearfix"></div>
-            @Html.Partial("~/Views/Shared/Partials/_Footer.cshtml")
         </div>
+        <div class="clearfix"></div>
+        @Html.Partial("~/Views/Shared/Partials/_Footer.cshtml")
     </div>
+</div>
 
 
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/jquery-ui");
-    @Scripts.Render("~/bundles/theme");
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/jquery-ui");
+@Scripts.Render("~/bundles/theme");
+@RenderSection("scripts", required: false)
+<script>
+    $(function () {
+        var notificationLabel = $('.notification-label');
 
-    @RenderSection("scripts", required: false)
+        if (notificationLabel.length !== 0) {
+            notificationLabel.fadeOut(2500);
+        }
+    });
+</script>
 </body>
 </html>
+

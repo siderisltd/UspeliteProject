@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿@using Uspelite.Web.Areas.Management.Controllers
+<!doctype html>
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
@@ -12,7 +13,7 @@
     <meta name="keywords" content="Младите успели българи,Успелите Българи, Седмични Новини, Дневни Новини, Новини, Блог, Шок новини, Весели новини, Хубави новини" />
     <meta name="description" content="Младите успели българи">
     <meta name="author" content="Младите успели българи">
-    <title>Успелите админ панел</title>
+    <title>Мениджмънт панел</title>
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,500italic,400italic,700,700italic%7CRoboto+Condensed:400,700%7CRoboto+Slab' rel='stylesheet' type='text/css'>
 
@@ -41,9 +42,7 @@
                 <div class="container-fluid">
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="/Administration/Users">Users Grid</a></li>
-                            <li><a href="/Administration/Crowlers/">Crowlers</a></li>
-                            <li><a href="/Administration/Rss/">Rss</a></li>
+                            <li>@(Html.ActionLink<ManageArticlesController>("Управление на статии", x => x.Index()))</li>
                         </ul>
                     </div>
                 </div>

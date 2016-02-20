@@ -111,8 +111,6 @@
             }
             for (int i = from; i <= to; i+=2)
             {
-
-
                 var url = string.Format("http://dariknews.bg/view_article.php?article_id={0}", i);
                 //var url = "http://dariknews.bg/view_article.php?article_id=1552571";
                 var document = browsingContext.OpenAsync(url).Result;
