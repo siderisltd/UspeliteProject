@@ -1,4 +1,6 @@
-﻿@model Uspelite.Web.Models.Account.Account.RegisterViewModel
+﻿@using reCAPTCHA.MVC
+
+@model Uspelite.Web.Models.Account.Account.RegisterViewModel
 @{
     ViewBag.Title = "Register";
 }
@@ -37,7 +39,9 @@
     </div>
     <div class="form-group">
         <div class="col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+            @Html.Recaptcha()
+            <br/>
+            <input type="submit" class="btn btn-default" value="Register"/>
         </div>
     </div>
 }

@@ -13,211 +13,208 @@
 }
 
 <div class="row">
-    <div class="col-md-9 separator-right">
-        <article class="linkbox large cat-news">
-            <a href="/Articles/Show/@Model.TopArticle.Slug">
-                @Html.Image(x => Model.TopArticle.MainArticlePic.Resized400Picture, "Alt responsive picture", "560", "390", new {@class = "img-responsive"})
-                <div class="overlay">
-                    <h2>@Model.TopArticle.Title</h2>
-                </div>
-            </a>
-            <a href="/Categories/Show/@Model.TopArticle.Category" class="theme">@Model.TopArticle.Category</a>
-        </article>
-
-
-        @{ int linesCounter = 0; }
-
-        @foreach (var post in Model.NewestPosts)
-        {
-            if (linesCounter % 2 == 0)
-            {
-                @:<div class="row">
-            }
-            <div class="col-sm-6">
-                <article class="linkbox cat-sports">
-                    <a href="~/Articles/Show/@post.Slug">
-                        @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new {@class = "img-responsive"})
-
-                        <div class="overlay">
-                            <h3>@post.Title</h3>
-                        </div>
-                    </a>
-                    <a href="/Categories/Show/@post.Category" class="theme">@post.Category</a>
-                </article>
+<div class="col-md-9 separator-right">
+    <article class="linkbox large cat-news">
+        <a href="/Articles/Show/@Model.TopArticle.Slug">
+            @Html.Image(x => Model.TopArticle.MainArticlePic.Resized400Picture, "Alt responsive picture", "560", "390", new {@class = "img-responsive"})
+            <div class="overlay">
+                <h2>@Model.TopArticle.Title</h2>
             </div>
-            if (linesCounter % 2 != 0)
-            {
-                @: </div>
-            }
+        </a>
+        <a href="/Categories/Show/@Model.TopArticle.Category" class="theme">@Model.TopArticle.Category</a>
+    </article>
 
-            linesCounter++;
+
+    @{ int linesCounter = 0; }
+
+    @foreach (var post in Model.NewestPosts)
+    {
+        if (linesCounter%2 == 0)
+        {
+            @: <div class="row">
+        }
+        <div class="col-sm-6">
+            <article class="linkbox cat-sports">
+                <a href="~/Articles/Show/@post.Slug">
+                    @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new {@class = "img-responsive" })
+
+                    <div class="overlay">
+                        <h3>@post.Title</h3>
+                    </div>
+                </a>
+                <a href="/Categories/Show/@post.Category" class="theme">@post.Category</a>
+            </article>
+            @Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", post)
+        </div>
+        if (linesCounter%2 != 0)
+        {
+            @: </div>
         }
 
-        <section class="section-full cat-videos no-padding">
-            <div class="row">
-                <div class="col-sm-8">
+        linesCounter++;
+    }
 
+    <section class="section-full cat-videos no-padding">
+        <div class="row">
+            <div class="col-sm-8">
+
+                <article class="linkbox cat-showtime">
+                    <a href="~/Articles/Show/@Model.TopArticle.Slug">
+                        @Html.Image(x => Model.TopArticle.MainArticlePic.Resized400Picture, "Alt responsive picture", "334", "301", new {@class = "img-responsive"})
+                        <div class="overlay">
+                            <h2>@Model.TopArticle.Title</h2>
+                        </div>
+                    </a>
+                    <a href="/Categories/Show/@Model.TopArticle.Category" class="theme">@Model.TopArticle.Category</a>
+                </article>
+                @Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", @Model.TopArticle)
+            </div>
+
+            <div class="col-sm-4">
+                @for (int i = 0; i < 2; i++)
+                {
+                    var current = Model.HighRatedPosts[i];
                     <article class="linkbox cat-showtime">
-                        <a href="~/Articles/Show/@Model.TopArticle.Slug">
-                            @Html.Image(x => Model.TopArticle.MainArticlePic.Resized400Picture, "Alt responsive picture", "334", "301", new {@class = "img-responsive"})
+                        <a href="/Articles/Show/@current.Slug">
+                            @Html.Image(x => current.MainArticlePic.Resized400Picture, "Alt responsive picture", "274", "150", new {@class = "img-responsive"})
                             <div class="overlay">
-                                <h2>@Model.TopArticle.Title</h2>
+                                <h3>@current.SanitizedPartialContent</h3>
                             </div>
                         </a>
-                        <a href="/Categories/Show/@Model.TopArticle.Category" class="theme">@Model.TopArticle.Category</a>
+                        <a href="/Categories/Show/@current.Category" class="theme">@current.Category</a>
                     </article>
-
-                </div>
-
-                <div class="col-sm-4">
-                    @for (int i = 0; i < 2; i++)
-                    {
-                        var current = Model.HighRatedPosts[i];
-                        <article class="linkbox cat-showtime">
-                            <a href="/Articles/Show/@current.Slug">
-                                @Html.Image(x => current.MainArticlePic.Resized400Picture, "Alt responsive picture", "274", "150", new {@class = "img-responsive"})
-                                <div class="overlay">
-                                    <h3>@current.SanitizedPartialContent</h3>
-                                </div>
-                            </a>
-                            <a href="/Categories/Show/@current.Category" class="theme">@current.Category</a>
-                        </article>
-                    }
-                </div>
+                    @Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", @Model.TopArticle)
+                }
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="section-full top-padding cat-reviews news-layout news-lay-2">
-            <header>
-                <h2>Check out our latest reviews</h2>
-                <span class="borderline"></span>
-            </header>
+    <section class="section-full top-padding cat-reviews news-layout news-lay-2">
+        <header>
+            <h2>Check out our latest reviews</h2>
+            <span class="borderline"></span>
+        </header>
 
-            <div class="row">
-                @for (int i = 0; i < 4; i++)
+        <div class="row">
+            @for (int i = 0; i < 4; i++)
             {
                 var current = Model.MostCommentedPosts[i];
 
-                    <div class="col-xs-6 col-sm-3">
-                        <article class="review">
-                            <a href="/Articles/Show/@current.Slug">
-                                @Html.Image(x => current.MainArticlePic.Resized400Picture, "Alt responsive picture", "120", "105", new { @class = "img-responsive" })
-                                <h3>@current.Title</h3>
-                            </a>
-                            <div class="review-rating">
-                                <ul class="rating">
-                                    @for (int j = 0; j < 5; j++)
-                                    {
-                                        if (current.Rating > j)
-                                        {
-                                            <li class="li-rated"></li>
-                                        }
-                                        else
-                                        {
-                                            <li></li>
-                                        }
-                                    }
-                                </ul>
-                            </div>
-                        </article>
-                    </div>
-                }
-            </div>
-        </section>
+                <div class="col-xs-6 col-sm-3">
+                    <article class="review">
+                        <a href="/Articles/Show/@current.Slug">
+                            @Html.Image(x => current.MainArticlePic.Resized400Picture, "Alt responsive picture", "120", "105", new {@class = "img-responsive"})
+                            <h3>@current.Title</h3>
+                        </a>
 
-        <div class="row top-margin">
-            <div class="col-sm-6">
-                <section class="section-lifestyle news-layout">
-                    <header>
-                        <h2>
-                            <a href="#">Lifestyle</a>
-                        </h2>
-                        <span class="borderline"></span>
-                    </header>
+                        @Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", current)
 
-                    @foreach (var post in Model.HighRatedInCategory)
-                    {
-                        <article class="clearfix">
-
-                            <h3>
-                                @(Html.ActionLink<ArticlesController>(post.Title, x => x.Show(post.Slug)))
-                            </h3>
-
-                            <a href="#">@Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "100", "80")</a>
-                            <span class="text">@post.SanitizedPartialContent</span>
-                            <span class="published">@Html.DisplayFor(x => post.CreatedOn)</span>
-                        </article>
-                    }
-                </section>
-            </div>
-
-
-
-            <div class="col-sm-6">
-                <section class="section-tech news-layout">
-
-                    <header>
-                        <h2><a href="#">Tech</a></h2>
-                        <span class="borderline"></span>
-                    </header>
-
-                    @foreach (var post in Model.HighRatedInCategory)
-                    {
-                        <article class="clearfix">
-                            <h3>@(Html.ActionLink<ArticlesController>(post.Title, x => x.Show(post.Slug)))</h3>
-
-                            <a href="#">@Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "100", "80")</a>
-                            <span class="text">@post.SanitizedPartialContent</span>
-                            <span class="published">@Html.DisplayFor(x => post.CreatedOn)</span>
-                        </article>
-                    }
-                </section>
-            </div>
+                    </article>
+                </div>
+            }
         </div>
-    </div>
+    </section>
 
-    <div class="col-md-3">
-        <section class="section-news news-layout">
-            <header>
-                <h2><a href="#">Latest news</a></h2>
-                <span class="borderline"></span>
-            </header>
-            <div class="row">
-                @foreach (var post in Model.HighRatedPosts)
+    <div class="row top-margin">
+        <div class="col-sm-6">
+            <section class="section-lifestyle news-layout">
+                <header>
+                    <h2>
+                        <a href="#">Lifestyle</a>
+                    </h2>
+                    <span class="borderline"></span>
+                </header>
+
+                @foreach (var post in Model.HighRatedInCategory)
                 {
-                    <div class="col-xs-4 col-sm-12">
-                        <article>
-                            <h3>@(Html.ActionLink<ArticlesController>(post.Title, x => x.Show(post.Slug)))</h3>
-                            <span class="text">@post.SanitizedPartialContent</span>
-                            <span class="published">@Html.DisplayFor(x => post.CreatedOn)</span>
-                        </article>
-                    </div>
+                    <article class="clearfix">
+
+                        <h3>
+                            @(Html.ActionLink<ArticlesController>(post.Title, x => x.Show(post.Slug)))
+                        </h3>
+
+                        <a href="#">@Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "100", "80")</a>
+                        <span class="text">@post.SanitizedPartialContent</span>
+                        <span class="published">@Html.DisplayFor(x => post.CreatedOn)</span>
+                    </article>
                 }
-            </div>
-        </section>
-
-
-        <div class="ad">
-            <a href=""><img src="~/Content/Theme/images/dummy/banner_160x600.png" width="160" height="600" alt=""></a>
+            </section>
         </div>
 
-        <section class="news-layout">
-            <header>
-                <h2>Most commented</h2>
-                <span class="borderline"></span>
-            </header>
-            <div class="row">
-                @foreach (var post in Model.MostCommentedPosts)
+
+
+        <div class="col-sm-6">
+            <section class="section-tech news-layout">
+
+                <header>
+                    <h2><a href="#">Tech</a>
+                    </h2>
+                    <span class="borderline"></span>
+                </header>
+
+                @foreach (var post in Model.HighRatedInCategory)
                 {
-                    <div class="col-xs-4 col-sm-12">
-                        <article>
-                            <h3>@(Html.ActionLink<ArticlesController>(post.Title, x => x.Show(post.Slug)))</h3>
-                            <span class="text">@post.SanitizedPartialContent</span>
-                            <span class="published">@Html.DisplayFor(x => post.CreatedOn)</span>
-                        </article>
-                    </div>
+                    <article class="clearfix">
+                        <h3>@(Html.ActionLink<ArticlesController>(post.Title, x => x.Show(post.Slug)))</h3>
+
+                        <a href="#">@Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "100", "80")</a>
+                        <span class="text">@post.SanitizedPartialContent</span>
+                        <span class="published">@Html.DisplayFor(x => post.CreatedOn)</span>
+                    </article>
                 }
-            </div>
-        </section>
+            </section>
+        </div>
     </div>
 </div>
+
+<div class="col-md-3">
+    <section class="section-news news-layout">
+        <header>
+            <h2><a href="#">Latest news</a>
+            </h2>
+            <span class="borderline"></span>
+        </header>
+        <div class="row">
+            @foreach (var post in Model.HighRatedPosts)
+            {
+                <div class="col-xs-4 col-sm-12">
+                    <article>
+                        <h3>@(Html.ActionLink<ArticlesController>(post.Title, x => x.Show(post.Slug)))</h3>
+                        <span class="text">@post.SanitizedPartialContent</span>
+                        <span class="published">@Html.DisplayFor(x => post.CreatedOn)</span>
+                    </article>
+                </div>
+            }
+        </div>
+    </section>
+
+
+    <div class="ad">
+        <a href=""><img src="~/Content/Theme/images/dummy/banner_160x600.png" width="160" height="600" alt=""></a>
+    </div>
+
+    <section class="news-layout">
+        <header>
+            <h2>Most commented</h2>
+            <span class="borderline"></span>
+        </header>
+        <div class="row">
+            @foreach (var post in Model.MostCommentedPosts)
+            {
+                <div class="col-xs-4 col-sm-12">
+                    <article>
+                        <h3>@(Html.ActionLink<ArticlesController>(post.Title, x => x.Show(post.Slug)))</h3>
+                        <span class="text">@post.SanitizedPartialContent</span>
+                        <span class="published">@Html.DisplayFor(x => post.CreatedOn)</span>
+                    </article>
+                </div>
+            }
+        </div>
+    </section>
+</div>
+</div>
+
+
+@section scripts {
+    @Scripts.Render("~/Scripts/Custom/ratingScript.js")
+}

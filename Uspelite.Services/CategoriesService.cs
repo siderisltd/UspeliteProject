@@ -40,16 +40,14 @@
         {
             var itemsToSkip = (page - 1) * pageCount;
 
-            var result = this.repo
-                .All()
-                .Where(x => x.Slug == slug)
+            var result = this.GetBySlug(slug)
                 .Select(x => new PagedCategoryDTO
                 {
                     Title = x.Title,
                     AllItemsCount = x.Articles.Count,
                     CurrentPage = page,
                     TotalPages = (int)Math.Ceiling(x.Articles.Count / (decimal) pageCount),
-                    Articles = x.Articles.OrderBy(z => z.CreatedOn).Skip(itemsToSkip).Take(pageCount).AsQueryable()
+                    Articles = x.Articles.OrderByDescending(z => z.CreatedOn).Skip(itemsToSkip).Take(pageCount).AsQueryable()
                 }).AsQueryable();
 
             return result;

@@ -128,6 +128,10 @@
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="reCAPTCHA.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\reCAPTCH.MVC.1.0.1\lib\net45\reCAPTCHA.MVC.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -249,6 +253,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\AjaxActionFilter.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdministratorController.cs" />
     <Compile Include="Areas\Administration\Controllers\CrowlersController.cs" />
@@ -264,6 +269,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
+    <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="Models\Articles\ArticlesBindingModel.cs" />
     <Compile Include="Models\Articles\ConcreteArticleViewModel.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
@@ -370,10 +376,13 @@
     <Compile Include="Models\Account\Manage\ManageLoginsViewModel.cs" />
     <Compile Include="Models\Account\Manage\SetPasswordViewModel.cs" />
     <Compile Include="Models\Account\Manage\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="Models\Common\IRateable.cs" />
+    <Compile Include="Models\Common\RateableType.cs" />
     <Compile Include="Models\Home\HomeIndexViewModel.cs" />
     <Compile Include="Models\Articles\ArticleViewModel.cs" />
     <Compile Include="Models\MessageDetails.cs" />
     <Compile Include="Models\ImageViewModel.cs" />
+    <Compile Include="Models\Ratings\RatingsBindingModel.cs" />
     <Compile Include="Models\UserDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -508,6 +517,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="Scripts\Custom\ratingScript.js" />
     <Content Include="Scripts\Libraries\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\Libraries\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\Libraries\bootstrap-datepicker.js" />
@@ -627,6 +637,7 @@
     <None Include="Views\Articles\Add.cshtml" />
     <Content Include="Views\Articles\EditorTemplates\ArticlesBindingModel.cshtml" />
     <Content Include="Views\Articles\EditorTemplates\LargeInput.cshtml" />
+    <Content Include="Views\Shared\Partials\_RatingStars.cshtml" />
     <None Include="Views\Images\Index.cshtml" />
     <None Include="Views\Images\_SaveImage.cshtml" />
     <Content Include="Views\Articles\Show.cshtml" />

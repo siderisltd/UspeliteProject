@@ -17,17 +17,25 @@
             this.categoriesService = categoriesService;
         }
 
-        public ActionResult Show(string slug, int page = 1, int pageSize = 4)
+        public ActionResult Show(string slug, int page = 1, int pageSize = 10)
         {
             var model = this.categoriesService.GetPaged(slug, page, pageSize).To<PageableCategoryArticlesViewModel>().FirstOrDefault();
 
-            if(model == null)
-            {
-                throw new ArgumentNullException(string.Format("Searched category is null : [{0}]", slug));
-            }
-
             model.Slug = slug;
             model.PageSize = pageSize;
+
+            if (page <= 6)
+            {
+                model.DisplayPageFrom = 1;
+                model.DisplayPageTo = 10 > model.TotalPages ? model.TotalPages : 10;
+            }
+            else if(page > 6)
+            {
+                var displayTo = page + 4;
+                model.DisplayPageTo = model.TotalPages <= displayTo? model.TotalPages : displayTo;
+                model.DisplayPageFrom = model.DisplayPageTo - 9;
+            }
+
             //model.TopArticle = model.Articles.FirstOrDefault();
 
             return this.View(model);

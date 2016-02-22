@@ -26,9 +26,10 @@ textarea {
 
 
 
-
-
-
+.rating-container {
+    display: block;
+    width: 100%;
+}
 
 
 

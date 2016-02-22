@@ -22,5 +22,9 @@
         public string Slug { get; set; }
 
         public int PageSize { get; set; }
+
+        public int DisplayPageFrom { get; set; }
+
+        public int DisplayPageTo { get; set; }
     }
 }

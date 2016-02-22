@@ -49,7 +49,6 @@
             }
         }
 
-
         public byte[] GetFromUrlAndBrandImage(string url, ImageFormat format, Image brandImage)
         {
             byte[] imgArray = this.GetFromUrl(url);
@@ -155,13 +154,13 @@
             }
         }
 
-        public Image AddBranding(string firstImagePath, string brandImage, int posX = 0, int posY = 0)
+        public Image AddBranding(string firstImagePath, string brandImagePath, int posX = 0, int posY = 0)
         {
             Image image = Image.FromFile(firstImagePath);
             Graphics gra = Graphics.FromImage(image);
-            Image smallImg = Image.FromFile(brandImage);
+            Image smallImg = Image.FromFile(brandImagePath);
             var brandImageHeight = (int)Math.Ceiling(image.Height / 3.1);
-            gra.DrawImage(smallImg, 0, 0, image.Width, brandImageHeight);
+            gra.DrawImage(smallImg, posX, posY, image.Width, brandImageHeight);
             return image;
         }
 
@@ -169,7 +168,7 @@
         {
             Graphics gra = Graphics.FromImage(originalImage);
             var brandImageHeight = (int)Math.Ceiling(originalImage.Height / 3.1);
-            gra.DrawImage(brandImage, 0, 0, originalImage.Width, brandImageHeight);
+            gra.DrawImage(brandImage, posX, posY, originalImage.Width, brandImageHeight);
             return originalImage;
         }
     }

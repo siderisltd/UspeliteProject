@@ -1,0 +1,20 @@
+﻿@model Uspelite.Web.Models.Common.IRateable
+
+<div class="rating-container">
+    <div class="review-rating">
+        <ul class="rating" data-currentRating="@Model.Rating" data-Id="@Model.Id" data-rateType="@Model.RateType">
+            @for (int j = 0; j < 5; j++)
+            {
+                if (Model.Rating > j)
+                {
+                    <li class="li-rated"></li>
+                }
+                else
+                {
+                    <li></li>
+                }
+            }
+        </ul>
+        <div class="alert alert-success rate-message" style="display: none"></div>
+    </div>
+</div>

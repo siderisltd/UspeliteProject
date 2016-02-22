@@ -3,12 +3,13 @@
     using System;
     using System.Linq;
     using AutoMapper;
+    using Common;
     using Data.Models;
     using Infrastructure.Mapping.Contracts;
     using Services.Web;
     using Services.Web.Contracts;
 
-    public class ArticleViewModel : IMapFrom<Article>, IMapTo<Article>, IHaveCustomMappings
+    public class ArticleViewModel : IRateable, IMapFrom<Article>, IMapTo<Article>, IHaveCustomMappings 
     {
         protected readonly ISanitizer sanitizer;
 
@@ -57,6 +58,8 @@
         public string Category { get; set; }
 
         public string PartialContent { get; set; }
+
+        public int RateType { get { return (int)RateableType.Article; } }
 
         public string SanitizedPartialContent
         {
