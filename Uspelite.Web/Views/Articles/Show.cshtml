@@ -26,7 +26,7 @@
         <h1>@Model.Title</h1>
     </header>
     <p>
-        @Model.SanitizedFullContent
+        @Html.Raw(Model.SanitizedFullContent)
     </p>
 
     <blockquote>

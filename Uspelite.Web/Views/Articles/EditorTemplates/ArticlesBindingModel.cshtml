@@ -10,33 +10,81 @@
         <div class="form-group">
             @Html.LabelFor(x => x.Title, new { @class = "col-lg-2 control-label" })
             <div class="col-lg-10">
-                @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                @Html.TextBoxFor(x => x.Title, new {@class = "form-control"})
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(x => x.Slug, new {@class = "col-lg-2 control-label"})
             <div class="col-lg-10">
-                @Html.TextBoxFor(x => x.Slug, new { @class = "form-control"})
+                @Html.TextBoxFor(x => x.Slug, new {@class = "form-control"})
             </div>
         </div>
 
-
         <div class="form-group">
-            @Html.LabelFor(x => x.CategoryId, new { @class = "col-lg-2 control-label" })
+            @Html.LabelFor(x => x.CategoryId, new {@class = "col-lg-2 control-label"})
             <div class="col-lg-10">
-                @Html.DropDownListFor(x => x.CategoryId, (IEnumerable<SelectListItem>)ViewBag.categories, new { id = "select", @class = "form-control" })
+                @Html.DropDownListFor(x => x.CategoryId, Model.AllCategories, new {id = "select", @class = "form-control"})
             </div>
         </div>
 
 
         <div class="form-group">
-            @Html.LabelFor(x => x.Content, new { @class = "col-lg-2 control-label" })
+            @Html.LabelFor(x => x.TitleImage, new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                <input type="file" name="TitleImage" multiple="multiple"/>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.ImportBranding, new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.EditorFor(x => x.ImportBranding)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.MirrorFlip, new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.EditorFor(x => x.MirrorFlip)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(x => x.Content, new {@class = "col-lg-2 control-label"})
             <div class="col-lg-10">
                 @(Html.Kendo()
-                            .EditorFor(x => x.Content)
-                            .Name("Content")
-                            .Resizable(resizable => resizable.Content(true).Toolbar(true)))
+                      .EditorFor(x => x.Content)
+                      .Name("Content")
+                      .Encode(false)
+                      .HtmlAttributes(new { style = "height:600px" })
+                      .Tools(tools => tools
+                             .Bold()
+                             .Italic()
+                             .Underline()
+                             .FontSize()
+                             .FontColor()
+                             .JustifyLeft()
+                             .JustifyCenter()
+                             .JustifyRight()
+                             .JustifyFull()
+                             .InsertUnorderedList()
+                             .InsertOrderedList()
+                             .Indent()
+                             .CreateLink()
+                             .ViewHtml()
+                             .Print()
+                             .Pdf()
+                             .Outdent()
+                             .InsertFile()
+                             .Formatting()
+                             .FontName()
+                             .CreateLink()
+                             .BackColor()
+                             .CleanFormatting()
+                             .InsertImage()))
             </div>
         </div>
     </fieldset>

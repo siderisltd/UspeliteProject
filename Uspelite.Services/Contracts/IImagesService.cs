@@ -7,7 +7,7 @@
 
     public interface IImagesService
     {
-        void SaveImage(IEnumerable<Image> models, ImageFormat imageFormat);
+        int SaveImage(Image model, ImageFormat imageFormat);
 
         PictureDTO GetPicturePathsFromSlug(string title);
 

@@ -24,35 +24,33 @@
             return this.View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult SaveImage(IEnumerable<HttpPostedFileBase> model)
-        {
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult SaveImage(IEnumerable<HttpPostedFileBase> model)
+        //{
+        //    var imagesToDatabase = new List<Image>();
+        //    foreach (var mod in model)
+        //    {
+        //        var image = new Image()
+        //        {
+        //            AltTag = "alt tag",
+        //            AuthorId = "5a46a4b4-ab5e-486d-909d-2ecc4b7b858d",
+        //            ImageType = Data.Models.Enum.ImageType.Png,
+        //            Title = mod.FileName,
+        //            Stream = mod.InputStream,
+        //        };
+
+        //        imagesToDatabase.Add(image);
+
+        //    }
+
+        //    this.imagesService.SaveImage(imagesToDatabase, ImageFormat.Png);
 
 
-            var imagesToDatabase = new List<Image>();
-            foreach (var mod in model)
-            {
-                var image = new Image()
-                {
-                    AltTag = "alt tag",
-                    AuthorId = "5a46a4b4-ab5e-486d-909d-2ecc4b7b858d",
-                    ImageType = Data.Models.Enum.ImageType.Png,
-                    Title = mod.FileName,
-                    Stream = mod.InputStream,
-                };
-
-                imagesToDatabase.Add(image);
-
-            }
-
-            this.imagesService.SaveImage(imagesToDatabase, ImageFormat.Png);
+        //    PictureDTO viewModel = this.imagesService.GetPicturePathsFromSlug("QOjZ_desert.jpg");
 
 
-            PictureDTO viewModel = this.imagesService.GetPicturePathsFromSlug("QOjZ_desert.jpg");
-
-
-            return this.PartialView("_SaveImage", viewModel);
-        }
+        //    return this.PartialView("_SaveImage", viewModel);
+        //}
     }
 }

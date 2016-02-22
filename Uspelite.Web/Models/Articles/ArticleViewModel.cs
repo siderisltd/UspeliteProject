@@ -59,12 +59,13 @@
 
         public string PartialContent { get; set; }
 
-        public int RateType { get { return (int)RateableType.Article; } }
-
         public string SanitizedPartialContent
         {
             get { return this.sanitizer.Sanitize(this.PartialContent); }
         }
+
+        public int RateType { get { return (int)RateableType.Article; } }
+
 
         public int? Rating
         {

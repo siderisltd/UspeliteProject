@@ -37,6 +37,25 @@
             return article.Id;
         }
 
+        public int Add(string title, string slug, string authorId, string content, PostStatus status, int categoryId, Image image)
+        {
+            var article = new Article
+            {
+                Title = title,
+                Slug = slug,
+                AuthorId = authorId,
+                Content = content,
+                Status = status,
+                CategoryId = categoryId,
+                Images = new List<Image>() { image }
+            };
+
+            this.repo.Add(article);
+            this.repo.SaveChanges();
+
+            return article.Id;
+        }
+
         public bool Exists(string title)
         {
             return this.repo.All().Any(x => x.Title == title);

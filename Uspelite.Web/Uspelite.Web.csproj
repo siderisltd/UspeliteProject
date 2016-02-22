@@ -636,7 +636,6 @@
     <Content Include="Views\Categories\Show.cshtml" />
     <None Include="Views\Articles\Add.cshtml" />
     <Content Include="Views\Articles\EditorTemplates\ArticlesBindingModel.cshtml" />
-    <Content Include="Views\Articles\EditorTemplates\LargeInput.cshtml" />
     <Content Include="Views\Shared\Partials\_RatingStars.cshtml" />
     <None Include="Views\Images\Index.cshtml" />
     <None Include="Views\Images\_SaveImage.cshtml" />
@@ -654,6 +653,7 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ModelStateDictionary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Uspelite.Data.Common\Uspelite.Data.Common.csproj">

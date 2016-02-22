@@ -20,6 +20,8 @@
 
         int Add(string title, string authorId, string content, PostStatus status, int categoryId, Image image);
 
+        int Add(string title, string slug, string authorId, string content, PostStatus status, int categoryId, Image image);
+
         bool Exists(string title);
 
         IQueryable<Article> All();

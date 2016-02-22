@@ -4,6 +4,10 @@
 
 <title>Chat App</title>
 
+@section styles{
+    @Styles.Render("~/Content/Custom/chatStyles.css")
+}
+
 @section scripts{
     <script src="~/Scripts/Libraries/jquery.signalR-2.2.0.js"></script>
     <script src="~/signalR/hubs"></script>

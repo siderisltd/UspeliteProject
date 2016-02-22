@@ -50,9 +50,9 @@
             //TODO: Remove
             ObjectCache cache = MemoryCache.Default;
             System.Drawing.Image brandImage = cache["brandImage"] as System.Drawing.Image;
-            if(brandImage == null)
+            if (brandImage == null)
             {
-                var brandImg =  System.Drawing.Image.FromFile(Constants.APP_ROOT_PATH + "Content\\Uploads\\Brand\\brand.png");
+                var brandImg = System.Drawing.Image.FromFile(Constants.APP_ROOT_PATH + "Content\\Uploads\\Brand\\brand.png");
                 cache["brandImage"] = brandImg;
                 brandImage = brandImg;
             }
@@ -68,37 +68,30 @@
             return image;
         }
 
-        public void SaveImage(IEnumerable<Image> images, ImageFormat imageFormat)
+        public int SaveImage(Image image, ImageFormat imageFormat)
         {
             var date = DateTime.Now.ToString("MM.yyyy");
-            using (TransactionScope transaction = new TransactionScope())
+
+            var imagePath = date + "\\" + (image.Id % Constants.MAX_FILES_IN_DIRECTORY);
+            image.PathOriginalSize = imagePath + "\\ori_" + image.Slug + ".jpg";
+            image.PathResizedImage = imagePath + "\\400_" + image.Slug + ".jpg";
+
+
+            var directory = this.rootImagesFolder + imagePath;
+            if (!Directory.Exists(directory))
             {
-                foreach (var image in images)
-                {
-                    this.repo.Add(image);
-                    this.repo.SaveChanges();
-                    var imagePath = date + "\\" + (image.Id % Constants.MAX_FILES_IN_DIRECTORY);
-                    image.PathOriginalSize = imagePath + "\\ori_" + image.Slug + ".jpg";
-                    image.PathResizedImage = imagePath + "\\400_" + image.Slug + ".jpg";
-
-
-                    var directory = this.rootImagesFolder + imagePath;
-                    if (!Directory.Exists(directory))
-                    {
-                        Directory.CreateDirectory(directory);
-                    }
-
-                    var originalImageArray = this.imageHelper.StreamToByteArray(image.Stream);
-                    var resizedImageArray400 = this.imageHelper.ScaleImage(new Bitmap(image.Stream), 400, imageFormat);
-
-                    File.WriteAllBytes(this.rootImagesFolder + "\\" + image.PathOriginalSize, originalImageArray);
-                    File.WriteAllBytes(this.rootImagesFolder + "\\" + image.PathResizedImage, resizedImageArray400);
-                }
-
-                transaction.Complete();
+                Directory.CreateDirectory(directory);
             }
 
+            var originalImageArray = this.imageHelper.StreamToByteArray(image.Stream);
+            var resizedImageArray400 = this.imageHelper.ScaleImage(new Bitmap(image.Stream), 400, imageFormat);
+
+            File.WriteAllBytes(this.rootImagesFolder + "\\" + image.PathOriginalSize, originalImageArray);
+            File.WriteAllBytes(this.rootImagesFolder + "\\" + image.PathResizedImage, resizedImageArray400);
+
             this.repo.SaveChanges();
+
+            return image.Id;
         }
 
         public PictureDTO GetPicturePathsFromSlug(string slug)

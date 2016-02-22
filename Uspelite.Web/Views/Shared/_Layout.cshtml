@@ -42,6 +42,10 @@
 
         @Html.Partial("~/Views/Shared/Partials/_Header.cshtml");
 
+        @if (this.TempData["Alert"] != null)
+        {
+            <div class="alert alert-danger notification-label" role="alert">@this.TempData["Alert"]</div>
+        }
         @if (this.TempData["Notification"] != null)
         {
             <div class="alert alert-success notification-label" role="alert">@this.TempData["Notification"]</div>
@@ -69,9 +73,8 @@
 <script>
     $(function () {
         var notificationLabel = $('.notification-label');
-
         if (notificationLabel.length !== 0) {
-            notificationLabel.fadeOut(2500);
+            notificationLabel.delay(3000).fadeOut(200);
         }
     });
 </script>
