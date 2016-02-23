@@ -5,6 +5,7 @@
     using AutoMapper;
     using Common;
     using Data.Models;
+    using Images;
     using Infrastructure.Mapping.Contracts;
     using Services.Web;
     using Services.Web.Contracts;
@@ -26,7 +27,7 @@
 
         private int rating = 0;
 
-        private ImageViewModel _mainArticlePic = new ImageViewModel
+        private ArticleImageViewModel _mainArticlePic = new ArticleImageViewModel
         {
             Resized400Picture = "Content/Imgs/no-photo-available.jpg",
             IsMain = true,
@@ -39,7 +40,7 @@
 
         public string Slug { get; set; }
 
-        public ImageViewModel MainArticlePic
+        public ArticleImageViewModel MainArticlePic
         {
             get { return this._mainArticlePic; }
             set
@@ -82,10 +83,10 @@
         public virtual void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Article, ArticleViewModel>()
-           .ForMember(x => x.Rating, opt => opt.MapFrom(x => x.Ratings.Sum(y => y.Value) / x.Ratings.Count))
-           .ForMember(x => x.Category, opt => opt.MapFrom(x => x.Category.Slug))
-           .ForMember(x => x.PartialContent, opt => opt.MapFrom(x => x.Content.Substring(0, 45) + "..."))
-           .ForMember(x => x.MainArticlePic, opt => opt.MapFrom(x => x.Images.FirstOrDefault(u => u.IsMain)));
+                         .ForMember(x => x.Rating, opt => opt.MapFrom(x => x.Ratings.Sum(y => y.Value)/x.Ratings.Count))
+                         .ForMember(x => x.Category, opt => opt.MapFrom(x => x.Category.Slug))
+                         .ForMember(x => x.PartialContent, opt => opt.MapFrom(x => x.Content.Substring(0, 45) + "..."))
+                         .ForMember(x => x.MainArticlePic, opt => opt.MapFrom(x => x.Images.FirstOrDefault(u => u.IsMain)));
         }
     }
 }

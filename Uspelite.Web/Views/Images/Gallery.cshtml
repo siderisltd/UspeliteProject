@@ -1,4 +1,4 @@
-﻿@model Uspelite.Web.Models.Videos.PageableVideoViewModel
+﻿@model Uspelite.Web.Models.Images.PageableImageViewModel
 
 @section sidebar{
     @(Html.Action<ChildActionsController>(x => x.GetSideBar()))
@@ -6,21 +6,22 @@
 
 <article>
     <header>
-        <h2><a href="#">Featured videos</a>
+        <h2>
+            <a href="#">Галерия</a>
         </h2>
         <span class="borderline"></span>
     </header>
 
     <section>
         <div id="article-gallery" class="row">
-            @foreach (var mod in Model.Videos)
+            @foreach (var mod in Model.Images)
             {
-                <div class="col-xs-6 col-sm-3 col-md-4 text-center">
+                <div class="col-xs-6 col-sm-3 pic-holder">
                     <article class="clearfix">
-                        <h5>@mod.Title</h5>
-                        <a href="@mod.EmbedUrl" rel="video">
-                            <img src="@mod.VideoImage" width="300" height="200" alt="Videos" class="img-responsive">
-                            <div class="zoomix"><i class="fa fa-play"></i>
+                        <a href="/@mod.OriginalSizedPicture">
+                            <img src="/@mod.Resized400Picture" alt="Responsive image" class="img-responsive">
+                            <div class="zoomix">
+                                <i class="fa fa-search"></i>
                             </div>
                         </a>
                     </article>
@@ -28,13 +29,14 @@
                 </div>
             }
         </div>
+
         <nav>
             <div class="text-center">
                 <ul class="pagination">
                     @if (Model.CurrentPage != 1)
                     {
                         <li>
-                            <a href="/Videos/Index?page=@(Model.CurrentPage - 1)&pageSize=@Model.PageSize" aria-label="Previous">
+                            <a href="/Images/Gallery?page=@(Model.CurrentPage - 1)&pageSize=@Model.PageSize" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
@@ -46,12 +48,12 @@
                         {
                             className = "active";
                         }
-                        <li class="@className">@Html.ActionLink(i.ToString(), "Index", "Videos", new {page = i, pageSize = Model.PageSize}, null)</li>
+                        <li class="@className">@Html.ActionLink(i.ToString(), "Gallery", "Images", new { page = i, pageSize = Model.PageSize }, null)</li>
                     }
                     @if (Model.DisplayPageTo != Model.TotalPages)
                     {
                         <li>
-                            <a href="/Videos/Index?page=@(Model.CurrentPage + 1)&pageSize=@Model.PageSize" aria-label="Next">
+                            <a href="/Images/Gallery?page=@(Model.CurrentPage + 1)&pageSize=@Model.PageSize" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
@@ -61,6 +63,33 @@
         </nav>
     </section>
 </article>
+
+@section overridingStyles {
+
+    <style>
+        div.pic-holder {
+            margin-bottom:20px;
+        }
+
+         @@media ( min-width: 991px ) {
+             img.img-responsive {
+                 height : 112px;
+             }
+         }
+        @@media ( min-width: 768px ) {
+            img.img-responsive {
+                width: 170px;
+                height : 120px;
+            }
+        }
+        @@media ( min-width: 430px ) {
+            img.img-responsive {
+                width: 200px;
+                height : 150px;
+            }
+        }
+    </style>
+}
 
 @section scripts {
     @Scripts.Render("~/Scripts/Custom/ratingScript.js")

@@ -56,6 +56,17 @@
                         };
                         returnMessage = this.AddRating(ratingModel.RatePoints, videoRate, videoRateToAdd);
                         break;
+
+                    case RateableType.Image:
+                        var imageRate = allRates.FirstOrDefault(x => x.AuthorId == userId && x.PictureId == ratingModel.RateId);
+                        var imageRateToAdd = new Rate
+                        {
+                            VideoId = ratingModel.RateId,
+                            AuthorId = userId,
+                            Value = ratingModel.RatePoints
+                        };
+                        returnMessage = this.AddRating(ratingModel.RatePoints, imageRate, imageRateToAdd);
+                        break;
                     default:
                         //return some error for invalid RateableType
                         break;

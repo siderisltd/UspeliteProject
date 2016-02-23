@@ -271,6 +271,7 @@
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="Controllers\VideosController.cs" />
+    <Compile Include="Models\Articles\ArticleImageViewModel.cs" />
     <Compile Include="Models\Articles\ArticlesBindingModel.cs" />
     <Compile Include="Models\Articles\ConcreteArticleViewModel.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
@@ -381,8 +382,9 @@
     <Compile Include="Models\Common\RateableType.cs" />
     <Compile Include="Models\Home\HomeIndexViewModel.cs" />
     <Compile Include="Models\Articles\ArticleViewModel.cs" />
+    <Compile Include="Models\Images\ImageViewModel.cs" />
+    <Compile Include="Models\Images\PageableImageViewModel.cs" />
     <Compile Include="Models\MessageDetails.cs" />
-    <Compile Include="Models\ImageViewModel.cs" />
     <Compile Include="Models\Ratings\RatingsBindingModel.cs" />
     <Compile Include="Models\UserDetails.cs" />
     <Compile Include="Models\Videos\PageableVideoViewModel.cs" />
@@ -640,8 +642,7 @@
     <None Include="Views\Articles\Add.cshtml" />
     <Content Include="Views\Articles\EditorTemplates\ArticlesBindingModel.cshtml" />
     <Content Include="Views\Shared\Partials\_RatingStars.cshtml" />
-    <None Include="Views\Images\Index.cshtml" />
-    <None Include="Views\Images\_SaveImage.cshtml" />
+    <None Include="Views\Images\Gallery.cshtml" />
     <Content Include="Views\Articles\Show.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
@@ -702,9 +703,7 @@
     <Content Include="packages.config" />
     <Content Include="Scripts\Libraries\jquery-1.10.2.min.map" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -6,12 +6,14 @@
     using System.Web;
     using System.Web.Mvc;
     using Data.Models;
-
+    using Models.Images;
     using Services.Data.Contracts;
     using Services.Data.DTO;
 
     public class ImagesController : BaseController
     {
+        private const int PAGE_SIZE = 32;
+
         private IImagesService imagesService;
 
         public ImagesController(IImagesService imagesService)
@@ -19,38 +21,30 @@
             this.imagesService = imagesService;
         }
 
-        public ActionResult Index()
+        public ActionResult Gallery(int page = 1, int pageSize = PAGE_SIZE)
         {
-            return this.View();
+            var dto = this.imagesService.AllPaged(page, pageSize);
+            var model = this.Mapper.Map<PageableImageViewModel>(dto);
+
+            if (model == null)
+            {
+                //Todo: throw
+            }
+
+            model.PageSize = pageSize;
+
+            if (page <= 6)
+            {
+                model.DisplayPageFrom = 1;
+                model.DisplayPageTo = 10 > model.TotalPages ? model.TotalPages : 10;
+            }
+            else if (page > 6)
+            {
+                var displayTo = page + 4;
+                model.DisplayPageTo = model.TotalPages <= displayTo ? model.TotalPages : displayTo;
+                model.DisplayPageFrom = model.DisplayPageTo - 9;
+            }
+            return this.View(model);
         }
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult SaveImage(IEnumerable<HttpPostedFileBase> model)
-        //{
-        //    var imagesToDatabase = new List<Image>();
-        //    foreach (var mod in model)
-        //    {
-        //        var image = new Image()
-        //        {
-        //            AltTag = "alt tag",
-        //            AuthorId = "5a46a4b4-ab5e-486d-909d-2ecc4b7b858d",
-        //            ImageType = Data.Models.Enum.ImageType.Png,
-        //            Title = mod.FileName,
-        //            Stream = mod.InputStream,
-        //        };
-
-        //        imagesToDatabase.Add(image);
-
-        //    }
-
-        //    this.imagesService.SaveImage(imagesToDatabase, ImageFormat.Png);
-
-
-        //    PictureDTO viewModel = this.imagesService.GetPicturePathsFromSlug("QOjZ_desert.jpg");
-
-
-        //    return this.PartialView("_SaveImage", viewModel);
-        //}
     }
 }

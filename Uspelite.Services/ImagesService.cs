@@ -105,27 +105,34 @@
             return image.Id;
         }
 
-        public PictureDTO GetPicturePathsFromSlug(string slug)
+        public PagedImageDTO AllPaged(int page, int pageSize, int? categoryId = null)
         {
-            var image = this.repo
-                .All()
-                .Where(x => x.Slug == slug)
-                .Select(x => new PictureDTO
-                {
-                    Id = x.Id,
-                    OriginalPath = Constants.IMAGES_PREFIX_FROM_ROOT + x.PathOriginalSize,
-                    ResizedImage400 = Constants.IMAGES_PREFIX_FROM_ROOT + x.PathResizedImage
-                })
-                .FirstOrDefault();
+            var dto = new PagedImageDTO();
+            var allImagesCount = this.repo.All().Count();
+            dto.AllItemsCount = allImagesCount;
+            dto.CurrentPage = page;
+            dto.TotalPages = (int)Math.Ceiling(allImagesCount / (decimal)pageSize);
 
-            if (image != null)
+            var itemsToSkip = (page - 1) * pageSize;
+
+            var query = this.repo.All();
+
+            if (categoryId != null)
             {
-                return image;
+                query = query.Where(x => x.CategoryId == categoryId);
             }
 
-            throw new ArgumentNullException("Image is not found in the database");
+            var images = query
+                .OrderByDescending(x => x.CreatedOn)
+                .Skip(itemsToSkip)
+                .Take(pageSize)
+                .AsQueryable();
+
+            dto.Images = images;
+
+            return dto;
         }
-       
+
     }
 }
 

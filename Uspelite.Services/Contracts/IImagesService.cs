@@ -9,7 +9,7 @@
     {
         int SaveImage(Image model, ImageFormat imageFormat, bool addBrand = false);
 
-        PictureDTO GetPicturePathsFromSlug(string title);
+        PagedImageDTO AllPaged(int page, int pageSize, int? categoryId = null);
 
         Image SaveImageFromWeb(string url, string title, ImageFormat imageFormat, string authorId);
     }
