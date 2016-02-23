@@ -7,7 +7,7 @@
 
     public interface IImagesService
     {
-        int SaveImage(Image model, ImageFormat imageFormat);
+        int SaveImage(Image model, ImageFormat imageFormat, bool addBrand = false);
 
         PictureDTO GetPicturePathsFromSlug(string title);
 

@@ -19,6 +19,21 @@
     {
         private readonly IRepository<Image> repo;
         private readonly IImageHelper imageHelper;
+        private System.Drawing.Image BrandImage
+        {
+            get
+            {
+                ObjectCache cache = MemoryCache.Default;
+                System.Drawing.Image brandImage = cache["brandImage"] as System.Drawing.Image;
+                if (brandImage == null)
+                {
+                    var brandImg = System.Drawing.Image.FromFile(Constants.APP_ROOT_PATH + "Content\\Uploads\\Brand\\brand.png");
+                    cache["brandImage"] = brandImg;
+                    brandImage = brandImg;
+                }
+                return brandImage;
+            }
+        }
 
         private readonly string rootImagesFolder = Constants.ROOT_IMAGES_FOLDER;
 
@@ -47,17 +62,7 @@
                 Directory.CreateDirectory(directory);
             }
 
-            //TODO: Remove
-            ObjectCache cache = MemoryCache.Default;
-            System.Drawing.Image brandImage = cache["brandImage"] as System.Drawing.Image;
-            if (brandImage == null)
-            {
-                var brandImg = System.Drawing.Image.FromFile(Constants.APP_ROOT_PATH + "Content\\Uploads\\Brand\\brand.png");
-                cache["brandImage"] = brandImg;
-                brandImage = brandImg;
-            }
-
-            byte[] originalImageArray = this.imageHelper.GetFromUrlAndBrandImage(url, imageFormat, brandImage);
+            byte[] originalImageArray = this.imageHelper.GetFromUrlAndBrandImage(url, imageFormat, this.BrandImage);
             var resizedImageArray400 = this.imageHelper.ScaleImage(this.imageHelper.ByteToImage(originalImageArray), 400, imageFormat);
 
             File.WriteAllBytes(this.rootImagesFolder + "\\" + image.PathOriginalSize, originalImageArray);
@@ -68,7 +73,7 @@
             return image;
         }
 
-        public int SaveImage(Image image, ImageFormat imageFormat)
+        public int SaveImage(Image image, ImageFormat imageFormat, bool addBrand = false)
         {
             var date = DateTime.Now.ToString("MM.yyyy");
 
@@ -83,8 +88,14 @@
                 Directory.CreateDirectory(directory);
             }
 
-            var originalImageArray = this.imageHelper.StreamToByteArray(image.Stream);
-            var resizedImageArray400 = this.imageHelper.ScaleImage(new Bitmap(image.Stream), 400, imageFormat);
+            byte[] originalImageArray = this.imageHelper.StreamToByteArray(image.Stream);
+
+            if (addBrand)
+            {
+                originalImageArray = this.imageHelper.AddBranding(originalImageArray, this.BrandImage, imageFormat);
+            }
+
+            var resizedImageArray400 = this.imageHelper.ScaleImage(this.imageHelper.ByteToImage(originalImageArray), 400, imageFormat);
 
             File.WriteAllBytes(this.rootImagesFolder + "\\" + image.PathOriginalSize, originalImageArray);
             File.WriteAllBytes(this.rootImagesFolder + "\\" + image.PathResizedImage, resizedImageArray400);
@@ -114,8 +125,7 @@
 
             throw new ArgumentNullException("Image is not found in the database");
         }
-
-
+       
     }
 }
 

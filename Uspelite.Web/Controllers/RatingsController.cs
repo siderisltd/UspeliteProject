@@ -1,6 +1,8 @@
 ﻿namespace Uspelite.Web.Controllers
 {
+    using System;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Web.Mvc;
     using ActionFilters;
     using Data.Models;
@@ -31,35 +33,29 @@
                 var userId = this.User.Identity.GetUserId();
                 string returnMessage = string.Empty;
 
+                var allRates = this.ratesService.All();
                 switch ((RateableType)ratingModel.RateType)
                 {
                     case RateableType.Article:
-                        var vote = this.ratesService
-                            .All()
-                            .FirstOrDefault(x => x.AuthorId == userId && x.ArticleId == ratingModel.RateId);
-
-                        if (vote == null)
+                        var articleRate = allRates.FirstOrDefault(x => x.AuthorId == userId && x.ArticleId == ratingModel.RateId);
+                        var articleRateToAdd = new Rate
                         {
-                            var rateToAdd = new Rate
-                            {
-                                ArticleId = ratingModel.RateId,
-                                AuthorId = userId,
-                                Value = ratingModel.RatePoints
-                            };
-
-                            var addedId = this.ratesService.Add(rateToAdd);
-
-                            returnMessage = "Благодарим за вота! Вашият глас от {0} звезди беше отчетен";
-                        }
-                        else
-                        {
-                            vote.Value = ratingModel.RatePoints;
-                            this.ratesService.SaveChanges();
-                            returnMessage = "Благодарим за вота! Новият ви глас от {0} звезди беше отчетен";
-                        }
-
+                            ArticleId = ratingModel.RateId,
+                            AuthorId = userId,
+                            Value = ratingModel.RatePoints
+                        };
+                        returnMessage = this.AddRating(ratingModel.RatePoints, articleRate, articleRateToAdd);
                         break;
-
+                    case RateableType.Video:
+                        var videoRate = allRates.FirstOrDefault(x => x.AuthorId == userId && x.VideoId == ratingModel.RateId);
+                        var videoRateToAdd = new Rate
+                        {
+                            VideoId = ratingModel.RateId,
+                            AuthorId = userId,
+                            Value = ratingModel.RatePoints
+                        };
+                        returnMessage = this.AddRating(ratingModel.RatePoints, videoRate, videoRateToAdd);
+                        break;
                     default:
                         //return some error for invalid RateableType
                         break;
@@ -72,5 +68,25 @@
                 return this.Json(new {message = "Грешка при гласуването !" });
             }
         }
+
+        private string AddRating(int ratePoints, Rate existingRate, Rate rateToAdd)
+        {
+            string returnMessage;
+
+            if (existingRate == null)
+            {
+                var addedId = this.ratesService.Add(rateToAdd);
+                returnMessage = "Благодарим за вота! Вашият глас от {0} звезди беше отчетен";
+            }
+            else
+            {
+                existingRate.Value = ratePoints;
+                this.ratesService.SaveChanges();
+                returnMessage = "Благодарим за вота! Новият ви глас от {0} звезди беше отчетен";
+            }
+            return returnMessage;
+        }
+
+
     }
 }

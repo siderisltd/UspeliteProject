@@ -111,6 +111,7 @@
     <Compile Include="DTO\CategoryAndPostsDTO.cs" />
     <Compile Include="DTO\CrowlerDTO.cs" />
     <Compile Include="DTO\PagedCategoryDTO.cs" />
+    <Compile Include="DTO\PagedVideoDTO.cs" />
     <Compile Include="DTO\PictureDTO.cs" />
     <Compile Include="DTO\RssDTO.cs" />
     <Compile Include="ImagesService.cs" />

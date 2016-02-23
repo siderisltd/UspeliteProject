@@ -270,6 +270,7 @@
     <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\RatingsController.cs" />
+    <Compile Include="Controllers\VideosController.cs" />
     <Compile Include="Models\Articles\ArticlesBindingModel.cs" />
     <Compile Include="Models\Articles\ConcreteArticleViewModel.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
@@ -384,6 +385,8 @@
     <Compile Include="Models\ImageViewModel.cs" />
     <Compile Include="Models\Ratings\RatingsBindingModel.cs" />
     <Compile Include="Models\UserDetails.cs" />
+    <Compile Include="Models\Videos\PageableVideoViewModel.cs" />
+    <Compile Include="Models\Videos\VideoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -654,6 +657,8 @@
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ModelStateDictionary.cshtml" />
+    <Content Include="Views\Videos\Index.cshtml" />
+    <Content Include="Views\Shared\Partials\_Pagination.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Uspelite.Data.Common\Uspelite.Data.Common.csproj">

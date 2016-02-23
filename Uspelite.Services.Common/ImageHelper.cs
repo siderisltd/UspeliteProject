@@ -52,16 +52,9 @@
         public byte[] GetFromUrlAndBrandImage(string url, ImageFormat format, Image brandImage)
         {
             byte[] imgArray = this.GetFromUrl(url);
-
-            using (MemoryStream stream = new MemoryStream())
-            {
-                stream.Write(imgArray, 0, imgArray.Length);
-                Image startBitmap = new Bitmap(stream);
-                var result = this.AddBranding(startBitmap, brandImage);
-
-                return this.ImageToByte(result, format);
-            }
+            return this.AddBranding(imgArray, brandImage,format);
         }
+
         /// <summary>
         /// This method uses Internet connection to get the image as byte array. It cam be very easy modified to return
         /// it in MemoryStream
@@ -170,6 +163,18 @@
             var brandImageHeight = (int)Math.Ceiling(originalImage.Height / 3.1);
             gra.DrawImage(brandImage, posX, posY, originalImage.Width, brandImageHeight);
             return originalImage;
+        }
+
+        public byte[] AddBranding(byte[] imgArray, Image brandImage, ImageFormat format)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                stream.Write(imgArray, 0, imgArray.Length);
+                Image startBitmap = new Bitmap(stream);
+                var result = this.AddBranding(startBitmap, brandImage);
+
+                return this.ImageToByte(result, format);
+            }
         }
     }
 }

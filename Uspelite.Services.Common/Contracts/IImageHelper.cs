@@ -27,5 +27,7 @@
         Image AddBranding(Image originalImage, Image brandImage, int posX = 0, int posY = 0);
 
         Image AddBranding(string firstImagePath, string brandImage, int posX = 0, int posY = 0);
+
+        byte[] AddBranding(byte[] imgArray, Image brandImage, ImageFormat format);
     }
 }

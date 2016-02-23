@@ -60,9 +60,7 @@
                     this.ModelState.AddModelError("NotImageError", new ArgumentException("The provided file is not an image"));
                 }
                 string imageName = Path.GetFileNameWithoutExtension(model.TitleImage.FileName);
-
                 var userId = this.User.Identity.GetUserId();
-
                 var articleImage = new Image
                 {
                     IsMain = true,
@@ -73,7 +71,16 @@
                 };
                 try
                 {
-                    var imageId = this.imagesService.SaveImage(articleImage, ImageFormat.Jpeg);
+                    int imageId;
+                    if (model.ImportBranding)
+                    {
+                        imageId = this.imagesService.SaveImage(articleImage, ImageFormat.Jpeg, true);
+                    }
+                    else
+                    {
+                        imageId = this.imagesService.SaveImage(articleImage, ImageFormat.Jpeg);
+                    }
+
                    
                     var articleId = this.articlesService.Add(
                         model.Title,
