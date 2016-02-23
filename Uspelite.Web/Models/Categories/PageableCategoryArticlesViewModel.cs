@@ -1,9 +1,7 @@
 ﻿namespace Uspelite.Web.Models.Categories
 {
     using System.Collections.Generic;
-    using System.Linq;
     using Articles;
-    using Home;
     using Infrastructure.Mapping.Contracts;
     using Services.Data.DTO;
 

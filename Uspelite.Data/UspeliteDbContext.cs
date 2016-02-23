@@ -38,7 +38,16 @@
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();
+            try
+            {
                 return base.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                
+                throw;
+            }
+
         }
         
         

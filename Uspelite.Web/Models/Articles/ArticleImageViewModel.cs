@@ -1,7 +1,5 @@
 ﻿namespace Uspelite.Web.Models.Articles
 {
-    using System;
-    using System.Linq.Expressions;
     using AutoMapper;
     using Data.Models;
     using Infrastructure.Mapping.Contracts;

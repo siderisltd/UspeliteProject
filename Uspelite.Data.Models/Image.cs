@@ -36,8 +36,17 @@
         [Required]
         public string AuthorId { get; set; }
 
+        [InverseProperty("Images")]
         [ForeignKey("AuthorId")]
         public virtual User Author { get; set; }
+
+        public bool IsMainProfilePicture { get; set; }
+
+        public string UserProfilePictureId { get; set; }
+
+        [InverseProperty("ProfileImages")]
+        [ForeignKey("UserProfilePictureId")]
+        public virtual User UserProfilePicture { get; set; }
 
         public int? CategoryId { get; set; }
 

@@ -25,5 +25,7 @@
         bool Exists(string title);
 
         IQueryable<Article> All();
+
+        Comment AddCommentTo(Article foundArticle, Comment commentToAdd);
     }
 }

@@ -2,8 +2,6 @@
 {
     using System.Web.Mvc;
     using Infrastructure.Mapping.Contracts;
-    using System.Linq;
-    using Infrastructure;
     using Kendo.Mvc.UI;
     using Kendo.Mvc.Extensions;
     using Models.Users;

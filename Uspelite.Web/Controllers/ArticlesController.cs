@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Validation;
     using System.Drawing.Imaging;
     using System.IO;
     using System.Linq;
@@ -11,9 +10,7 @@
     using System.Web.Mvc;
     using Infrastructure.Mapping.Contracts;
     using Models.Articles;
-    using Models.Home;
     using Services.Data.Contracts;
-    using Data.Common.Roles;
     using Data.Models;
     using Data.Models.Enum;
     using Microsoft.AspNet.Identity;

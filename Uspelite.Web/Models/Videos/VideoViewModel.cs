@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using System.Text.RegularExpressions;
     using AutoMapper;
     using Common;
     using Data.Models;

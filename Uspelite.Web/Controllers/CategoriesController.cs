@@ -1,12 +1,10 @@
 ﻿namespace Uspelite.Web.Controllers
 {
-    using System;
     using System.Web.Mvc;
     using System.Linq;
     using Infrastructure.Mapping.Contracts;
     using Models.Categories;
     using Services.Data.Contracts;
-    using Services.Data.DTO;
 
     public class CategoriesController : BaseController
     {

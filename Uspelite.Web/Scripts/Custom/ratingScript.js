@@ -1,5 +1,5 @@
 ﻿$(function () {
-    $('div.review-rating ul').mouseover(function() {
+    $('div.review-rating ul').mouseover(function () {
         $(this).css('cursor', 'pointer');
     });
 
@@ -33,9 +33,9 @@
                 rateType = parentUl.attr('data-rateType');
 
             var data = {
-                rateId: rateId, 
+                rateId: rateId,
                 ratePoints: ratePoints,
-                rateType : rateType
+                rateType: rateType
             }
 
             $.ajax({
@@ -47,9 +47,11 @@
                     var rateMessageBox = parentUl.next('div.rate-message');
                     rateMessageBox.html(responseObject.message);
                     rateMessageBox.css('display', 'block');
+                    rateMessageBox.css('margin', '0 auto');
+                    rateMessageBox.css('margin', '0 auto');
                     rateMessageBox.css('position', 'absolute');
                     rateMessageBox.css('z-index', '100000000');
-
+                    rateMessageBox.css('text-align', 'center');
                     rateMessageBox.delay(2700).fadeOut(100);
                 },
                 error: function (err) {

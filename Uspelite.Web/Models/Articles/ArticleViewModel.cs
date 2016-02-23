@@ -5,7 +5,6 @@
     using AutoMapper;
     using Common;
     using Data.Models;
-    using Images;
     using Infrastructure.Mapping.Contracts;
     using Services.Web;
     using Services.Web.Contracts;

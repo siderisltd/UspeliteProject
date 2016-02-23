@@ -1,8 +1,6 @@
 ﻿namespace Uspelite.Web.Controllers
 {
-    using System;
     using System.Linq;
-    using System.Linq.Expressions;
     using System.Web.Mvc;
     using ActionFilters;
     using Data.Models;
@@ -61,7 +59,7 @@
                         var imageRate = allRates.FirstOrDefault(x => x.AuthorId == userId && x.PictureId == ratingModel.RateId);
                         var imageRateToAdd = new Rate
                         {
-                            VideoId = ratingModel.RateId,
+                            PictureId = ratingModel.RateId,
                             AuthorId = userId,
                             Value = ratingModel.RatePoints
                         };

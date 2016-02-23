@@ -1,10 +1,6 @@
 ﻿namespace Uspelite.Web.Controllers
 {
-    using System.Linq;
     using System.Web.Mvc;
-    using Data.Models;
-    using Infrastructure.Mapping.Contracts;
-    using Models.Categories;
     using Models.Videos;
     using Services.Data.Contracts;
 

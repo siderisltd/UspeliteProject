@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using Articles;
-    using Home;
 
     public class SliderViewModel
     {

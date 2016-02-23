@@ -1,14 +1,10 @@
 ﻿namespace Uspelite.Web.Areas.Administration.Controllers
 {
-    using System;
     using System.Linq;
     using System.Web.Mvc;
     using Models.Crawlers;
     using Services.Data.Crawl;
     using Microsoft.AspNet.Identity;
-    using Infrastructure.Mapping.Contracts;
-    using Services.Data.DTO;
-    using Web.Models.Home;
 
     public class CrowlersController : AdministratorController
     {

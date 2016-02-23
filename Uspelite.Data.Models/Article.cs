@@ -25,6 +25,10 @@
         [Required]
         public string AuthorId { get; set; }
 
+
+        [ForeignKey("AuthorId")]
+        public virtual User Author { get; set; }
+
         [StringLength(200)]
         [Required]
         public string Title { get; set; }
@@ -34,8 +38,6 @@
         [Required]
         public string Slug { get; set; }
 
-        [ForeignKey("AuthorId")]
-        public virtual User Author { get; set; }
 
         [Required]
         [MaxLength(30000)]

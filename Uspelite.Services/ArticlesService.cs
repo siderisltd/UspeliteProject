@@ -66,6 +66,13 @@
             return this.repo.All();
         }
 
+        public Comment AddCommentTo(Article foundArticle, Comment commentToAdd)
+        {
+            foundArticle.Comments.Add(commentToAdd);
+            this.repo.SaveChanges();
+            return commentToAdd;
+        }
+
         public IQueryable<Article> GetTopPostsByRating(int count = 6, string category = null)
         {
             var query = this.repo.All();

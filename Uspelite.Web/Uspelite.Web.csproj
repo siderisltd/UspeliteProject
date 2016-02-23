@@ -267,12 +267,14 @@
     <Compile Include="Areas\Management\ManagementAreaRegistration.cs" />
     <Compile Include="Areas\Management\Models\ManageArticleViewModel.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="Controllers\VideosController.cs" />
     <Compile Include="Models\Articles\ArticleImageViewModel.cs" />
     <Compile Include="Models\Articles\ArticlesBindingModel.cs" />
+    <Compile Include="Models\Comments\CommentViewModel.cs" />
     <Compile Include="Models\Articles\ConcreteArticleViewModel.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
     <Compile Include="Models\Categories\PageableCategoryArticlesViewModel.cs" />
@@ -378,8 +380,10 @@
     <Compile Include="Models\Account\Manage\ManageLoginsViewModel.cs" />
     <Compile Include="Models\Account\Manage\SetPasswordViewModel.cs" />
     <Compile Include="Models\Account\Manage\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="Models\Comments\CommentsBindingModel.cs" />
     <Compile Include="Models\Common\IRateable.cs" />
     <Compile Include="Models\Common\RateableType.cs" />
+    <Compile Include="Models\Common\UserViewModel.cs" />
     <Compile Include="Models\Home\HomeIndexViewModel.cs" />
     <Compile Include="Models\Articles\ArticleViewModel.cs" />
     <Compile Include="Models\Images\ImageViewModel.cs" />
@@ -642,6 +646,7 @@
     <None Include="Views\Articles\Add.cshtml" />
     <Content Include="Views\Articles\EditorTemplates\ArticlesBindingModel.cshtml" />
     <Content Include="Views\Shared\Partials\_RatingStars.cshtml" />
+    <None Include="Views\Comments\_CommentPartial.cshtml" />
     <None Include="Views\Images\Gallery.cshtml" />
     <Content Include="Views\Articles\Show.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />

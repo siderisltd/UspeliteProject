@@ -3,8 +3,6 @@
     using System.Web.Mvc;
     using Services.Data.Contracts;
     using System.Linq;
-    using System.Web.Hosting;
-    using Data.Models;
     using Models.Home;
     using Infrastructure.Mapping.Contracts;
     using Models.Articles;

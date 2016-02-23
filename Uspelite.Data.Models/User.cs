@@ -10,17 +10,19 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    public class User : IdentityUser , ICommentableRateableBaseModel, IBaseModel
+    public class User : IdentityUser, ICommentableRateableBaseModel, IBaseModel
     {
-        public ICollection<Article> articles;
+        private ICollection<Article> articles;
 
-        public ICollection<Video> videos;
+        private ICollection<Video> videos;
 
-        public ICollection<Rate> ratings;
+        private ICollection<Rate> ratings;
 
-        public ICollection<Image> images;
+        private ICollection<Image> images;
 
-        public ICollection<Comment> comments;
+        private ICollection<Image> profileImages;
+
+        private ICollection<Comment> comments;
 
         public User()
         {
@@ -56,6 +58,13 @@
             set { this.images = value; }
         }
 
+        public virtual ICollection<Image> ProfileImages
+        {
+            get { return this.profileImages; }
+            set { this.profileImages = value; }
+        }
+
+
         public virtual ICollection<Rate> Ratings
         {
             get { return this.ratings; }
@@ -87,13 +96,18 @@
                     sum += video.CalculatedRating;
                     count++;
                 }
-                if(this.Videos.Count == 0 && this.Articles.Count == 0)
+                if (this.Videos.Count == 0 && this.Articles.Count == 0)
                 {
                     return 0;
                 }
                 return sum / count;
             }
         }
+
+        [NotMapped]
+        public string FullName { get { return this.FirstName + " " + this.LastName; } }
+
+        public string ShortInfo { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

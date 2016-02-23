@@ -1,15 +1,17 @@
 ﻿namespace Uspelite.Web.Models.Articles
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using AutoMapper;
+    using Comments;
+    using Common;
     using Data.Models;
-    using Images;
     using Infrastructure.Mapping.Contracts;
     using Services.Web;
     using Services.Web.Contracts;
 
-    public class ConcreteArticleViewModel : IMapFrom<Article>, IMapTo<Article>, IHaveCustomMappings
+    public class ConcreteArticleViewModel : IRateable, IMapFrom<Article>, IMapTo<Article>, IHaveCustomMappings
     {
         protected readonly ISanitizer sanitizer;
 
@@ -25,10 +27,8 @@
         }
 
         private int rating = 0;
-        private int likesCount = 0;
-        private int dislikesCount = 0;
 
-        private ImageViewModel _mainArticlePic = new ImageViewModel
+        private ArticleImageViewModel _mainArticlePic = new ArticleImageViewModel
         {
             Resized400Picture = "Content/Imgs/no-photo-available.jpg",
             IsMain = true,
@@ -41,7 +41,7 @@
 
         public string Slug { get; set; }
 
-        public ImageViewModel MainArticlePic
+        public ArticleImageViewModel MainArticlePic
         {
             get { return this._mainArticlePic; }
             set
@@ -66,6 +66,8 @@
             get { return this.sanitizer.Sanitize(this.FullContent); }
         }
 
+        public int RateType {  get { return (int) RateableType.Article; }  }
+
         public int? Rating
         {
             get { return this.rating; }
@@ -79,41 +81,17 @@
             }
         }
 
-        public int? LikesCount
-        {
-            get { return this.likesCount; }
-            set
-            {
-                if (value != null)
-                {
-                    this.likesCount = (int)value;
-                }
+        public UserViewModel Author { get; set; }
 
-            }
-        }
-
-        public int? DislikesCount
-        {
-            get { return this.dislikesCount; }
-            set
-            {
-                if (value != null)
-                {
-                    this.dislikesCount = (int)value;
-                }
-
-            }
-        }
+        public ICollection<CommentViewModel> Comments { get; set; }
 
         public virtual void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Article, ConcreteArticleViewModel>()
-           .ForMember(x => x.Rating, opt => opt.MapFrom(x => x.Ratings.Sum(y => y.Value) / x.Ratings.Count))
-           .ForMember(x => x.LikesCount, opt => opt.MapFrom(x => x.Ratings.Count(y => y.IsPositive)))
-           .ForMember(x => x.DislikesCount, opt => opt.MapFrom(x => x.Ratings.Count(y => y.IsPositive == false)))
-           .ForMember(x => x.Category, opt => opt.MapFrom(x => x.Category.Slug))
-           .ForMember(x => x.FullContent, opt => opt.MapFrom(x => x.Content))
-           .ForMember(x => x.MainArticlePic, opt => opt.MapFrom(x => x.Images.FirstOrDefault(u => u.IsMain)));
+                .ForMember(x => x.Rating, opt => opt.MapFrom(x => x.Ratings.Sum(y => y.Value) / x.Ratings.Count))
+                .ForMember(x => x.Category, opt => opt.MapFrom(x => x.Category.Slug))
+                .ForMember(x => x.FullContent, opt => opt.MapFrom(x => x.Content))
+                .ForMember(x => x.MainArticlePic, opt => opt.MapFrom(x => x.Images.FirstOrDefault(u => u.IsMain)));
         }
     }
 

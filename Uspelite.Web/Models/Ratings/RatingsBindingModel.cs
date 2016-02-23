@@ -1,7 +1,6 @@
 ﻿namespace Uspelite.Web.Models.Ratings
 {
     using System.ComponentModel.DataAnnotations;
-    using Common;
 
     public class RatingsBindingModel
     {

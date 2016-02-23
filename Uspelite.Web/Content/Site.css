@@ -6,10 +6,10 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li, input,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, figure, figcaption, footer, header, hgroup, 
-menu, nav, section{
- margin: 0;
- padding: 0;
+article, aside, figure, figcaption, footer, header, hgroup,
+menu, nav, section {
+    margin: 0;
+    padding: 0;
 }
 
 
@@ -30,6 +30,7 @@ textarea {
     display: block;
     width: 100%;
 }
+
 
 
 
