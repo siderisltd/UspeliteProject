@@ -1,0 +1,175 @@
+﻿@model IEnumerable<Uspelite.Web.Models.ChildActions.CategoryAndPostsViewModel>
+
+<div class="container">
+
+    <!-- start:menu -->
+    <nav id="menu">
+        <ul class="nav clearfix">
+            <li class="home"><a href="~/"><span class="glyphicon glyphicon-home"></span></a></li>
+            <li class="cat-news">
+                <a href="">Новини</a>
+                <!-- start:submenu-news -->
+                <div class="subnav-container">
+                    <ul class="subnav-menu">
+
+                        @foreach (var mod in Model)
+                        {
+                            <li class="current">
+                                <a href="/Categories/Show/@mod.CategoryName">@mod.CategoryName</a>
+                                <div class="subnav-posts">
+                                    @foreach (var post in mod.Posts)
+                                    {
+                                        <article>
+                                            <a href="/Articles/Show/@post.Slug"><img src="/@post.MainArticlePic.Resized400Picture" width="190" height="140" alt=""></a>
+                                            <h3>
+                                                <a href="/Articles/Show/@post.Slug">@post.Title</a>
+                                            </h3>
+                                        </article>
+                                    }
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <!-- end:submenu-news -->
+            </li>
+
+            @*<li class="cat-sports">
+                    <a href="~/Sport">Спорт</a>
+                    <div class="subnav-container">
+                        <ul class="subnav-menu">
+                            <li class="current">
+                                <a href="~/News/Sport/Football">Футбол</a>
+                                <div class="subnav-posts">
+                                    <article>
+                                        <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="190" height="140" alt=""></a>
+                                        <h3>
+                                            <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                                        </h3>
+                                    </article>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="~/News/Sport/Football">Баскетбол</a>
+                                <div class="subnav-posts">
+                                    <article>
+                                        <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="190" height="140" alt=""></a>
+                                        <h3>
+                                            <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                                        </h3>
+                                    </article>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="~/News/Sport/ValleyBall">Волейбол</a>
+                                <div class="subnav-posts">
+                                    <article>
+                                        <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="190" height="140" alt=""></a>
+                                        <h3>
+                                            <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                                        </h3>
+                                    </article>
+                                </div>
+                            </li>
+                            <li>
+
+                            <li>
+                                <a href="~/PhotoGallery/Sport">Фото галерия</a>
+                                <div class="subnav-posts">
+                                    <article>
+                                        <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="190" height="140" alt=""></a>
+                                        <h3>
+                                            <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                                        </h3>
+                                    </article>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>*@
+
+            @*<li class="cat-showtime">
+                    <a href="~/Interviews">Интервюта</a>
+                    <div class="subnav-container">
+                        <ul class="subnav-menu">
+                            <li class="current">
+                                <a href="~/Interviews/WhyBulgaria">Защото избрах българия</a>
+                                <div class="subnav-posts">
+                                    <article>
+                                        <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="190" height="140" alt=""></a>
+                                        <h3>
+                                            <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                                        </h3>
+                                    </article>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="~/Interviews/TalkWith">На лавче с</a>
+                                <div class="subnav-posts">
+
+                                    <article>
+                                        <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="190" height="140" alt=""></a>
+                                        <h3>
+                                            <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                                        </h3>
+                                    </article>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="~/Gallery/Interviews">Фото галерия</a>
+                                <div class="subnav-posts">
+                                    <article>
+                                        <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="190" height="140" alt=""></a>
+                                        <h3>
+                                            <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                                        </h3>
+                                    </article>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>*@
+            @*<li class="cat-tech">
+                    <a href="~/News/Technology">Нови технологии</a>
+
+                    <div class="dropnav-container">
+                        <ul class="dropnav-menu">
+                            <li><a href="~/News/Technologies/Mobile">Мобилни</a></li>
+                            <li><a href="~/News/Technologies/Web">Уеб</a></li>
+                            <li><a href="~/News/Technologies/Seccessed">Успелите</a></li>
+                            <li><a href="~/News/Technologies/Seccessed">Фото галерия</a></li>
+                        </ul>
+                    </div>
+                </li>*@
+            @*<li class="cat-business">
+                    <a href="#">Сцената</a>
+                    <!-- start:submenu-business -->
+                    <div class="dropnav-container" style="display: none;">
+                        <ul class="dropnav-menu">
+                            <li><a href="#">От вас за вас</a></li>
+                            <li><a href="#">Галерия</a></li>
+                        </ul>
+                    </div>
+                    <!-- end:submenu-business -->
+                </li>*@
+            <li class="cat-sports">
+                @Html.ActionLink("Галерия", "Gallery", "Images")
+                <!-- start:submenu-extra -->
+                <div class="dropnav-container">
+                    <ul class="dropnav-menu">
+                        <li>@Html.ActionLink("Видео", "Index", "Live")</li>
+                        <li>@Html.ActionLink("Снимки", "Index", "Videos")</li>
+                    </ul>
+                </div>
+                <!-- end:submenu-extra -->
+            </li>
+            <li class="cat-showtime">
+                @Html.ActionLink("Излъчване на живо", "Index", "Live")
+            </li>
+
+            @Html.Partial("~/Views/Shared/_LoginPartial.cshtml")
+        </ul>
+    </nav>
+    <!-- end:menu -->
+</div>
+<!-- end:container -->

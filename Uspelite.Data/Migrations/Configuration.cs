@@ -161,8 +161,6 @@ namespace Uspelite.Data.Migrations
             }
         }
 
-      
-
         private IList<User> SeedAppUsers(UspeliteDbContext context, UserManager<User> userManager)
         {
             var result = new List<User>();

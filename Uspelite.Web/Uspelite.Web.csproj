@@ -650,6 +650,7 @@
     <Content Include="Views\Articles\EditorTemplates\ArticlesBindingModel.cshtml" />
     <Content Include="Views\Shared\Partials\_RatingStars.cshtml" />
     <Content Include="Views\Authors\Info.cshtml" />
+    <Content Include="Views\ChildActions\_ClientNavigation.cshtml" />
     <None Include="Views\Comments\_CommentPartial.cshtml" />
     <None Include="Views\Images\Gallery.cshtml" />
     <Content Include="Views\Articles\Show.cshtml" />

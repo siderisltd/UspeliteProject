@@ -32,7 +32,7 @@
 
     @Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", Model)
     <footer>
-        <h3>Share this article</h3>
+        <h3>Споделете статията</h3>
 
         <a href=""><i class="fa fa-twitter fa-lg"></i></a>
         <a href=""><i class="fa fa-facebook-square fa-lg"></i></a>
@@ -78,7 +78,7 @@
 <section id="article-comments">
 
     <header>
-        <h2><a href="#" id="commentsCount">@Model.Comments.Count comments</a>
+        <h2><a href="#" id="commentsCount">@Model.Comments.Count коментара</a>
         </h2>
         <span class="borderline"></span>
     </header>
@@ -91,7 +91,7 @@
         <section id="article-comments-form">
             <header>
                 <h2>
-                    <a onclick="showCommentBox()" style="cursor:pointer">Leave a comment</a>
+                    <a onclick="showCommentBox()" style="cursor:pointer">Оставете коментар</a>
                 </h2>
                 <span class="borderline"></span>
             </header>
@@ -109,11 +109,11 @@
                     <input type="hidden" value="@Model.Id" name="toId"/>
                     <div class="row bottom-margin">
                         <div class="col-md-12">
-                            <textarea id="comment-area" class="form-control" placeholder="Comment" rows="5" name="content"></textarea>
+                            <textarea id="comment-area" class="form-control" placeholder="Коментар" rows="5" name="content"></textarea>
                         </div>
                     </div>
                     <div>
-                        <input type="submit" class="show-more cat-sports" title="Post comment" value="Add Comment"/>
+                        <input type="submit" class="show-more cat-sports" title="Post comment" value="Добави"/>
                     </div>
                 }
             </div>

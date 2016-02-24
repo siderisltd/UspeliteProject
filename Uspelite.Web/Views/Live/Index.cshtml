@@ -2,10 +2,12 @@
     ViewBag.Title = "Live chat demo";
 }
 
-<title>Chat App</title>
-
 @section styles{
     @Styles.Render("~/Content/Custom/chatStyles.css")
+}
+
+@section sidebar{
+    @(Html.Action<ChildActionsController>(x => x.GetSideBar()))
 }
 
 @section scripts{
@@ -14,7 +16,7 @@
     <script src="~/Scripts/Custom/chatLogic.js"></script>
 }
 
-<div id="header">ChatRoom</div>
+<h1 id="header">Излъчване на живо</h1>
 <br />
 <br />
 <br />
@@ -23,8 +25,8 @@
     <iframe width="560" height="315" src="https://www.youtube.com/embed/q30BxeaS4Dk?autoplay=1" frameborder="0" allowfullscreen></iframe>
 </div>
 
-<input id="btnStartChat" type="button" class="submitButton" value="Start Chat" />
-<div id="divContainer">
+<input id="btnStartChat" type="button" class="submitButton" value="Започнете чат" />
+<div id="divContainer" style="display:none">
     <input id="currentUsername" type="hidden" data-cur-user-username="@User.Identity.Name" />
 
     <div id="divChat" class="chatRoom">

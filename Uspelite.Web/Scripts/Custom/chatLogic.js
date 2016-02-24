@@ -21,6 +21,7 @@ function setScreen(isLogin) {
 
 function registerEvents(chatHub) {
     $("#btnStartChat").click(function () {
+        $('#divContainer').css('display', 'block');
         var name = $('#currentUsername').attr('data-cur-user-username');
         if (name.length > 0) {
             chatHub.server.connect(name);

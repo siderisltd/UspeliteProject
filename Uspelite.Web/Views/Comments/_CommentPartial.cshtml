@@ -10,7 +10,7 @@
         <div class="comment-text">
             <header>
                 <h5 class="pull-left"><a href="#">@Model.Author.FullName</a></h5>
-                <span class="time-stamp">@Model.CreatedOn.ToString("MMMM dd yyyy HH:mm:ss", CultureInfo.InvariantCulture)</span>
+                <span class="time-stamp">@Model.CreatedOn.ToString("MMMM dd yyyy HH:mm:ss", CultureInfo.GetCultureInfo("bg-BG"))</span>
                 <a href="#" class="reply pull-right"></a>
             </header>
             <p>@Model.SanitizedContent</p>
