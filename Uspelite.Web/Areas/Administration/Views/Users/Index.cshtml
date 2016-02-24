@@ -11,7 +11,15 @@
     columns.Bound(col => col.Email);
     columns.Bound(col => col.Posts);
     columns.Bound(col => col.Videos);
-    columns.Command(c => c.Edit());
+    columns.Bound(col => col.CreatedOn);
+    columns.Bound(col => col.Password).Hidden(true);
     columns.Command(c => c.Destroy());
-    //columns.Bound(col => col.Rating);
 }))
+
+@section overridingStyles {
+    <style>
+        .k-grid{
+            width: 960px;
+        }
+    </style>
+}

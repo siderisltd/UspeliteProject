@@ -1,5 +1,6 @@
 ﻿namespace Uspelite.Web.Areas.Administration.Models.Users
 {
+    using System;
     using System.ComponentModel;
     using AutoMapper;
     using Data.Models;
@@ -16,11 +17,13 @@
 
         public string Email { get; set; }
 
-        //public float Rating { get; set; }
-
         public int Posts { get; set; }
 
         public int Videos { get; set; }
+
+        public string Password { get; set; }
+
+        public DateTime CreatedOn { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)
         {

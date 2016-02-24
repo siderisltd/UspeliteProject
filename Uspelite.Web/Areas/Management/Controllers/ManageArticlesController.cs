@@ -24,27 +24,16 @@
         public ActionResult Read([DataSourceRequest]DataSourceRequest request)
         {
             var usersToReturn = this.articlesService.All().To<ManageArticleViewModel>().ToDataSourceResult(request);
-
             return this.Json(usersToReturn);
-        }
-
-        public ActionResult Create([DataSourceRequest]DataSourceRequest request, ManageArticleViewModel model)
-        {
-            if (this.ModelState.IsValid)
-            {
-
-            }
-
-            //dobavqme go i go vrushtame kato json eto taka
-            //mojem da vurnem i modelstate, ako ima greshki kendo da gi vizualizira
-            return this.Json(new[] { model }.ToDataSourceResult(request, this.ModelState));
         }
 
         public ActionResult Update([DataSourceRequest]DataSourceRequest request, ManageArticleViewModel model)
         {
             if (this.ModelState.IsValid)
             {
-
+                var entity = this.articlesService.GetById(model.Id);
+                entity.Title = model.Title;
+                this.articlesService.SaveChanges();
             }
 
             //sushtiq tertip pak update vame i go vrushtame
@@ -54,8 +43,8 @@
 
         public ActionResult Destroy([DataSourceRequest]DataSourceRequest request, ManageArticleViewModel model)
         {
-            //delete the data na sushtiq tertip
-            return this.Json(new[] { model }.ToDataSourceResult(request));
+            this.articlesService.DeleteById(model.Id);
+            return this.Json(new[] { model }.ToDataSourceResult(request, this.ModelState));
         }
     }
 }

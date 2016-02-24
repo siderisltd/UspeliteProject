@@ -8,11 +8,13 @@
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
+    using Data.Common.Roles;
     using Infrastructure.Mapping.Contracts;
     using Models.Articles;
     using Services.Data.Contracts;
     using Data.Models;
     using Data.Models.Enum;
+    using Helpers.Attributes;
     using Microsoft.AspNet.Identity;
     using Models.Categories;
 
@@ -32,11 +34,14 @@
         public ActionResult Show(string slug)
         {
             var model = this.articlesService.GetBySlug(slug).To<ConcreteArticleViewModel>().FirstOrDefault();
+            if(model == null)
+            {
+                return this.HttpNotFound();
+            }
             return this.View(model);
         }
 
         [HttpGet]
-        //[Authorize(Roles = AppRoles.CLIENT_ROLE)]
         public ActionResult Add()
         {
             var model = new ArticlesBindingModel();
@@ -44,10 +49,9 @@
             return this.View(model);
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = AppRoles.CLIENT_ROLE)]
+        [AuthorizeRoles(AppRoles.EDITOR_ROLE, AppRoles.MANAGER_ROLE, AppRoles.ADMIN_ROLE, AppRoles.ULTIMATE_ROLE)]
         public ActionResult Add(ArticlesBindingModel model)
         {
             if (this.ModelState.IsValid)

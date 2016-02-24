@@ -73,6 +73,21 @@
             return commentToAdd;
         }
 
+        public Article GetById(int id)
+        {
+            return this.repo.All().FirstOrDefault(x => x.Id == id);
+        }
+
+        public void DeleteById(int id)
+        {
+             this.repo.Delete(id);
+        }
+
+        public int SaveChanges()
+        {
+            return this.repo.SaveChanges();
+        }
+
         public IQueryable<Article> GetTopPostsByRating(int count = 6, string category = null)
         {
             var query = this.repo.All();

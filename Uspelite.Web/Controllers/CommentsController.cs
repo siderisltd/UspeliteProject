@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Net;
     using System.Web.Mvc;
     using ActionFilters;
     using Data.Models;
@@ -22,28 +23,29 @@
             this.usersService = usersService;
         }
         
+        [Authorize]
         [HttpPost]
         [AjaxActionFilter]
+        [ValidateAntiForgeryToken]
         public ActionResult AddToArticle(CommentsBindingModel model)
         {
-            if (!this.User.Identity.IsAuthenticated)
-            {
-                //todo:proper return
-                return null;
-            }
             if (!this.ModelState.IsValid)
             {
-                //Invalid?
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Post comment modelstate is invalid");
             }
 
             var userId = this.User.Identity.GetUserId();
             var user = this.usersService.GetById(userId);
-            string returnMessage = string.Empty;
+
+            if(user == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "You are not logged in MF");
+            }
 
             var foundArticle = this.articlesService.All().FirstOrDefault(x => x.Id == model.toId);
             if (foundArticle == null)
             {
-                throw new ArgumentNullException("Could not find article with Id: " + model.toId);
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Could not find article with Id: " + model.toId);
             }
             var commentToAdd = new Comment { Author = user, Content = model.Content };
             var comment = this.articlesService.AddCommentTo(foundArticle, commentToAdd);

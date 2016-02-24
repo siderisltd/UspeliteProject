@@ -27,5 +27,11 @@
         IQueryable<Article> All();
 
         Comment AddCommentTo(Article foundArticle, Comment commentToAdd);
+
+        Article GetById(int id);
+
+        void DeleteById(int id);
+
+        int SaveChanges();
     }
 }

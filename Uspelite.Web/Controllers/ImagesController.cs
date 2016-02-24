@@ -15,15 +15,11 @@
             this.imagesService = imagesService;
         }
 
+        [HttpGet]
         public ActionResult Gallery(int page = 1, int pageSize = PAGE_SIZE)
         {
             var dto = this.imagesService.AllPaged(page, pageSize);
             var model = this.Mapper.Map<PageableImageViewModel>(dto);
-
-            if (model == null)
-            {
-                //Todo: throw
-            }
 
             model.PageSize = pageSize;
 

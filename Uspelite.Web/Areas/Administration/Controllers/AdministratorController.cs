@@ -4,8 +4,7 @@
     using Data.Common.Roles;
     using Web.Controllers;
 
-    //TODO: Change it to administrator role
-    [Authorize(Roles = AppRoles.ULTIMATE_ROLE)] 
+    [Authorize(Roles = AppRoles.ADMIN_ROLE)] 
     public class AdministratorController : BaseController
     {
     }

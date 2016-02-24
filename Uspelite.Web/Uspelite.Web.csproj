@@ -253,7 +253,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionFilters\AjaxActionFilter.cs" />
+    <Compile Include="Helpers\ActionFilters\AjaxActionFilter.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdministratorController.cs" />
     <Compile Include="Areas\Administration\Controllers\CrowlersController.cs" />
@@ -273,6 +273,7 @@
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\RatingsController.cs" />
     <Compile Include="Controllers\VideosController.cs" />
+    <Compile Include="Helpers\Attributes\AuthorizeRolesAttribute.cs" />
     <Compile Include="Models\Articles\ArticleImageViewModel.cs" />
     <Compile Include="Models\Articles\ArticlesBindingModel.cs" />
     <Compile Include="Models\Authors\AuthorArticleViewModel.cs" />
@@ -570,7 +571,9 @@
     <Content Include="Areas\Management\Views\web.config" />
     <Content Include="Areas\Management\Views\Shared\_ManagementLayout.cshtml" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Administration\Views\Users\EditorTemplates\UserViewModel.cshtml" />
     <None Include="Areas\Management\Views\ManageArticles\Index.cshtml" />
+    <Content Include="Areas\Management\Views\ManageArticles\EditorTemplates\ManageArticleViewModel.cshtml" />
     <None Include="Scripts\Libraries\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\chatLogic.js" />
     <Content Include="Scripts\Libraries\functions.js" />

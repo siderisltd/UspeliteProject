@@ -19,6 +19,11 @@
         {
             var model = this.categoriesService.GetPaged(slug, page, pageSize).To<PageableCategoryArticlesViewModel>().FirstOrDefault();
 
+            if(model == null)
+            {
+                return this.HttpNotFound();
+            }
+
             model.Slug = slug;
             model.PageSize = pageSize;
 
@@ -33,8 +38,6 @@
                 model.DisplayPageTo = model.TotalPages <= displayTo? model.TotalPages : displayTo;
                 model.DisplayPageFrom = model.DisplayPageTo - 9;
             }
-
-            //model.TopArticle = model.Articles.FirstOrDefault();
 
             return this.View(model);
         }

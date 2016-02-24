@@ -1,9 +1,13 @@
 ﻿namespace Uspelite.Web.Areas.Administration.Controllers
 {
+    using System;
+    using System.Web;
     using System.Web.Mvc;
+    using Data.Models;
     using Infrastructure.Mapping.Contracts;
     using Kendo.Mvc.UI;
     using Kendo.Mvc.Extensions;
+    using Microsoft.AspNet.Identity.Owin;
     using Models.Users;
     using Services.Data.Contracts;
 
@@ -31,31 +35,37 @@
 
         public ActionResult Create([DataSourceRequest]DataSourceRequest request, UserViewModel model)
         {
+            var names = model.FullName.Split(new char[] {' ', '-'}, StringSplitOptions.RemoveEmptyEntries);
+            if(names.Length < 2)
+            {
+                this.ModelState.AddModelError("Invalid name", new ArgumentException());
+            }
             if (this.ModelState.IsValid)
             {
+                var userToAdd = new User()
+                {
+                    Email = model.Email,
+                    FirstName = names[0],
+                    LastName = names[1],
+                    UserName = model.Username
+                };
+                var userManager = this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var user = this.usersService.Create(userToAdd, model.Password, userManager);
 
+                return this.Json(new[] { model }.ToDataSourceResult(request, this.ModelState));
             }
-
-            //dobavqme go i go vrushtame kato json eto taka
-            //mojem da vurnem i modelstate, ako ima greshki kendo da gi vizualizira
-            return this.Json(new[] { model }.ToDataSourceResult(request, this.ModelState));
-        }
-
-        public ActionResult Update([DataSourceRequest]DataSourceRequest request, UserViewModel model)
-        {
-            if (this.ModelState.IsValid)
-            {
-
-            }
-
-            //sushtiq tertip pak update vame i go vrushtame
 
             return this.Json(new[] { model }.ToDataSourceResult(request, this.ModelState));
         }
 
         public ActionResult Destroy([DataSourceRequest]DataSourceRequest request, UserViewModel model)
         {
-            //delete the data na sushtiq tertip
+            if (this.ModelState.IsValid)
+            {
+                var userToDelete = this.usersService.GetById(model.Id);
+                var deletedUser = this.usersService.Delete(userToDelete);
+            }
+            
             return this.Json(new[] { model }.ToDataSourceResult(request));
         }
 

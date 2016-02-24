@@ -18,7 +18,7 @@
             this.categoriesService = categoriesService;
         }
 
-        //TODO: Make generic cache that recaches the top from all categories
+        //TODO: Make generic cache that recaches the top from all categories when entity is inserted
         [OutputCache(Duration = 5 * 60, VaryByParam = "none")]
         public ActionResult GetSlider()
         {

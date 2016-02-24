@@ -16,12 +16,9 @@
             this.articlesService = articlesService;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
-            //var Article = new Article();
-            //var ArticleViewModel = new ArticleViewModel();
-            //var result = this.Mapper.Map<ArticleViewModel, Article>(ArticleViewModel, Article);
-
             //Should get even number of items
             var newestPosts = this.Cache.Get(
                 "newestPosts",
@@ -52,7 +49,6 @@
                 HighRatedInCategory = highRatedInCategory,
                 TopArticle = topArticleByRating
             };
-
 
             return this.View(indexViewModel);
         }

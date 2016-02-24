@@ -11,6 +11,7 @@
         <span class="borderline"></span>
     </header>
 
+    <div id="filter-box"></div>
     <section>
         <div id="article-gallery" class="row">
             @foreach (var mod in Model.Images)
@@ -47,7 +48,7 @@
                         {
                             className = "active";
                         }
-                        <li class="@className">@Html.ActionLink(i.ToString(), "Gallery", "Images", new { page = i, pageSize = Model.PageSize }, null)</li>
+                        <li class="@className">@Html.ActionLink(i.ToString(), "Gallery", "Images", new {page = i, pageSize = Model.PageSize}, null)</li>
                     }
                     @if (Model.DisplayPageTo != Model.TotalPages)
                     {
@@ -62,6 +63,10 @@
         </nav>
     </section>
 </article>
+
+@section scripts {
+    @Scripts.Render("~/Scripts/Custom/ratingScript.js")
+}
 
 @section overridingStyles {
 
@@ -88,8 +93,4 @@
             }
         }
     </style>
-}
-
-@section scripts {
-    @Scripts.Render("~/Scripts/Custom/ratingScript.js")
 }

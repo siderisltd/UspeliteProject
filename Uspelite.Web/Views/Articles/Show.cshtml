@@ -78,7 +78,7 @@
 <section id="article-comments">
 
     <header>
-        <h2><a href="#" id="commentsCount">@Model.Comments.Count коментара</a>
+        <h2><a href="" id="commentsCount">@Model.Comments.Count коментара</a>
         </h2>
         <span class="borderline"></span>
     </header>
@@ -106,6 +106,8 @@
                                                                              OnFailure = "rejectedComment"
                                                                          }))
                 {
+                    @Html.AntiForgeryToken()
+
                     <input type="hidden" value="@Model.Id" name="toId"/>
                     <div class="row bottom-margin">
                         <div class="col-md-12">

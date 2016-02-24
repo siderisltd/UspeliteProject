@@ -20,6 +20,7 @@
     @Styles.Render("~/bundles/kendoStyles")
     @Styles.Render("~/theme/styles")
     @Styles.Render("~/site/styles")
+    @RenderSection("overridingStyles", required: false)
 
     @Scripts.Render("~/bundles/jquery")
 
@@ -48,6 +49,10 @@
                     </div>
                 </div>
             </nav>
+            @if (this.TempData["Alert"] != null)
+            {
+                <div class="alert alert-danger notification-label" role="alert">@this.TempData["Alert"]</div>
+            }
             @if (this.TempData["Notification"] != null)
             {
                 <div class="alert alert-success notification-label" role="alert">@this.TempData["Notification"]</div>

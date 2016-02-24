@@ -1,6 +1,7 @@
 ﻿namespace Uspelite.Web.Controllers
 {
     using System.Linq;
+    using System.Net;
     using System.Web.Mvc;
     using ActionFilters;
     using Data.Models;
@@ -66,16 +67,13 @@
                         returnMessage = this.AddRating(ratingModel.RatePoints, imageRate, imageRateToAdd);
                         break;
                     default:
-                        //return some error for invalid RateableType
-                        break;
+                        return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Rate youeself MF");
                 }
 
                 return this.Json(new { message = string.Format(returnMessage, ratingModel.RatePoints) });
             }
-            else
-            {
-                return this.Json(new {message = "Грешка при гласуването !" });
-            }
+
+            return this.Json(new { message = "Грешка при гласуването !" });
         }
 
         private string AddRating(int ratePoints, Rate existingRate, Rate rateToAdd)
@@ -95,7 +93,5 @@
             }
             return returnMessage;
         }
-
-
     }
 }
