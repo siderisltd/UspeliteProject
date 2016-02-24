@@ -31,7 +31,9 @@ textarea {
     width: 100%;
 }
 
-
+a {
+    cursor: pointer;
+}
 
 
 /*Nav styles* comment to the pic/

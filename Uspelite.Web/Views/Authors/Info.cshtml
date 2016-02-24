@@ -1,0 +1,54 @@
+﻿@model Uspelite.Web.Models.Authors.AuthorsUserViewModel
+
+@section sidebar{
+    @(Html.Action<ChildActionsController>(x => x.GetSideBar()))
+}
+
+<section id="author-page">
+    <div class="author-box">
+        <img src="/@Model.ProfileImage.Resized400Picture" width="115" height="115" alt="" class="img-circle">
+        <a class="name">@Model.FullName</a>
+        <p>@Model.ShortInfo</p>
+        <p>
+            <a href=""><i class="fa fa-twitter fa-lg"></i></a>
+            <a href=""><i class="fa fa-facebook-square fa-lg"></i></a>
+            <a href=""><i class="fa fa-linkedin-square fa-lg"></i></a>
+            <a href=""><i class="fa fa-google-plus-square fa-lg"></i></a>
+            <a href=""><i class="fa fa-vimeo-square fa-lg"></i></a>
+        </p>
+    </div>
+
+    <section class="news-lay-3 bottom-margin">
+        <div class="row">
+
+            @{ int counter = 0;}
+            @foreach (var article in Model.Articles)
+            {
+                <article class="col-md-4 cat-sports">
+                    <div class="thumb-wrap relative">
+                        <a href="/Articles/Show/@article.Slug"><img src="/@article.MainArticlePic.Resized400Picture" width="265" height="160" alt="Responsive image" class="img-responsive image"></a>
+                        <a href="/Categories/Show/@article.Category" class="theme">@article.Category</a>
+                    </div>
+                    <span class="published">@Html.DisplayFor(x => article.CreatedOn)</span>
+                    <h3><a href="/Articles/Show/@article.Slug">@article.Title</a>
+                    </h3>
+                </article>
+
+                counter++;
+                if (counter%3 == 0)
+                {
+                    @: </div>
+                    @: <div>
+                }
+            }
+        </div>
+    </section>
+</section>
+
+@section overridingStyles {
+    <style>
+        .img-responsive.image {
+            max-height: 152px;
+        }
+    </style>
+}

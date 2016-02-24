@@ -6,6 +6,6 @@
 
         int RateType { get; }
 
-        int? Rating { get; }
+        int Rating { get; }
     }
 }

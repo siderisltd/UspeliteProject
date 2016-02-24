@@ -1,84 +1,50 @@
 ﻿@model Uspelite.Web.Models.Account.Manage.IndexViewModel
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "My account";
 }
 
-<h2>@ViewBag.Title.</h2>
+<div id="profile-wrapper">
 
-<p class="text-success">@ViewBag.StatusMessage</p>
-<div>
-    <h4>Change your account settings</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>Password:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Change your password", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
-            ]
-        </dd>
-        <dt>External Logins:</dt>
-        <dd>
-            @Model.Logins.Count [
-            @Html.ActionLink("Manage", "ManageLogins") ]
-        </dd>
-        @*
-            Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-             
-             See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-             
-             Uncomment the following block after you have set up two-factor authentication
-        *@
-        @*  
-            <dt>Phone Number:</dt>
+    <h2>@ViewBag.Title</h2>
+    <p class="text-success">@ViewBag.StatusMessage</p>
+    <br/>
+
+    @Ajax.ActionLink("Update profile", "GetEditPartial", "Manage", Model.User, new AjaxOptions
+{
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "GET",
+    UpdateTargetId = "user-information"
+}, new { @class = "btn btn-success" })
+
+
+    <div class="author-box">
+        <img src="/@Model.User.ProfileImage.Resized400Picture" width="115" height="115" alt="" class="img-circle">
+        <span id="user-information">
+            <p class="name">@Model.User.FullName</p>
+            <p>@Model.User.ShortInfo</p>
+        </span>
+
+        <p>
+            <a href=""><i class="fa fa-twitter fa-lg"></i></a>
+            <a href=""><i class="fa fa-facebook-square fa-lg"></i></a>
+            <a href=""><i class="fa fa-linkedin-square fa-lg"></i></a>
+            <a href=""><i class="fa fa-google-plus-square fa-lg"></i></a>
+            <a href=""><i class="fa fa-vimeo-square fa-lg"></i></a>
+        </p>
+    </div>
+
+    <div>
+        <h4>Settings</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>Password:</dt>
             <dd>
-                @(Model.PhoneNumber ?? "None") [
-                @if (Model.PhoneNumber != null)
-                {
-                    @Html.ActionLink("Change", "AddPhoneNumber")
-                    @: &nbsp;|&nbsp;
-                    @Html.ActionLink("Remove", "RemovePhoneNumber")
-                }
-                else
-                {
-                    @Html.ActionLink("Add", "AddPhoneNumber")
-                }
-                ]
+                @Html.ActionLink("Change your password", "ChangePassword")
             </dd>
-        *@
-        <dt>Two-Factor Authentication:</dt>
-        <dd>
-            <p>
-                There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication.
-            </p>
-            @*@if (Model.TwoFactor)
-                {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Enabled
-                        <input type="submit" value="Disable" class="btn btn-link" />
-                        </text>
-                    }
-                }
-                else
-                {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Disabled
-                        <input type="submit" value="Enable" class="btn btn-link" />
-                        </text>
-                    }
-                }*@
-        </dd>
-    </dl>
+            <dt>External Logins:</dt>
+            <dd>
+                @Html.ActionLink("Manage", "ManageLogins")
+            </dd>
+        </dl>
+    </div>
 </div>

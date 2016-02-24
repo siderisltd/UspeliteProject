@@ -10,5 +10,9 @@
         User GetByUsername(string username);
 
         IQueryable<User> All();
+
+        User Find(string authorId, string authorFirstName, string authorLastName);
+
+        int SaveChanges();
     }
 }

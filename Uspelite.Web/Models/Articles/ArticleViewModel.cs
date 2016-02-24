@@ -16,15 +16,12 @@
         public ArticleViewModel()
             :this(new HtmlSanitizerAdapter())
         {
-
         }
 
         public ArticleViewModel(ISanitizer sanitizer)
         {
             this.sanitizer = sanitizer;
         }
-
-        private int rating = 0;
 
         private ArticleImageViewModel _mainArticlePic = new ArticleImageViewModel
         {
@@ -65,24 +62,12 @@
         public int RateType { get { return (int)RateableType.Article; } }
 
 
-        public int? Rating
-        {
-            get { return this.rating; }
-            set
-            {
-                if (value != null)
-                {
-                    this.rating = (int)value;
-                }
-
-            }
-        }
-
+        public int Rating { get; set; }
 
         public virtual void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Article, ArticleViewModel>()
-                         .ForMember(x => x.Rating, opt => opt.MapFrom(x => x.Ratings.Sum(y => y.Value)/x.Ratings.Count))
+                         .ForMember(x => x.Rating, opt => opt.MapFrom(x => x.Ratings.Any() ? (x.Ratings.Sum(y => y.Value) / x.Ratings.Count) : 0))
                          .ForMember(x => x.Category, opt => opt.MapFrom(x => x.Category.Slug))
                          .ForMember(x => x.PartialContent, opt => opt.MapFrom(x => x.Content.Substring(0, 45) + "..."))
                          .ForMember(x => x.MainArticlePic, opt => opt.MapFrom(x => x.Images.FirstOrDefault(u => u.IsMain)));

@@ -43,7 +43,7 @@
 
         <div class="author-box">
             <img src="/@Model.Author.ProfileImage.Resized400Picture" width="115" height="115" alt="" class="img-circle">
-            <p class="name">@Model.Author.FullName</p>
+            <a class="name" href="/Authors/Info/@Model.Author.Id/@Model.Author.FullName.Replace(' ', '-')">@Model.Author.FullName</a>
             <p>@Model.Author.ShortInfo</p>
         </div>
     </footer>

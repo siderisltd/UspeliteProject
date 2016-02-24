@@ -266,6 +266,7 @@
     <Compile Include="Areas\Management\Controllers\ManagerController.cs" />
     <Compile Include="Areas\Management\ManagementAreaRegistration.cs" />
     <Compile Include="Areas\Management\Models\ManageArticleViewModel.cs" />
+    <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
@@ -274,6 +275,8 @@
     <Compile Include="Controllers\VideosController.cs" />
     <Compile Include="Models\Articles\ArticleImageViewModel.cs" />
     <Compile Include="Models\Articles\ArticlesBindingModel.cs" />
+    <Compile Include="Models\Authors\AuthorArticleViewModel.cs" />
+    <Compile Include="Models\Authors\AuthorsUserViewModel.cs" />
     <Compile Include="Models\Comments\CommentViewModel.cs" />
     <Compile Include="Models\Articles\ConcreteArticleViewModel.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
@@ -646,6 +649,7 @@
     <None Include="Views\Articles\Add.cshtml" />
     <Content Include="Views\Articles\EditorTemplates\ArticlesBindingModel.cshtml" />
     <Content Include="Views\Shared\Partials\_RatingStars.cshtml" />
+    <Content Include="Views\Authors\Info.cshtml" />
     <None Include="Views\Comments\_CommentPartial.cshtml" />
     <None Include="Views\Images\Gallery.cshtml" />
     <Content Include="Views\Articles\Show.cshtml" />
@@ -665,6 +669,7 @@
     <Content Include="Views\Shared\DisplayTemplates\ModelStateDictionary.cshtml" />
     <Content Include="Views\Videos\Index.cshtml" />
     <Content Include="Views\Shared\Partials\_Pagination.cshtml" />
+    <Content Include="Views\Manage\_EditProfileInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Uspelite.Data.Common\Uspelite.Data.Common.csproj">

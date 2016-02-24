@@ -1,6 +1,7 @@
 ﻿namespace Uspelite.Web.Models.Account.Manage
 {
     using System.Collections.Generic;
+    using Common;
     using Microsoft.AspNet.Identity;
 
     public class IndexViewModel
@@ -14,5 +15,7 @@
         public bool TwoFactor { get; set; }
 
         public bool BrowserRemembered { get; set; }
+
+        public UserViewModel User { get; set; }
     }
 }

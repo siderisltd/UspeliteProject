@@ -68,18 +68,7 @@
 
         public int RateType {  get { return (int) RateableType.Article; }  }
 
-        public int? Rating
-        {
-            get { return this.rating; }
-            set
-            {
-                if (value != null)
-                {
-                    this.rating = (int)value;
-                }
-
-            }
-        }
+        public int Rating { get; set; }
 
         public UserViewModel Author { get; set; }
 
@@ -88,7 +77,7 @@
         public virtual void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Article, ConcreteArticleViewModel>()
-                .ForMember(x => x.Rating, opt => opt.MapFrom(x => x.Ratings.Sum(y => y.Value) / x.Ratings.Count))
+                .ForMember(x => x.Rating, opt => opt.MapFrom(x => x.Ratings.Any() ? (x.Ratings.Sum(y => y.Value) / x.Ratings.Count) : 0))
                 .ForMember(x => x.Category, opt => opt.MapFrom(x => x.Category.Slug))
                 .ForMember(x => x.FullContent, opt => opt.MapFrom(x => x.Content))
                 .ForMember(x => x.MainArticlePic, opt => opt.MapFrom(x => x.Images.FirstOrDefault(u => u.IsMain)));

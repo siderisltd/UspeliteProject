@@ -158,7 +158,7 @@
                         <h3>@(Html.ActionLink<ArticlesController>(post.Title, x => x.Show(post.Slug)))</h3>
 
                         <a href="#">@Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "100", "80")</a>
-                        <span class="text">@post.SanitizedPartialContent</span>
+                        <span class="text">@Html.Raw(@post.SanitizedPartialContent)</span>
                         <span class="published">@Html.DisplayFor(x => post.CreatedOn)</span>
                     </article>
                 }
@@ -180,7 +180,7 @@
                 <div class="col-xs-4 col-sm-12">
                     <article>
                         <h3>@(Html.ActionLink<ArticlesController>(post.Title, x => x.Show(post.Slug)))</h3>
-                        <span class="text">@post.SanitizedPartialContent</span>
+                        <span class="text">@Html.Raw(@post.SanitizedPartialContent)</span>
                         <span class="published">@Html.DisplayFor(x => post.CreatedOn)</span>
                     </article>
                 </div>
@@ -204,7 +204,7 @@
                 <div class="col-xs-4 col-sm-12">
                     <article>
                         <h3>@(Html.ActionLink<ArticlesController>(post.Title, x => x.Show(post.Slug)))</h3>
-                        <span class="text">@post.SanitizedPartialContent</span>
+                        <span class="text">@Html.Raw(@post.SanitizedPartialContent)</span>
                         <span class="published">@Html.DisplayFor(x => post.CreatedOn)</span>
                     </article>
                 </div>

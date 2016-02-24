@@ -8,16 +8,21 @@ using Microsoft.Owin.Security;
 
 namespace Uspelite.Web.Controllers
 {
+    using ActionFilters;
     using Models.Account.Manage;
+    using Models.Common;
+    using Services.Data.Contracts;
 
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly IUsersService usersService;
 
-        public ManageController()
+        public ManageController(IUsersService usersService)
         {
+            this.usersService = usersService;
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -50,6 +55,35 @@ namespace Uspelite.Web.Controllers
             }
         }
 
+        [HttpGet]
+        [AjaxActionFilter]
+        public ActionResult GetEditPartial(UserViewModel model)
+        {
+            var viewModel = new IndexViewModel {User = model};
+            return this.PartialView("_EditProfileInfo", viewModel);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> UpdateInfo(IndexViewModel userModel)
+        {
+            var model = userModel.User;
+            var user = this.usersService.GetById(this.User.Identity.GetUserId());
+            var names = model.FullName.Split(' ');
+            user.FirstName = names[0] ?? string.Empty;
+            user.LastName = names[1] ?? string.Empty;
+            user.ShortInfo = model.ShortInfo;
+            this.usersService.SaveChanges();
+
+            var userAsViewModel = this.Mapper.Map<UserViewModel>(user);
+            var viewModel = new IndexViewModel
+            {
+                User = userAsViewModel
+            };
+
+            this.TempData["Notification"] = "Информацията беше променена успешно";
+            return this.View("Index", viewModel);
+        }
+
         //
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
@@ -64,13 +98,16 @@ namespace Uspelite.Web.Controllers
                 : "";
 
             var userId = this.User.Identity.GetUserId();
+            var user = this.usersService.GetById(userId);
+            var userAsViewModel = this.Mapper.Map<UserViewModel>(user);
             var model = new IndexViewModel
             {
                 HasPassword = this.HasPassword(),
                 PhoneNumber = await this.UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await this.UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await this.UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await this.AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await this.AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                User = userAsViewModel
             };
             return this.View(model);
         }

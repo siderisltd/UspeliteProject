@@ -34,5 +34,17 @@
         {
             return this.repo.All();
         }
+
+        public User Find(string authorId, string authorFirstName, string authorLastName)
+        {
+            return this.repo
+                .All()
+                .FirstOrDefault(x => x.Id == authorId && x.FirstName == authorFirstName && x.LastName == authorLastName);
+        }
+
+        public int SaveChanges()
+        {
+            return this.repo.SaveChanges();
+        }
     }
 }

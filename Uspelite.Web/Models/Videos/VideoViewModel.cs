@@ -9,28 +9,13 @@
 
     public class VideoViewModel : IRateable, IMapFrom<Video>, IHaveCustomMappings
     {
-        private int rating = 0;
-
         public int Id { get; set; }
 
         public string Title { get; set; }
 
-        public int RateType { get { return (int) RateableType.Video; } }
+        public int RateType { get { return (int)RateableType.Video; } }
 
-
-        public int? Rating
-        {
-            get { return this.rating; }
-            set
-            {
-                if (value != null)
-                {
-                    this.rating = (int)value;
-                }
-
-            }
-        }
-
+        public int Rating { get; set; }
 
         public string VideoUrl { get; set; }
 
@@ -75,7 +60,7 @@
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Video, VideoViewModel>()
-                         .ForMember(x => x.Rating, opt => opt.MapFrom(x => x.Ratings.DefaultIfEmpty(new Rate {Value= 0 }).Sum(y => y.Value) / x.Ratings.DefaultIfEmpty(new Rate()).Count()));
+                         .ForMember(x => x.Rating, opt => opt.MapFrom(x => x.Ratings.Any() ? (x.Ratings.Sum(y => y.Value) / x.Ratings.Count) : 0));
         }
     }
 }
