@@ -574,6 +574,7 @@
     <Content Include="Areas\Administration\Views\Users\EditorTemplates\UserViewModel.cshtml" />
     <None Include="Areas\Management\Views\ManageArticles\Index.cshtml" />
     <Content Include="Areas\Management\Views\ManageArticles\EditorTemplates\ManageArticleViewModel.cshtml" />
+    <None Include="Properties\PublishProfiles\fileSystem.pubxml" />
     <None Include="Scripts\Libraries\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\chatLogic.js" />
     <Content Include="Scripts\Libraries\functions.js" />

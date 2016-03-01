@@ -20,12 +20,12 @@
             
             if(authorNames.Length < 2)
             {
-                return this.HttpNotFound();
+                return this.HttpNotFound("Author should have 2 names");
             }
             var user = this.usersService.Find(authorId, authorNames[0], authorNames[1]);
             if(user == null)
             {
-                return this.HttpNotFound();
+                return this.HttpNotFound("User not found");
             }
             var model = this.Mapper.Map<User, AuthorsUserViewModel>(user);
 

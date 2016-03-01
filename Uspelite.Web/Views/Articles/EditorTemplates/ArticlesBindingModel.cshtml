@@ -5,26 +5,26 @@
     <fieldset>
         <h2>Добавяне на статия</h2>
 
-        <br/>
+        <br />
 
         <div class="form-group">
             @Html.LabelFor(x => x.Title, new { @class = "col-lg-2 control-label" })
             <div class="col-lg-10">
-                @Html.TextBoxFor(x => x.Title, new {@class = "form-control"})
+                @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(x => x.Slug, new {@class = "col-lg-2 control-label"})
+            @Html.LabelFor(x => x.Slug, new { @class = "col-lg-2 control-label" })
             <div class="col-lg-10">
-                @Html.TextBoxFor(x => x.Slug, new {@class = "form-control"})
+                @Html.TextBoxFor(x => x.Slug, new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(x => x.CategoryId, new {@class = "col-lg-2 control-label"})
+            @Html.LabelFor(x => x.CategoryId, new { @class = "col-lg-2 control-label" })
             <div class="col-lg-10">
-                @Html.DropDownListFor(x => x.CategoryId, Model.AllCategories, new {id = "select", @class = "form-control"})
+                @Html.DropDownListFor(x => x.CategoryId, Model.AllCategories, new { id = "select", @class = "form-control" })
             </div>
         </div>
 
@@ -32,7 +32,7 @@
         <div class="form-group">
             @Html.LabelFor(x => x.TitleImage, new { @class = "col-lg-2 control-label" })
             <div class="col-lg-10">
-                <input type="file" name="TitleImage" multiple="multiple"/>
+                <input type="file" name="TitleImage" multiple="multiple" />
             </div>
         </div>
 
@@ -53,39 +53,38 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(x => x.Content, new {@class = "col-lg-2 control-label"})
+            @Html.LabelFor(x => x.Content, new { @class = "col-lg-2 control-label" })
             <div class="col-lg-10">
-                @(Html.Kendo()
-                      .EditorFor(x => x.Content)
-                      .Name("Content")
-                      .Encode(false)
-                      .HtmlAttributes(new { style = "height:600px" })
-                      .Tools(tools => tools.Clear()
-                             .Bold()
-                             .Italic()
-                             .Underline()
-                             .FontSize()
-                             .FontColor()
-                             .JustifyLeft()
-                             .JustifyCenter()
-                             .JustifyRight()
-                             .JustifyFull()
-                             .InsertUnorderedList()
-                             .InsertOrderedList()
-                             .Indent()
-                             .CreateLink()
-                             .ViewHtml()
-                             .Print()
-                             .Pdf()
-                             .Outdent()
-                             .InsertFile()
-                             .Formatting()
-                             .FontName()
-                             .CreateLink()
-                             .BackColor()
-                             .CleanFormatting()
-                             .InsertImage()))
+                @(
+  Html.Kendo().Editor()
+              .Name("kEditor")
+              .Tools(tools => tools
+                          .Clear()
+                          .Bold().Italic().Underline().Strikethrough()
+                          .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                          .InsertUnorderedList().InsertOrderedList()
+                          .Outdent().Indent()
+                          .CreateLink().Unlink()
+                          .InsertImage()
+                          .InsertFile()
+                          .SubScript()
+                          .SuperScript()
+                          .TableEditing()
+                          .ViewHtml()
+                          .Formatting()
+                          .CleanFormatting()
+                          .FontName()
+                          .FontSize()
+                          .FontColor()
+                          .BackColor()
+                            .CustomButton(cb => cb
+                                          .Name("HorizontalRule")
+                                          .ToolTip("Insert a horizontal rule")
+                                          .Exec("execFunction")
+                               )))
+
             </div>
         </div>
     </fieldset>
 </div>
+

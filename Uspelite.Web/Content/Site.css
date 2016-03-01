@@ -76,3 +76,8 @@ div.container {
     padding-left: 0;
     padding-right: 0;
 }
+
+.partial-text * {
+    font-size: 12px;
+    font-weight: normal;
+}

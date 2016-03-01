@@ -33,7 +33,6 @@
             return this.PartialView("_Sidebar", model);
         }
 
-        [OutputCache(Duration = 5 * 60, VaryByParam = "none")]
         public ActionResult GetClientNavigation()
         {
             var topSevenCategories = this.categoriesService.GetAll().OrderBy(x => x.Ratings.Any() ? x.Ratings.Sum(z => z.Value) : 0).Take(7).AsEnumerable();
