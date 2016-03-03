@@ -8,6 +8,7 @@
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
+    using ActionFilters;
     using Data.Common.Roles;
     using Infrastructure.Mapping.Contracts;
     using Models.Articles;
@@ -34,7 +35,7 @@
         public ActionResult Show(string slug)
         {
             var model = this.articlesService.GetBySlug(slug).To<ConcreteArticleViewModel>().FirstOrDefault();
-            if(model == null)
+            if (model == null)
             {
                 return this.HttpNotFound();
             }
@@ -47,6 +48,32 @@
             var model = new ArticlesBindingModel();
             model.AllCategories = this.GetAllCategories();
             return this.View(model);
+        }
+
+        [HttpGet]
+        [AjaxActionFilter]
+        public ActionResult BuildLinkView()
+        {
+            return this.PartialView("_BuildLinkView");
+        }
+
+        [HttpGet]
+        [AjaxActionFilter]
+        public ActionResult GetArticlesFilteredByTitle(string searchQuery)
+        {
+            List<SelectListItem> articles = this.articlesService
+                .GetAllFilteredByTitle(searchQuery)
+                .To<BuildLinkArticleModel>()
+                .Select(x => new SelectListItem
+                {
+                    Text = x.Title,
+                    Value = x.Slug
+                })
+                .ToList();
+
+            var model = new ArticlesSearchByTitleViewModel { Articles = articles };
+
+            return this.PartialView("_FilteredArticlesByTitleDropdown", model);
         }
 
         [HttpPost]
@@ -82,7 +109,7 @@
                         imageId = this.imagesService.SaveImage(articleImage, ImageFormat.Jpeg);
                     }
 
-                   
+
                     var articleId = this.articlesService.Add(
                         model.Title,
                         model.Slug,
@@ -100,7 +127,7 @@
                     model.AllCategories = this.GetAllCategories();
                     return this.View(model);
                 }
-                 
+
                 return this.RedirectToAction("Index", "Home");
             }
 

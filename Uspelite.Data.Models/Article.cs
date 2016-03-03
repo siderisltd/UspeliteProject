@@ -52,7 +52,11 @@
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
         
-        public virtual ICollection<Image> Images { get; set; }
+        public virtual ICollection<Image> Images
+        {
+            get { return this.images; }
+            set { this.images = value; }
+        }
 
         [NotMapped]
         public Image MainImage

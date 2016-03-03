@@ -52,5 +52,12 @@
                 .ShouldRenderDefaultView();
         }
 
+        [TestMethod]
+        public void asd()
+        {
+            this.controller.WithCallTo(x => x.Info("asdsad", ""))
+                .ShouldGiveHttpStatus(HttpStatusCode.NotFound);
+        }
+
     }
 }

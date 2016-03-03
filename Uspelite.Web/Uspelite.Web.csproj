@@ -276,6 +276,8 @@
     <Compile Include="Helpers\Attributes\AuthorizeRolesAttribute.cs" />
     <Compile Include="Models\Articles\ArticleImageViewModel.cs" />
     <Compile Include="Models\Articles\ArticlesBindingModel.cs" />
+    <Compile Include="Models\Articles\ArticlesSearchByTitleViewModel.cs" />
+    <Compile Include="Models\Articles\BuildLinkArticleModel.cs" />
     <Compile Include="Models\Authors\AuthorArticleViewModel.cs" />
     <Compile Include="Models\Authors\AuthorsUserViewModel.cs" />
     <Compile Include="Models\Comments\CommentViewModel.cs" />
@@ -655,6 +657,8 @@
     <Content Include="Views\Shared\Partials\_RatingStars.cshtml" />
     <Content Include="Views\Authors\Info.cshtml" />
     <Content Include="Views\ChildActions\_ClientNavigation.cshtml" />
+    <None Include="Views\Articles\_BuildLinkView.cshtml" />
+    <Content Include="Views\Articles\_FilteredArticlesByTitleDropdown.cshtml" />
     <None Include="Views\Comments\_CommentPartial.cshtml" />
     <None Include="Views\Images\Gallery.cshtml" />
     <Content Include="Views\Articles\Show.cshtml" />

@@ -80,7 +80,7 @@
 
         public void DeleteById(int id)
         {
-             this.repo.Delete(id);
+            this.repo.Delete(id);
         }
 
         public int SaveChanges()
@@ -117,13 +117,13 @@
             return query;
         }
 
-        public IQueryable<Article> GetMostCommented(int count = 6, string category = null)
+        public IQueryable<Article> GetMostCommented(int count = 6, string categoryTitle = null)
         {
             var query = this.repo.All();
 
-            if (!string.IsNullOrEmpty(category))
+            if (!string.IsNullOrEmpty(categoryTitle))
             {
-                query = query.Where(x => x.Category.Title == category);
+                query = query.Where(x => x.Category.Title == categoryTitle);
             }
             query = query
                    .OrderByDescending(x => x.Comments.Count)
@@ -136,6 +136,7 @@
         {
             if (categories == null)
             {
+                //TODO: Fix this bullshit
                 categories = this.categoriesService.GetAll().AsEnumerable();
             }
 
@@ -154,6 +155,20 @@
             var query = this.repo
                             .All()
                             .Where(x => x.Slug == slug);
+
+            return query;
+        }
+
+        public IQueryable<Article> GetAllFilteredByTitle(string searchQuery)
+        {
+            var query = this.repo.All();
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                query = query
+                    .Where(x => x.Title.ToLower().Contains(searchQuery.ToLower()) ||
+                            x.Content.ToLower().Contains(searchQuery.ToLower()));
+            }
 
             return query;
         }

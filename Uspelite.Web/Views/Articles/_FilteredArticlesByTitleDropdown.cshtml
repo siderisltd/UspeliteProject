@@ -1,0 +1,8 @@
+﻿@model Uspelite.Web.Models.Articles.ArticlesSearchByTitleViewModel
+
+<div class="form-group">
+    @Html.LabelFor(x => x.Articles, new {@class = "col-lg-2 control-label"})
+    <div class="col-lg-10">
+        @Html.DropDownListFor(x => x.Articles, Model.Articles, new {id = "selectLink", @class = "form-control"})
+    </div>
+</div>

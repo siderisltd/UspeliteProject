@@ -55,10 +55,10 @@
         <div class="form-group">
             @Html.LabelFor(x => x.Content, new { @class = "col-lg-2 control-label" })
             <div class="col-lg-10">
-                @(
-  Html.Kendo().Editor()
-              .Name("kEditor")
-              .Tools(tools => tools
+                @(Html.Kendo()
+                      .Editor()
+                      .Name("Content")
+                      .Tools(tools => tools
                           .Clear()
                           .Bold().Italic().Underline().Strikethrough()
                           .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
@@ -77,11 +77,12 @@
                           .FontSize()
                           .FontColor()
                           .BackColor()
-                            .CustomButton(cb => cb
-                                          .Name("HorizontalRule")
-                                          .ToolTip("Insert a horizontal rule")
-                                          .Exec("execFunction")
-                               )))
+                          .CustomButton(cb => cb
+                              .Name("Add link to article")
+                              .ToolTip("Add link to article")
+                              .Exec("execFunction")
+                          ))
+                          .Encode(false))
 
             </div>
         </div>

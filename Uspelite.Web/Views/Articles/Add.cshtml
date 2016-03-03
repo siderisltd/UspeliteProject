@@ -2,6 +2,7 @@
 
 @Html.DisplayFor(x => ViewData.ModelState)
 
+<div id="addLinkHolder"></div>
 @using (Html.BeginForm("Add", "Articles", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -29,20 +30,74 @@
         .k-editor .k-HorizontalRule {
             background: 50% 50% no-repeat url(http://digitaltools.node3000.com/wp-content/themes/digital-tools/images/rss-icon-16x16px.png);
         }
+
+        #addLinkHolder {
+            display: none;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            position: absolute;
+            z-index: 10000;
+            background-color: white;
+            width: 500px;
+            vertical-align: middle;
+        }
     </style>
 }
 
 @section scripts{
     @Scripts.Render("~/bundles/kendo")
     <script>
+
+        $(function() {
+            $('#addLinkHolder').on('change', '#selectLink', function () {
+                var selectedArticleSlug = this[this.selectedIndex].value;
+                $('#Url').val('/Articles/Show/' + selectedArticleSlug);
+            });
+        });
+
         function execFunction(e) {
-            alert('execFunk');
-            console.log(e);
-
-            var editor = $(this).data("kendoEditor");
-            //console.log(editor);
-
-            editor.exec("inserthtml", { value: "<a href=\"#\">Link</a>" });
+            $.get('/Articles/BuildLinkView', null, function (data) {
+                $('#addLinkHolder').html(data);
+                $('#addLinkHolder').css('display', 'table-cell');
+            });
         }
+
+        function addLink() {
+            var editor = $("#Content").data("kendoEditor");
+
+            var linkText = $('#Title').val();
+            var location = $('#Url').val();
+            var tooltip = $('#ToolTip').val();
+  
+            var blank = $('#OpenInNewWindow').is(":checked");
+            var linkHtml = GenerateLink(linkText, location, tooltip, blank);
+            editor.exec("inserthtml", { value: linkHtml });
+
+            $('#addLinkHolder').empty();
+        }
+
+        function GenerateLink(linkText, location, title, blank) {
+            var target = '';
+            var linkTitle = '';
+
+            if (blank) {
+                target = 'target="_blank"';
+            }
+            if (title.length > 1) {
+                linkTitle = 'title="' + title + '"';
+            }
+
+            if (location[0] !== '/') {
+                if (!location.match("^http://")) {
+                    location = 'http://' + location;
+                }
+            }
+
+            var result = '<a href="' + location + '"' + target + linkTitle + '>' + linkText + '</a>';
+            return result;
+        }
+
     </script>
 }

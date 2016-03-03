@@ -24,6 +24,7 @@
                 "newestPosts",
                 () => this.articlesService.GetNewestPosts(16).To<ArticleViewModel>().ToList(), 10);
 
+
             //Should get even number of items
             var highRatedPosts = this.Cache.Get(
                 "highRatedPosts",
