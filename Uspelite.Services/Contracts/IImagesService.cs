@@ -1,9 +1,10 @@
 ﻿namespace Uspelite.Services.Data.Contracts
 {
-    using System.Collections.Generic;
+    using System.Drawing;
     using System.Drawing.Imaging;
+    using System.IO;
     using DTO;
-    using Uspelite.Data.Models;
+    using Image = Uspelite.Data.Models.Image;
 
     public interface IImagesService
     {
@@ -12,5 +13,7 @@
         PagedImageDTO AllPaged(int page, int pageSize, int? categoryId = null);
 
         Image SaveImageFromWeb(string url, string title, ImageFormat imageFormat, string authorId);
+
+        byte[] CropImage(Stream inputStream, Rectangle rectangle);
     }
 }

@@ -1,4 +1,5 @@
-﻿@model Uspelite.Web.Models.Articles.ArticlesBindingModel
+﻿@using Uspelite.Data.Common.Roles
+@model Uspelite.Web.Models.Articles.ArticlesBindingModel
 
 
 <div class="well bs-component">
@@ -32,10 +33,22 @@
         <div class="form-group">
             @Html.LabelFor(x => x.TitleImage, new { @class = "col-lg-2 control-label" })
             <div class="col-lg-10">
-                <input type="file" name="TitleImage" multiple="multiple" />
+
+                <canvas id="coordinates-data-helper" data-x1="" data-x2="" data-y1="" data-y2="" data-w="" data-h="" width="0" height="0"></canvas>
+
+                <input id="image-upload-input" type="file" name="TitleImage" />
+                <img id="main-upload-image" src="" />
+                @*<div class="inline-labels">
+                    <label>X1 <input type="text" size="4" id="x1" name="x1" /></label>
+                    <label>Y1 <input type="text" size="4" id="y1" name="y1" /></label>
+                    <label>X2 <input type="text" size="4" id="x2" name="x2" /></label>
+                    <label>Y2 <input type="text" size="4" id="y2" name="y2" /></label>
+                    <label>W <input type="text" size="4" id="w" name="w" /></label>
+                    <label>H <input type="text" size="4" id="h" name="h" /></label>
+                </div>*@
+                <input id="cropBtn" type="button" class="btn btn-success" value="Crop" onclick="cropBtn_click()" style="display:none;" />
             </div>
         </div>
-
 
         <div class="form-group">
             @Html.LabelFor(x => x.ImportBranding, new { @class = "col-lg-2 control-label" })
@@ -66,7 +79,6 @@
                           .Outdent().Indent()
                           .CreateLink().Unlink()
                           .InsertImage()
-                          .InsertFile()
                           .SubScript()
                           .SuperScript()
                           .TableEditing()
@@ -82,7 +94,13 @@
                               .ToolTip("Add link to article")
                               .Exec("execFunction")
                           ))
-                          .Encode(false))
+                          .Encode(false)
+                          .ImageBrowser(imageBrowser => imageBrowser
+                                 .Image("~/Content/Uploads/Images/{0}")
+                                 .Read("Read", "ImageBrowser")
+                                 .Create("Create", "ImageBrowser")
+                                 .Upload("Upload", "ImageBrowser")
+                                 .Thumbnail("Thumbnail", "ImageBrowser")))
 
             </div>
         </div>

@@ -63,5 +63,7 @@
         [NotMapped]
         public Stream Stream { get; set; }
 
+        [NotMapped]
+        public byte[] AsByteArray { get; set; }
     }
 }

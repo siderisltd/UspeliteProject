@@ -9,6 +9,12 @@
     @(Html.Action<ChildActionsController>(x => x.GetSideBar()))
 }
 
+@if (Model.ShowEdit)
+{
+    @Html.ActionLink("Edit", "Add", "Articles", new { Id = Model.Id }, new { @class = "btn btn-success"})
+}
+
+
 <article id="article-post" class="cat-sports">
     <div class="head-image thumb-wrap relative">
         <a href="article-sport.php">@Html.Image(x => Model.MainArticlePic.OriginalSizedPicture, "Alt responsive picture", "770", "470", new { @class = "img-responsive" })</a>

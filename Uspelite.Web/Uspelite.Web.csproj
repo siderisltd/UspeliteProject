@@ -253,6 +253,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ImageBrowserController.cs" />
     <Compile Include="Helpers\ActionFilters\AjaxActionFilter.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdministratorController.cs" />
@@ -533,6 +534,29 @@
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\Custom\ratingScript.js" />
+    <Content Include="Scripts\Libraries\JCrop\css\Jcrop.gif" />
+    <Content Include="Scripts\Libraries\JCrop\css\jquery.Jcrop.css" />
+    <Content Include="Scripts\Libraries\JCrop\css\jquery.Jcrop.min.css" />
+    <Content Include="Scripts\Libraries\JCrop\demos\crop.php" />
+    <Content Include="Scripts\Libraries\JCrop\demos\demo_files\demos.css" />
+    <Content Include="Scripts\Libraries\JCrop\demos\demo_files\main.css" />
+    <Content Include="Scripts\Libraries\JCrop\demos\demo_files\pool.jpg" />
+    <Content Include="Scripts\Libraries\JCrop\demos\demo_files\sago.jpg" />
+    <Content Include="Scripts\Libraries\JCrop\demos\demo_files\sagomod.jpg" />
+    <Content Include="Scripts\Libraries\JCrop\demos\demo_files\sagomod.png" />
+    <Content Include="Scripts\Libraries\JCrop\demos\non-image.html" />
+    <Content Include="Scripts\Libraries\JCrop\demos\styling.html" />
+    <Content Include="Scripts\Libraries\JCrop\demos\tutorial1.html" />
+    <Content Include="Scripts\Libraries\JCrop\demos\tutorial2.html" />
+    <Content Include="Scripts\Libraries\JCrop\demos\tutorial3.html" />
+    <Content Include="Scripts\Libraries\JCrop\demos\tutorial4.html" />
+    <Content Include="Scripts\Libraries\JCrop\demos\tutorial5.html" />
+    <Content Include="Scripts\Libraries\JCrop\index.html" />
+    <Content Include="Scripts\Libraries\JCrop\js\jquery.color.js" />
+    <Content Include="Scripts\Libraries\JCrop\js\jquery.Jcrop.js" />
+    <Content Include="Scripts\Libraries\JCrop\js\jquery.Jcrop.min.js" />
+    <Content Include="Scripts\Libraries\JCrop\js\jquery.min.js" />
+    <Content Include="Scripts\Libraries\JCrop\MIT-LICENSE.txt" />
     <Content Include="Scripts\Libraries\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\Libraries\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\Libraries\bootstrap-datepicker.js" />
@@ -577,6 +601,7 @@
     <None Include="Areas\Management\Views\ManageArticles\Index.cshtml" />
     <Content Include="Areas\Management\Views\ManageArticles\EditorTemplates\ManageArticleViewModel.cshtml" />
     <None Include="Properties\PublishProfiles\fileSystem.pubxml" />
+    <Content Include="Scripts\Libraries\JCrop\README.md" />
     <None Include="Scripts\Libraries\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\chatLogic.js" />
     <Content Include="Scripts\Libraries\functions.js" />

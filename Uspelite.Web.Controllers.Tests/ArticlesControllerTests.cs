@@ -55,7 +55,7 @@
         [TestMethod]
         public void ControllerAddShouldRenderProperView()
         {
-            this.controller.WithCallTo(x => x.Add()).ShouldRenderView("Add");
+            this.controller.WithCallTo(x => x.Add(string.Empty)).ShouldRenderView("Add");
         }
 
         [TestMethod]

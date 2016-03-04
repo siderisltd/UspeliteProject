@@ -74,6 +74,8 @@
 
         public ICollection<CommentViewModel> Comments { get; set; }
 
+        public bool ShowEdit { get; set; }
+
         public virtual void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Article, ConcreteArticleViewModel>()

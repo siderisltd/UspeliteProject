@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Data.Entity.Infrastructure;
+    using System.Drawing;
     using System.Drawing.Imaging;
     using System.IO;
     using System.Linq;
@@ -13,11 +14,11 @@
     using Infrastructure.Mapping.Contracts;
     using Models.Articles;
     using Services.Data.Contracts;
-    using Data.Models;
     using Data.Models.Enum;
     using Helpers.Attributes;
     using Microsoft.AspNet.Identity;
     using Models.Categories;
+    using Image = Data.Models.Image;
 
     public class ArticlesController : BaseController
     {
@@ -39,14 +40,15 @@
             {
                 return this.HttpNotFound();
             }
-            return this.View(model);
-        }
 
-        [HttpGet]
-        public ActionResult Add()
-        {
-            var model = new ArticlesBindingModel();
-            model.AllCategories = this.GetAllCategories();
+            if (this.User.Identity.IsAuthenticated)
+            {
+                if (this.User.IsInRole(AppRoles.ADMIN_ROLE) || this.User.IsInRole(AppRoles.MANAGER_ROLE) || (this.User.IsInRole(AppRoles.EDITOR_ROLE) && this.User.Identity.GetUserId() == model.Author.Id))
+                {
+                    model.ShowEdit = true;
+                }
+            }
+
             return this.View(model);
         }
 
@@ -76,6 +78,25 @@
             return this.PartialView("_FilteredArticlesByTitleDropdown", model);
         }
 
+        [HttpGet]
+        public ActionResult Add(string Id)
+        {
+            var model = new ArticlesBindingModel();
+            if (!string.IsNullOrEmpty(Id))
+            {
+                var foundArticle = this.articlesService.GetById(int.Parse(Id));
+                if(foundArticle == null)
+                {
+                    return this.HttpNotFound("Article with that Id was not found");
+                }
+                model = this.Mapper.Map<ArticlesBindingModel>(foundArticle);
+
+            }
+
+            model.AllCategories = this.GetAllCategories();
+            return this.View(model);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeRoles(AppRoles.EDITOR_ROLE, AppRoles.MANAGER_ROLE, AppRoles.ADMIN_ROLE, AppRoles.ULTIMATE_ROLE)]
@@ -89,12 +110,27 @@
                 }
                 string imageName = Path.GetFileNameWithoutExtension(model.TitleImage.FileName);
                 var userId = this.User.Identity.GetUserId();
+
+                var x1 = (int)Math.Ceiling(double.Parse(model.X1));
+                var x2 = (int)Math.Ceiling(double.Parse(model.X2));
+
+                var y1 = (int)Math.Ceiling(double.Parse(model.Y1));
+                var y2 = (int)Math.Ceiling(double.Parse(model.Y2));
+
+                var w = (int)Math.Ceiling(double.Parse(model.W));
+                var h = (int)Math.Ceiling(double.Parse(model.H));
+
+                var rect = new Rectangle(x1, y1, w, h);
+                var imageAsByteArray = this.imagesService.CropImage(model.TitleImage.InputStream, rect);
+
+
+
                 var articleImage = new Image
                 {
                     IsMain = true,
                     Title = imageName,
                     Slug = model.Slug,
-                    Stream = model.TitleImage.InputStream,
+                    AsByteArray = imageAsByteArray,
                     AuthorId = userId
                 };
                 try

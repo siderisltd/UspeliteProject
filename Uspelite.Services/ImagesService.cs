@@ -73,6 +73,28 @@
             return image;
         }
 
+        public byte[] CropImage(Stream inputStream, Rectangle rectangle)
+        {
+            var img = System.Drawing.Image.FromStream(inputStream);
+
+
+            var quality = 100;
+            var info = ImageCodecInfo.GetImageEncoders();
+            var parameters = new EncoderParameters(1);
+            parameters.Param[0] = new EncoderParameter(Encoder.Quality, quality);
+
+            byte[] byteArrImg;
+            using (var bitmapImg = new Bitmap(img))
+            {
+                Bitmap cropedImg = bitmapImg.Clone(rectangle, bitmapImg.PixelFormat);
+                ImageConverter converter = new ImageConverter();
+                byteArrImg = (byte[])converter.ConvertTo(cropedImg, typeof(byte[]));
+            }
+
+            return byteArrImg;
+        }
+
+
         public int SaveImage(Image image, ImageFormat imageFormat, bool addBrand = false)
         {
             var date = DateTime.Now.ToString("MM.yyyy");
@@ -87,8 +109,17 @@
             {
                 Directory.CreateDirectory(directory);
             }
+            byte[] originalImageArray;
 
-            byte[] originalImageArray = this.imageHelper.StreamToByteArray(image.Stream);
+            if (image.AsByteArray.Length < 1)
+            {
+                originalImageArray = this.imageHelper.StreamToByteArray(image.Stream);
+            }
+            else
+            {
+                originalImageArray = image.AsByteArray;
+            }
+
 
             if (addBrand)
             {
