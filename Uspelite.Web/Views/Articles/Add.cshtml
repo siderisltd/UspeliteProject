@@ -92,8 +92,6 @@
                     '<label for="width-inp">Width</label>' +
                     '<input id="width-inp" type="text" value="' + width + '"/>' +
                     '<br/>' +
-                    '<label for="height-inp">Height</label>' +
-                    '<input id="height-inp" type="text" value="' + height + '"/>' +
                     '<input  id="resizeImg" type="button" class="btn btn-success" value="Resize" onclick="resizeImg(clickedImg)"' +
                '</div>';
 
@@ -122,10 +120,16 @@
 
         function resizeImg(ev) {
             debugger;
-            var newWidth = $('#resize-box #width-inp').val();
-            var newHeight = $('#resize-box #height-inp').val();
+
+
+            //var newHeight = $('#resize-box #height-inp').val();
 
             var clickedImage = ev.data.img;
+            var originalWidth = clickedImage.css('width');
+            var originalHeight = clickedImage.css('height');
+
+            var newWidth = $('#resize-box #width-inp').val();
+            var newHeight = newWidth * (originalWidth / originalHeight);
 
             clickedImage.css('width', newWidth);
             clickedImage.css('height', newHeight);
@@ -234,6 +238,7 @@
                 JCropObj.instantiated = true;
                 $('#main-upload-image').Jcrop({
                     setSelect: [60, 70, 750, 500],
+                    aspectRatio: 3 / 2,
                     boxWidth: 650,
                     onChange: showCoords,
                     onSelect: showCoords,
