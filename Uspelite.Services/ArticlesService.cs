@@ -37,7 +37,7 @@
             return article.Id;
         }
 
-        public int Add(string title, string slug, string authorId, string content, PostStatus status, int categoryId, Image image)
+        public int Add(string title, string slug, string authorId, string content, PostStatus status, int categoryId, Image image, IList<Comment> comments = null)
         {
             var article = new Article
             {
@@ -49,6 +49,11 @@
                 CategoryId = categoryId,
                 Images = new List<Image>() { image }
             };
+
+            if(comments != null)
+            {
+                article.Comments = comments;
+            }
 
             this.repo.Add(article);
             this.repo.SaveChanges();

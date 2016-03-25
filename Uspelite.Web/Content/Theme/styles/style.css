@@ -386,7 +386,7 @@ ul.rating li.li-rated {
 
 }
 
-@media (min-width: 992px) {
+/*@media (min-width: 992px) {
 
     #main {
         float: left;
@@ -422,9 +422,9 @@ ul.rating li.li-rated {
         margin-left: 15px;
     }
 
-}
+}*/
 
-@media (min-width: 1170px) {
+/*@media (min-width: 1170px) {
 
     .section-full {
         padding: 45px 25px 0 25px;
@@ -461,7 +461,7 @@ ul.rating li.li-rated {
     #sidebar {
         width: 350px;
         padding: 25px;
-        margin-bottom: -9000px; /* 100% height */
+        margin-bottom: -9000px; /* 100% height 
         padding-bottom: 9000px;
     }
 
@@ -469,7 +469,7 @@ ul.rating li.li-rated {
        margin: 0 -25px 0 -25px;
     }
 
-}
+}*/
 
 
 /**
@@ -995,7 +995,7 @@ body.nav-expanded #page-header-mobile nav {
 
 }
 
-@media (min-width: 1170px) {
+/*@media (min-width: 1170px) {
 
     #header-navigation ul li a {
         font-size: 14px;
@@ -1018,7 +1018,7 @@ body.nav-expanded #page-header-mobile nav {
         left: 240px;
     }
 
-}
+}*/
 
 /* ==========================================================================
    Slider
@@ -1304,7 +1304,7 @@ body.nav-expanded #page-header-mobile nav {
 
  }
 
- @media (min-width: 1200px) {
+ /*@media (min-width: 1200px) {
 
      #page-slider .col-sm-8 {
          width: 835px;
@@ -1371,7 +1371,7 @@ body.nav-expanded #page-header-mobile nav {
          top: 235px;
      }
 
- }
+ }*/
 
 
 /* ==========================================================================
@@ -1676,7 +1676,7 @@ article.review img {
 
 }
 
-@media (min-width: 1200px) {
+/*@media (min-width: 1200px) {
 
     .cat-videos .col-sm-8 {
         width: 350px;
@@ -1686,7 +1686,7 @@ article.review img {
         width: 289px;
     }
 
-}
+}*/
 
 
 /**
@@ -2196,7 +2196,7 @@ a:hover .zoomix {
 
 }
 
-@media (min-width: 1200px) {
+/*@media (min-width: 1200px) {
 
     #page-content .head-video iframe {
         min-height: 500px;
@@ -2215,7 +2215,7 @@ a:hover .zoomix {
         padding-left: 20px;
     }
 
-}
+}*/
 
 
 /**
@@ -2843,10 +2843,10 @@ a:hover .zoomix {
     }
 }
 
-@media (min-width: 1200px) {
+/*@media (min-width: 1200px) {
 
     .ad-separator {
         padding: 20px 25px;
         margin: 0 -25px 20px -25px;
     }
-}
+}*/

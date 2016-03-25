@@ -45,7 +45,7 @@
                                         @if (isMainPost)
                                         {
                                             <h2>@post.Title</h2>
-                                            <p>@post.SanitizedPartialContent</p>
+                                            <p>@Html.Raw(post.SanitizedPartialContent)</p>
                                         }
                                         else
                                         {
@@ -70,8 +70,8 @@
             </div>
         </div>
         <div class="slider-nav">
-            <a id="slider-prev" class="prev" href="#" style="display: block;"><i class="fa fa-chevron-left"></i></a>
-            <a id="slider-next" class="next" href="#" style="display: block;"><i class="fa fa-chevron-right"></i></a>
+            @*<a id="slider-prev" class="prev" href="#" style="display: block;"><i class="fa fa-chevron-left"></i></a>
+            <a id="slider-next" class="next" href="#" style="display: block;"><i class="fa fa-chevron-right"></i></a>*@
         </div>
     </div>
 

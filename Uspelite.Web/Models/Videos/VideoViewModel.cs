@@ -9,6 +9,14 @@
 
     public class VideoViewModel : IRateable, IMapFrom<Video>, IHaveCustomMappings
     {
+        public VideoViewModel()
+        {
+        }
+        public VideoViewModel(string videoUrl)
+        {
+            this.VideoUrl = videoUrl;
+        }
+
         public int Id { get; set; }
 
         public string Title { get; set; }

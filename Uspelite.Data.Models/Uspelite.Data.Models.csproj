@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Articles_Videos.cs" />
     <Compile Include="BaseModels\BaseModel.cs" />
     <Compile Include="BaseModels\CommentableRateableBaseModel.cs" />
     <Compile Include="BaseModels\Contracts\IAuditInfo.cs" />

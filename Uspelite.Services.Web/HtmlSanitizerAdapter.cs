@@ -8,6 +8,7 @@
         public string Sanitize(string html)
         {
             var sanitizer = new HtmlSanitizer();
+            sanitizer.AllowedTags.Add("iframe");
             var result = sanitizer.Sanitize(html);
             return result;
         }

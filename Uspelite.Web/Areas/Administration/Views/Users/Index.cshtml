@@ -11,7 +11,7 @@
     columns.Bound(col => col.Email);
     columns.Bound(col => col.Posts);
     columns.Bound(col => col.Videos);
-    columns.Bound(col => col.CreatedOn);
+    columns.Bound(col => col.CreatedOn).Format("{0:yyyy.dd.MM hh:mm:ss}");
     columns.Bound(col => col.Password).Hidden(true);
     columns.Command(c => c.Destroy());
 }))

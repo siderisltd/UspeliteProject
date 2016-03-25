@@ -1,5 +1,6 @@
 ﻿namespace Uspelite.Data.Models
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using BaseModels;
@@ -7,6 +8,13 @@
 
     public class Video : CommentableRateableBaseModel, ISeoEntity, IBaseModel, ICommentableEntity, IRateableEntity, IAuditInfo, IDeletableEntity
     {
+        private ICollection<Articles_Videos> articlesVideos;
+
+        public Video()
+        {
+            this.articlesVideos = new HashSet<Articles_Videos>();
+        }
+
         public int Id { get; set; }
 
         [StringLength(200)]
@@ -32,5 +40,11 @@
         [Required]
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
+
+        public virtual ICollection<Articles_Videos> ArticlesVideos
+        {
+            get { return this.articlesVideos; }
+            set { this.articlesVideos = value; }
+        }
     }
 }

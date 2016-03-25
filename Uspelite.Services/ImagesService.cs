@@ -51,7 +51,7 @@
             image.AuthorId = authorId;
             this.repo.Add(image);
             this.repo.SaveChanges();
-            var imagePath = date + "\\" + (image.Id % Constants.MAX_FILES_IN_DIRECTORY);
+            var imagePath = date + "\\" + (image.Id % Constants.FOLDERS_SEPARATION_COUNT);
             image.PathOriginalSize = imagePath + "\\ori_" + image.Slug + ".jpg";
             image.PathResizedImage = imagePath + "\\400_" + image.Slug + ".jpg";
 
@@ -62,7 +62,8 @@
                 Directory.CreateDirectory(directory);
             }
 
-            byte[] originalImageArray = this.imageHelper.GetFromUrlAndBrandImage(url, imageFormat, this.BrandImage);
+            //byte[] originalImageArray = this.imageHelper.GetFromUrlAndBrandImage(url, imageFormat, this.BrandImage);
+            byte[] originalImageArray = this.imageHelper.GetFromUrl(url, imageFormat);
             var resizedImageArray400 = this.imageHelper.ScaleImage(this.imageHelper.ByteToImage(originalImageArray), 400, imageFormat);
 
             File.WriteAllBytes(this.rootImagesFolder + "\\" + image.PathOriginalSize, originalImageArray);
@@ -99,7 +100,7 @@
         {
             var date = DateTime.Now.ToString("MM.yyyy");
 
-            var imagePath = date + "\\" + (image.Id % Constants.MAX_FILES_IN_DIRECTORY);
+            var imagePath = date + "\\" + (image.Id % Constants.FOLDERS_SEPARATION_COUNT);
             image.PathOriginalSize = imagePath + "\\ori_" + image.Slug + ".jpg";
             image.PathResizedImage = imagePath + "\\400_" + image.Slug + ".jpg";
 

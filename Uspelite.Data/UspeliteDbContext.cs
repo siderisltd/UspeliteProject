@@ -30,6 +30,8 @@
 
         public IDbSet<Article> Articles { get; set; }
 
+        public IDbSet<Articles_Videos> Article_Videos { get; set; }
+
         public static UspeliteDbContext Create()
         {
             return new UspeliteDbContext();
@@ -44,13 +46,30 @@
             }
             catch (Exception ex)
             {
-                
-                throw;
+                Console.WriteLine(ex.Message);
             }
-
+            return 1;
         }
-        
-        
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<Article>()
+                .HasMany(p => p.ArticlesVideos)
+                .WithRequired()
+                .HasForeignKey(c => c.ArticleId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Video>()
+                .HasMany(p => p.ArticlesVideos)
+                .WithRequired()
+                .HasForeignKey(c => c.VideoId)
+                .WillCascadeOnDelete(false);
+
+            base.OnModelCreating(modelBuilder);
+        }
+
+
         private void ApplyAuditInfoRules()
         {
             foreach (var entry in
@@ -64,8 +83,10 @@
                     var entityAsSeoEntity = entity as ISeoEntity;
                     if (entityAsSeoEntity != null)
                     {
-                        entityAsSeoEntity.Slug = SlugHelper.CreateSlug(entityAsSeoEntity.Title, Constants.SLUG_MAX_LENGTH);
-
+                        if (entityAsSeoEntity.Slug == null)
+                        {
+                            entityAsSeoEntity.Slug = SlugHelper.CreateSlug(entityAsSeoEntity.Title, Constants.SLUG_MAX_LENGTH);
+                        }
                     }
                 }
                 else
@@ -74,7 +95,7 @@
                 }
             }
 
-          
+
         }
     }
 }

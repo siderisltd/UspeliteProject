@@ -6,7 +6,7 @@
 
     public class SlugHelper
     {
-        public static string CreateSlug(string title, int length = 50)
+        public static string CreateSlug(string title, int length = 100)
         {
             var substringLength = Math.Min(title.Length, length);
             var substring = title.Substring(0, substringLength);

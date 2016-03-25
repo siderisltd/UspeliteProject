@@ -9,7 +9,7 @@
     columns.Bound(col => col.Title);
     columns.Bound(col => col.Category);
     columns.Bound(col => col.Status);
-    columns.Bound(col => col.CreatedOn);
+    columns.Bound(col => col.CreatedOn).Format("{0:yyyy.dd.MM hh:mm:ss}");
     columns.Command(c => c.Edit());
     columns.Command(c => c.Destroy());
     //columns.Bound(col => col.Rating);

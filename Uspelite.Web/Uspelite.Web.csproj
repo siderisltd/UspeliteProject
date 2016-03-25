@@ -528,6 +528,7 @@
     <Content Include="Content\JQueryUI\themes\ui-lightness\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\JQueryUI\themes\ui-lightness\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\JQueryUI\themes\ui-lightness\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Content\Uploads\Brand\brand.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -602,6 +603,7 @@
     <Content Include="Areas\Management\Views\ManageArticles\EditorTemplates\ManageArticleViewModel.cshtml" />
     <None Include="Properties\PublishProfiles\fileSystem.pubxml" />
     <Content Include="Scripts\Libraries\JCrop\README.md" />
+    <None Include="Properties\PublishProfiles\UspeliteFileSystem.pubxml" />
     <None Include="Scripts\Libraries\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\chatLogic.js" />
     <Content Include="Scripts\Libraries\functions.js" />
@@ -747,7 +749,10 @@
     <Content Include="packages.config" />
     <Content Include="Scripts\Libraries\jquery-1.10.2.min.map" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\Uploads\Images\" />
+    <Folder Include="Content\Uploads\UserFiles\Images\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

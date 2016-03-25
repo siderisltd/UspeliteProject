@@ -13,10 +13,12 @@
     public class Article : CommentableRateableBaseModel, ISeoEntity, IBaseModel, ICommentableEntity, IRateableEntity, IAuditInfo, IDeletableEntity
     {
         private ICollection<Image> images;
+        private ICollection<Articles_Videos> articlesVideos;
 
         public Article()
         {
             this.images = new HashSet<Image>();
+            this.articlesVideos = new HashSet<Articles_Videos>();
         }
 
         [Key]
@@ -34,7 +36,7 @@
         public string Title { get; set; }
 
         [Index(IsUnique = true)]
-        [StringLength(100)]
+        [StringLength(300)]
         [Required]
         public string Slug { get; set; }
 
@@ -56,6 +58,12 @@
         {
             get { return this.images; }
             set { this.images = value; }
+        }
+
+        public virtual ICollection<Articles_Videos> ArticlesVideos
+        {
+            get { return this.articlesVideos; }
+            set { this.articlesVideos = value; }
         }
 
         [NotMapped]

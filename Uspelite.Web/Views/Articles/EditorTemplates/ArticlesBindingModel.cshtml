@@ -70,6 +70,8 @@
             <div class="col-lg-10">
                 @(Html.Kendo()
                       .Editor()
+                      .HtmlAttributes(new { style = "height:500px" })
+                      .Resizable(resizable => resizable.Content(true))
                       .Name("Content")
                       .Tools(tools => tools
                           .Clear()

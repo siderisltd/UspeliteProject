@@ -19,7 +19,7 @@
         public string Title { get; set; }
 
         [Index(IsUnique = true)]
-        [StringLength(100)]
+        [StringLength(300)]
         [Required]
         public string Slug { get; set; }
 
