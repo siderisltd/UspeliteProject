@@ -53,7 +53,10 @@
 
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
-        
+
+        [DefaultValue(ArticlePlaceType.Normal)]
+        public ArticlePlaceType Place { get; set; }
+
         public virtual ICollection<Image> Images
         {
             get { return this.images; }

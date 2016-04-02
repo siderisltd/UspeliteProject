@@ -2,8 +2,9 @@
 {
     using System;
     using System.Text.RegularExpressions;
+    using Contracts;
 
-    public class SlugService
+    public class SlugService : ISlugService
     {
         public string GetSlug(string title, int length = 50)
         {

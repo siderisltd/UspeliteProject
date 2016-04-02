@@ -34,6 +34,11 @@
 
         public string Title { get; set; }
 
+        public string SanitizedTitle
+        {
+            get { return this.sanitizer.Sanitize(this.PartialContent); }
+        }
+
         public string Slug { get; set; }
 
         public ArticleImageViewModel MainArticlePic

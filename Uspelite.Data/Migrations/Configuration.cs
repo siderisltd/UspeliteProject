@@ -18,8 +18,8 @@ namespace Uspelite.Data.Migrations
 
         public Configuration()
         {
-            this.AutomaticMigrationsEnabled = true;
-            this.AutomaticMigrationDataLossAllowed = true;
+            this.AutomaticMigrationsEnabled = false;
+            this.AutomaticMigrationDataLossAllowed = false;
             this.randomGenerator = new RandomGenerator();
         }
 

@@ -5,8 +5,9 @@
 
 <div id="containerBox">
     <div id="data-helper" data-imagefolder="@Constants.ROOT_IMAGES_FOLDER"></div>
-
     <div id="addLinkHolder"></div>
+
+
     @using (Html.BeginForm("Add", "Articles", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
@@ -14,19 +15,28 @@
         @Html.EditorForModel(Model)
 
         <input id="x1" type="hidden" name="X1" />
-        <input id="x2" type="hidden" name="X2" />
+        @*<input id="x2" type="hidden" name="X2" />*@
 
         <input id="y1" type="hidden" name="Y1" />
-        <input id="y2" type="hidden" name="Y2" />
+        @*<input id="y2" type="hidden" name="Y2" />*@
 
         <input id="w" type="hidden" name="W" />
         <input id="h" type="hidden" name="H" />
 
 
+
         <div class="form-group">
             <div class="col-lg-10 col-lg-offset-2">
-                <input type="reset" class="btn btn-danger" value="Reset form" />
-                <input type="submit" class="btn btn-success" value="Add article" />
+                <input type="reset" class="btn btn-danger" value="Reset form"/>
+                @if (Model.Id == 0)
+                {
+                    <input type="submit" class="btn btn-success" value="Add article" />
+                }
+                else
+                {
+                    <input type="submit" class="btn btn-success" value="Edit article" />
+                }
+
             </div>
         </div>
     }
@@ -93,37 +103,15 @@
                     '<input id="width-inp" type="text" value="' + width + '"/>' +
                     '<br/>' +
                     '<input  id="resizeImg" type="button" class="btn btn-success" value="Resize" onclick="resizeImg(clickedImg)"' +
-               '</div>';
-
-
-
-            //var $el = $("<input />").attr('type', 'button').attr('class', 'btn btn-success').attr('value', 'Resize').click(function (ev, clickedImg) {
-            //    debugger;
-
-            //});
+                    '</div>';
 
             $('#containerBox').append(resizingBox);
 
             $('#resizeImg').click({ img: clickedImg }, resizeImg);
-            //  $('#resize-box').append($el);
-
-            //$('#btn-resizeCss').on('click', function (element) {
-            //  debugger;
-            //var newWidth = $('#resize-box #width-inp').val();
-            //var newHeight = $('#resize-box #height-inp').val();
-
-            //clickedImg.css('width', newWidth);
-            //clickedImg.css('height', newHeight);
-
-            //});
         }
 
         function resizeImg(ev) {
             debugger;
-
-
-            //var newHeight = $('#resize-box #height-inp').val();
-
             var clickedImage = ev.data.img;
             var originalWidth = clickedImage.css('width');
             var originalHeight = clickedImage.css('height');
@@ -190,13 +178,14 @@
             var result = '<a href="' + location + '"' + target + linkTitle + '>' + linkText + '</a>';
             return result;
         }
-
     </script>
 
 
 
     <script>
-        //main image crop and visualize
+        var $mainImageContainer = $('#main-upload-image');
+
+//main image crop and visualize
         function readURL(input) {
 
             if (input.files && input.files[0]) {
@@ -209,7 +198,12 @@
                         $('#cropBtn').hide();
                     }
 
-                    $('#main-upload-image').attr('src', e.target.result);
+                    //this image is for update only
+                    if ($('#original-main-pic')) {
+                        $('#original-main-pic').remove();
+                    }
+                    //
+                    $mainImageContainer.attr('src', e.target.result);
                     $('#cropBtn').show();
                     debugger;
                     JCropObj.innitialize();
@@ -223,7 +217,7 @@
         });
 
 
-        //attach jcrop and get the coords
+//attach jcrop and get the coords
 
         JCropObj = {
             jcrop_api_obj: this,
@@ -232,7 +226,7 @@
 
             innitialize: function innitialize() {
                 JCropObj.instantiated = true;
-                $('#main-upload-image').Jcrop({
+                $mainImageContainer.Jcrop({
                     setSelect: [60, 70, 750, 500],
                     aspectRatio: 3 / 2,
                     boxWidth: 650,
@@ -257,50 +251,6 @@
                 JCropObj.instantiated = false;
             }
         }
-
-        //var sections = {
-        //    anim_buttons: 'Animate Selection'
-        //};
-        //// Define animation buttons
-        //var ac = {
-        //    anim1: [217, 122, 382, 284],
-        //    anim2: [20, 20, 580, 380],
-        //    anim3: [24, 24, 176, 376],
-        //    anim4: [347, 165, 550, 355],
-        //    anim5: [136, 55, 472, 183]
-        //};
-
-        //var a_count = 1;
-        //// Create animation buttons
-        //for (i in ac) {
-        //    $('#anim_buttons .btn-group')
-        //      .append(
-        //        create_btn(a_count++).click(animHandler(ac[i])),
-        //        ' '
-        //      );
-        //}
-
-        //function setoptHandler(k, v) {
-        //    return function (e) {
-        //        $(e.target).closest('.btn-group').find('.active').removeClass('active');
-        //        $(e.target).addClass('active');
-        //        var opt = {};
-        //        opt[k] = v;
-        //        jcrop_api.setOptions(opt);
-        //        return false;
-        //    };
-        //};
-        //// Handler for animation buttons
-        //function animHandler(v) {
-        //    return function (e) {
-        //        $(e.target).addClass('active');
-        //        jcrop_api.animateTo(v, function () {
-        //            $(e.target).closest('.btn-group').find('.active').removeClass('active');
-        //        });
-        //        return false;
-        //    };
-        //};
-
 
         function showCoords(c) {
             var coordHelper = $('#coordinates-data-helper');
@@ -338,17 +288,17 @@
 
             var context = $canvas[0].getContext('2d');
             var imageObj = new Image();
-            var imageSource = $('#main-upload-image').attr('src');
+            var imageSource = $mainImageContainer.attr('src');
             $canvas.attr('width', '600');
             $canvas.attr('height', '400');
 
             imageObj.onload = function() {
                 debugger;
                 context.drawImage(imageObj, x1, y1, w, h, 0, 0, 600, 400);
-                $('#main-upload-image').attr('src', '#');
-                $('#main-upload-image').css('display', 'none');
-                $('#main-upload-image').css('width', '0');
-                $('#main-upload-image').css('height', '0');
+                $mainImageContainer.attr('src', '#');
+                $mainImageContainer.css('display', 'none');
+                $mainImageContainer.css('width', '0');
+                $mainImageContainer.css('height', '0');
 
                 JCropObj.destroy();
                 $('#cropBtn').hide();
@@ -356,7 +306,18 @@
 
             imageObj.src = imageSource;
         }
+    </script>
 
+    <script>
+        //only bulgarian letters and spaces allowed
+        var onlyCyrillicSymbolsAndSpaces = /[^А-я ]/i;
+        var $titleInput = $("#Title");
 
+        $titleInput.keyup(function () {
+            if (this.value.match(onlyCyrillicSymbolsAndSpaces)) {
+
+                this.value = this.value.replace(onlyCyrillicSymbolsAndSpaces, "");
+            }
+        });
     </script>
 }

@@ -32,8 +32,7 @@
         <h1>@Model.Title</h1>
     </header>
     <p>
-       @Html.Raw("<h1>Faggot</h1>")
-        @*@Html.Raw(Model.SanitizedFullContent)*@
+        @Html.Raw(Model.SanitizedFullContent)
     </p>
 
 
@@ -42,9 +41,11 @@
         <h3>Споделете статията</h3>
 
         <a href=""><i class="fa fa-twitter fa-lg"></i></a>
-        <a href=""><i class="fa fa-facebook-square fa-lg"></i></a>
+        <a class="fb-share-button" data-href="~/Articles/Show/@Model.Slug" data-layout="button_count"></a>
         <a href=""><i class="fa fa-linkedin-square fa-lg"></i></a>
-        <a href=""><i class="fa fa-google-plus-square fa-lg"></i></a>
+        <div class="g-plus" data-action="share" data-annotation="bubble" data-href=""></div>
+        @*<a href=""><i class="fa fa-google-plus-square fa-lg"></i></a>*@
+
         <a href=""><i class="fa fa-vimeo-square fa-lg"></i></a>
         <a href=""><i class="fa fa-youtube fa-lg"></i></a>
 

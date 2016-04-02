@@ -52,5 +52,10 @@
 
             return result;
         }
+
+        public Category GetById(int id)
+        {
+            return this.repo.GetById(id);
+        }
     }
 }

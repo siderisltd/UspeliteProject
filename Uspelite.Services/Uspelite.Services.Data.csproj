@@ -108,6 +108,8 @@
     <Compile Include="Contracts\IVideosService.cs" />
     <Compile Include="Crawl\CrawlService.cs" />
     <Compile Include="Crawl\ICrawlService.cs" />
+    <Compile Include="DTO\ArticlePlaceTypeDTO.cs" />
+    <Compile Include="DTO\ArticleStatusDTO.cs" />
     <Compile Include="DTO\CategoryAndPostsDTO.cs" />
     <Compile Include="DTO\CrowlerDTO.cs" />
     <Compile Include="DTO\PagedCategoryDTO.cs" />
@@ -149,6 +151,10 @@
     <ProjectReference Include="..\Uspelite.Services.Web\Uspelite.Services.Web.csproj">
       <Project>{21255945-ff44-463d-b6be-f82ce66db93d}</Project>
       <Name>Uspelite.Services.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Uspelite.Web.Infrastructure\Uspelite.Web.Infrastructure.csproj">
+      <Project>{C36E6839-760F-4728-8197-0654BF39AEC0}</Project>
+      <Name>Uspelite.Web.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

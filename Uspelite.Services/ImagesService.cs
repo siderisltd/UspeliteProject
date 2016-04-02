@@ -95,6 +95,18 @@
             return byteArrImg;
         }
 
+        public void RemoveAllRelatedToArticle(int id)
+        {
+            var images = this.repo.All().Where(x => x.ArticleId == id);
+
+            foreach (var img in images)
+            {
+                this.repo.Delete(img.Id);
+            }
+
+            this.repo.SaveChanges();
+        }
+
 
         public int SaveImage(Image image, ImageFormat imageFormat, bool addBrand = false)
         {

@@ -48,7 +48,7 @@
             this.mockedImagesService = imagesServiceMock;
 
 
-            this.controller = new ArticlesController(this.mockedArticleService.Object, this.mockedCategoriesService.Object, this.mockedImagesService.Object);
+            //this.controller = new ArticlesController(this.mockedArticleService.Object, this.mockedCategoriesService.Object, this.mockedImagesService.Object);
             this.controller.Cache = this.mockedCache.Object;
         }
 

@@ -70,6 +70,7 @@
     <Compile Include="Category.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="CrawlNews.cs" />
+    <Compile Include="Enum\ArticlePlaceType.cs" />
     <Compile Include="Enum\CrawlType.cs" />
     <Compile Include="Enum\ImageType.cs" />
     <Compile Include="Enum\PostStatus.cs" />

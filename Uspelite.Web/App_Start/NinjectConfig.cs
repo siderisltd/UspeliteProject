@@ -14,6 +14,8 @@ namespace Uspelite.Web
     using Ninject.Web.Common;
     using Services.Common;
     using Services.Common.Contracts;
+    using Services.Web;
+    using Services.Web.Contracts;
     using Constants = Common.Constants;
 
     public static class NinjectConfig
@@ -86,7 +88,6 @@ namespace Uspelite.Web
                 .BindDefaultInterface());
 
             kernel.Bind<IImageHelper>().To<ImageHelper>();
-
         }
     }
 }

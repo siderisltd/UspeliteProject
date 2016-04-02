@@ -49,8 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BulgarianLatinConvertService.cs" />
+    <Compile Include="Contracts\IBulgarianLatinConvertService.cs" />
     <Compile Include="Contracts\IHttpCacheService.cs" />
     <Compile Include="Contracts\ISanitizer.cs" />
+    <Compile Include="Contracts\ISlugService.cs" />
     <Compile Include="HtmlSanitizerAdapter.cs" />
     <Compile Include="SlugService.cs" />
     <Compile Include="HttpCacheService.cs" />

@@ -15,5 +15,7 @@
         Image SaveImageFromWeb(string url, string title, ImageFormat imageFormat, string authorId);
 
         byte[] CropImage(Stream inputStream, Rectangle rectangle);
+
+        void RemoveAllRelatedToArticle(int id);
     }
 }

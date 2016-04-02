@@ -1,10 +1,15 @@
 ﻿namespace Uspelite.Web.Models.ChildActions
 {
-    using System.Collections.Generic;
     using Articles;
 
     public class SliderViewModel
     {
-        public IList<ArticleViewModel> Posts { get; set; }
+        public ArticleViewModel NavCenter { get; set; }
+
+        public ArticleViewModel NavRightTop { get; set; }
+
+        public ArticleViewModel NavRightCenter { get; set; }
+
+        public ArticleViewModel NavRightBottom { get; set; }
     }
 }

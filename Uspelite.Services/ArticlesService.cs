@@ -1,5 +1,6 @@
 ﻿namespace Uspelite.Services.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Contracts;
@@ -12,11 +13,13 @@
     {
         private readonly IRepository<Article> repo;
         private readonly ICategoriesService categoriesService;
+        private readonly IImagesService imagesService;
 
-        public ArticlesService(IRepository<Article> repo, ICategoriesService categoriesService)
+        public ArticlesService(IRepository<Article> repo, ICategoriesService categoriesService, IImagesService imagesService)
         {
             this.repo = repo;
             this.categoriesService = categoriesService;
+            this.imagesService = imagesService;
         }
 
         public int Add(string title, string authorId, string content, PostStatus status, int categoryId, Image image)
@@ -61,9 +64,65 @@
             return article.Id;
         }
 
+        public int Update(int id, string title, string authorId, string content, PostStatus status, int categoryId, Image image)
+        {
+            var article = this.repo.GetById(id);
+            if(article != null)
+            {
+                article.Title = title;
+                article.AuthorId = authorId;
+                article.Content = content;
+                article.Status = status;
+                article.CategoryId = categoryId;
+                if (image != null)
+                {
+                    this.imagesService.RemoveAllRelatedToArticle(id);
+                    article.Images = new List<Image> { image };
+                }
+            }
+            this.repo.SaveChanges();
+
+            return article?.Id ?? 0;
+        }
+
         public bool Exists(string title)
         {
             return this.repo.All().Any(x => x.Title == title);
+        }
+
+        public IQueryable<ArticlePlaceTypeDTO> GetPossibleArticlePlaces()
+        {
+            var result = new List<ArticlePlaceTypeDTO>();
+
+            foreach (ArticlePlaceType place in Enum.GetValues(typeof(ArticlePlaceType)))
+            {
+                if(place != ArticlePlaceType.Normal)
+                {
+                    result.Add(new ArticlePlaceTypeDTO
+                    {
+                        Id = (int)place,
+                        Name = place.ToString()
+                    });
+                }
+            }
+
+            return result.AsQueryable();
+        }
+
+        public IQueryable<ArticleStatusDTO> GetPossibleArticleStatuses()
+        {
+            var result = new List<ArticleStatusDTO>();
+
+            foreach (PostStatus status in Enum.GetValues(typeof(PostStatus)))
+            {
+                result.Add(new ArticleStatusDTO
+                {
+                    Id = (int)status,
+                    Name = status.ToString()
+                });
+            }
+
+            return result.AsQueryable();
         }
 
         public IQueryable<Article> All()

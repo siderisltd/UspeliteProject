@@ -18,7 +18,7 @@
         <a href="/Articles/Show/@Model.TopArticle.Slug">
             @Html.Image(x => Model.TopArticle.MainArticlePic.Resized400Picture, "Alt responsive picture", "560", "390", new {@class = "img-responsive"})
             <div class="overlay">
-                <h2>@Model.TopArticle.Title</h2>
+                <h2>@Html.Raw(Model.TopArticle.SanitizedTitle)</h2>
             </div>
         </a>
         <a href="/Categories/Show/@Model.TopArticle.Category" class="theme">@Model.TopArticle.Category</a>
@@ -62,7 +62,7 @@
                     <a href="~/Articles/Show/@Model.TopArticle.Slug">
                         @Html.Image(x => Model.TopArticle.MainArticlePic.Resized400Picture, "Alt responsive picture", "334", "301", new {@class = "img-responsive"})
                         <div class="overlay">
-                            <h2>@Model.TopArticle.Title</h2>
+                            <h2>@Html.Raw(Model.TopArticle.SanitizedTitle)</h2>
                         </div>
                     </a>
                     <a href="/Categories/Show/@Model.TopArticle.Category" class="theme">@Model.TopArticle.Category</a>
@@ -78,7 +78,7 @@
                         <a href="/Articles/Show/@current.Slug">
                             @Html.Image(x => current.MainArticlePic.Resized400Picture, "Alt responsive picture", "274", "150", new {@class = "img-responsive"})
                             <div class="overlay">
-                                <h3>@current.SanitizedPartialContent</h3>
+                                <h3>@Html.Raw(current.SanitizedPartialContent)</h3>
                             </div>
                         </a>
                         <a href="/Categories/Show/@current.Category" class="theme">@current.Category</a>
@@ -104,7 +104,7 @@
                     <article class="review">
                         <a href="/Articles/Show/@current.Slug">
                             @Html.Image(x => current.MainArticlePic.Resized400Picture, "Alt responsive picture", "120", "105", new {@class = "img-responsive"})
-                            <h3>@current.Title</h3>
+                            <h3>@Html.Raw(current.Title)</h3>
                         </a>
 
                         @Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", current)

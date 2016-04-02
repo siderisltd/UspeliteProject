@@ -20,6 +20,10 @@
 
         IQueryable<Article> GetAllFilteredByTitle(string searchQuery);
 
+        IQueryable<ArticlePlaceTypeDTO> GetPossibleArticlePlaces();
+
+        IQueryable<ArticleStatusDTO> GetPossibleArticleStatuses();
+
         int Add(string title, string authorId, string content, PostStatus status, int categoryId, Image image);
 
         int Add(string title, string slug, string authorId, string content, PostStatus status, int categoryId, Image image, IList<Comment> comments = null);
@@ -35,5 +39,7 @@
         void DeleteById(int id);
 
         int SaveChanges();
+
+        int Update(int id, string title, string authorId, string content, PostStatus status, int categoryId, Image image);
     }
 }

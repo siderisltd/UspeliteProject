@@ -534,6 +534,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
+    <Content Include="Scripts\Custom\facebookSdk.js" />
+    <Content Include="Scripts\Custom\googleSdk.js" />
     <Content Include="Scripts\Custom\ratingScript.js" />
     <Content Include="Scripts\Libraries\JCrop\css\Jcrop.gif" />
     <Content Include="Scripts\Libraries\JCrop\css\jquery.Jcrop.css" />
@@ -599,6 +601,9 @@
     <Content Include="Areas\Management\Views\Shared\_ManagementLayout.cshtml" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Views\Users\EditorTemplates\UserViewModel.cshtml" />
+    <Content Include="Areas\Management\Views\ManageArticles\EditorTemplates\CategoryViewModel.cshtml" />
+    <Content Include="Areas\Management\Views\ManageArticles\EditorTemplates\ArticleStatusDTO.cshtml" />
+    <Content Include="Areas\Management\Views\ManageArticles\EditorTemplates\ArticlePlaceTypeDTO.cshtml" />
     <None Include="Areas\Management\Views\ManageArticles\Index.cshtml" />
     <Content Include="Areas\Management\Views\ManageArticles\EditorTemplates\ManageArticleViewModel.cshtml" />
     <None Include="Properties\PublishProfiles\fileSystem.pubxml" />

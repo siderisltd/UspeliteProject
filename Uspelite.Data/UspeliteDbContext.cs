@@ -83,7 +83,7 @@
                     var entityAsSeoEntity = entity as ISeoEntity;
                     if (entityAsSeoEntity != null)
                     {
-                        if (entityAsSeoEntity.Slug == null)
+                        if (entityAsSeoEntity.Slug == null && entityAsSeoEntity.Title != null)
                         {
                             entityAsSeoEntity.Slug = SlugHelper.CreateSlug(entityAsSeoEntity.Title, Constants.SLUG_MAX_LENGTH);
                         }

@@ -37,6 +37,7 @@
     <![endif]-->
 </head>
 <body>
+<div id="fb-root"></div>
 <div id="page-outer-wrap">
     <div id="page-inner-wrap">
 
@@ -70,9 +71,13 @@
 @Scripts.Render("~/bundles/jquery-ui")
 @Scripts.Render("~/bundles/theme")
 @Scripts.Render("~/bundles/ajax")
+@*<script src="https://apis.google.com/js/platform.js" async defer></script>*@
+<script src="~/Scripts/Custom/facebookSdk.js"></script>
+@*<script src="~/Scripts/Custom/googleSdk.js"></script>*@
 @RenderSection("scripts", required: false)
+
 <script>
-    $(function () {
+    $(function() {
         var notificationLabel = $('.notification-label');
         if (notificationLabel.length !== 0) {
             notificationLabel.delay(3000).fadeOut(200);

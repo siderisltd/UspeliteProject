@@ -7,6 +7,8 @@
     using System.Drawing.Imaging;
     using System.IO;
     using System.Linq;
+    using System.Net;
+    using System.Net.Http;
     using System.Web;
     using System.Web.Mvc;
     using ActionFilters;
@@ -18,6 +20,7 @@
     using Helpers.Attributes;
     using Microsoft.AspNet.Identity;
     using Models.Categories;
+    using Services.Web.Contracts;
     using Image = Data.Models.Image;
 
     public class ArticlesController : BaseController
@@ -25,12 +28,16 @@
         private readonly IArticlesService articlesService;
         private readonly ICategoriesService categoriesService;
         private readonly IImagesService imagesService;
+        private readonly ISlugService slugService;
+        private readonly IBulgarianLatinConvertService bulgarianLatinConvertService;
 
-        public ArticlesController(IArticlesService articlesService, ICategoriesService categoriesService, IImagesService imagesService)
+        public ArticlesController(IArticlesService articlesService, ICategoriesService categoriesService, IImagesService imagesService, ISlugService slugService, IBulgarianLatinConvertService bulgarianLatinConvertService)
         {
             this.articlesService = articlesService;
             this.categoriesService = categoriesService;
             this.imagesService = imagesService;
+            this.slugService = slugService;
+            this.bulgarianLatinConvertService = bulgarianLatinConvertService;
         }
 
         public ActionResult Show(string slug)
@@ -49,7 +56,7 @@
                     model.ShowEdit = true;
                 }
             }
-           
+
             return this.View(model);
         }
 
@@ -80,18 +87,33 @@
         }
 
         [HttpGet]
+        [AuthorizeRoles(AppRoles.EDITOR_ROLE, AppRoles.MANAGER_ROLE, AppRoles.ADMIN_ROLE, AppRoles.ULTIMATE_ROLE)]
         public ActionResult Add(string Id)
         {
             var model = new ArticlesBindingModel();
             if (!string.IsNullOrEmpty(Id))
             {
                 var foundArticle = this.articlesService.GetById(int.Parse(Id));
-                if(foundArticle == null)
+
+                if (foundArticle == null)
                 {
                     return this.HttpNotFound("Article with that Id was not found");
                 }
-                model = this.Mapper.Map<ArticlesBindingModel>(foundArticle);
 
+                if(!this.User.IsInRole(AppRoles.MANAGER_ROLE) && !this.User.IsInRole(AppRoles.ADMIN_ROLE) && !this.User.IsInRole(AppRoles.ULTIMATE_ROLE))
+                {
+                    //if it is inside the only possible role is [EDITOR.ROLE] and it must be the owner of the article
+                    var userId = this.User.Identity.GetUserId();
+                    if(userId != foundArticle.AuthorId)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Naughty user..");
+                    }
+                }
+
+         
+                model = this.Mapper.Map<ArticlesBindingModel>(foundArticle);
+                model.MainImageInBase64String = @"data:image/png;base64," + Convert.ToBase64String(System.IO.File.ReadAllBytes(Uspelite.Services.Common.Constants.ROOT_IMAGES_FOLDER + foundArticle.MainImage.PathOriginalSize));
+                this.TempData["editmode"] = true;
             }
 
             model.AllCategories = this.GetAllCategories();
@@ -105,58 +127,99 @@
         {
             if (this.ModelState.IsValid)
             {
-                if (!this.IsImage(model.TitleImage))
+                if(model.Id != 0)
                 {
-                    this.ModelState.AddModelError("NotImageError", new ArgumentException("The provided file is not an image"));
+                    var foundArticle = this.articlesService.GetById(model.Id);
+
+                    if(foundArticle == null)
+                    {
+                        return this.HttpNotFound("Article with that Id was not found");
+                    }
+
+                    if (!this.User.IsInRole(AppRoles.MANAGER_ROLE) && !this.User.IsInRole(AppRoles.ADMIN_ROLE) && !this.User.IsInRole(AppRoles.ULTIMATE_ROLE))
+                    {
+                        //if it is inside the only possible role is [EDITOR.ROLE] and it must be the owner of the article
+                        var userId = this.User.Identity.GetUserId();
+                        if (userId != foundArticle.AuthorId)
+                        {
+                            return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Naughty user..");
+                        }
+                    }
                 }
-                string imageName = Path.GetFileNameWithoutExtension(model.TitleImage.FileName);
-                var userId = this.User.Identity.GetUserId();
 
-                var x1 = (int)Math.Ceiling(double.Parse(model.X1));
-                var x2 = (int)Math.Ceiling(double.Parse(model.X2));
-
-                var y1 = (int)Math.Ceiling(double.Parse(model.Y1));
-                var y2 = (int)Math.Ceiling(double.Parse(model.Y2));
-
-                var w = (int)Math.Ceiling(double.Parse(model.W));
-                var h = (int)Math.Ceiling(double.Parse(model.H));
-
-                var rect = new Rectangle(x1, y1, w, h);
-                var imageAsByteArray = this.imagesService.CropImage(model.TitleImage.InputStream, rect);
-
-
-
-                var articleImage = new Image
-                {
-                    IsMain = true,
-                    Title = imageName,
-                    Slug = model.Slug,
-                    AsByteArray = imageAsByteArray,
-                    AuthorId = userId
-                };
                 try
                 {
-                    int imageId;
-                    if (model.ImportBranding)
+                    var articleImage = new Image();
+                    var userId = this.User.Identity.GetUserId();
+
+                    if (model.TitleImage != null)
                     {
-                        imageId = this.imagesService.SaveImage(articleImage, ImageFormat.Jpeg, true);
+                        if (!this.IsImage(model.TitleImage))
+                        {
+                            this.ModelState.AddModelError("NotImageError", new ArgumentException("The provided file is not an image"));
+                        }
+
+                        string imageName = Path.GetFileNameWithoutExtension(model.TitleImage.FileName);
+                     
+                        var x1 = (int)Math.Ceiling(double.Parse(model.X1));
+                        var y1 = (int)Math.Ceiling(double.Parse(model.Y1));
+                        var w = (int)Math.Ceiling(double.Parse(model.W));
+                        var h = (int)Math.Ceiling(double.Parse(model.H));
+                        var rect = new Rectangle(x1, y1, w, h);
+                        var imageAsByteArray = this.imagesService.CropImage(model.TitleImage.InputStream, rect);
+
+
+                        //TODO: Remode when importing the new data
+                        if (model.Slug == null)
+                        {
+                            model.Slug = this.bulgarianLatinConvertService.Convert(model.Title);
+                        }
+
+                        articleImage = new Image
+                        {
+                            IsMain = true,
+                            Title = imageName,
+                            Slug = model.Slug,
+                            AsByteArray = imageAsByteArray,
+                            AuthorId = userId
+                        };
+
+                        int imageId;
+                        if (model.ImportBranding)
+                        {
+                            imageId = this.imagesService.SaveImage(articleImage, ImageFormat.Jpeg, true);
+                        }
+                        else
+                        {
+                            imageId = this.imagesService.SaveImage(articleImage, ImageFormat.Jpeg);
+                        }
+                    }
+                    if (model.Id != 0)
+                    {
+                        var articleId = this.articlesService.Update(model.Id,
+                                                                     model.Title,
+                                                                     userId,
+                                                                     model.Content,
+                                                                     PostStatus.Published,
+                                                                     model.CategoryId,
+                                                                     articleImage.Slug == null ? null : articleImage);
+
+                        this.TempData["Notification"] = "Статията беше редактирана успешно! ID:" + articleId;
                     }
                     else
                     {
-                        imageId = this.imagesService.SaveImage(articleImage, ImageFormat.Jpeg);
+                        var articleId = this.articlesService.Add(
+                                           model.Title,
+                                           model.Slug,
+                                           userId,
+                                           model.Content,
+                                           PostStatus.Published,
+                                           model.CategoryId,
+                                           articleImage);
+
+                        this.TempData["Notification"] = "Статията беше добавена успешно! ID:" + articleId;
                     }
 
-
-                    var articleId = this.articlesService.Add(
-                        model.Title,
-                        model.Slug,
-                        userId,
-                        model.Content,
-                        PostStatus.Published,
-                        model.CategoryId,
-                        articleImage);
-
-                    this.TempData["Notification"] = "Статията беше добавена успешно! ID:" + articleId;
                 }
                 catch (DbUpdateException ex)
                 {

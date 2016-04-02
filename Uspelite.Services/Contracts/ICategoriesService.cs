@@ -13,5 +13,7 @@
         IQueryable<Category> GetBySlug(string title);
 
         IQueryable<PagedCategoryDTO> GetPaged(string slug, int page, int pageCount);
+
+        Category GetById(int id);
     }
 }

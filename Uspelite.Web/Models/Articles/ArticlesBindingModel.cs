@@ -9,10 +9,12 @@
 
     public class ArticlesBindingModel : IMapFrom<Article>
     {
-        [Required]
-        public string Title { get; set; }
+        public int Id { get; set; }
 
         [Required]
+        [RegularExpression("[^А-я ]", ErrorMessage = "В заглавието е позволена само кирилица")]
+        public string Title { get; set; }
+
         public string Slug { get; set; }
 
         [Required]
@@ -22,7 +24,6 @@
         [Required]
         public int CategoryId { get; set; }
 
-        [Required]
         public HttpPostedFileBase TitleImage { get; set; }
 
         [Required]
@@ -35,14 +36,12 @@
 
         public string X1 { get; set; }
 
-        public string X2 { get; set; }
-
         public string Y1 { get; set; }
-
-        public string Y2 { get; set; }
 
         public string W { get; set; }
 
         public string H { get; set; }
+
+        public string MainImageInBase64String { get; set; }
     }
 }
