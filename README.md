@@ -1,2 +1,0 @@
-# UspeliteProject
-Uspelite project
