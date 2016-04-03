@@ -1,0 +1,19 @@
+﻿@using System.Globalization
+@model Uspelite.Web.Models.Comments.CommentViewModel
+
+
+<li>
+    <div class="comment" data-commentid="@Model.Id">
+        <a href="#" class="user-avatar">
+            <img src="/@Model.Author.ProfileImage.Resized400Picture" width="80" height="80" alt="" class="img-circle">
+        </a>
+        <div class="comment-text">
+            <header>
+                <h5 class="pull-left"><a href="#">@Model.Author.FullName</a></h5>
+                <span class="time-stamp">@Model.CreatedOn.ToString("MMMM dd yyyy HH:mm:ss", CultureInfo.GetCultureInfo("bg-BG"))</span>
+                <a href="#" class="reply pull-right"></a>
+            </header>
+            <p>@Model.SanitizedContent</p>
+        </div>
+    </div>
+</li>

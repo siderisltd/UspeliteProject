@@ -1,0 +1,67 @@
+﻿@model Uspelite.Web.Models.Videos.PageableVideoViewModel
+
+@section sidebar{
+    @(Html.Action<ChildActionsController>(x => x.GetSideBar()))
+}
+
+<article>
+    <header>
+        <h2><a href="#">Featured videos</a>
+        </h2>
+        <span class="borderline"></span>
+    </header>
+
+    <section>
+        <div id="article-gallery" class="row">
+            @foreach (var mod in Model.Videos)
+            {
+                <div class="col-xs-6 col-sm-3 col-md-4 text-center">
+                    <article class="clearfix">
+                        <h5>@mod.Title</h5>
+                        <a href="@mod.EmbedUrl" rel="video">
+                            <img src="@mod.VideoImage" width="300" height="200" alt="Videos" class="img-responsive">
+                            <div class="zoomix"><i class="fa fa-play"></i>
+                            </div>
+                        </a>
+                    </article>
+                    @Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", mod)
+                </div>
+            }
+        </div>
+        <nav>
+            <div class="text-center">
+                <ul class="pagination">
+                    @if (Model.CurrentPage != 1)
+                    {
+                        <li>
+                            <a href="/Videos/Index?page=@(Model.CurrentPage - 1)&pageSize=@Model.PageSize" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    }
+                    @for (int i = Model.DisplayPageFrom; i <= Model.DisplayPageTo; i++)
+                    {
+                        var className = string.Empty;
+                        if (Model.CurrentPage == i)
+                        {
+                            className = "active";
+                        }
+                        <li class="@className">@Html.ActionLink(i.ToString(), "Index", "Videos", new {page = i, pageSize = Model.PageSize}, null)</li>
+                    }
+                    @if (Model.DisplayPageTo != Model.TotalPages)
+                    {
+                        <li>
+                            <a href="/Videos/Index?page=@(Model.CurrentPage + 1)&pageSize=@Model.PageSize" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </section>
+</article>
+
+@section scripts {
+    @Scripts.Render("~/Scripts/Custom/ratingScript.js")
+}

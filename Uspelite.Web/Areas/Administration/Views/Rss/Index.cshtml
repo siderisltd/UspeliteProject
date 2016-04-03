@@ -1,0 +1,46 @@
+﻿
+
+<div class="container">
+    <div class="text-danger" id="loader" style="display:none">Loading..</div>
+    <div class="jumbotron">
+        <h2>Get Feeds</h2>
+   @Ajax.ActionLink("News.bg", "GetNewsBgFeed", "Rss", null, new AjaxOptions
+   {
+       InsertionMode = InsertionMode.Replace,
+       UpdateTargetId = "newsResult",
+       LoadingElementId = "loader"
+   }, new { @class = "btn btn-danger" })
+
+
+   @Ajax.ActionLink("FrogNews", "GetFrogNewsFeed", "Rss", null, new AjaxOptions
+   {
+       InsertionMode = InsertionMode.Replace,
+       UpdateTargetId = "newsResult",
+       LoadingElementId = "loader"
+   }, new { @class = "btn btn-danger" })
+
+
+   @Ajax.ActionLink("DarikNews", "GetDarikNewsFeed", "Rss", null, new AjaxOptions
+   {
+       InsertionMode = InsertionMode.Replace,
+       UpdateTargetId = "newsResult",
+       LoadingElementId = "loader"
+   }, new { @class = "btn btn-danger" })
+
+
+   @Ajax.ActionLink("OffNews", "GetOffNewsFeed", "Rss", null, new AjaxOptions
+   {
+       InsertionMode = InsertionMode.Replace,
+       UpdateTargetId = "newsResult",
+       LoadingElementId = "loader"
+   }, new { @class = "btn btn-danger" })
+        
+   @Ajax.ActionLink("StandartNews", "GetStandartNewsFeed", "Rss", null, new AjaxOptions
+   {
+       InsertionMode = InsertionMode.Replace,
+       UpdateTargetId = "newsResult",
+       LoadingElementId = "loader"
+   }, new { @class = "btn btn-danger" })
+    </div>
+</div>
+<div id="newsResult"></div>

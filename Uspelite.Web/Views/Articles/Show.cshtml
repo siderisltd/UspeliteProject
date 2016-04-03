@@ -1,0 +1,191 @@
+﻿@using System.Globalization
+@model Uspelite.Web.Models.Articles.ConcreteArticleViewModel
+
+@{
+    ViewBag.Title = "Posts";
+}
+
+@section sidebar{
+    @(Html.Action<ChildActionsController>(x => x.GetSideBar()))
+}
+
+@if (Model.ShowEdit)
+{
+    @Html.ActionLink("Edit", "Add", "Articles", new { Id = Model.Id }, new { @class = "btn btn-success"})
+}
+
+
+<article id="article-post" class="cat-sports">
+    <div class="head-image thumb-wrap relative">
+        <a href="article-sport.php">@Html.Image(x => Model.MainArticlePic.OriginalSizedPicture, "Alt responsive picture", "770", "470", new { @class = "img-responsive" })</a>
+        <a href="/Categories/Show/@Model.Category" class="theme">@Model.Category</a>
+    </div>
+
+    <header>
+
+        @*<ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Sport</a></li>
+                <li><a href="#">Todo history how you get there</a></li>
+                <li class="active">Football</li>
+            </ol>*@
+        <h1>@Model.Title</h1>
+    </header>
+    <p>
+        @Html.Raw(Model.SanitizedFullContent)
+    </p>
+
+
+    @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", Model)*@
+    <footer>
+        <h3>Споделете статията</h3>
+
+        <a href=""><i class="fa fa-twitter fa-lg"></i></a>
+        <a class="fb-share-button" data-href="~/Articles/Show/@Model.Slug" data-layout="button_count"></a>
+        <a href=""><i class="fa fa-linkedin-square fa-lg"></i></a>
+        <div class="g-plus" data-action="share" data-annotation="bubble" data-href=""></div>
+        @*<a href=""><i class="fa fa-google-plus-square fa-lg"></i></a>*@
+
+        <a href=""><i class="fa fa-vimeo-square fa-lg"></i></a>
+        <a href=""><i class="fa fa-youtube fa-lg"></i></a>
+
+        <div class="author-box">
+            <img src="/@Model.Author.ProfileImage.Resized400Picture" width="115" height="115" alt="" class="img-circle">
+            <a class="name" href="/Authors/Info/@Model.Author.Id/@Model.Author.FullName.Replace(' ', '-')">@Model.Author.FullName</a>
+            <p>@Model.Author.ShortInfo</p>
+        </div>
+    </footer>
+</article>
+
+@*<section class="news-lay-3 bottom-margin">
+        <header>
+            <h2><a href="#">Топ статии на @Model.Author.FullName за деня</a>
+            </h2>
+            <span class="borderline"></span>
+        </header>
+
+        <div class="row">
+            3 statii
+            <article class="col-md-4 cat-sports">
+                <div class="thumb-wrap relative">
+                    <a href="#"><img src="~/Content/Theme/images/dummy/265x160.jpg" width="265" height="160" alt="Responsive image" class="img-responsive"></a>
+                    <a href="#" class="theme">
+                        Sport
+                    </a>
+                </div>
+                <span class="published">February 18, 2014</span>
+                <h3>
+                    <a href="#">A wonderful serenity has taken possession of my entire soul</a>
+                </h3>
+            </article>
+        </div>
+    </section>*@
+
+
+<!-- start:article-comments -->
+<section id="article-comments">
+
+    <header>
+        <h2><a id="commentsCount">@Model.Comments.Count коментара</a>
+        </h2>
+        <span class="borderline"></span>
+    </header>
+
+
+    <div class="alert notification-label comment-message" role="alert"></div>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <section id="article-comments-form">
+            <header>
+                <h2>
+                    <a onclick="showCommentBox()" style="cursor:pointer">Оставете коментар</a>
+                </h2>
+                <span class="borderline"></span>
+            </header>
+
+            <div id="comment-box" style="display: none">
+                @using (Ajax.BeginForm("AddToArticle", "Comments", null, new AjaxOptions
+                                                                         {
+                                                                             HttpMethod = "POST",
+                                                                             InsertionMode = InsertionMode.InsertBefore,
+                                                                             UpdateTargetId = "comments-list",
+                                                                             OnSuccess = "acceptedComment",
+                                                                             OnFailure = "rejectedComment"
+                                                                         }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <input type="hidden" value="@Model.Id" name="toId"/>
+                    <div class="row bottom-margin">
+                        <div class="col-md-12">
+                            <textarea id="comment-area" class="form-control" placeholder="Коментар" rows="5" name="content"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="submit" class="show-more cat-sports" title="Post comment" value="Добави"/>
+                    </div>
+                }
+            </div>
+        </section>
+    }
+
+    <!-- start:comments-list -->
+    <ol id="comments-list">
+        @foreach (var comment in Model.Comments.OrderByDescending(x => x.CreatedOn))
+        {
+            @Html.Partial("~/Views/Comments/_CommentPartial.cshtml", comment);
+        }
+    </ol>
+</section>
+<!-- end:article-comments -->
+
+
+
+
+
+@section overridingStyles {
+    <style>
+        div.author-box {
+            min-height: 152px;
+        }
+    </style>
+}
+
+
+@section scripts {
+    @Scripts.Render("~/Scripts/Custom/ratingScript.js")
+
+    <script>
+        function showCommentBox() {
+            $('#comment-box').css('display', 'block');
+        }
+
+
+        function acceptedComment() {
+            var elementHtml = $('#commentsCount').html();
+            var elements = elementHtml.split(' ');
+            var commentsCount = elements[0] * 1;
+            var elementText = elements[1];
+            commentsCount += 1;
+            $('#commentsCount').html(commentsCount + ' ' + elementText);
+
+            $('#comment-area').val('');
+            var $messageElement = $('.comment-message');
+            $messageElement.addClass('alert-success');
+            $messageElement.html("Успешно добавихте коментар");
+            $messageElement.css('display', 'block');
+            $messageElement.delay(2700).fadeOut(100);
+            $('#comment-box').css('display', 'none');
+            //alert-success
+        }
+        function rejectedComment() {
+
+            var $messageElement = $('.comment-message');
+            $messageElement.addClass('alert-danger');
+            $messageElement.html("Грешка при добавяне на коментар");
+            $messageElement.css('display', 'block');
+            $messageElement.delay(2700).fadeOut(100);
+        }
+    </script>
+}

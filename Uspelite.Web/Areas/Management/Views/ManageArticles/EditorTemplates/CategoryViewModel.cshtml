@@ -1,0 +1,7 @@
+﻿@model Uspelite.Web.Models.Categories.CategoryViewModel
+    
+@(Html.Kendo().DropDownListFor(m => m)
+        .DataValueField("Id")
+        .DataTextField("Title")
+        .BindTo((System.Collections.IEnumerable)this.ViewData["categories"])
+)

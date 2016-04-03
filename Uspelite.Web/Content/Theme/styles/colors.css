@@ -1,0 +1,589 @@
+/* ==========================================================================
+   Table of Content
+   ==========================================================================
+   
+    Header
+        News
+        Sports
+        Lifestyle
+        Showtime
+        Tech
+        Business
+        Extra
+        
+    Content
+        Articles
+            News
+            Sports
+            Lifestyle
+            Showtime
+            Tech
+            Business
+        
+        Reviews
+        Archive
+        Buttons
+    
+    Sidebar
+    Footer
+    
+    
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+
+/**
+ * News
+ */
+
+#header-navigation ul li.cat-news a,
+#header-navigation ul li.cat-news .dropnav-container ul.dropnav-menu,
+#header-navigation ul li.cat-news .dropnav-container ul.dropnav-menu li,
+.sidr ul li.cat-news a {
+    border-color: #ef3434;
+}
+
+#header-navigation ul li.cat-news .subnav-menu,
+#header-navigation ul li.cat-news:hover .subnav-menu a,
+#header-navigation ul li.cat-news .dropnav-container ul li a:hover {
+    background: #ef3434;
+}
+
+#header-navigation ul li.cat-news a:hover,
+#header-navigation ul li.cat-news:hover a,
+#header-navigation ul li.cat-news.current a,
+#header-navigation ul li.cat-news .subnav-container,
+#header-navigation ul li.cat-news .subnav-menu a:hover,
+#header-navigation ul li.cat-news .subnav-menu .current a,
+#header-navigation-sub nav.cat-news,
+.sidr ul li.cat-news a:hover {
+    background: #c13636;
+}
+
+.linkbox.cat-news a:hover .overlay {
+    background: rgba(239, 52, 52, 0.8);
+}
+
+/**
+ * Sports
+ */
+
+#header-navigation ul li.cat-sports a,
+#header-navigation ul li.cat-sports .dropnav-container ul.dropnav-menu,
+#header-navigation ul li.cat-sports .dropnav-container ul.dropnav-menu li,
+.sidr ul li.cat-sports a {
+    border-color: #51a3ff;
+}
+
+#header-navigation ul li.cat-sports .subnav-menu,
+#header-navigation ul li.cat-sports:hover .subnav-menu a,
+#header-navigation ul li.cat-sports .dropnav-container ul li a:hover {
+    background: #51a3ff;
+}
+
+#header-navigation ul li.cat-sports a:hover,
+#header-navigation ul li.cat-sports:hover a,
+#header-navigation ul li.cat-sports.current a,
+#header-navigation ul li.cat-sports .subnav-container,
+#header-navigation ul li.cat-sports .subnav-menu a:hover,
+#header-navigation ul li.cat-sports .subnav-menu .current a,
+#header-navigation-sub nav.cat-sports,
+.sidr ul li.cat-sports a:hover {
+    background: #4a84c4;
+}
+
+.linkbox.cat-sports a:hover .overlay {
+    background: rgba(81, 163, 255, 0.8);
+}
+
+/**
+ * Lifestyle
+ */
+
+#header-navigation ul li.cat-lifestyle a,
+#header-navigation ul li.cat-lifestyle .dropnav-container ul.dropnav-menu,
+#header-navigation ul li.cat-lifestyle .dropnav-container ul.dropnav-menu li,
+.sidr ul li.cat-lifestyle a {
+    border-color: #d4ca56;
+}
+
+#header-navigation ul li.cat-lifestyle .subnav-menu,
+#header-navigation ul li.cat-lifestyle:hover .subnav-menu a,
+#header-navigation ul li.cat-lifestyle .dropnav-container ul li a:hover {
+    background: #d4ca56;
+}
+
+#header-navigation ul li.cat-lifestyle a:hover,
+#header-navigation ul li.cat-lifestyle:hover a,
+#header-navigation ul li.cat-lifestyle.current a,
+#header-navigation ul li.cat-lifestyle .subnav-container,
+#header-navigation ul li.cat-lifestyle .subnav-menu a:hover,
+#header-navigation ul li.cat-lifestyle .subnav-menu .current a,
+#header-navigation-sub nav.cat-lifestyle,
+.sidr ul li.cat-lifestyle a:hover {
+    background: #b1aa57;
+}
+
+.linkbox.cat-lifestyle a:hover .overlay {
+    background: rgba(212, 202, 86, 0.8);
+}
+
+/**
+ * Showtime
+ */
+
+#header-navigation ul li.cat-showtime a,
+#header-navigation ul li.cat-showtime .dropnav-container ul.dropnav-menu,
+#header-navigation ul li.cat-showtime .dropnav-container ul.dropnav-menu li,
+.sidr ul li.cat-showtime a {
+    border-color: #cc62c8;
+}
+
+#header-navigation ul li.cat-showtime .subnav-menu,
+#header-navigation ul li.cat-showtime:hover .subnav-menu a,
+#header-navigation ul li.cat-showtime .dropnav-container ul li a:hover {
+    background: #cc62c8;
+}
+
+#header-navigation ul li.cat-showtime a:hover,
+#header-navigation ul li.cat-showtime:hover a,
+#header-navigation ul li.cat-showtime.current a,
+#header-navigation ul li.cat-showtime .subnav-container,
+#header-navigation ul li.cat-showtime .subnav-menu a:hover,
+#header-navigation ul li.cat-showtime .subnav-menu .current a,
+#header-navigation-sub nav.cat-showtime,
+.sidr ul li.cat-showtime a:hover {
+    background: #a0569e;
+}
+
+.linkbox.cat-showtime a:hover .overlay {
+    background: rgba(204, 98, 200, 0.8);
+}
+
+/**
+ * Tech
+ */
+
+#header-navigation ul li.cat-tech a,
+#header-navigation ul li.cat-tech .dropnav-container ul.dropnav-menu,
+#header-navigation ul li.cat-tech .dropnav-container ul.dropnav-menu li,
+.sidr ul li.cat-tech a {
+    border-color: #6f9ed3;
+}
+
+#header-navigation ul li.cat-tech .subnav-menu,
+#header-navigation ul li.cat-tech:hover .subnav-menu a,
+#header-navigation ul li.cat-tech .dropnav-container ul li a:hover {
+    background: #6f9ed3;
+}
+
+#header-navigation ul li.cat-tech a:hover,
+#header-navigation ul li.cat-tech:hover a,
+#header-navigation ul li.cat-tech.current a,
+#header-navigation ul li.cat-tech .subnav-container,
+#header-navigation ul li.cat-tech .subnav-menu a:hover,
+#header-navigation ul li.cat-tech .subnav-menu .current a,
+#header-navigation-sub nav.cat-tech,
+.sidr ul li.cat-tech a:hover {
+    background: #6081a6;
+}
+
+.linkbox.cat-tech a:hover .overlay {
+    background: rgba(111, 158, 211, 0.8);
+}
+
+/**
+ * Business
+ */
+
+#header-navigation ul li.cat-business a,
+#header-navigation ul li.cat-business .dropnav-container ul.dropnav-menu,
+#header-navigation ul li.cat-business .dropnav-container ul.dropnav-menu li,
+.sidr ul li.cat-business a {
+    border-color: #5dc866;
+}
+
+#header-navigation ul li.cat-business .subnav-menu,
+#header-navigation ul li.cat-business:hover .subnav-menu a,
+#header-navigation ul li.cat-business .dropnav-container ul li a:hover {
+    background: #5dc866;
+}
+
+#header-navigation ul li.cat-business a:hover,
+#header-navigation ul li.cat-business:hover a,
+#header-navigation ul li.cat-business.current a,
+#header-navigation ul li.cat-business .subnav-container,
+#header-navigation ul li.cat-business .subnav-menu a:hover,
+#header-navigation ul li.cat-business .subnav-menu .current a,
+#header-navigation-sub nav.cat-business,
+.sidr ul li.cat-business a:hover {
+    background: #55985b;
+}
+
+.linkbox.cat-business a:hover .overlay {
+    background: rgba(93, 200, 102, 0.8);
+}
+
+/**
+ * Extra
+ */
+
+#header-navigation ul li.cat-extra a,
+.sidr ul li.cat-extra a {
+    border-color: #73edfb;
+    color: #73edfb;
+}
+
+#header-navigation ul li.cat-extra .dropnav-container,
+#header-navigation ul li.cat-extra:hover a {
+    background: #222;
+}
+
+#header-navigation ul li.cat-extra .dropnav-container ul li a:hover {
+    color: #73edfb;
+}
+
+
+/* ==========================================================================
+   Content
+   ========================================================================== */
+
+/**
+ * Articles
+ */
+
+/**
+ * News
+ */
+
+article.cat-news a.theme,
+article a.theme.cat-news,
+#page-content .section-news header span.borderline,
+#page-content .cat-news .theme,
+#article-post.cat-news .progress-bar,
+#article-post.cat-news .score-overall {
+    background: #ef3434;
+}
+
+.section-news header h2 a,
+#article-post.cat-news .review ul.good li i.fa {
+    color: #ef3434;
+}
+
+/**
+ * Sports
+ */
+
+article.cat-sports a.theme,
+article a.theme.cat-sports,
+#page-content .section-sports header span.borderline,
+#page-content .cat-sports .theme,
+#article-post.cat-sports .progress-bar,
+#article-post.cat-sports .score-overall {
+    background: #51a3ff;
+}
+
+.section-sports header h2 a,
+#article-post.cat-sports .review ul.good li i.fa {
+    color: #51a3ff;
+}
+
+/**
+ * Lifestyle
+ */
+
+article.cat-lifestyle a.theme,
+article a.theme.cat-lifestyle,
+#page-content .section-lifestyle header span.borderline,
+#page-content .cat-lifestyle .theme,
+#article-post.cat-lifestyle .progress-bar,
+#article-post.cat-lifestyle .score-overall {
+    background: #d4ca56;
+}
+
+.section-lifestyle header h2 a,
+#article-post.cat-lifestyle .review ul.good li i.fa {
+    color: #d4ca56;
+}
+
+/**
+ * Showtime
+ */
+
+article.cat-showtime a.theme,
+article a.theme.cat-showtime,
+#page-content .section-showtime header span.borderline,
+#page-content .cat-shotime .theme,
+#article-post.cat-showtime .progress-bar,
+#article-post.cat-showtime .score-overall {
+    background: #cc62c8;
+}
+
+.section-showtime header h2 a,
+#article-post.cat-showtime .review ul.good li i.fa {
+    color: #cc62c8;
+}
+
+/**
+ * Tech
+ */
+
+article.cat-tech a.theme,
+article a.theme.cat-tech,
+#page-content .section-tech header span.borderline,
+#page-content .cat-tech .theme,
+#article-post.cat-tech .progress-bar,
+#article-post.cat-tech .score-overall {
+    background: #6f9ed3;
+}
+
+.section-tech header h2 a,
+#article-post.cat-tech .review ul.good li i.fa {
+    color: #6f9ed3;
+}
+
+/**
+ * Business
+ */
+
+article.cat-business a.theme,
+article a.theme.cat-business,
+#page-content .section-business header span.borderline,
+#page-content .cat-business .theme,
+#article-post.cat-business .progress-bar,
+#article-post.cat-business .score-overall {
+    background: #5dc866;
+}
+
+.section-business header h2 a,
+#article-post.cat-business .review ul.good li i.fa {
+    color: #5dc866;
+}
+
+
+/* ==========================================================================
+   Reviews
+   ========================================================================== */
+
+.cat-reviews {
+    background: #444;
+}
+
+#page-content .cat-reviews header h2 {
+    border-color:  #4e4e4e;
+}
+
+#page-content .cat-reviews header span.borderline {
+    background: #fff;
+}
+
+
+/* ==========================================================================
+   Archive
+   ========================================================================== */
+
+/**
+ * Show MorModule timelinee
+ */
+
+#archive-page.module-timeline .cat-news a {
+    color: #ef3434;
+}
+
+#archive-page.module-timeline article i.bullet-news {
+    background: #ef3434;
+}
+
+#archive-page.module-timeline .cat-sports a {
+    color: #51a3ff;
+}
+
+#archive-page.module-timeline article i.bullet-sports {
+    background: #51a3ff;
+}
+
+#archive-page.module-timeline .cat-lifestyle a {
+    color: #d4ca56;
+}
+
+#archive-page.module-timeline article i.bullet-lifestyle {
+    background: #d4ca56;
+}
+
+#archive-page.module-timeline .cat-showtime a {
+    color: #cc62c8;
+}
+
+#archive-page.module-timeline article i.bullet-showtime {
+    background: #cc62c8;
+}
+
+#archive-page.module-timeline .cat-tech a {
+    color: #6f9ed3;
+}
+
+#archive-page.module-timeline article i.bullet-tech {
+    background: #6f9ed3;
+}
+
+#archive-page.module-timeline .cat-business a {
+    color: #5dc866;
+}
+
+#archive-page.module-timeline article i.bullet-business {
+    background: #5dc866;
+}
+
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+/**
+ * Show More
+ */
+
+a.show-more.cat-news {
+    background: #ef3434;
+}
+
+a.show-more.cat-sports {
+    background: #51a3ff;
+}
+
+a.show-more.cat-lifestyle {
+    background: #d4ca56;
+}
+
+a.show-more.cat-showtime {
+    background: #cc62c8;
+}
+
+a.show-more.cat-tech {
+    background: #6f9ed3;
+}
+
+a.show-more.cat-business {
+    background: #5dc866;
+}
+
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
+
+#sidebar span.cat-news a {
+    color: #ef3434;
+}
+
+#sidebar span.cat-sports a {
+    color: #51a3ff;
+}
+
+#sidebar span.cat-lifestyle a {
+    color: #d4ca56;
+}
+
+#sidebar span.cat-showtime a {
+    color: #cc62c8;
+}
+
+#sidebar span.cat-tech a {
+    color: #6f9ed3;
+}
+
+#sidebar span.cat-business a {
+    color: #5dc866;
+}
+
+#sidebar .module-timeline article i.bullet-news {
+    background: #ef3434;
+}
+
+#sidebar .module-timeline article i.bullet-sports {
+    background: #51a3ff;
+}
+
+#sidebar .module-timeline article i.bullet-lifestyle {
+    background: #d4ca56;
+}
+
+#sidebar .module-timeline article i.bullet-showtime {
+    background: #cc62c8;
+}
+
+#sidebar .module-timeline article i.bullet-tech {
+    background: #6f9ed3;
+}
+
+#sidebar .module-timeline article i.bullet-business {
+    background: #5dc866;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+#foot-menu ul li.cat-news a {
+    border-color: #ef3434;
+}
+
+#foot-menu ul li.cat-news a:hover,
+#foot-menu ul li.cat-news.current a {
+    color: #c13636;
+}
+
+#foot-menu ul li.cat-sports a {
+    border-color: #51a3ff;
+}
+
+#foot-menu ul li.cat-sports a:hover,
+#foot-menu ul li.cat-sports.current a {
+    color: #4a84c4;
+}
+
+#foot-menu ul li.cat-lifestyle a {
+    border-color: #d4ca56;
+}
+
+#foot-menu ul li.cat-lifestyle a:hover,
+#foot-menu ul li.cat-lifestyle.current a {
+    color: #b1aa57;
+}
+
+#foot-menu ul li.cat-showtime a {
+    border-color: #cc62c8;
+}
+
+#foot-menu ul li.cat-showtime a:hover,
+#foot-menu ul li.cat-showtime.current a {
+    color: #a0569e;
+}
+
+#foot-menu ul li.cat-tech a {
+    border-color: #6f9ed3;
+}
+
+#foot-menu ul li.cat-tech a:hover,
+#foot-menu ul li.cat-tech.current a {
+    color: #6081a6;
+}
+
+#foot-menu ul li.cat-business a {
+    border-color: #5dc866;
+}
+
+#foot-menu ul li.cat-business a:hover,
+#foot-menu ul li.cat-business.current a {
+    color: #55985b;
+}
+
+#foot-menu ul li.cat-extra a {
+    border-color: #73edfb;
+}
+
+#foot-menu ul li.cat-extra a:hover,
+#foot-menu ul li.cat-extra.current a {
+    color: #73edfb;
+}

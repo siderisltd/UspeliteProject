@@ -1,0 +1,7 @@
+﻿@model Uspelite.Services.Data.DTO.ArticlePlaceTypeDTO
+
+@(Html.Kendo().DropDownListFor(m => m)
+        .DataValueField("Id")
+        .DataTextField("Name")
+        .BindTo((System.Collections.IEnumerable)this.ViewData["postplaces"])
+)

@@ -1,0 +1,50 @@
+﻿
+@using Uspelite.Web.Areas.Management.Models
+@model Uspelite.Web.Areas.Management.Models.ManageArticleViewModel
+
+@(Html.FullFeaturedGrid<ManageArticleViewModel>("ManageArticles", x => x.Id, column =>
+{
+    column.Bound(x => x.Id).Hidden();
+    column.Bound(x => x.Title);
+    column.Bound(x => x.Category).ClientTemplate("#= Category.Title #");
+    column.Bound(x => x.Status);
+    column.Bound(x => x.Author);
+    column.Bound(x => x.CreatedOn).Format("{0:yyyy.dd.MM hh:mm:ss}");
+    column.Bound(x => x.Place);
+    column.Command(c => c.Edit());
+    column.Command(c => c.Destroy());
+}))
+
+@*@(Html.Kendo().Grid<ManageArticleViewModel>()
+        .Name("articlesGrid")
+        .Columns(column =>
+        {
+            column.Bound(x => x.Id).Hidden();
+            column.Bound(x => x.Title);
+            column.Bound(x => x.Category).ClientTemplate("#= Category.Title #");
+            column.Bound(x => x.Status);
+            column.Bound(x => x.Author);
+            column.Bound(x => x.CreatedOn).Format("{0:yyyy.dd.MM hh:mm:ss}");
+            column.Bound(x => x.Place);
+            column.Command(c => c.Edit());
+            column.Command(c => c.Destroy());
+        })
+        .ColumnMenu()
+        .Pageable(page => page.Refresh(true))
+        .Sortable()
+        .Groupable()
+        .Filterable()
+        .Editable(edit => edit.Mode(GridEditMode.PopUp))
+        .DataSource(data =>
+            data
+                .Ajax()
+                .Model(m =>
+                {
+                    m.Id(x => x.Id);
+
+                })
+                .Read(read => read.Action("Read", "ManageArticles"))
+                .Create(create => create.Action("Create", "ManageArticles"))
+                .Update(update => update.Action("Update", "ManageArticles"))
+                .Destroy(destroy => destroy.Action("Destroy", "ManageArticles"))
+        ));*@

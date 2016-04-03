@@ -1,0 +1,81 @@
+﻿<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js ie9 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="bg-BG">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Младите успели българи,Успелите Българи, Седмични Новини, Дневни Новини, Новини, Блог, Шок новини, Весели новини, Хубави новини" />
+    <meta name="description" content="Младите успели българи">
+    <meta name="author" content="Младите успели българи">
+    <title>Успелите админ панел</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,500italic,400italic,700,700italic%7CRoboto+Condensed:400,700%7CRoboto+Slab' rel='stylesheet' type='text/css'>
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/bundles/kendoStyles")
+    @Styles.Render("~/theme/styles")
+    @Styles.Render("~/site/styles")
+    @RenderSection("overridingStyles", required: false)
+
+    @Scripts.Render("~/bundles/jquery")
+
+    <!-- start:stylesheets -->
+    <!-- end:stylesheets -->
+    <!--[if lte IE 8]>
+    <script src="~/Scripts/Libraries/respond.js"></script>
+    <![endif]-->
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="~/Content/Theme/styles/photobox.ie.css">
+    <script src="~/Scripts/Libraries/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div id="page-outer-wrap">
+        <div id="page-inner-wrap">
+
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="/Administration/Users">Users Grid</a></li>
+                            <li><a href="/Administration/Crowlers/">Crowlers</a></li>
+                            <li><a href="/Administration/Rss/">Rss</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            @if (this.TempData["Alert"] != null)
+            {
+                <div class="alert alert-danger notification-label" role="alert">@this.TempData["Alert"]</div>
+            }
+            @if (this.TempData["Notification"] != null)
+            {
+                <div class="alert alert-success notification-label" role="alert">@this.TempData["Notification"]</div>
+            }
+            <div class="container">
+                <div id="page-content">
+                    <div id="main">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            @Html.Partial("~/Views/Shared/Partials/_Footer.cshtml")
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquery-ui")
+    @Scripts.Render("~/bundles/theme")
+    @Scripts.Render("~/bundles/kendo")
+
+    @Scripts.Render("~/bundles/ajax")
+    @RenderSection("adminScripts", required: false)
+</body>
+</html>

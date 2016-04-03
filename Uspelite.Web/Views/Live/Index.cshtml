@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Live chat demo";
+}
+
+@section styles{
+    @Styles.Render("~/Content/Custom/chatStyles.css")
+}
+
+@section sidebar{
+    @(Html.Action<ChildActionsController>(x => x.GetSideBar()))
+}
+
+@section scripts{
+    <script src="~/Scripts/Libraries/jquery.signalR-2.2.0.js"></script>
+    <script src="~/signalR/hubs"></script>
+    <script src="~/Scripts/Custom/chatLogic.js"></script>
+}
+
+<h1 id="header">Излъчване на живо</h1>
+<br />
+<br />
+<br />
+
+<div class="video-container" id="video-container">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/q30BxeaS4Dk?autoplay=1" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<input id="btnStartChat" type="button" class="submitButton" value="Започнете чат" />
+<div id="divContainer" style="display:none">
+    <input id="currentUsername" type="hidden" data-cur-user-username="@User.Identity.Name" />
+
+    <div id="divChat" class="chatRoom">
+        <div class="container" id="chat-container">
+            <div class="title">
+                Welcome to Uspelite live <span id='spanUser'></span>
+                <div id="divusers" class="users"></div>
+            </div>
+            <div class="content">
+                <div id="divChatWindow" class="chatWindow"></div>
+            </div>
+            <div id="send-line-wrapper">
+                <div class="messageBar">
+                    <input class="textbox" type="text" id="txtMessage" />
+                </div>
+                <input id="btnSendMsg" type="button" value="Send" class="submitButton" />
+            </div>
+        </div>
+
+
+        <input id="hdId" type="hidden" />
+        <input id="hdUserName" type="hidden" />
+    </div>
+</div>

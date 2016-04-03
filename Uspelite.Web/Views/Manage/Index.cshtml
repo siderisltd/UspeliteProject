@@ -1,0 +1,50 @@
+﻿@model Uspelite.Web.Models.Account.Manage.IndexViewModel
+@{
+    ViewBag.Title = "My account";
+}
+
+<div id="profile-wrapper">
+
+    <h2>@ViewBag.Title</h2>
+    <p class="text-success">@ViewBag.StatusMessage</p>
+    <br/>
+
+    @Ajax.ActionLink("Update profile", "GetEditPartial", "Manage", Model.User, new AjaxOptions
+{
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "GET",
+    UpdateTargetId = "user-information"
+}, new { @class = "btn btn-success" })
+
+
+    <div class="author-box">
+        <img src="/@Model.User.ProfileImage.Resized400Picture" width="115" height="115" alt="" class="img-circle">
+        <span id="user-information">
+            <p class="name">@Model.User.FullName</p>
+            <p>@Model.User.ShortInfo</p>
+        </span>
+
+        <p>
+            <a href=""><i class="fa fa-twitter fa-lg"></i></a>
+            <a href=""><i class="fa fa-facebook-square fa-lg"></i></a>
+            <a href=""><i class="fa fa-linkedin-square fa-lg"></i></a>
+            <a href=""><i class="fa fa-google-plus-square fa-lg"></i></a>
+            <a href=""><i class="fa fa-vimeo-square fa-lg"></i></a>
+        </p>
+    </div>
+
+    <div>
+        <h4>Settings</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>Password:</dt>
+            <dd>
+                @Html.ActionLink("Change your password", "ChangePassword")
+            </dd>
+            <dt>External Logins:</dt>
+            <dd>
+                @Html.ActionLink("Manage", "ManageLogins")
+            </dd>
+        </dl>
+    </div>
+</div>
