@@ -288,6 +288,7 @@
     <Compile Include="Models\ChildActions\CategoryAndPostsViewModel.cs" />
     <Compile Include="Models\ChildActions\SliderViewModel.cs" />
     <Content Include="Content\Custom\chatStyles.css" />
+    <Content Include="Content\Custom\Fonts\essb-socialfollowers.svg" />
     <Content Include="Content\Imgs\no-photo-available.jpg" />
     <Content Include="Content\Imgs\testImage.jpg" />
     <Content Include="Content\Kendo\kendo.silver.min.css" />
@@ -537,6 +538,7 @@
     <Content Include="Scripts\Custom\facebookSdk.js" />
     <Content Include="Scripts\Custom\googleSdk.js" />
     <Content Include="Scripts\Custom\ratingScript.js" />
+    <Content Include="Scripts\Custom\shares.js" />
     <Content Include="Scripts\Libraries\JCrop\css\Jcrop.gif" />
     <Content Include="Scripts\Libraries\JCrop\css\jquery.Jcrop.css" />
     <Content Include="Scripts\Libraries\JCrop\css\jquery.Jcrop.min.css" />
@@ -606,6 +608,9 @@
     <Content Include="Areas\Management\Views\ManageArticles\EditorTemplates\ArticlePlaceTypeDTO.cshtml" />
     <None Include="Areas\Management\Views\ManageArticles\Index.cshtml" />
     <Content Include="Areas\Management\Views\ManageArticles\EditorTemplates\ManageArticleViewModel.cshtml" />
+    <Content Include="Content\Custom\Fonts\essb-socialfollowers.eot" />
+    <Content Include="Content\Custom\Fonts\essb-socialfollowers.ttf" />
+    <Content Include="Content\Custom\Fonts\essb-socialfollowers.woff" />
     <None Include="Properties\PublishProfiles\fileSystem.pubxml" />
     <Content Include="Scripts\Libraries\JCrop\README.md" />
     <None Include="Properties\PublishProfiles\UspeliteFileSystem.pubxml" />
@@ -691,6 +696,7 @@
     <Content Include="Views\ChildActions\_ClientNavigation.cshtml" />
     <None Include="Views\Articles\_BuildLinkView.cshtml" />
     <Content Include="Views\Articles\_FilteredArticlesByTitleDropdown.cshtml" />
+    <Content Include="Views\Articles\_ShareButtons.cshtml" />
     <None Include="Views\Comments\_CommentPartial.cshtml" />
     <None Include="Views\Images\Gallery.cshtml" />
     <Content Include="Views\Articles\Show.cshtml" />

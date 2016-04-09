@@ -74,10 +74,10 @@
                 foreach (var post in Model[i].Posts)
                 {
                     <article class="clearfix">
-                        <a href="/Articles/Show/@post.Slug">@Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "100", "80")</a>
+                        <a href="/@post.Slug">@Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "100", "80")</a>
                         <span class="published">@Html.DisplayFor(x => post.CreatedOn)<span class="category cat-sports">@Html.ActionLink(@category, "Show", "Categories", new {slug = category}, null)</span></span>
                         <h3>
-                            <a href="/Articles/Show/@post.Slug">@Html.Raw(post.SanitizedPartialContent)</a>
+                            <a href="/@post.Slug">@Html.Raw(post.SanitizedPartialContent)</a>
                         </h3>
                     </article>
                 }

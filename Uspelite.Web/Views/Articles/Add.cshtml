@@ -132,7 +132,7 @@
             $('#addLinkHolder').on('change', '#selectLink', function() {
                 var selectedArticleSlug = this[this.selectedIndex].value;
                 var selectedArticleTitle = this[this.selectedIndex].text;
-                $('#Url').val('/Articles/Show/' + selectedArticleSlug);
+                $('#Url').val('/' + selectedArticleSlug);
                 $('#copyText').val(selectedArticleTitle);
             });
         });

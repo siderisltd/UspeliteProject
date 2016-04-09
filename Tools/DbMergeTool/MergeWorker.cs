@@ -90,6 +90,7 @@
             {
                 var res = results[i];
 
+                //TODO: Check it
                 res.CategoryId = newDbCtx.Categories.FirstOrDefault(x => x.Title == res.CategoryName).Id;
                 res.PostAuthorId = usersService.GetByEmail(res.AuthorEmail).Id;
                 res.PostTitleImageUrl = oldCtx.wp_posts.FirstOrDefault(x => x.ID.ToString() == res.PictureInPostsId.ToString()).guid;

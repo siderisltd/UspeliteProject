@@ -15,7 +15,7 @@
 }
 
 
-<article id="article-post" class="cat-sports">
+<article id="article-post" data-slug="@Model.Slug" class="cat-sports">
 
     <header>
 
@@ -45,40 +45,8 @@
     @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", Model)*@
     <footer>
         <h3>Споделете статията</h3>
-		
-		<div class="ssb_links ssb_counters ssb_share metro-retina">
-			<ul class="ssb_links_list">
-				<li class="ssb_item ssb_totalcount_item">
-					<span class="ssb_totalcount ssb_t_l_big" title="">
-						<span class="ssb_total_text"></span>
-						<span class="ssb_t_nb">0</span>
-					</span>
-				</li>
-				<li class="ssb_item ssb_link_facebook nolightbox">
-					<a href="#" onClick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://uspelite.com/@Model.Slug&title=@Model.Title', 'sharer', 'toolbar=0, status=0, width=580, height=325');" rel="nofollow" target="_blank" title="Share this on Facebook">
-						<span class="ssb_icon"></span>
-						<span class="ssb_network_name">Facebook<span class="ssb_counter_insidename ssb_facebook_count"></span></span>
-					</a>
-				</li>
-				<li class="ssb_item ssb_link_twitter nolightbox">
-					<a href="#" onclick="window.open('http://twitter.com/intent/tweet?status=@Model.Title+http://uspelite.com/@Model.Slug', 'twitter', 'toolbar=0, status=0, width=580, height=325');" rel="nofollow" target="_blank" title="Tweet this">
-						<span class="ssb_icon"></span>
-						<span class="ssb_network_name">Twitter<span class="ssb_counter_insidename ssb_twitter_count"></span></span>
-					</a>
-				</li>
-				<li class="ssb_item ssb_link_google nolightbox">
-					<a href="#" onClick="window.open('https://plus.google.com/share?url=http://uspelite.com/@Model.Slug', 'google-plus', 'toolbar=0, status=0, width=580, height=325');" rel="nofollow" target="_blank" title="Share this on Google+">
-					<span class="ssb_icon"></span>
-					<span class="ssb_network_name">Google+<span class="ssb_counter_insidename ssb_google_count"></span></span>
-					</a>
-				</li>
-				<li class="ssb_item ssb_link_linkedin nolightbox">
-					<a href="#" onClick="window.open('http://www.linkedin.com/shareArticle?mini=true&url=http://uspelite.com/@Model.Slug&title=@Model.Title&source=http://uspelite.com', 'linkedin', 'toolbar=0, status=0, width=580, height=325');" rel="nofollow" target="_blank" title="Share this on LinkedIn">
-					<span class="ssb_icon"></span>
-					<span class="ssb_network_name">LinkedIn<span class="ssb_counter_insidename ssb_linkedin_count"></span></span></a>
-				</li>
-			</ul>
-		</div>
+
+        @Html.Partial("_ShareButtons")
 
         <div class="author-box">
             <img src="/@Model.Author.ProfileImage.Resized400Picture" width="115" height="115" alt="" class="img-circle">
@@ -186,6 +154,7 @@
 
 @section scripts {
     @Scripts.Render("~/Scripts/Custom/ratingScript.js")
+    @Scripts.Render("~/Scripts/Custom/shares.js")
 
     <script>
         function showCommentBox() {
