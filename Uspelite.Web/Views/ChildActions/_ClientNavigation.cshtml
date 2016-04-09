@@ -3,18 +3,18 @@
 <div class="container">
 
     <!-- start:menu -->
-    <nav id="menu">
+    <nav id="menu" class="both">
         <ul class="nav clearfix">
             <li class="home"><a href="~/"><span class="glyphicon glyphicon-home"></span></a></li>
             <li class="cat-news">
-                <a href="">Новини</a>
+                <a href="">Интервю</a>
                 <!-- start:submenu-news -->
                 <div class="subnav-container">
                     <ul class="subnav-menu">
 
                         @foreach (var mod in Model)
                         {
-                            <li class="current">
+                            <li>
                                 <a href="/Categories/Show/@mod.CategoryName">@mod.CategoryName</a>
                                 <div class="subnav-posts">
                                     @foreach (var post in mod.Posts)
@@ -33,24 +33,60 @@
                 </div>
                 <!-- end:submenu-news -->
             </li>
-
+			
             <li class="cat-sports">
-                @Html.ActionLink("Галерия", "Gallery", "Images")
+                @Html.ActionLink("Бизнес", "Busieness", "Икономика")
                 <!-- start:submenu-extra -->
                 <div class="dropnav-container">
                     <ul class="dropnav-menu">
-                        <li>@Html.ActionLink("Снимки", "Gallery", "Images")</li>
-                        <li>@Html.ActionLink("Видео", "Index", "Videos")</li>
+                        <li>@Html.ActionLink("Всички", "Общо", "All")</li>
+                        <li>@Html.ActionLink("Личностно развитие", "Personal development", "Подобрение на личностните качества")</li>
+						<li>@Html.ActionLink("Технологии", "Technologies", "Инжинерна мисъл")</li>
                     </ul>
                 </div>
                 <!-- end:submenu-extra -->
             </li>
             <li class="cat-showtime">
-                @Html.ActionLink("Излъчване на живо", "Index", "Live")
+                @Html.ActionLink("Спорт", "Sports", "Sport")
             </li>
-            @Html.Partial("~/Views/Shared/_LoginPartial.cshtml")
+
+ <li class="cat-sports">
+                @Html.ActionLink("Култура", "Culture", "Cultural heritage")
+                <!-- start:submenu-extra -->
+                <div class="dropnav-container">
+                    <ul class="dropnav-menu">
+                        <li>@Html.ActionLink("Всички", "All", "Всичко")</li>
+                        <li>@Html.ActionLink("Тайни кътчета", "Secret spots", "Местенца, които трябва да знаете")</li>
+						<li>@Html.ActionLink("Културно наследство", "Folklor", "Фолклор")</li>
+                        <li>@Html.ActionLink("История", "History", "Исторически статии")</li>
+						<li>@Html.ActionLink("Великите непознати", "The great unknown", "Неразказани биографии")</li>
+                        
+                    </ul>
+                </div>
+                <!-- end:submenu-extra -->
+            </li>
+
+ <li class="cat-sports">
+                @Html.ActionLink("Други", "Other", "Others")
+                <!-- start:submenu-extra -->
+                <!-- end:submenu-extra -->
+            </li>
         </ul>
     </nav>
     <!-- end:menu -->
+	
+	<!-- start search -->
+	<div class="search-form-wrapper col-sm-4">
+		<form id="search-form" name="search-form">
+			<div class="input-group">
+				<input class="form-control" name="qsearch" placeholder="Търсете..." type="text"/>
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+				</span>
+			</div>
+		</form>
+	</div>
+	<!-- end search -->
+	
 </div>
 <!-- end:container -->
