@@ -120,6 +120,7 @@
             return this.View(model);
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AuthorizeRoles(AppRoles.EDITOR_ROLE, AppRoles.MANAGER_ROLE, AppRoles.ADMIN_ROLE, AppRoles.ULTIMATE_ROLE)]
@@ -127,11 +128,11 @@
         {
             if (this.ModelState.IsValid)
             {
-                if(model.Id != 0)
+                if (model.Id != 0)
                 {
                     var foundArticle = this.articlesService.GetById(model.Id);
 
-                    if(foundArticle == null)
+                    if (foundArticle == null)
                     {
                         return this.HttpNotFound("Article with that Id was not found");
                     }
@@ -160,7 +161,7 @@
                         }
 
                         string imageName = Path.GetFileNameWithoutExtension(model.TitleImage.FileName);
-                     
+
                         var x1 = (int)Math.Ceiling(double.Parse(model.X1));
                         var y1 = (int)Math.Ceiling(double.Parse(model.Y1));
                         var w = (int)Math.Ceiling(double.Parse(model.W));

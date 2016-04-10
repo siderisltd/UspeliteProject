@@ -6,13 +6,12 @@
     using System.Web.Mvc;
     using Data.Models;
     using Infrastructure.Mapping.Contracts;
-
-    public class ArticlesBindingModel : IMapFrom<Article>
+    using System.Text.RegularExpressions;
+    public class ArticlesBindingModel : IMapFrom<Article>, IValidatableObject
     {
         public int Id { get; set; }
-
+       
         [Required]
-        [RegularExpression("[^А-я ]", ErrorMessage = "В заглавието е позволена само кирилица")]
         public string Title { get; set; }
 
         public string Slug { get; set; }
@@ -43,5 +42,16 @@
         public string H { get; set; }
 
         public string MainImageInBase64String { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var isInvalid = Regex.IsMatch(this.Title, "([^А-Я а-я !.,?'])");
+
+            if (isInvalid)
+            {
+                yield return new ValidationResult("В заглавието е позволена само кирилица");
+            }
+
+        }
     }
 }

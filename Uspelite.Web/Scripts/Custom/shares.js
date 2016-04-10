@@ -4,10 +4,10 @@ $((function () {
     var current_uri = 'http://uspelite.com/' + articleSlug;
 
     $.when(getFacebookSharesCount(), getTwitterSharesCount(), getGooglePlusSharesCount(), getLinkedInSharesCount()).done(function (fb, tw, gp, li) {
-        var fbShares = fb[0].shares,
-             liShares = li[0].result.metadata.globalCounts.count,
-             twShares = tw[0].count,
-             gpShares = gp[0].count,
+        var fbShares = fb[0].shares || 0,
+             liShares = li[0].result.metadata.globalCounts.count || 0,
+             twShares = tw[0].count || 0,
+             gpShares = gp[0].count || 0,
              totalSharesCount = fbShares + liShares + twShares + gpShares;
 
         updateShareButton($('.ssb_facebook_count'), fbShares);

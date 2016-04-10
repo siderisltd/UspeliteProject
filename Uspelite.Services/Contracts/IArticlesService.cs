@@ -5,6 +5,7 @@
     using DTO;
     using Uspelite.Data.Models;
     using Uspelite.Data.Models.Enum;
+    using Uspelite.Web.Infrastructure.Enums;
 
     public interface IArticlesService
     {
@@ -15,6 +16,8 @@
         IQueryable<Article> GetMostCommented(int count = 6, string category = null);
 
         IQueryable<CategoryAndPostsDTO> GetTopCountPostsByRatingInEveryCategory(int count = 3, IEnumerable<Category> categories = null);
+
+        IQueryable<CategoryAndPostsDTO> GetTopArticles(ArticleTopFactor topFactor = ArticleTopFactor.Rating, int count = 3, IEnumerable<Category> categories = null);
 
         IQueryable<Article> GetBySlug(string title);
 

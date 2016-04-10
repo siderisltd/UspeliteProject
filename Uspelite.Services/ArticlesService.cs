@@ -8,6 +8,7 @@
     using Uspelite.Data.Models;
     using Uspelite.Data.Models.Enum;
     using Uspelite.Data.Repositories;
+    using Uspelite.Web.Infrastructure.Enums;
 
     public class ArticlesService : IArticlesService
     {
@@ -53,7 +54,7 @@
                 Images = new List<Image>() { image }
             };
 
-            if(comments != null)
+            if (comments != null)
             {
                 article.Comments = comments;
             }
@@ -67,7 +68,7 @@
         public int Update(int id, string title, string authorId, string content, PostStatus status, int categoryId, Image image)
         {
             var article = this.repo.GetById(id);
-            if(article != null)
+            if (article != null)
             {
                 article.Title = title;
                 article.AuthorId = authorId;
@@ -96,7 +97,7 @@
 
             foreach (ArticlePlaceType place in Enum.GetValues(typeof(ArticlePlaceType)))
             {
-                if(place != ArticlePlaceType.Normal)
+                if (place != ArticlePlaceType.Normal)
                 {
                     result.Add(new ArticlePlaceTypeDTO
                     {
@@ -212,6 +213,34 @@
                             .Select(x => new CategoryAndPostsDTO { CategoryName = x.Key, Posts = x.Take(count) });
 
             return query;
+        }
+
+        public IQueryable<CategoryAndPostsDTO> GetTopArticles(ArticleTopFactor topFactor = ArticleTopFactor.Rating, int count = 3, IEnumerable<Category> categories = null)
+        {
+            if (categories == null)
+            {
+                //TODO: Fix this bullshit
+                categories = this.categoriesService.GetAll().AsEnumerable();
+            }
+
+            var query = this.repo
+                               .All()
+                               .Where(x => categories.Contains(x.Category));
+
+            if (topFactor == ArticleTopFactor.Rating)
+            {
+                query = query.OrderByDescending(x => x.Ratings.Sum(y => y.Value)/x.Ratings.Count);
+            }
+            else if(topFactor == ArticleTopFactor.Newest)
+            {
+                query = query.OrderByDescending(x => x.CreatedOn);
+            }
+
+            var newQuery = query
+                            .GroupBy(x => x.Category.Title)
+                            .Select(x => new CategoryAndPostsDTO { CategoryName = x.Key, Posts = x.Take(count) });
+
+            return newQuery;
         }
 
         public IQueryable<Article> GetBySlug(string slug)

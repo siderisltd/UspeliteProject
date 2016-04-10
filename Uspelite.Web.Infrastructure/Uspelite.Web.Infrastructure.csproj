@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="Enums\ArticleTopFactor.cs" />
     <Compile Include="Mapping\AutoMapperConfig.cs" />
     <Compile Include="Mapping\Contracts\IHaveCustomMappings.cs" />
     <Compile Include="Mapping\Contracts\IMapFrom.cs" />

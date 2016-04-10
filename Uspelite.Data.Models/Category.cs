@@ -24,6 +24,11 @@
             this.ratings = new HashSet<Rate>();
         }
 
+        public int? ParentId { get; set; }
+
+        [ForeignKey("ParentId")]
+        public virtual Category Parent { get; set; }
+
         public int Id { get; set; }
 
         [StringLength(100)]

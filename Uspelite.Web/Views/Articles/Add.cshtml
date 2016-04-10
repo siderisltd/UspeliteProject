@@ -80,7 +80,7 @@
     <script>
         //editor image's css properties
         $(function() {
-            $($("#Content").data("kendoEditor").body).on('click', 'img', function(ev) {
+            $($("#Content").data("kendoEditor").body).on('dblclick', 'img', function(ev) {
                 var $that = $(this);
                 $('#resize-box').remove();
                 var width = $that.css('width');

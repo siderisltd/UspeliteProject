@@ -54,23 +54,21 @@
                     </h1>
                 </div>
                 <div class="col-sm-6 col-md-4 text-center">
-
-                    @*<form id="search-form">
-                        <input type="text" name="qsearch" placeholder="Търсене">
-                        <button><span class="glyphicon glyphicon-search"></span></button>
-                    </form>*@
-
-                </div>
-                <div class="visible-md visible-lg col-md-4 text-right">
-
-                    <div class="weather">
-                        <i class="icon wi-day-cloudy"></i>
-                        <h3><span class="glyphicon glyphicon-map-marker"></span> LA, California <span class="temp">+12° C</span></h3>
-                        <span class="date">Сряда, 23.02.2016 г.</span>
+                    
+                    <!-- start search -->
+                    <div class="search-form-wrapper col-sm-4">
+                        <form id="search-form" name="search-form">
+                            <div class="input-group">
+                                <input class="form-control" name="qsearch" placeholder="Търсете..." type="text"/>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                                </span>
+                            </div>
+                        </form>
                     </div>
+                    <!-- end search -->
 
                 </div>
-
             </div>
         </div>
     </div>

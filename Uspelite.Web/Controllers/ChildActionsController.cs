@@ -1,5 +1,6 @@
 ﻿namespace Uspelite.Web.Controllers
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using Data.Models.Enum;
@@ -7,7 +8,7 @@
     using Models.Articles;
     using Models.ChildActions;
     using Services.Data.Contracts;
-
+    using Infrastructure.Enums;
     [ChildActionOnly]
     public class ChildActionsController : Controller
     {
@@ -73,9 +74,9 @@
 
         public ActionResult GetClientNavigation()
         {
-            var topSevenCategories = this.categoriesService.GetAll().OrderBy(x => x.Ratings.Any() ? x.Ratings.Sum(z => z.Value) : 0).Take(7).AsEnumerable();
-            var model = this.articlesService.GetTopCountPostsByRatingInEveryCategory(4, topSevenCategories).To<CategoryAndPostsViewModel>().ToList();
-            return this.PartialView("_ClientNavigation", model);
+            //var allCategoriesAndTopArticles = this.articlesService.GetTopArticles(ArticleTopFactor.Newest, 4).To<CategoryAndPostsViewModel>().ToDictionary(x => x.CategoryName, x => x.Posts);  
+            var allCategoriesAndTopArticles = this.articlesService.GetTopArticles(ArticleTopFactor.Newest, 4).To<CategoryAndPostsViewModel>().ToList();
+            return this.PartialView("_ClientNavigation", allCategoriesAndTopArticles);
         }
     }
 }
