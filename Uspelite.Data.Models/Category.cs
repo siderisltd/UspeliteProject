@@ -16,17 +16,20 @@
 
         private ICollection<Rate> ratings;
 
+        private ICollection<Category> children;
+
         public Category()
         {
             this.videos = new HashSet<Video>();
             this.articles = new HashSet<Article>();
             this.images = new HashSet<Image>();
             this.ratings = new HashSet<Rate>();
+            this.children = new HashSet<Category>();
         }
 
+        [ForeignKey(nameof(Parent))]
         public int? ParentId { get; set; }
 
-        [ForeignKey("ParentId")]
         public virtual Category Parent { get; set; }
 
         public int Id { get; set; }
@@ -39,6 +42,13 @@
         [StringLength(100)]
         [Required]
         public string Slug { get; set; }
+
+        [InverseProperty(nameof(Parent))]
+        public ICollection<Category> Children
+        {
+            get { return this.children; }
+            set { this.children = value; }
+        }
 
         public ICollection<Article> Articles
         {

@@ -10,15 +10,15 @@
     <br/>
 
     @Ajax.ActionLink("Update profile", "GetEditPartial", "Manage", Model.User, new AjaxOptions
-{
-    InsertionMode = InsertionMode.Replace,
-    HttpMethod = "GET",
-    UpdateTargetId = "user-information"
-}, new { @class = "btn btn-success" })
+                                                                               {
+                                                                                   InsertionMode = InsertionMode.Replace,
+                                                                                   HttpMethod = "GET",
+                                                                                   UpdateTargetId = "user-information"
+                                                                               }, new {@class = "btn btn-success"})
 
 
     <div class="author-box">
-        <img src="/@Model.User.ProfileImage.Resized400Picture" width="115" height="115" alt="" class="img-circle">
+        <img id="author-image" src="/@Model.User.ProfileImage.Resized400Picture" width="115" height="115" alt="" class="img-circle">
         <span id="user-information">
             <p class="name">@Model.User.FullName</p>
             <p>@Model.User.ShortInfo</p>
@@ -35,7 +35,7 @@
 
     <div>
         <h4>Settings</h4>
-        <hr />
+        <hr/>
         <dl class="dl-horizontal">
             <dt>Password:</dt>
             <dd>
@@ -48,3 +48,31 @@
         </dl>
     </div>
 </div>
+
+
+@section scripts {
+
+    <script>
+        $(function() {
+            var $mainImageContainer = $('#author-image');
+
+            //main image crop and visualize
+            function readURL(input) {
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $mainImageContainer.attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $('#upload-image').change(function () {
+                debugger;
+                readURL(this);
+            });
+        });
+        
+    </script>
+}

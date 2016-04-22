@@ -16,6 +16,10 @@
 
         byte[] CropImage(Stream inputStream, Rectangle rectangle);
 
+        void RemoveAllRelatedToUser(string id);
+
         void RemoveAllRelatedToArticle(int id);
+
+        byte[] ToByteArray(Stream inputStream);
     }
 }

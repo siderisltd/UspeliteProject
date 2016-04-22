@@ -29,15 +29,15 @@
         private readonly ICategoriesService categoriesService;
         private readonly IImagesService imagesService;
         private readonly ISlugService slugService;
-        private readonly IBulgarianLatinConvertService bulgarianLatinConvertService;
+        private readonly IShliokavitsaConvertService _shliokavitsaConvertService;
 
-        public ArticlesController(IArticlesService articlesService, ICategoriesService categoriesService, IImagesService imagesService, ISlugService slugService, IBulgarianLatinConvertService bulgarianLatinConvertService)
+        public ArticlesController(IArticlesService articlesService, ICategoriesService categoriesService, IImagesService imagesService, ISlugService slugService, IShliokavitsaConvertService _shliokavitsaConvertService)
         {
             this.articlesService = articlesService;
             this.categoriesService = categoriesService;
             this.imagesService = imagesService;
             this.slugService = slugService;
-            this.bulgarianLatinConvertService = bulgarianLatinConvertService;
+            this._shliokavitsaConvertService = _shliokavitsaConvertService;
         }
 
         public ActionResult Show(string slug)
@@ -162,10 +162,10 @@
 
                         string imageName = Path.GetFileNameWithoutExtension(model.TitleImage.FileName);
 
-                        var x1 = (int)Math.Ceiling(double.Parse(model.X1));
-                        var y1 = (int)Math.Ceiling(double.Parse(model.Y1));
-                        var w = (int)Math.Ceiling(double.Parse(model.W));
-                        var h = (int)Math.Ceiling(double.Parse(model.H));
+                        var x1 = (int)Math.Floor(double.Parse(model.X1));
+                        var y1 = (int)Math.Floor(double.Parse(model.Y1));
+                        var w = (int)Math.Floor(double.Parse(model.W));
+                        var h = (int)Math.Floor(double.Parse(model.H));
                         var rect = new Rectangle(x1, y1, w, h);
                         var imageAsByteArray = this.imagesService.CropImage(model.TitleImage.InputStream, rect);
 
@@ -173,7 +173,7 @@
                         //TODO: Remode when importing the new data
                         if (model.Slug == null)
                         {
-                            model.Slug = this.bulgarianLatinConvertService.Convert(model.Title);
+                            model.Slug = this._shliokavitsaConvertService.Convert(model.Title);
                         }
 
                         articleImage = new Image

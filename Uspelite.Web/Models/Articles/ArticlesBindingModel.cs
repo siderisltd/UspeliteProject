@@ -10,8 +10,8 @@
     public class ArticlesBindingModel : IMapFrom<Article>, IValidatableObject
     {
         public int Id { get; set; }
-       
-        [Required]
+
+        [RegularExpression("[^А-я A-z0-9-() += !?.,;/-\"'$% &№]", ErrorMessage = "В заглавието е позволена само кирилица")]
         public string Title { get; set; }
 
         public string Slug { get; set; }

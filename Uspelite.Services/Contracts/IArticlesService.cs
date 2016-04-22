@@ -9,13 +9,13 @@
 
     public interface IArticlesService
     {
+        IQueryable<Article> FullTextSearch(string query);
+
         IQueryable<Article> GetNewestPosts(int count = 6, string category = null);
 
         IQueryable<Article> GetTopPostsByRating(int count = 6, string category = null);
 
         IQueryable<Article> GetMostCommented(int count = 6, string category = null);
-
-        IQueryable<CategoryAndPostsDTO> GetTopCountPostsByRatingInEveryCategory(int count = 3, IEnumerable<Category> categories = null);
 
         IQueryable<CategoryAndPostsDTO> GetTopArticles(ArticleTopFactor topFactor = ArticleTopFactor.Rating, int count = 3, IEnumerable<Category> categories = null);
 

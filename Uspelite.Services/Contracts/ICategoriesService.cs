@@ -15,5 +15,7 @@
         IQueryable<PagedCategoryDTO> GetPaged(string slug, int page, int pageCount);
 
         Category GetById(int id);
+
+        IQueryable<Category> GetParentCategories();
     }
 }

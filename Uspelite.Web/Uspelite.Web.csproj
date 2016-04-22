@@ -56,6 +56,10 @@
       <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fissoft.EntityFramework.Fts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fissoft.EntityFramework.Fts.1.0.0.8\lib\net45\Fissoft.EntityFramework.Fts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Glimpse.AspNet, Version=1.9.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Glimpse.AspNet.1.9.2\lib\net45\Glimpse.AspNet.dll</HintPath>
       <Private>True</Private>
@@ -254,6 +258,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ImageBrowserController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Helpers\ActionFilters\AjaxActionFilter.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdministratorController.cs" />
@@ -611,6 +617,7 @@
     <Content Include="Content\Custom\Fonts\essb-socialfollowers.eot" />
     <Content Include="Content\Custom\Fonts\essb-socialfollowers.ttf" />
     <Content Include="Content\Custom\Fonts\essb-socialfollowers.woff" />
+    <None Include="Properties\PublishProfiles\File.pubxml" />
     <None Include="Properties\PublishProfiles\fileSystem.pubxml" />
     <Content Include="Scripts\Libraries\JCrop\README.md" />
     <None Include="Properties\PublishProfiles\UspeliteFileSystem.pubxml" />
@@ -717,6 +724,7 @@
     <Content Include="Views\Videos\Index.cshtml" />
     <Content Include="Views\Shared\Partials\_Pagination.cshtml" />
     <Content Include="Views\Manage\_EditProfileInfo.cshtml" />
+    <Content Include="Views\Staff\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Uspelite.Data.Common\Uspelite.Data.Common.csproj">

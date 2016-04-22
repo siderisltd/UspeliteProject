@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Uspelite.Web.Models.ChildActions.CategoryAndPostsViewModel>
+﻿@model Dictionary<Uspelite.Web.Models.Categories.CategoryViewModel, Dictionary<Uspelite.Web.Models.Categories.CategoryViewModel, IEnumerable<Uspelite.Web.Models.Articles.ArticleViewModel>>>
+
 
 
 <div class="container">
@@ -6,76 +7,41 @@
     <nav id="menu" class="both">
         <ul class="nav clearfix">
             <li class="home"><a href="~/"><span class="glyphicon glyphicon-home"></span></a></li>
-            <li class="cat-news">
-                <a href="">Интервю</a>
-                <!-- start:submenu-news -->
-                <div class="subnav-container">
-                    <ul class="subnav-menu">
 
-                        @foreach (var mod in Model)
-                        {
-                            <li>
-                                <a href="/Categories/Show/@mod.CategoryName">@mod.CategoryName</a>
-                                <div class="subnav-posts">
-                                    @foreach (var post in mod.Posts)
-                                    {
-                                        <article>
-                                            <a href="/@post.Slug"><img src="/@post.MainArticlePic.Resized400Picture" width="190" height="140" alt=""></a>
-                                            <h3>
-                                                <a href="/@post.Slug">@post.Title</a>
-                                            </h3>
-                                        </article>
-                                    }
-                                </div>
-                            </li>
-                        }
-                    </ul>
-                </div>
-                <!-- end:submenu-news -->
-            </li>
-			
-            <li class="cat-sports">
-                @Html.ActionLink("Бизнес", "Busieness", "Икономика")
-                <!-- start:submenu-extra -->
-                <div class="dropnav-container">
-                    <ul class="dropnav-menu">
-                        <li>@Html.ActionLink("Всички", "Общо", "All")</li>
-                        <li>@Html.ActionLink("Личностно развитие", "Personal development", "Подобрение на личностните качества")</li>
-						<li>@Html.ActionLink("Технологии", "Technologies", "Инжинерна мисъл")</li>
-                    </ul>
-                </div>
-                <!-- end:submenu-extra -->
-            </li>
-            <li class="cat-showtime">
-                @Html.ActionLink("Спорт", "Sports", "Sport")
-            </li>
 
- <li class="cat-sports">
-                @Html.ActionLink("Култура", "Culture", "Cultural heritage")
-                <!-- start:submenu-extra -->
-                <div class="dropnav-container">
-                    <ul class="dropnav-menu">
-                        <li>@Html.ActionLink("Всички", "All", "Всичко")</li>
-                        <li>@Html.ActionLink("Тайни кътчета", "Secret spots", "Местенца, които трябва да знаете")</li>
-						<li>@Html.ActionLink("Културно наследство", "Folklor", "Фолклор")</li>
-                        <li>@Html.ActionLink("История", "History", "Исторически статии")</li>
-						<li>@Html.ActionLink("Великите непознати", "The great unknown", "Неразказани биографии")</li>
-                        
-                    </ul>
-                </div>
-                <!-- end:submenu-extra -->
-            </li>
+            @foreach (var mod in Model)
+            {
+                var chosenClassName = "current";
 
- <li class="cat-sports">
-                @Html.ActionLink("Други", "Other", "Others")
-                <!-- start:submenu-extra -->
-                <!-- end:submenu-extra -->
-            </li>
+                <li class="cat-news">
+                    <a href="/Categories/Show/@mod.Key.Slug">@mod.Key.Title</a>
+                    <!-- start:submenu-news -->
+                    <div class="subnav-container">
+                        <ul class="subnav-menu">
+
+                            @foreach (var category in mod.Value)
+                            {
+                                <li class="@chosenClassName">
+                                    <a href="/Categories/Show/@category.Key.Slug">@category.Key.Title</a>
+                                    <div class="subnav-posts">
+                                        @foreach (var art in category.Value)
+                                        {
+                                            <article>
+                                                <a href="/@art.Slug"><img src="/@art.MainArticlePic.Resized400Picture" width="190" height="140" alt=""></a>
+                                                <h3>
+                                                    <a href="/@art.Slug">@art.Title</a>
+                                                </h3>
+                                            </article>
+                                        }
+                                    </div>
+                                </li>
+                                @(chosenClassName = "")
+                            }
+                        </ul>
+                    </div>
+                    <!-- end:submenu-news -->
+                </li>
+            }
         </ul>
     </nav>
-    <!-- end:menu -->
-	
-
-	
 </div>
-<!-- end:container -->

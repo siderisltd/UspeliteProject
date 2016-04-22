@@ -3,14 +3,17 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using Data.Models;
     using Data.Models.Enum;
     using Infrastructure.Mapping.Contracts;
     using Models.Articles;
     using Models.ChildActions;
     using Services.Data.Contracts;
     using Infrastructure.Enums;
+    using Models.Categories;
+
     [ChildActionOnly]
-    public class ChildActionsController : Controller
+    public class ChildActionsController : BaseController
     {
         private readonly IArticlesService articlesService;
         private readonly ICategoriesService categoriesService;
@@ -68,15 +71,47 @@
         [OutputCache(Duration = 5 * 60, VaryByParam = "none")]
         public ActionResult GetSideBar()
         {
-            var model = this.articlesService.GetTopCountPostsByRatingInEveryCategory(4).To<CategoryAndPostsViewModel>().ToList();
+            var model = this.articlesService.GetTopArticles(ArticleTopFactor.Rating, 4).To<CategoryAndPostsViewModel>().ToList();
             return this.PartialView("_Sidebar", model);
         }
 
         public ActionResult GetClientNavigation()
         {
+            Dictionary<CategoryViewModel, Dictionary<CategoryViewModel, IEnumerable<ArticleViewModel>>> model =
+    new Dictionary<CategoryViewModel, Dictionary<CategoryViewModel, IEnumerable<ArticleViewModel>>>();
+
+            var parentCategories = this.categoriesService.GetParentCategories().ToList();
+
+            foreach (var parentCat in parentCategories)
+            {
+                var childCategories = this.categoriesService.GetAll().Where(x => x.ParentId == parentCat.Id).AsEnumerable();
+
+                if (childCategories != null)
+                {
+                    var allChildCategoriesAndTopArticles =
+                            this.articlesService.GetTopArticles(ArticleTopFactor.Newest, 4, childCategories)
+                                .To<CategoryAndPostsViewModel>()
+                                .ToDictionary(x => x.Category, x => x.Posts);
+                   
+                    model.Add(this.Mapper.Map<Category, CategoryViewModel>(parentCat), allChildCategoriesAndTopArticles);
+
+                }
+            }
+
             //var allCategoriesAndTopArticles = this.articlesService.GetTopArticles(ArticleTopFactor.Newest, 4).To<CategoryAndPostsViewModel>().ToDictionary(x => x.CategoryName, x => x.Posts);  
-            var allCategoriesAndTopArticles = this.articlesService.GetTopArticles(ArticleTopFactor.Newest, 4).To<CategoryAndPostsViewModel>().ToList();
-            return this.PartialView("_ClientNavigation", allCategoriesAndTopArticles);
+
+
+
+            return this.PartialView("_ClientNavigation", model);
         }
+
+        //[OutputCache(Duration = 1, VaryByParam = "none")]
+        //public ActionResult GetCategoriesTree()
+        //{
+        //    var categories = this.categoriesService.GetAll().To<CategoryViewModel>().ToList();
+        //    CategoriesTreeModel model = new CategoriesTreeModel { Seed = null, Categories = categories };
+
+        //    return this.PartialView("_Categories", model);
+        //}
     }
 }

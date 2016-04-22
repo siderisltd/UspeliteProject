@@ -9,6 +9,8 @@
     using Uspelite.Data.Models.Enum;
     using Uspelite.Data.Repositories;
     using Uspelite.Web.Infrastructure.Enums;
+    using System.Data.Entity;
+    using Fissoft.EntityFramework.Fts;
 
     public class ArticlesService : IArticlesService
     {
@@ -197,24 +199,6 @@
             return query;
         }
 
-        public IQueryable<CategoryAndPostsDTO> GetTopCountPostsByRatingInEveryCategory(int count = 3, IEnumerable<Category> categories = null)
-        {
-            if (categories == null)
-            {
-                //TODO: Fix this bullshit
-                categories = this.categoriesService.GetAll().AsEnumerable();
-            }
-
-            IQueryable<CategoryAndPostsDTO> query = this.repo
-                            .All()
-                            .Where(x => categories.Contains(x.Category))
-                            .OrderByDescending(x => x.Ratings.Sum(y => y.Value) / x.Ratings.Count)
-                            .GroupBy(x => x.Category.Title)
-                            .Select(x => new CategoryAndPostsDTO { CategoryName = x.Key, Posts = x.Take(count) });
-
-            return query;
-        }
-
         public IQueryable<CategoryAndPostsDTO> GetTopArticles(ArticleTopFactor topFactor = ArticleTopFactor.Rating, int count = 3, IEnumerable<Category> categories = null)
         {
             if (categories == null)
@@ -237,8 +221,8 @@
             }
 
             var newQuery = query
-                            .GroupBy(x => x.Category.Title)
-                            .Select(x => new CategoryAndPostsDTO { CategoryName = x.Key, Posts = x.Take(count) });
+                            .GroupBy(x => x.Category)
+                            .Select(x => new CategoryAndPostsDTO { Category = x.Key, Posts = x.Take(count) });
 
             return newQuery;
         }
@@ -264,6 +248,13 @@
             }
 
             return query;
+        }
+
+        public IQueryable<Article> FullTextSearch(string query)
+        {
+            var q = query;
+            var result = this.repo.All().Where(x => x.Title.ToLower().Contains(q.ToLower()) || x.Content.ToLower().Contains(q.ToLower()));
+            return result;
         }
     }
 }

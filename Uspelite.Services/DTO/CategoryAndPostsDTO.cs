@@ -5,7 +5,7 @@
 
     public class CategoryAndPostsDTO
     {
-        public string CategoryName { get; set; }
+        public Category Category { get; set; }
 
         public IEnumerable<Article> Posts { get; set; }
     }

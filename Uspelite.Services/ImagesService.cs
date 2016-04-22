@@ -79,10 +79,10 @@
             var img = System.Drawing.Image.FromStream(inputStream);
 
 
-            var quality = 100;
-            var info = ImageCodecInfo.GetImageEncoders();
-            var parameters = new EncoderParameters(1);
-            parameters.Param[0] = new EncoderParameter(Encoder.Quality, quality);
+            //var quality = 100;
+            //var info = ImageCodecInfo.GetImageEncoders();
+            //var parameters = new EncoderParameters(1);
+            //parameters.Param[0] = new EncoderParameter(Encoder.Quality, quality);
 
             byte[] byteArrImg;
             using (var bitmapImg = new Bitmap(img))
@@ -105,6 +105,23 @@
             }
 
             this.repo.SaveChanges();
+        }
+
+        public void RemoveAllRelatedToUser(string id)
+        {
+            var images = this.repo.All().Where(x => x.UserProfilePictureId == id);
+
+            foreach (var img in images)
+            {
+                this.repo.Delete(img.Id);
+            }
+
+            this.repo.SaveChanges();
+        }
+
+        public byte[] ToByteArray(Stream inputStream)
+        {
+           return this.imageHelper.StreamToByteArray(inputStream);
         }
 
 
@@ -144,7 +161,7 @@
             File.WriteAllBytes(this.rootImagesFolder + "\\" + image.PathOriginalSize, originalImageArray);
             File.WriteAllBytes(this.rootImagesFolder + "\\" + image.PathResizedImage, resizedImageArray400);
 
-            this.repo.SaveChanges();
+            var result = this.repo.SaveChanges();
 
             return image.Id;
         }

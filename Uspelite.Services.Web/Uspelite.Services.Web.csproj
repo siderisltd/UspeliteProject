@@ -49,8 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BulgarianLatinConvertService.cs" />
-    <Compile Include="Contracts\IBulgarianLatinConvertService.cs" />
+    <Compile Include="ShliokavitsaConvertService.cs" />
+    <Compile Include="Contracts\IShliokavitsaConvertService.cs" />
     <Compile Include="Contracts\IHttpCacheService.cs" />
     <Compile Include="Contracts\ISanitizer.cs" />
     <Compile Include="Contracts\ISlugService.cs" />

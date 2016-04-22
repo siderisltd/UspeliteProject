@@ -310,7 +310,7 @@
 
     <script>
         //only bulgarian letters and spaces allowed
-        var onlyCyrillicSymbolsAndSpaces = /[^А-я ]/i;
+        var onlyCyrillicSymbolsAndSpaces = /[^А-я A-z0-9-() += !?.,;/-\\"'$% &№]/i;
         var $titleInput = $("#Title");
 
         $titleInput.keyup(function () {

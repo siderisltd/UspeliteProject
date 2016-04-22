@@ -22,13 +22,13 @@
             //Should get even number of items
             var newestPosts = this.Cache.Get(
                 "newestPosts",
-                () => this.articlesService.GetNewestPosts(16).To<ArticleViewModel>().ToList(), 10);
+                () => this.articlesService.GetNewestPosts(36).To<ArticleViewModel>().ToList(), 10);
 
 
             //Should get even number of items
             var highRatedPosts = this.Cache.Get(
                 "highRatedPosts",
-                () => this.articlesService.GetTopPostsByRating(6).To<ArticleViewModel>().ToList(), 10);
+                () => this.articlesService.GetTopPostsByRating(16).To<ArticleViewModel>().ToList(), 10);
 
             var mostCommentedPosts = this.Cache.Get(
                 "mostCommentedPosts",
@@ -36,7 +36,7 @@
 
             var highRatedInCategory = this.Cache.Get(
                  "highRatedPostsInCategory",
-                 () => this.articlesService.GetTopPostsByRating(6, "Test1").To<ArticleViewModel>().ToList(), 10);
+                 () => this.articlesService.GetTopPostsByRating(6, "Test1").To<ArticleViewModel>().ToList(), 14);
 
             var topArticleByRating = this.Cache.Get(
                 "topArticleByRating",

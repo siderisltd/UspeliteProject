@@ -1,6 +1,7 @@
 ﻿namespace Uspelite.Web.Models.Account.Manage
 {
     using System.Collections.Generic;
+    using System.Web;
     using Common;
     using Microsoft.AspNet.Identity;
 
@@ -17,5 +18,7 @@
         public bool BrowserRemembered { get; set; }
 
         public UserViewModel User { get; set; }
+
+        public HttpPostedFileBase ProfileImage { get; set; }
     }
 }

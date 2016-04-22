@@ -8,7 +8,11 @@ using Microsoft.Owin.Security;
 
 namespace Uspelite.Web.Controllers
 {
+    using System;
+    using System.Drawing.Imaging;
+    using System.IO;
     using ActionFilters;
+    using Data.Models;
     using Models.Account.Manage;
     using Models.Common;
     using Services.Data.Contracts;
@@ -19,10 +23,12 @@ namespace Uspelite.Web.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private readonly IUsersService usersService;
+        private readonly IImagesService imagesService;
 
-        public ManageController(IUsersService usersService)
+        public ManageController(IUsersService usersService, IImagesService imagesService)
         {
             this.usersService = usersService;
+            this.imagesService = imagesService;
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -64,6 +70,7 @@ namespace Uspelite.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> UpdateInfo(IndexViewModel userModel)
         {
             var model = userModel.User;
@@ -72,6 +79,32 @@ namespace Uspelite.Web.Controllers
             user.FirstName = names[0] ?? string.Empty;
             user.LastName = names[1] ?? string.Empty;
             user.ShortInfo = model.ShortInfo;
+
+            if (userModel.ProfileImage != null)
+            {
+                string imageName = Path.GetFileNameWithoutExtension(userModel.ProfileImage.FileName);
+                var userId = this.User.Identity.GetUserId();
+                byte[] imageAsByteArray = this.imagesService.ToByteArray(userModel.ProfileImage.InputStream);
+
+                var profileImage = new Image
+                {
+                    IsMain = true,
+                    Title = imageName,
+                    Slug = imageName + Guid.NewGuid(),
+                    AsByteArray = imageAsByteArray,
+                    AuthorId = userId,
+                    UserProfilePictureId = userId
+                };
+
+                this.imagesService.RemoveAllRelatedToUser(userId);
+                var currentUser = this.usersService.GetById(this.User.Identity.GetUserId());
+                var imageId = this.imagesService.SaveImage(profileImage, ImageFormat.Jpeg);
+                currentUser.ProfileImages.Add(profileImage);
+                this.usersService.SaveChanges();
+
+
+            }
+
             this.usersService.SaveChanges();
 
             var userAsViewModel = this.Mapper.Map<UserViewModel>(user);

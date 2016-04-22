@@ -46,7 +46,7 @@
                     Title = x.Title,
                     AllItemsCount = x.Articles.Count,
                     CurrentPage = page,
-                    TotalPages = (int)Math.Ceiling(x.Articles.Count / (decimal) pageCount),
+                    TotalPages = (int)Math.Ceiling(x.Articles.Count / (decimal)pageCount),
                     Articles = x.Articles.OrderByDescending(z => z.CreatedOn).Skip(itemsToSkip).Take(pageCount).AsQueryable()
                 }).AsQueryable();
 
@@ -55,7 +55,33 @@
 
         public Category GetById(int id)
         {
+            //var test = this.repo
+            //               .All()
+            //               .Where(c => !c.ParentId.HasValue)
+            //               .Select(c => new
+            //               {
+            //                   c.Slug,
+            //                   c.Title,
+            //                   Articles = c.Articles
+            //                                .OrderByDescending(ar => ar.Ratings)
+            //                                .Take(4),
+            //                   ChildCategories = c.Children
+            //                        .Select(ch => new
+            //                        {
+            //                            ch.Slug,
+            //                            ch.Title,
+            //                            Articles = ch.Articles
+            //                                .OrderByDescending(ar => ar.Ratings)
+            //                                .Take(4)
+            //                        })
+            //               });
+
             return this.repo.GetById(id);
+        }
+
+        public IQueryable<Category> GetParentCategories()
+        {
+            return this.repo.All().Where(x => x.ParentId == null);
         }
     }
 }

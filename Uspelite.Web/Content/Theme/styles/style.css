@@ -144,12 +144,6 @@ a:hover {
     padding: 0;
 }
 
-.container  .img-responsive {
-    display: block;
-    width: 100%;
-    max-height: 100%;
-}
-
 #page-content {
     position: relative;
     overflow: hidden;
@@ -1240,7 +1234,7 @@ body.nav-expanded #page-header-mobile nav {
      }
 
      #page-slider .col-sm-4 {
-         width: 365px;
+         width: 280px;
      }
 
      #page-slider .slider-nav {

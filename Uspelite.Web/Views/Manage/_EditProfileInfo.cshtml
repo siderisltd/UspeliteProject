@@ -1,12 +1,14 @@
 ﻿@model Uspelite.Web.Models.Account.Manage.IndexViewModel
 
-@using (Html.BeginForm("UpdateInfo", "Manage", FormMethod.Post))
-{
+@using (Html.BeginForm("UpdateInfo", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{      
+     @Html.AntiForgeryToken()
     <span id="user-information">
          @Html.LabelFor(x => Model.User.FullName)
         <p class="name">@Html.EditorFor(x => Model.User.FullName)</p>
         @Html.LabelFor(x => Model.User.ShortInfo)
         <p>@Html.TextAreaFor(x => Model.User.ShortInfo)</p>
+        <input id="upload-image" type="file" name="ProfileImage" />
     </span>
 
     <input type="submit" class="btn btn-success" value="Update"/>

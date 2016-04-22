@@ -1,8 +1,5 @@
 ﻿@model Uspelite.Web.Models.Home.HomeIndexViewModel
 
-@{
-    ViewBag.Title = "Home";
-}
 
 @section slider{
     @(Html.Action<ChildActionsController>(x => x.GetSlider()))
@@ -44,7 +41,7 @@
                 </a>
                 <a href="/Categories/Show/@post.Category" class="theme">@post.Category</a>
             </article>
-            @Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", post)
+            @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", post)*@
         </div>
         if (linesCounter%2 != 0)
         {
@@ -67,7 +64,7 @@
                     </a>
                     <a href="/Categories/Show/@Model.TopArticle.Category" class="theme">@Model.TopArticle.Category</a>
                 </article>
-                @Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", @Model.TopArticle)
+                @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", @Model.TopArticle)*@
             </div>
 
             <div class="col-sm-4">
@@ -83,7 +80,7 @@
                         </a>
                         <a href="/Categories/Show/@current.Category" class="theme">@current.Category</a>
                     </article>
-                    @Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", @Model.TopArticle)
+                    @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", @Model.TopArticle)*@
                 }
             </div>
         </div>
@@ -107,7 +104,7 @@
                             <h3>@Html.Raw(current.Title)</h3>
                         </a>
 
-                        @Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", current)
+                        @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", current)*@
 
                     </article>
                 </div>
