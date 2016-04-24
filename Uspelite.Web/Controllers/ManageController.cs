@@ -71,7 +71,7 @@ namespace Uspelite.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> UpdateInfo(IndexViewModel userModel)
+        public ActionResult UpdateInfo(IndexViewModel userModel)
         {
             var model = userModel.User;
             var user = this.usersService.GetById(this.User.Identity.GetUserId());
@@ -83,7 +83,6 @@ namespace Uspelite.Web.Controllers
             if (userModel.ProfileImage != null)
             {
                 string imageName = Path.GetFileNameWithoutExtension(userModel.ProfileImage.FileName);
-                var userId = this.User.Identity.GetUserId();
                 byte[] imageAsByteArray = this.imagesService.ToByteArray(userModel.ProfileImage.InputStream);
 
                 var profileImage = new Image
@@ -92,14 +91,14 @@ namespace Uspelite.Web.Controllers
                     Title = imageName,
                     Slug = imageName + Guid.NewGuid(),
                     AsByteArray = imageAsByteArray,
-                    AuthorId = userId,
-                    UserProfilePictureId = userId
+                    AuthorId = user.Id,
+                    Author = user,
+                    UserProfilePictureId = user.Id
                 };
 
-                this.imagesService.RemoveAllRelatedToUser(userId);
-                var currentUser = this.usersService.GetById(this.User.Identity.GetUserId());
+                this.imagesService.RemoveAllRelatedToUser(user);
                 var imageId = this.imagesService.SaveImage(profileImage, ImageFormat.Jpeg);
-                currentUser.ProfileImages.Add(profileImage);
+                user.ProfileImages.Add(profileImage);
                 this.usersService.SaveChanges();
 
 

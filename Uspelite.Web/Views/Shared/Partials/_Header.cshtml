@@ -6,7 +6,7 @@
 			<ul class="inline">
 				<li class="topnav"><a href="/">ИНИЦИАТИВИ</a></li>
 				<li class="topnav"><a href="/">ВЪЗМОЖНОСТИ</a></li>
-				<li class="topnav"><a href="/">КОИ СМЕ НИЕ?</a></li>
+			    <li class="topnav">@(Html.ActionLink<HomeController>("КОИ СМЕ НИЕ?", x => x.About()))</li>
 				<li class="topnav"><a href="/">ПАРТНЬОРИ</a></li>
 			</ul>
 			<div class="login">
@@ -27,7 +27,7 @@
                     </h1>
                 </div>
 
-                    @using (Html.BeginForm("Search", "Search", FormMethod.Get))
+                    @using (Html.BeginForm("Articles", "Search", FormMethod.Get))
                     {
                         <div class="col-sm-6 col-md-4 text-center">
                             <!-- start search -->
@@ -44,8 +44,6 @@
                             <!-- end search -->
                         </div>
                     }
-
-
                    </div>
             </div>
         </div>

@@ -4,6 +4,8 @@
     using Articles;
     using AutoMapper;
     using Data.Models;
+    using Images;
+
     using Infrastructure.Mapping.Contracts;
 
     public class UserViewModel : IMapFrom<User>, IHaveCustomMappings
@@ -14,13 +16,13 @@
 
         public string ShortInfo { get; set; }
 
-        public ArticleImageViewModel ProfileImage { get; set; }
+        public ImageViewModel ProfileImage { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<User, UserViewModel>()
                          .ForMember(x => x.FullName, opt => opt.MapFrom(x => x.FirstName + " " + x.LastName))
-                         .ForMember(x => x.ProfileImage, opt => opt.MapFrom(x => x.ProfileImages.FirstOrDefault(y => y.IsMainProfilePicture)));
+                         .ForMember(x => x.ProfileImage, opt => opt.MapFrom(x => x.ProfileImages.FirstOrDefault()));
         }
     }
 }

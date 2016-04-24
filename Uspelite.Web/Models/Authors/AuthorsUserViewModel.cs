@@ -7,6 +7,7 @@
     using AutoMapper;
     using Common;
     using Data.Models;
+    using Images;
     using Infrastructure.Mapping.Contracts;
     using Videos;
 
@@ -18,7 +19,7 @@
 
         public string ShortInfo { get; set; }
 
-        public ArticleImageViewModel ProfileImage { get; set; }
+        public ImageViewModel ProfileImage { get; set; }
 
         public ICollection<AuthorArticleViewModel> Articles { get; set; }
 
@@ -26,7 +27,7 @@
         {
             configuration.CreateMap<User, AuthorsUserViewModel>()
                          .ForMember(x => x.FullName, opt => opt.MapFrom(x => x.FirstName + " " + x.LastName))
-                         .ForMember(x => x.ProfileImage, opt => opt.MapFrom(x => x.ProfileImages.FirstOrDefault(y => y.IsMainProfilePicture)))
+                         .ForMember(x => x.ProfileImage, opt => opt.MapFrom(x => x.ProfileImages.FirstOrDefault()))
                          .ForMember(x => x.Articles, opt => opt.MapFrom(x => x.Articles.OrderBy(y => y.CreatedOn).Skip(0).Take(10)));
         }
 

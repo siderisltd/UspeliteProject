@@ -1,0 +1,203 @@
+﻿<error errorId="c30f7611-8168-4eac-9298-785254253320" application="/LM/W3SVC/2/ROOT" host="ALEX-PC" type="System.IO.IOException" message="The file or directory is corrupted and unreadable.&#xD;&#xA;" source="mscorlib" detail="System.IO.IOException: The file or directory is corrupted and unreadable.&#xD;&#xA;&#xD;&#xA;   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)&#xD;&#xA;   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)&#xD;&#xA;   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)&#xD;&#xA;   at System.IO.File.InternalWriteAllBytes(String path, Byte[] bytes, Boolean checkHost)&#xD;&#xA;   at System.IO.File.WriteAllBytes(String path, Byte[] bytes)&#xD;&#xA;   at Uspelite.Services.Data.ImagesService.SaveImage(Image image, ImageFormat imageFormat, Boolean addBrand) in C:\Users\Alex\Desktop\Uspelite\UspeliteLatest\Uspelite.Services\ImagesService.cs:line 161&#xD;&#xA;   at Uspelite.Web.Controllers.ManageController.UpdateInfo(IndexViewModel userModel) in C:\Users\Alex\Desktop\Uspelite\UspeliteLatest\Uspelite.Web\Controllers\ManageController.cs:line 101&#xD;&#xA;   at lambda_method(Closure , ControllerBase , Object[] )&#xD;&#xA;   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)&#xD;&#xA;   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.ActionInvocation.InvokeSynchronousActionMethod()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;BeginInvokeSynchronousActionMethod&gt;b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at Castle.Proxies.AsyncControllerActionInvokerProxy.EndInvokeActionMethod_callback(IAsyncResult asyncResult)&#xD;&#xA;   at Castle.Proxies.Invocations.AsyncControllerActionInvoker_EndInvokeActionMethod.InvokeMethodOnTarget()&#xD;&#xA;   at Castle.DynamicProxy.AbstractInvocation.Proceed()&#xD;&#xA;   at Glimpse.Core.Extensibility.CastleInvocationToAlternateMethodContextAdapter.Proceed()&#xD;&#xA;   at Glimpse.Mvc.AlternateType.AsyncActionInvoker.EndInvokeActionMethod.NewImplementation(IAlternateMethodContext context)&#xD;&#xA;   at Glimpse.Core.Extensibility.AlternateTypeToCastleInterceptorAdapter.Intercept(IInvocation invocation)&#xD;&#xA;   at Castle.DynamicProxy.AbstractInvocation.Proceed()&#xD;&#xA;   at Castle.Proxies.AsyncControllerActionInvokerProxy.EndInvokeActionMethod(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.&lt;InvokeActionMethodFilterAsynchronouslyRecursive&gt;b__3d()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.&lt;&gt;c__DisplayClass46.&lt;InvokeActionMethodFilterAsynchronouslyRecursive&gt;b__3f()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass33.&lt;BeginInvokeActionMethodWithFilters&gt;b__32(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass21.&lt;&gt;c__DisplayClass2b.&lt;BeginInvokeAction&gt;b__1c()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass21.&lt;BeginInvokeAction&gt;b__1e(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.&lt;BeginExecuteCore&gt;b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)&#xD;&#xA;   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.&lt;BeginExecute&gt;b__15(IAsyncResult asyncResult, Controller controller)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)&#xD;&#xA;   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.&lt;BeginProcessRequest&gt;b__5(IAsyncResult asyncResult, ProcessRequestState innerState)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)&#xD;&#xA;   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()&#xD;&#xA;   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously)" user="hinkov" time="2016-04-23T11:50:01.2724686Z">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CACHE_CONTROL:max-age=0&#xD;&#xA;HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_CONTENT_LENGTH:242590&#xD;&#xA;HTTP_CONTENT_TYPE:multipart/form-data; boundary=----WebKitFormBoundaryY7Cm2EDO8zlkNNe0&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:en-US,en;q=0.8&#xD;&#xA;HTTP_COOKIE:glimpsePolicy=On; Telerik.Web.UI.DeviceInfoCookie=1366x768; glimpseId=Chrome 49.0; __RequestVerificationToken=WqXI5XNqpS1RablSGYPqNXRKPGzSwxk-IX8Loe4aiPEUv5MM-izJ_2qH1yFg3_CCdnVD3UHYCWKNnKC6qBoR4s8RuQEJF-I_Aoxy3RXBF-Y1; glimpseOptions=%7B%22glimpsePolicy%22%3Anull%7D; .AspNet.ApplicationCookie=VNeQ9sXMzoe-7Nw4TiAa-r9raxEuP9z_wyasTTBPefgDaXv9jIXebhFwe8tCVPQ_nkRNuz76zSRsRYLlIg41TogfXpsJjg5PvAEp7G3bSeT8ILplKGSKtx24lqod_IgR_e73tL1Km4sAvGWMam9Lcq8zndX8xgv1ExWp2PqZWab0oFpMkaoEIuyRFqxv_9kKyIwuOlbUtP1ztEzXJ9Z1BsZASKhiXNwvmNPiXaVbddbHWu_ewRe1SjBhTOA_-3YzfOwACRA8gagDJ8LEhOij18n00qxO14nMOL41EgRZxveR84a6vJn-zzzf0hPj54uSoTkaD3YuFCYhaTyTToZDUuK6MXGH5MLjKKzgMIPmBFkM6smAxaMiBXAS5mNOVrbql9VcTS7V4FW_otx2iDztSCdhxp_HwwD2ALGE4U3lJZPMNdQIHXdJnpQ92Oi9Asuap7SIZzsYTLVRBahmZytjNRKM5v7OYR_5NNYjuujtAkXHELmzi1j5ap1Us_trQUv6lRZq2bYD__MyRvv6e0fp0PmkhZ4fMbpUCZb3hQojJfw&#xD;&#xA;HTTP_HOST:localhost:5048&#xD;&#xA;HTTP_REFERER:http://localhost:5048/Manage/Index&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36&#xD;&#xA;HTTP_ORIGIN:http://localhost:5048&#xD;&#xA;HTTP_UPGRADE_INSECURE_REQUESTS:1&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Cache-Control: max-age=0&#xD;&#xA;Connection: keep-alive&#xD;&#xA;Content-Length: 242590&#xD;&#xA;Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryY7Cm2EDO8zlkNNe0&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;Accept-Encoding: gzip, deflate&#xD;&#xA;Accept-Language: en-US,en;q=0.8&#xD;&#xA;Cookie: glimpsePolicy=On; Telerik.Web.UI.DeviceInfoCookie=1366x768; glimpseId=Chrome 49.0; __RequestVerificationToken=WqXI5XNqpS1RablSGYPqNXRKPGzSwxk-IX8Loe4aiPEUv5MM-izJ_2qH1yFg3_CCdnVD3UHYCWKNnKC6qBoR4s8RuQEJF-I_Aoxy3RXBF-Y1; glimpseOptions=%7B%22glimpsePolicy%22%3Anull%7D; .AspNet.ApplicationCookie=VNeQ9sXMzoe-7Nw4TiAa-r9raxEuP9z_wyasTTBPefgDaXv9jIXebhFwe8tCVPQ_nkRNuz76zSRsRYLlIg41TogfXpsJjg5PvAEp7G3bSeT8ILplKGSKtx24lqod_IgR_e73tL1Km4sAvGWMam9Lcq8zndX8xgv1ExWp2PqZWab0oFpMkaoEIuyRFqxv_9kKyIwuOlbUtP1ztEzXJ9Z1BsZASKhiXNwvmNPiXaVbddbHWu_ewRe1SjBhTOA_-3YzfOwACRA8gagDJ8LEhOij18n00qxO14nMOL41EgRZxveR84a6vJn-zzzf0hPj54uSoTkaD3YuFCYhaTyTToZDUuK6MXGH5MLjKKzgMIPmBFkM6smAxaMiBXAS5mNOVrbql9VcTS7V4FW_otx2iDztSCdhxp_HwwD2ALGE4U3lJZPMNdQIHXdJnpQ92Oi9Asuap7SIZzsYTLVRBahmZytjNRKM5v7OYR_5NNYjuujtAkXHELmzi1j5ap1Us_trQUv6lRZq2bYD__MyRvv6e0fp0PmkhZ4fMbpUCZb3hQojJfw&#xD;&#xA;Host: localhost:5048&#xD;&#xA;Referer: http://localhost:5048/Manage/Index&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36&#xD;&#xA;Origin: http://localhost:5048&#xD;&#xA;Upgrade-Insecure-Requests: 1&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/2/ROOT" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="C:\Users\Alex\Desktop\Uspelite\UspeliteLatest\Uspelite.Web\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="ApplicationCookie" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="hinkov" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="*****" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="hinkov" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="242590" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="multipart/form-data; boundary=----WebKitFormBoundaryY7Cm2EDO8zlkNNe0" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="off" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="2" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/2" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/Manage/UpdateInfo" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="C:\Users\Alex\Desktop\Uspelite\UspeliteLatest\Uspelite.Web\Manage\UpdateInfo" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="58689" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="POST" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/Manage/UpdateInfo" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="5048" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="0" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/10.0" />
+    </item>
+    <item name="URL">
+      <value string="/Manage/UpdateInfo" />
+    </item>
+    <item name="HTTP_CACHE_CONTROL">
+      <value string="max-age=0" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_CONTENT_LENGTH">
+      <value string="242590" />
+    </item>
+    <item name="HTTP_CONTENT_TYPE">
+      <value string="multipart/form-data; boundary=----WebKitFormBoundaryY7Cm2EDO8zlkNNe0" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="en-US,en;q=0.8" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="glimpsePolicy=On; Telerik.Web.UI.DeviceInfoCookie=1366x768; glimpseId=Chrome 49.0; __RequestVerificationToken=WqXI5XNqpS1RablSGYPqNXRKPGzSwxk-IX8Loe4aiPEUv5MM-izJ_2qH1yFg3_CCdnVD3UHYCWKNnKC6qBoR4s8RuQEJF-I_Aoxy3RXBF-Y1; glimpseOptions=%7B%22glimpsePolicy%22%3Anull%7D; .AspNet.ApplicationCookie=VNeQ9sXMzoe-7Nw4TiAa-r9raxEuP9z_wyasTTBPefgDaXv9jIXebhFwe8tCVPQ_nkRNuz76zSRsRYLlIg41TogfXpsJjg5PvAEp7G3bSeT8ILplKGSKtx24lqod_IgR_e73tL1Km4sAvGWMam9Lcq8zndX8xgv1ExWp2PqZWab0oFpMkaoEIuyRFqxv_9kKyIwuOlbUtP1ztEzXJ9Z1BsZASKhiXNwvmNPiXaVbddbHWu_ewRe1SjBhTOA_-3YzfOwACRA8gagDJ8LEhOij18n00qxO14nMOL41EgRZxveR84a6vJn-zzzf0hPj54uSoTkaD3YuFCYhaTyTToZDUuK6MXGH5MLjKKzgMIPmBFkM6smAxaMiBXAS5mNOVrbql9VcTS7V4FW_otx2iDztSCdhxp_HwwD2ALGE4U3lJZPMNdQIHXdJnpQ92Oi9Asuap7SIZzsYTLVRBahmZytjNRKM5v7OYR_5NNYjuujtAkXHELmzi1j5ap1Us_trQUv6lRZq2bYD__MyRvv6e0fp0PmkhZ4fMbpUCZb3hQojJfw" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:5048" />
+    </item>
+    <item name="HTTP_REFERER">
+      <value string="http://localhost:5048/Manage/Index" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36" />
+    </item>
+    <item name="HTTP_ORIGIN">
+      <value string="http://localhost:5048" />
+    </item>
+    <item name="HTTP_UPGRADE_INSECURE_REQUESTS">
+      <value string="1" />
+    </item>
+  </serverVariables>
+  <form>
+    <item name="__RequestVerificationToken">
+      <value string="4CXLHe76VDiXaM3bIdyvFCSvtfLO5Db4pjsCgZcPAhXy42T0etIC5Zse6d4IuLiZS8_TZXhSFyyWMIGcRfSN8CN6DXt6VG_sHoiTeCWxIxQmiSwZYreqF44V5Xri_FN7DQ8yNj9yeeiTl9wnPZDF1g2" />
+    </item>
+    <item name="User.FullName">
+      <value string="Александър Хинков" />
+    </item>
+    <item name="User.ShortInfo">
+      <value string="Съосновател на „Младите успели българи“. Не спирам да търся приключения и вярвам, че хората са различни и очарователни по своему. Интереси свързани с дигитален маркетинг, социално предприемачество, планински преходи и джаз." />
+    </item>
+  </form>
+  <cookies>
+    <item name="glimpsePolicy">
+      <value string="On" />
+    </item>
+    <item name="Telerik.Web.UI.DeviceInfoCookie">
+      <value string="1366x768" />
+    </item>
+    <item name="glimpseId">
+      <value string="Chrome 49.0" />
+    </item>
+    <item name="__RequestVerificationToken">
+      <value string="WqXI5XNqpS1RablSGYPqNXRKPGzSwxk-IX8Loe4aiPEUv5MM-izJ_2qH1yFg3_CCdnVD3UHYCWKNnKC6qBoR4s8RuQEJF-I_Aoxy3RXBF-Y1" />
+    </item>
+    <item name="glimpseOptions">
+      <value string="%7B%22glimpsePolicy%22%3Anull%7D" />
+    </item>
+    <item name=".AspNet.ApplicationCookie">
+      <value string="VNeQ9sXMzoe-7Nw4TiAa-r9raxEuP9z_wyasTTBPefgDaXv9jIXebhFwe8tCVPQ_nkRNuz76zSRsRYLlIg41TogfXpsJjg5PvAEp7G3bSeT8ILplKGSKtx24lqod_IgR_e73tL1Km4sAvGWMam9Lcq8zndX8xgv1ExWp2PqZWab0oFpMkaoEIuyRFqxv_9kKyIwuOlbUtP1ztEzXJ9Z1BsZASKhiXNwvmNPiXaVbddbHWu_ewRe1SjBhTOA_-3YzfOwACRA8gagDJ8LEhOij18n00qxO14nMOL41EgRZxveR84a6vJn-zzzf0hPj54uSoTkaD3YuFCYhaTyTToZDUuK6MXGH5MLjKKzgMIPmBFkM6smAxaMiBXAS5mNOVrbql9VcTS7V4FW_otx2iDztSCdhxp_HwwD2ALGE4U3lJZPMNdQIHXdJnpQ92Oi9Asuap7SIZzsYTLVRBahmZytjNRKM5v7OYR_5NNYjuujtAkXHELmzi1j5ap1Us_trQUv6lRZq2bYD__MyRvv6e0fp0PmkhZ4fMbpUCZb3hQojJfw" />
+    </item>
+  </cookies>
+</error>

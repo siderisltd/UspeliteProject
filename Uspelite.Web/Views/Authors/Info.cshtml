@@ -6,7 +6,10 @@
 
 <section id="author-page">
     <div class="author-box">
-        <img src="/@Model.ProfileImage.Resized400Picture" width="115" height="115" alt="" class="img-circle">
+        @if (Model.ProfileImage != null)
+        {
+            @Html.Image(x => Model.ProfileImage.Resized400Picture, Model.FullName + " profile picture", "115", "115", new { @class = "img-circle" })
+        }
         <a class="name">@Model.FullName</a>
         <p>@Model.ShortInfo</p>
         <p>

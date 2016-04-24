@@ -75,6 +75,7 @@
             return this.PartialView("_Sidebar", model);
         }
 
+        [OutputCache(Duration = 5 * 60, VaryByParam = "none")]
         public ActionResult GetClientNavigation()
         {
             Dictionary<CategoryViewModel, Dictionary<CategoryViewModel, IEnumerable<ArticleViewModel>>> model =

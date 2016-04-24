@@ -12,6 +12,7 @@
     using Common.Contracts;
     using Contracts;
     using DTO;
+    using Uspelite.Data.Models;
     using Uspelite.Data.Repositories;
     using Image = Uspelite.Data.Models.Image;
 
@@ -107,14 +108,16 @@
             this.repo.SaveChanges();
         }
 
-        public void RemoveAllRelatedToUser(string id)
+        public void RemoveAllRelatedToUser(User user)
         {
-            var images = this.repo.All().Where(x => x.UserProfilePictureId == id);
-
-            foreach (var img in images)
+            foreach (var image in user.ProfileImages)
             {
-                this.repo.Delete(img.Id);
+                image.IsDeleted = true;
+                image.IsMainProfilePicture = false;
+                image.UserProfilePictureId = null;
             }
+
+            user.ProfileImages = new HashSet<Image>();
 
             this.repo.SaveChanges();
         }

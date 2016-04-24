@@ -6,23 +6,28 @@
     using Models.Home;
     using Infrastructure.Mapping.Contracts;
     using Models.Articles;
+    using System.Collections.Generic;
+    using Areas.Administration.Models.Users;
+    using Models.Authors;
 
     public class HomeController : BaseController
     {
         private readonly IArticlesService articlesService;
+        private readonly IUsersService usersService;
 
-        public HomeController(IArticlesService articlesService)
+        public HomeController(IArticlesService articlesService, IUsersService usersService)
         {
             this.articlesService = articlesService;
+            this.usersService = usersService;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            //Should get even number of items
-            var newestPosts = this.Cache.Get(
-                "newestPosts",
-                () => this.articlesService.GetNewestPosts(36).To<ArticleViewModel>().ToList(), 10);
+                //Should get even number of items
+              var  newestPosts = this.Cache.Get(
+                    "newestPosts",
+                    () => this.articlesService.GetNewestPosts(36).To<ArticleViewModel>().ToList(), 10);
 
 
             //Should get even number of items
@@ -54,5 +59,13 @@
             return this.View(indexViewModel);
         }
 
+        [HttpGet]
+        public ActionResult About()
+        {
+            var model = new AboutViewModel();
+            model.Users = this.usersService.All().To<AuthorsUserViewModel>().ToList();
+           
+            return this.View(model);
+        }
     }
 }

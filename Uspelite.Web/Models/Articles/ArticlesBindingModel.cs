@@ -11,7 +11,6 @@
     {
         public int Id { get; set; }
 
-        [RegularExpression("[^А-я A-z0-9-() += !?.,;/-\"'$% &№]", ErrorMessage = "В заглавието е позволена само кирилица")]
         public string Title { get; set; }
 
         public string Slug { get; set; }
@@ -45,11 +44,11 @@
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            var isInvalid = Regex.IsMatch(this.Title, "([^А-Я а-я !.,?'])");
+            var isInvalid = Regex.IsMatch(this.Title, "[^А-я A-z0-9\"'$%#&№)(+=!?,.;:/-]");
 
             if (isInvalid)
             {
-                yield return new ValidationResult("В заглавието е позволена само кирилица");
+                yield return new ValidationResult("В заглавието има не позволени символи");
             }
 
         }

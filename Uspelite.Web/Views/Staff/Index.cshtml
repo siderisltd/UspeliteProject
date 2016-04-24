@@ -1,0 +1,28 @@
+﻿@using Uspelite.Data.Common.Roles
+
+@if (User.Identity.IsAuthenticated)
+{
+    if (!User.IsInRole(AppRoles.CLIENT_ROLE) || (User.IsInRole(AppRoles.EDITOR_ROLE) || User.IsInRole(AppRoles.ADMIN_ROLE) || User.IsInRole(AppRoles.MANAGER_ROLE) || User.IsInRole(AppRoles.ULTIMATE_ROLE)))
+    {
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        @if (User.IsInRole(AppRoles.ADMIN_ROLE) || User.IsInRole(AppRoles.ULTIMATE_ROLE))
+                        {
+                            <li class="active"><a href="/Administration/Home">Administration</a></li>
+                        }
+                        @if (User.IsInRole(AppRoles.MANAGER_ROLE) || User.IsInRole(AppRoles.ULTIMATE_ROLE))
+                        {
+                            <li><a href="/Management/ManageArticles">Management</a></li>
+                        }
+                        @if (User.IsInRole(AppRoles.MANAGER_ROLE) || User.IsInRole(AppRoles.EDITOR_ROLE) || User.IsInRole(AppRoles.ULTIMATE_ROLE))
+                        {
+                            <li><a href="/Articles/Add">Add article</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    }
+}

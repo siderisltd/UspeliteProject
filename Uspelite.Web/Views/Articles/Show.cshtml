@@ -33,9 +33,9 @@
         <a href="/Categories/Show/@Model.Category" class="theme">@Model.Category</a>
     </div>
 	<p class="post-meta-box">
-		<span>Публикувано от <a href="#" target="_blank" title="Името на автора">Калоян Гаджев</a></span>
-		<span> на 06.04.2016</span>
-		<span> в Новини</span>
+		<span>Публикувано от <a href="#" target="_blank" title="@Model.Author.FullName">@Model.Author.FullName</a></span>
+		<span> на @Html.DisplayFor(x => Model.CreatedOn)</span>
+		<span> в @Model.Category</span>
 	</p>
     <p>
         @Html.Raw(Model.SanitizedFullContent)

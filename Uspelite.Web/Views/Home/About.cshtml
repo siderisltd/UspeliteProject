@@ -1,0 +1,60 @@
+﻿@model Uspelite.Web.Models.Home.AboutViewModel
+
+<div class="team-layout">
+    <div class="title">
+        <h2>За идеята:</h2>
+    </div>
+    <div class="text">
+        <p>
+            Идеята за „Младите успели българи“ се зароди в едно старозагорско заведение. Макар и в приятелски спор, млади момчета и момичета,българи,
+            уверено твърдяха, че страната ни не е място, където те могат да постигат успехи и да хранят семейство.
+        </p>
+        <p>Решихме да им докажем, че грешат.</p><p>
+        </p><p>
+            Ние вярваме, че с точната мотивация, умерена отдаденост и малко вяра всичко може да се постигне. Затова се противопоставяме на
+            популярното, даже клиширано мнение, че развитието в страната ни е невъзможно. Нашата цел е да разкажем вдъхновяващите истории
+            на млади българи с различни съдби, професии и интереси. Искаме да ви запознаем с техния житейски път – от къде са започнали,
+            ак са израснали професионално, с какво се занимават сега и какви са бъдещите им планове. Интервюта ще разкриват завладяващите
+            разкази на хора, избрали да живеят и да се развиват в България.
+        </p>
+        <p>Ако вие споделяте нашата и тяхната кауза, не се колебайте да ни пишете. За нас ще бъде удоволствие да чуем и вашата история.</p>
+    </div>
+
+    <div class="title">
+        <h2>А ние сме:</h2>
+    </div>
+
+    <div class="vertical-align-container">
+        @for (var i = 0; i < Model.Users.Count; i += 1)
+        {
+            var currentUser = Model.Users[i];
+            var positionClassName = "team-member-left";
+            if (i % 2 != 0)
+            {
+                positionClassName = "team-member-right";
+            }
+
+            <div class="@positionClassName">
+                <div class="member-picture vertical-align">
+                    @if (currentUser.ProfileImage != null)
+                    {
+                        @Html.Image(x => currentUser.ProfileImage.Resized400Picture, currentUser.FullName + " profile picture", "115", "115", new { @class = "img-circle" })
+                    }
+                </div>
+
+                <div class="member-info vertical-align">
+                    <div class="member-name">@currentUser.FullName</div>
+                    <div class="member-position">[No position]</div>
+                    <p class="member-bio">@currentUser.ShortInfo</p>
+                    <span class="member-social-profiles">
+                        <span class="social-profile">Facebook</span> |
+                        <span class="social-profile">LinkedIn</span>
+                    </span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        }
+    </div>
+
+
+</div>

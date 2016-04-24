@@ -18,11 +18,14 @@
 
 
     <div class="author-box">
-        <img id="author-image" src="/@Model.User.ProfileImage.Resized400Picture" width="115" height="115" alt="" class="img-circle">
-        <span id="user-information">
-            <p class="name">@Model.User.FullName</p>
+        @if (Model.User.ProfileImage != null)
+        {
+            @Html.Image(x => Model.User.ProfileImage.Resized400Picture, Model.User.FullName + " profile picture", "115", "115", new { @class = "img-circle" })
+        }
+        <div id="user-information">
+            <a href="/Authors/Info/@Model.User.Id/@Model.User.FullName" class="name">@Model.User.FullName</a>
             <p>@Model.User.ShortInfo</p>
-        </span>
+        </div>
 
         <p>
             <a href=""><i class="fa fa-twitter fa-lg"></i></a>

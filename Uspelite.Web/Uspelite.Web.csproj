@@ -258,6 +258,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ImageBrowserController.cs" />
+    <Compile Include="Controllers\PaymentsController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Helpers\ActionFilters\AjaxActionFilter.cs" />
@@ -398,6 +399,7 @@
     <Compile Include="Models\Common\IRateable.cs" />
     <Compile Include="Models\Common\RateableType.cs" />
     <Compile Include="Models\Common\UserViewModel.cs" />
+    <Compile Include="Models\Home\AboutViewModel.cs" />
     <Compile Include="Models\Home\HomeIndexViewModel.cs" />
     <Compile Include="Models\Articles\ArticleViewModel.cs" />
     <Compile Include="Models\Images\ImageViewModel.cs" />
@@ -705,6 +707,7 @@
     <Content Include="Views\Articles\_FilteredArticlesByTitleDropdown.cshtml" />
     <Content Include="Views\Articles\_ShareButtons.cshtml" />
     <None Include="Views\Comments\_CommentPartial.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
     <None Include="Views\Images\Gallery.cshtml" />
     <Content Include="Views\Articles\Show.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
@@ -725,6 +728,7 @@
     <Content Include="Views\Shared\Partials\_Pagination.cshtml" />
     <Content Include="Views\Manage\_EditProfileInfo.cshtml" />
     <Content Include="Views\Staff\Index.cshtml" />
+    <None Include="Views\Payments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Uspelite.Data.Common\Uspelite.Data.Common.csproj">

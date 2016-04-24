@@ -11,6 +11,7 @@
     using Uspelite.Web.Infrastructure.Enums;
     using System.Data.Entity;
     using Fissoft.EntityFramework.Fts;
+    using NinjaNye.SearchExtensions;
 
     public class ArticlesService : IArticlesService
     {
@@ -252,8 +253,20 @@
 
         public IQueryable<Article> FullTextSearch(string query)
         {
-            var q = query;
-            var result = this.repo.All().Where(x => x.Title.ToLower().Contains(q.ToLower()) || x.Content.ToLower().Contains(q.ToLower()));
+            var result = this.repo
+                             .All()
+                             .Search(x => x.Title.ToLower())
+                             .Containing(query.ToLower())
+                             .ToRanked()
+                             .OrderByDescending(r => r.Hits)
+                             .Select(x => x.Item)
+                             .Union(this.repo.All()
+                                        .Search(x => x.Content.ToLower())
+                                        .Containing(query.ToLower())
+                                        .ToRanked()
+                                        .OrderByDescending(x => x.Hits)
+                                        .Select(x => x.Item));
+
             return result;
         }
     }

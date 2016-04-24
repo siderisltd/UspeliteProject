@@ -4,6 +4,8 @@
     using System.Drawing.Imaging;
     using System.IO;
     using DTO;
+    using Uspelite.Data.Models;
+
     using Image = Uspelite.Data.Models.Image;
 
     public interface IImagesService
@@ -16,7 +18,7 @@
 
         byte[] CropImage(Stream inputStream, Rectangle rectangle);
 
-        void RemoveAllRelatedToUser(string id);
+        void RemoveAllRelatedToUser(User user);
 
         void RemoveAllRelatedToArticle(int id);
 
