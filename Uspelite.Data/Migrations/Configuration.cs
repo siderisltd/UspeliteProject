@@ -18,12 +18,21 @@ namespace Uspelite.Data.Migrations
 
         public Configuration()
         {
-            this.AutomaticMigrationsEnabled = false;
-            this.AutomaticMigrationDataLossAllowed = false;
+            this.AutomaticMigrationsEnabled = true;
+            this.AutomaticMigrationDataLossAllowed = true;
             this.randomGenerator = new RandomGenerator();
         }
 
         protected override void Seed(UspeliteDbContext context)
+        {
+            if (!context.Roles.Any())
+            {
+                this.SeedAppRoles(context);
+            }
+            //this.SeedData(context);
+        }
+
+        private void SeedData(UspeliteDbContext context)
         {
             IList<User> seededUsers = new List<User>();
 
@@ -37,11 +46,16 @@ namespace Uspelite.Data.Migrations
                 IList<Category> seededCategories = new List<Category>();
                 if (!context.Categories.Any())
                 {
-                    var categoryNames = new string[] { "Новини", "Интервюта", "Статии", "Спорт", "Сцената", "Култура", "По света", "От вас за вас", "Бизнес", "Великите непознати", "Защо избрах българия", "Тайните кътчета", "Вицове", "Изкуство", "Фолклор" };
+                    var categoryNames = new string[]
+                                        {
+                                            "Новини", "Интервюта", "Статии", "Спорт", "Сцената", "Култура", "По света",
+                                            "От вас за вас", "Бизнес", "Великите непознати", "Защо избрах българия",
+                                            "Тайните кътчета", "Вицове", "Изкуство", "Фолклор"
+                                        };
 
                     foreach (var name in categoryNames)
                     {
-                        var category = new Category { Title = name };
+                        var category = new Category {Title = name};
                         context.Categories.Add(category);
                         seededCategories.Add(category);
                     }
@@ -54,19 +68,18 @@ namespace Uspelite.Data.Migrations
                 {
                     for (int i = 0; i < 5; i++)
                     {
-                        var randomAuthor = seededUsers[i % (seededUsers.Count - 1)].Id;
+                        var randomAuthor = seededUsers[i%(seededUsers.Count - 1)].Id;
 
                         var article = new Article()
-                        {
-                            AuthorId = randomAuthor,
-                            Title = "Примерно заглавие на статия #" + i,
-                            Content = this.randomGenerator.RandomText(25),
-                            CategoryId = seededCategories[i % (seededCategories.Count - 1)].Id,
-                        };
+                                      {
+                                          AuthorId = randomAuthor,
+                                          Title = "Примерно заглавие на статия #" + i,
+                                          Content = this.randomGenerator.RandomText(25),
+                                          CategoryId = seededCategories[i%(seededCategories.Count - 1)].Id,
+                                      };
 
                         seededArticles.Add(article);
                         context.Articles.Add(article);
-
                     }
 
                     context.SaveChanges();
@@ -81,12 +94,14 @@ namespace Uspelite.Data.Migrations
                     {
                         var videoUrl = allVideoUrls[i];
                         var video = new Video
-                        {
-                            Author = seededUsers[i % (seededUsers.Count - 1)],
-                            Title = "Примерно заглавие на видео #" + i,
-                            VideoUrl = videoUrl,
-                            CategoryId = seededCategories[this.randomGenerator.RandomIntegerBetween(0, seededCategories.Count - 1)].Id
-                        };
+                                    {
+                                        Author = seededUsers[i%(seededUsers.Count - 1)],
+                                        Title = "Примерно заглавие на видео #" + i,
+                                        VideoUrl = videoUrl,
+                                        CategoryId =
+                                            seededCategories[
+                                                this.randomGenerator.RandomIntegerBetween(0, seededCategories.Count - 1)].Id
+                                    };
 
                         seededVideos.Add(video);
                         context.Videos.Add(video);
@@ -101,33 +116,35 @@ namespace Uspelite.Data.Migrations
                     {
                         var randomVideo = seededVideos[this.randomGenerator.RandomIntegerBetween(0, seededVideos.Count - 1)];
                         randomVideo.Ratings.Add(new Rate()
-                        {
-                            Author = seededUsers[i % (seededUsers.Count - 1)],
-                            IsPositive = this.randomGenerator.RandomIntegerBetween(0, 1) != 0,
-                            Value = this.randomGenerator.RandomIntegerBetween(1, 5),
-                        });
+                                                {
+                                                    Author = seededUsers[i%(seededUsers.Count - 1)],
+                                                    IsPositive = this.randomGenerator.RandomIntegerBetween(0, 1) != 0,
+                                                    Value = this.randomGenerator.RandomIntegerBetween(1, 5),
+                                                });
                     }
                     context.SaveChanges();
                     for (int i = 0; i < 50; i++)
                     {
-                        var randomArticle = seededArticles[this.randomGenerator.RandomIntegerBetween(0, seededArticles.Count - 1)];
+                        var randomArticle =
+                            seededArticles[this.randomGenerator.RandomIntegerBetween(0, seededArticles.Count - 1)];
                         randomArticle.Ratings.Add(new Rate()
-                        {
-                            Author = seededUsers[i % (seededUsers.Count - 1)],
-                            IsPositive = this.randomGenerator.RandomIntegerBetween(0, 1) != 0,
-                            Value = this.randomGenerator.RandomIntegerBetween(1, 5),
-                        });
+                                                  {
+                                                      Author = seededUsers[i%(seededUsers.Count - 1)],
+                                                      IsPositive = this.randomGenerator.RandomIntegerBetween(0, 1) != 0,
+                                                      Value = this.randomGenerator.RandomIntegerBetween(1, 5),
+                                                  });
                     }
                     context.SaveChanges();
                     for (int i = 0; i < 100; i++)
                     {
-                        var randomCategory = seededCategories[this.randomGenerator.RandomIntegerBetween(0, seededCategories.Count - 1)];
+                        var randomCategory =
+                            seededCategories[this.randomGenerator.RandomIntegerBetween(0, seededCategories.Count - 1)];
                         randomCategory.Ratings.Add(new Rate()
-                        {
-                            Author = seededUsers[i % (seededUsers.Count - 1)],
-                            IsPositive = this.randomGenerator.RandomIntegerBetween(0, 1) != 0,
-                            Value = this.randomGenerator.RandomIntegerBetween(1, 5),
-                        });
+                                                   {
+                                                       Author = seededUsers[i%(seededUsers.Count - 1)],
+                                                       IsPositive = this.randomGenerator.RandomIntegerBetween(0, 1) != 0,
+                                                       Value = this.randomGenerator.RandomIntegerBetween(1, 5),
+                                                   });
                     }
                     context.SaveChanges();
                 }
@@ -136,23 +153,24 @@ namespace Uspelite.Data.Migrations
                 {
                     for (int i = 0; i < 10; i++)
                     {
-                        var randomArticle = seededArticles[this.randomGenerator.RandomIntegerBetween(0, seededArticles.Count - 1)];
+                        var randomArticle =
+                            seededArticles[this.randomGenerator.RandomIntegerBetween(0, seededArticles.Count - 1)];
 
                         randomArticle.Comments.Add(new Comment
-                        {
-                            Author = seededUsers[i % (seededUsers.Count - 1)],
-                            Content = this.randomGenerator.RandomText(15)
-                        });
+                                                   {
+                                                       Author = seededUsers[i%(seededUsers.Count - 1)],
+                                                       Content = this.randomGenerator.RandomText(15)
+                                                   });
                     }
 
                     for (int i = 0; i < 20; i++)
                     {
                         var randomVideo = seededVideos[this.randomGenerator.RandomIntegerBetween(0, seededVideos.Count - 1)];
                         randomVideo.Comments.Add(new Comment
-                        {
-                            Author = seededUsers[i % (seededUsers.Count - 1)],
-                            Content = this.randomGenerator.RandomText(15)
-                        });
+                                                 {
+                                                     Author = seededUsers[i%(seededUsers.Count - 1)],
+                                                     Content = this.randomGenerator.RandomText(15)
+                                                 });
                         context.SaveChanges();
                     }
                 }

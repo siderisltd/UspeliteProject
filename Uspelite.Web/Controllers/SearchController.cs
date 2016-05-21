@@ -1,5 +1,6 @@
 ﻿namespace Uspelite.Web.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Web.Mvc;
     using Infrastructure.Mapping.Contracts;
@@ -18,9 +19,21 @@
             this.articlesService = articlesService;
         }
 
-        public ActionResult Articles(string query)
+        public ActionResult Articles(string query, int page = 1, int pageSize = 10)
         {
-            var result = this.articlesService.FullTextSearch(query).To<ArticleViewModel>().ToList();
+            var itemsToSkip = (page - 1) * pageSize;
+
+            var result = this.articlesService
+                .FullTextSearch(query)
+                .Skip(itemsToSkip)
+                .Take(pageSize)
+                .To<ArticleViewModel>()
+                .ToList();
+
+
+            var resultsCount = (int) Math.Ceiling(result.Count/(decimal) pageSize);
+            this.TempData["resultsCount"] = resultsCount;
+
 
             var indexViewModel = new HomeIndexViewModel
             {

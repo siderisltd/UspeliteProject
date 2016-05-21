@@ -21,7 +21,8 @@
             //var mergeWorker = new MergeWorker();
             //mergeWorker.Start();
 
-            //var users = ctx.Users.ToList();
+            var users = ctx.Users.ToList();
+
             var allArticles = ctx.Articles.ToList();
             var uniqueTags = GetUniqueBracketTags(ctx);
 
@@ -49,7 +50,7 @@
                 text = Regex.Replace(text, pattern, string.Empty);
 
                 article.Content = text;
-               
+
 
                 ctx.SaveChanges();
             }
@@ -59,36 +60,36 @@
             //ReplaceZero(allArticles, ctx);
             //ReplaceHighlight(allArticles, ctx);
 
-            //AddParagraphsToEmptyRows(allArticles, ctx);
-            ////AddDefaultUserPictureAndDescIfNone(users, ctx);
+            AddParagraphsToEmptyRows(allArticles, ctx);
+            AddDefaultUserPictureAndDescIfNone(users, ctx);
 
-            //ReplaceVideos(allArticles, ctx);
+            ReplaceVideos(allArticles, ctx);
         }
 
-        //private static void RemoveSquareBrackets(List<Article> allArticles, UspeliteDbContext ctx)
-        //{
-        //    foreach (var article in allArticles)
-        //    {
+        private static void RemoveSquareBrackets(List<Article> allArticles, UspeliteDbContext ctx)
+        {
+            foreach (var article in allArticles)
+            {
 
 
-        //        var content = article.Content;
+                var content = article.Content;
 
-        //        var startIndex = 0;
-
-
+                var startIndex = 0;
 
 
-        //        List<string> tags = new List<string>();
-        //        var pattern = @"\[(.*?)\]";
 
 
-        //        content = Regex.Replace(content, pattern, string.Empty);
+                List<string> tags = new List<string>();
+                var pattern = @"\[(.*?)\]";
 
 
-        //        article.Content = content;
-        //        //ctx.SaveChanges();
-        //    }
-        //}
+                content = Regex.Replace(content, pattern, string.Empty);
+
+
+                article.Content = content;
+                //ctx.SaveChanges();
+            }
+        }
 
 
 
@@ -153,11 +154,11 @@
 
         private static void AddDefaultUserPictureAndDescIfNone(List<User> users, UspeliteDbContext ctx)
         {
+            var userId = ctx.Users.FirstOrDefault(x => x.UserName == "hinkov").Id;
             foreach (var user in users)
             {
                 var imageUrl = "http://princeps.bg/blog/wp-content/uploads/2010/03/no_image.gif";
                 var imageTitle = Guid.NewGuid().ToString();
-                var userId = "f506e580-1055-402f-9bce-b8881102af7b";
 
                 ImagesService imagesService = new ImagesService(new GenericRepository<Image>(ctx), new ImageHelper());
                 var img = imagesService.SaveImageFromWeb(imageUrl, imageTitle, ImageFormat.Jpeg, userId);

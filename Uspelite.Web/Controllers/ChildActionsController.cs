@@ -81,7 +81,7 @@
             Dictionary<CategoryViewModel, Dictionary<CategoryViewModel, IEnumerable<ArticleViewModel>>> model =
     new Dictionary<CategoryViewModel, Dictionary<CategoryViewModel, IEnumerable<ArticleViewModel>>>();
 
-            var parentCategories = this.categoriesService.GetParentCategories().ToList();
+            var parentCategories = this.categoriesService.GetParentCategories().Where(x => x.Children.Count > 0).ToList();
 
             foreach (var parentCat in parentCategories)
             {
@@ -105,14 +105,5 @@
 
             return this.PartialView("_ClientNavigation", model);
         }
-
-        //[OutputCache(Duration = 1, VaryByParam = "none")]
-        //public ActionResult GetCategoriesTree()
-        //{
-        //    var categories = this.categoriesService.GetAll().To<CategoryViewModel>().ToList();
-        //    CategoriesTreeModel model = new CategoriesTreeModel { Seed = null, Categories = categories };
-
-        //    return this.PartialView("_Categories", model);
-        //}
     }
 }

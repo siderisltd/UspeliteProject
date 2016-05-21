@@ -62,18 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IUspeliteDbContext.cs" />
-    <Compile Include="Migrations\201603101306191_videos-articles.cs" />
-    <Compile Include="Migrations\201603101306191_videos-articles.Designer.cs">
-      <DependentUpon>201603101306191_videos-articles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603292042187_ArticlePlaceMigration.cs" />
-    <Compile Include="Migrations\201603292042187_ArticlePlaceMigration.Designer.cs">
-      <DependentUpon>201603292042187_ArticlePlaceMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604101754356_CategoryParentMigration.cs" />
-    <Compile Include="Migrations\201604101754356_CategoryParentMigration.Designer.cs">
-      <DependentUpon>201604101754356_CategoryParentMigration.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
@@ -95,17 +83,6 @@
       <Project>{B0ACE681-DC84-4990-A67E-9927D15F626C}</Project>
       <Name>Uspelite.Data.Models</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603101306191_videos-articles.resx">
-      <DependentUpon>201603101306191_videos-articles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603292042187_ArticlePlaceMigration.resx">
-      <DependentUpon>201603292042187_ArticlePlaceMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604101754356_CategoryParentMigration.resx">
-      <DependentUpon>201604101754356_CategoryParentMigration.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -6,7 +6,7 @@
     using Uspelite.Data.Models;
     using Uspelite.Data.Models.Enum;
     using Uspelite.Web.Infrastructure.Enums;
-
+    using System;
     public interface IArticlesService
     {
         IQueryable<Article> FullTextSearch(string query);
@@ -27,9 +27,9 @@
 
         IQueryable<ArticleStatusDTO> GetPossibleArticleStatuses();
 
-        int Add(string title, string authorId, string content, PostStatus status, int categoryId, Image image);
+        int Add(string title, string authorId, string content, PostStatus status, int categoryId, Image image, DateTime? CreatedOn = null);
 
-        int Add(string title, string slug, string authorId, string content, PostStatus status, int categoryId, Image image, IList<Comment> comments = null);
+        int Add(string title, string slug, string authorId, string content, PostStatus status, int categoryId, Image image, IList<Comment> comments = null, DateTime? CreatedOn = null);
 
         bool Exists(string title);
 

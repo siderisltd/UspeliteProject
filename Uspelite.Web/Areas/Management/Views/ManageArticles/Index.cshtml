@@ -2,7 +2,7 @@
 @using Uspelite.Web.Areas.Management.Models
 @model Uspelite.Web.Areas.Management.Models.ManageArticleViewModel
 
-@(Html.FullFeaturedGrid<ManageArticleViewModel>("ManageArticles", x => x.Id, column =>
+@*@(Html.FullFeaturedGrid<ManageArticleViewModel>("ManageArticles", x => x.Id, column =>
 {
     column.Bound(x => x.Id).Hidden();
     column.Bound(x => x.Title);
@@ -13,9 +13,9 @@
     column.Bound(x => x.Place);
     column.Command(c => c.Edit());
     column.Command(c => c.Destroy());
-}))
+}))*@
 
-@*@(Html.Kendo().Grid<ManageArticleViewModel>()
+@(Html.Kendo().Grid<ManageArticleViewModel>()
         .Name("articlesGrid")
         .Columns(column =>
         {
@@ -47,4 +47,4 @@
                 .Create(create => create.Action("Create", "ManageArticles"))
                 .Update(update => update.Action("Update", "ManageArticles"))
                 .Destroy(destroy => destroy.Action("Destroy", "ManageArticles"))
-        ));*@
+        ));

@@ -77,7 +77,7 @@
                           .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
                           .InsertUnorderedList().InsertOrderedList()
                           .Outdent().Indent()
-                          .CreateLink().Unlink()
+                          .Unlink()
                           .InsertImage()
                           .SubScript()
                           .SuperScript()
@@ -92,8 +92,13 @@
                           .CustomButton(cb => cb
                               .Name("Add link to article")
                               .ToolTip("Add link to article")
-                              .Exec("execFunction")
+                              .Exec("addLinkToArticle")
                           ))
+                          //.CustomButton(cb => cb
+                          //    .Name("Add video to article")
+                          //    .ToolTip("Add video to article")
+                          //    .Exec("addVideoToArticle")
+                          //))
                           .Encode(false)
                           .ImageBrowser(imageBrowser => imageBrowser
                                  .Image("~/Content/Uploads/Images/{0}")

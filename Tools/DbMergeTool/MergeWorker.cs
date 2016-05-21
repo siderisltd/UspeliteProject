@@ -85,16 +85,22 @@
                             })
                              .DistinctBy(x => x.PostId)
                              .ToList();
-            //problem with article 299 
-            for (int i = 300; i < results.Count; i++)
+         
+            for (int i = 0; i < results.Count; i++)
             {
+                if(i == 299 || i == 386 || i == 848)
+                {
+                    //problem with article 299 
+                    continue;
+                }
+
                 var res = results[i];
 
                 //TODO: Check it
                 res.CategoryId = newDbCtx.Categories.FirstOrDefault(x => x.Title == res.CategoryName).Id;
                 res.PostAuthorId = usersService.GetByEmail(res.AuthorEmail).Id;
                 res.PostTitleImageUrl = oldCtx.wp_posts.FirstOrDefault(x => x.ID.ToString() == res.PictureInPostsId.ToString()).guid;
-
+                var creationDate = res.PostCreationDate;
                 var imageUrl = "";
                 var imageTitle = Guid.NewGuid().ToString();
                 var userId = res.PostAuthorId;
@@ -121,11 +127,11 @@
                         var commAuthId = usersService.GetByEmail(comm.AuthorEmail).Id;
                         commentsToAdd.Add(new Comment {Content = comm.Content, AuthorId = commAuthId});
                     }
-                    var createdArticleId = articlesService.Add(articleTitle, articleSlug, userId, articleContent, PostStatus.Draft, categoryId, image, commentsToAdd);
+                    var createdArticleId = articlesService.Add(articleTitle, articleSlug, userId, articleContent, PostStatus.Draft, categoryId, image, commentsToAdd, creationDate);
                 }
                 else
                 {
-                    var createdArticleId = articlesService.Add(articleTitle, articleSlug, userId, articleContent, PostStatus.Draft, categoryId, image);
+                    var createdArticleId = articlesService.Add(articleTitle, articleSlug, userId, articleContent, PostStatus.Draft, categoryId, image, CreatedOn: creationDate);
                 }
                
             }

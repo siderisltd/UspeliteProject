@@ -25,7 +25,7 @@
 
         public ActionResult Index()
         {
-            this.ViewData["categories"] = this.categoriesService.GetAll().To<CategoryViewModel>();
+            this.ViewData["categories"] = this.categoriesService.GetAll().Select(x => new CategoryViewModel { Id = x.Id, Title = x.Title}).ToList();
             this.ViewData["poststatuses"] = this.articlesService.GetPossibleArticleStatuses();
             this.ViewData["postplaces"] = this.articlesService.GetPossibleArticlePlaces();
             return this.View();

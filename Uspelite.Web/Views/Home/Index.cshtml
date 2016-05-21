@@ -57,7 +57,7 @@
         }
     }
 
-    <section class="section-full cat-videos no-padding">
+    @*<section class="section-full cat-videos no-padding">
         <div class="row">
             @if (Model.TopArticle != null)
             {
@@ -72,7 +72,7 @@
                         </a>
                         <a href="/Categories/Show/@Model.TopArticle.Category" class="theme">@Model.TopArticle.Category</a>
                     </article>
-                    @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", @Model.TopArticle)*@
+                    @Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", @Model.TopArticle)
                 </div>
             }
             @if (Model.HighRatedPosts != null && Model.HighRatedPosts.Count >= 2)
@@ -90,13 +90,13 @@
                             </a>
                             <a href="/Categories/Show/@current.Category" class="theme">@current.Category</a>
                         </article>
-                    @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", @Model.TopArticle)*@
+                    @Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", @Model.TopArticle)
                     }
                 </div>
 
             }
         </div>
-    </section>
+    </section>*@
 
     <section class="section-full top-padding cat-reviews news-layout news-lay-2">
         <header>

@@ -69,6 +69,13 @@
 
         [HttpGet]
         [AjaxActionFilter]
+        public ActionResult InsertVideo()
+        {
+            return this.PartialView("_InsertVideo");
+        }
+
+        [HttpGet]
+        [AjaxActionFilter]
         public ActionResult GetArticlesFilteredByTitle(string searchQuery)
         {
             List<SelectListItem> articles = this.articlesService

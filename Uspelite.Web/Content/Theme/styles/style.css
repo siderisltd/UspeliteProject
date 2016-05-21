@@ -144,6 +144,12 @@ a:hover {
     padding: 0;
 }
 
+.container  .img-responsive {
+    display: block;
+    width: 100%;
+    max-height: 100%;
+}
+
 #page-content {
     position: relative;
     overflow: hidden;
@@ -300,7 +306,7 @@ ul.rating li {
     width: 14px;
     height: 14px;
     margin-right: 1px;
-    background: url(../../../Content/Theme/images/stars.png) no-repeat 0 0;
+    background: url(../../images/stars.png) no-repeat 0 0;
 }
 
 ul.rating li.li-rated {
@@ -1234,7 +1240,7 @@ body.nav-expanded #page-header-mobile nav {
      }
 
      #page-slider .col-sm-4 {
-         width: 280px;
+         width: 365px;
      }
 
      #page-slider .slider-nav {

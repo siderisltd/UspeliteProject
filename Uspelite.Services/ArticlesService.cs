@@ -26,7 +26,7 @@
             this.imagesService = imagesService;
         }
 
-        public int Add(string title, string authorId, string content, PostStatus status, int categoryId, Image image)
+        public int Add(string title, string authorId, string content, PostStatus status, int categoryId, Image image, DateTime? CreatedOn = null)
         {
             var article = new Article
             {
@@ -38,13 +38,18 @@
                 Images = new List<Image>() { image }
             };
 
+            if(CreatedOn != null)
+            {
+                article.CreatedOn = (DateTime)CreatedOn;
+            }
+
             this.repo.Add(article);
             this.repo.SaveChanges();
 
             return article.Id;
         }
 
-        public int Add(string title, string slug, string authorId, string content, PostStatus status, int categoryId, Image image, IList<Comment> comments = null)
+        public int Add(string title, string slug, string authorId, string content, PostStatus status, int categoryId, Image image, IList<Comment> comments = null, DateTime? CreatedOn = null)
         {
             var article = new Article
             {
@@ -60,6 +65,11 @@
             if (comments != null)
             {
                 article.Comments = comments;
+            }
+
+            if (CreatedOn != null)
+            {
+                article.CreatedOn = (DateTime)CreatedOn;
             }
 
             this.repo.Add(article);

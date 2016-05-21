@@ -6,7 +6,7 @@
 <div id="containerBox">
     <div id="data-helper" data-imagefolder="@Constants.ROOT_IMAGES_FOLDER"></div>
     <div id="addLinkHolder"></div>
-
+    <div id="addVideoHolder"></div>
 
     @using (Html.BeginForm("Add", "Articles", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
@@ -137,10 +137,17 @@
             });
         });
 
-        function execFunction(e) {
+        function addLinkToArticle(e) {
             $.get('/Articles/BuildLinkView', null, function(data) {
                 $('#addLinkHolder').html(data);
                 $('#addLinkHolder').css('display', 'table-cell');
+            });
+        }
+
+        function addViceoToArticle(e) {
+            $.get('/Articles/InsertVideo', null, function (data) {
+                $('#addViceoHolder').html(data);
+                $('#addViceoHolder').css('display', 'table-cell');
             });
         }
 
@@ -156,6 +163,25 @@
             editor.exec("inserthtml", { value: linkHtml });
 
             $('#addLinkHolder').empty();
+        }
+
+
+        function addVideo() {
+            debugger;
+            var editor = $("#Content").data("kendoEditor");
+            var videoUrl = $('#insert-video-url-input').val();
+
+            var videoHtml = GenerateVideoEmbedUrl(videoUrl);
+            editor.exec("inserthtml", { value: videoHtml });
+
+            $('#addVideoHolder').empty();
+        }
+
+        function GenerateVideoEmbedUrl(videoUrl) {
+            debugger;
+            //TODO: generate video embed url if the url does not contain embed
+
+            //we can use some viewModel to create the url with ajax ...
         }
 
         function GenerateLink(linkText, location, title, blank) {

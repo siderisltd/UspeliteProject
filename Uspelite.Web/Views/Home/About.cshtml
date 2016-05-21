@@ -1,5 +1,10 @@
 ﻿@model Uspelite.Web.Models.Home.AboutViewModel
 
+@section sidebar{
+    @(Html.Action<ChildActionsController>(x => x.GetSideBar()))
+}
+
+
 <div class="team-layout">
     <div class="title">
         <h2>За идеята:</h2>

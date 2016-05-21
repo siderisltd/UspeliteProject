@@ -294,8 +294,22 @@
     <Compile Include="Models\Categories\PageableCategoryArticlesViewModel.cs" />
     <Compile Include="Models\ChildActions\CategoryAndPostsViewModel.cs" />
     <Compile Include="Models\ChildActions\SliderViewModel.cs" />
+    <Content Include="Areas\Administration\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Rss\_FeedResults.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Areas\Administration\Views\Users\EditorTemplates\UserViewModel.cshtml" />
+    <Content Include="Areas\Administration\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Management\Views\ManageArticles\EditorTemplates\ArticlePlaceTypeDTO.cshtml" />
+    <Content Include="Areas\Management\Views\ManageArticles\EditorTemplates\ArticleStatusDTO.cshtml" />
+    <Content Include="Areas\Management\Views\ManageArticles\EditorTemplates\CategoryViewModel.cshtml" />
+    <Content Include="Areas\Management\Views\ManageArticles\EditorTemplates\ManageArticleViewModel.cshtml" />
+    <Content Include="Areas\Management\Views\Shared\_ManagementLayout.cshtml" />
     <Content Include="Content\Custom\chatStyles.css" />
+    <Content Include="Content\Custom\DonationButton.css" />
     <Content Include="Content\Custom\Fonts\essb-socialfollowers.svg" />
+    <Content Include="Content\Custom\SharingButtons.css" />
+    <Content Include="Content\Custom\SomeStyles.css" />
+    <Content Include="Content\Custom\teamPageStyles.css" />
     <Content Include="Content\Imgs\no-photo-available.jpg" />
     <Content Include="Content\Imgs\testImage.jpg" />
     <Content Include="Content\Kendo\kendo.silver.min.css" />
@@ -596,30 +610,21 @@
     <Content Include="Areas\Administration\Views\web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Areas\Administration\Views\Home\Index.cshtml" />
     <Content Include="Content\Kendo\kendo.silver.min.css.map" />
     <Content Include="Content\Kendo\kendo.silver.mobile.min.css.map" />
     <Content Include="Content\Kendo\kendo.common.min.css.map" />
-    <Content Include="Areas\Administration\Views\Users\Index.cshtml" />
-    <Content Include="Areas\Administration\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Areas\Management\Views\_ViewStart.cshtml" />
-    <None Include="Areas\Administration\Views\Crowlers\Index.cshtml" />
-    <None Include="Areas\Administration\Views\Crowlers\StartPopulation.cshtml" />
-    <None Include="Areas\Administration\Views\Rss\Index.cshtml" />
-    <Content Include="Areas\Administration\Views\Rss\_FeedResults.cshtml" />
     <Content Include="Areas\Management\Views\web.config" />
-    <Content Include="Areas\Management\Views\Shared\_ManagementLayout.cshtml" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Administration\Views\Users\EditorTemplates\UserViewModel.cshtml" />
-    <Content Include="Areas\Management\Views\ManageArticles\EditorTemplates\CategoryViewModel.cshtml" />
-    <Content Include="Areas\Management\Views\ManageArticles\EditorTemplates\ArticleStatusDTO.cshtml" />
-    <Content Include="Areas\Management\Views\ManageArticles\EditorTemplates\ArticlePlaceTypeDTO.cshtml" />
-    <None Include="Areas\Management\Views\ManageArticles\Index.cshtml" />
-    <Content Include="Areas\Management\Views\ManageArticles\EditorTemplates\ManageArticleViewModel.cshtml" />
+    <Content Include="Areas\Administration\Views\Crowlers\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Crowlers\StartPopulation.cshtml" />
+    <Content Include="Areas\Administration\Views\Rss\Index.cshtml" />
     <Content Include="Content\Custom\Fonts\essb-socialfollowers.eot" />
     <Content Include="Content\Custom\Fonts\essb-socialfollowers.ttf" />
     <Content Include="Content\Custom\Fonts\essb-socialfollowers.woff" />
+    <Content Include="Areas\Management\Views\ManageArticles\Index.cshtml" />
     <None Include="Properties\PublishProfiles\File.pubxml" />
+    <None Include="Properties\PublishProfiles\Filesys.pubxml" />
     <None Include="Properties\PublishProfiles\fileSystem.pubxml" />
     <Content Include="Scripts\Libraries\JCrop\README.md" />
     <None Include="Properties\PublishProfiles\UspeliteFileSystem.pubxml" />
@@ -655,19 +660,6 @@
     <Content Include="Scripts\Libraries\respond.min.js" />
     <Content Include="Scripts\Libraries\theia-sticky-sidebar.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
@@ -679,38 +671,32 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Articles\EditorTemplates\ArticlesBindingModel.cshtml" />
+    <Content Include="Views\Articles\Show.cshtml" />
+    <Content Include="Views\Articles\_FilteredArticlesByTitleDropdown.cshtml" />
+    <Content Include="Views\Articles\_InsertVideo.cshtml" />
+    <Content Include="Views\Articles\_ShareButtons.cshtml" />
+    <Content Include="Views\Authors\Info.cshtml" />
+    <Content Include="Views\Categories\Show.cshtml" />
+    <Content Include="Views\ChildActions\_ClientNavigation.cshtml" />
+    <Content Include="Views\ChildActions\_Sidebar.cshtml" />
+    <Content Include="Views\ChildActions\_Slider.cshtml" />
+    <Content Include="Views\Error\General.cshtml" />
+    <Content Include="Views\Error\InternalServerError.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Live\Index.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Live\Index.cshtml" />
-    <Content Include="Views\Shared\Partials\_Header.cshtml" />
-    <Content Include="Views\ChildActions\_Sidebar.cshtml" />
-    <Content Include="Views\Shared\Partials\_Footer.cshtml" />
-    <Content Include="Views\ChildActions\_Slider.cshtml" />
-    <Content Include="Views\Error\General.cshtml" />
-    <Content Include="Views\Error\NotFound.cshtml" />
-    <Content Include="Views\Error\InternalServerError.cshtml" />
-    <Content Include="Scripts\Libraries\Kendo\kendo.web.min.js.map" />
-    <Content Include="Scripts\Libraries\Kendo\kendo.aspnetmvc.min.js.map" />
-    <Content Include="Views\Categories\Show.cshtml" />
-    <None Include="Views\Articles\Add.cshtml" />
-    <Content Include="Views\Articles\EditorTemplates\ArticlesBindingModel.cshtml" />
-    <Content Include="Views\Shared\Partials\_RatingStars.cshtml" />
-    <Content Include="Views\Authors\Info.cshtml" />
-    <Content Include="Views\ChildActions\_ClientNavigation.cshtml" />
-    <None Include="Views\Articles\_BuildLinkView.cshtml" />
-    <Content Include="Views\Articles\_FilteredArticlesByTitleDropdown.cshtml" />
-    <Content Include="Views\Articles\_ShareButtons.cshtml" />
-    <None Include="Views\Comments\_CommentPartial.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <None Include="Views\Images\Gallery.cshtml" />
-    <Content Include="Views\Articles\Show.cshtml" />
+    <Content Include="Views\Manage\_EditProfileInfo.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ModelStateDictionary.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
@@ -723,12 +709,32 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\ModelStateDictionary.cshtml" />
-    <Content Include="Views\Videos\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\Partials\_Footer.cshtml" />
+    <Content Include="Views\Shared\Partials\_Header.cshtml" />
     <Content Include="Views\Shared\Partials\_Pagination.cshtml" />
-    <Content Include="Views\Manage\_EditProfileInfo.cshtml" />
+    <Content Include="Views\Shared\Partials\_RatingStars.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Staff\Index.cshtml" />
-    <None Include="Views\Payments\Index.cshtml" />
+    <Content Include="Views\Videos\Index.cshtml" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Scripts\Libraries\Kendo\kendo.web.min.js.map" />
+    <Content Include="Scripts\Libraries\Kendo\kendo.aspnetmvc.min.js.map" />
+    <Content Include="Views\Payments\Index.cshtml" />
+    <Content Include="Views\Images\Gallery.cshtml" />
+    <Content Include="Views\Comments\_CommentPartial.cshtml" />
+    <Content Include="Views\Articles\Add.cshtml" />
+    <Content Include="Views\Articles\_BuildLinkView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Uspelite.Data.Common\Uspelite.Data.Common.csproj">
