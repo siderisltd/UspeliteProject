@@ -41,6 +41,8 @@
 
             var categoriesServiceMock = new Mock<ICategoriesService>();
             var imagesServiceMock = new Mock<IImagesService>();
+            var iSlugServiceMock = new Mock<ISlugService>();
+            var iShliokavitsaServiceMock = new Mock<IShliokavitsaConvertService>();
 
             this.mockedCache = cacheServiceMock;
             this.mockedArticleService = articlesServiceMock;
@@ -48,7 +50,7 @@
             this.mockedImagesService = imagesServiceMock;
 
 
-            //this.controller = new ArticlesController(this.mockedArticleService.Object, this.mockedCategoriesService.Object, this.mockedImagesService.Object);
+            this.controller = new ArticlesController(this.mockedArticleService.Object, this.mockedCategoriesService.Object, this.mockedImagesService.Object, iSlugServiceMock.Object, iShliokavitsaServiceMock.Object);
             this.controller.Cache = this.mockedCache.Object;
         }
 

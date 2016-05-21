@@ -42,7 +42,10 @@
 
         public ActionResult Show(string slug)
         {
-            slug = this.Server.UrlEncode(slug);
+            if(this.Server != null)
+            {
+                slug = this.Server.UrlEncode(slug);
+            }
             var model = this.articlesService.GetBySlug(slug).To<ConcreteArticleViewModel>().FirstOrDefault();
             if (model == null)
             {

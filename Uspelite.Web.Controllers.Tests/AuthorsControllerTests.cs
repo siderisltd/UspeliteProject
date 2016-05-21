@@ -53,7 +53,7 @@
         }
 
         [TestMethod]
-        public void asd()
+        public void ControllerShouldNotFindUserWithOneName()
         {
             this.controller.WithCallTo(x => x.Info("asdsad", ""))
                 .ShouldGiveHttpStatus(HttpStatusCode.NotFound);
