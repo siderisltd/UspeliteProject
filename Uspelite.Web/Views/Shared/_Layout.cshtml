@@ -7,9 +7,9 @@
 <html class="no-js" lang="bg-BG">
 <!--<![endif]-->
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="Младите успели българи,Успелите Българи, Седмични Новини, Дневни Новини, Новини, Блог, Шок новини, Весели новини, Хубави новини"/>
+    <meta name="keywords" content="Младите успели българи,Успелите Българи, Седмични Новини, Дневни Новини, Новини, Блог, Шок новини, Весели новини, Хубави новини" />
     <meta name="description" content="Младите успели българи">
     <meta name="author" content="Младите успели българи">
     <title>Успелите</title>
@@ -41,51 +41,87 @@
     <![endif]-->
 </head>
 <body>
-<div id="fb-root"></div>
-<div id="page-outer-wrap">
-    <div id="page-inner-wrap">
+    <div id="fb-root"></div>
+    <div id="page-outer-wrap">
+        <div id="page-inner-wrap">
 
-        @Html.Partial("~/Views/Shared/Partials/_Header.cshtml");
+            @Html.Partial("~/Views/Shared/Partials/_Header.cshtml");
 
-        @if (this.TempData["Alert"] != null)
-        {
-            <div class="alert alert-danger notification-label" role="alert">@this.TempData["Alert"]</div>
-        }
-        @if (this.TempData["Notification"] != null)
-        {
-            <div class="alert alert-success notification-label" role="alert">@this.TempData["Notification"]</div>
-        }
-        @RenderSection("slider", required: false)
+            @if (this.TempData["Alert"] != null)
+            {
+                <div class="alert alert-danger notification-label" role="alert">@this.TempData["Alert"]</div>
+            }
+            @if (this.TempData["Notification"] != null)
+            {
+                <div class="alert alert-success notification-label" role="alert">@this.TempData["Notification"]</div>
+            }
+            @RenderSection("slider", required: false)
 
-        <div class="container">
-            <div id="page-content">
-                <div id="main">
-                    @RenderBody()
+            <div class="container">
+                <div id="page-content">
+                    <div id="main">
+                        @RenderBody()
+                    </div>
+                    @RenderSection("sidebar", required: false)
                 </div>
-                @RenderSection("sidebar", required: false)
             </div>
+            <div class="clearfix"></div>
+            @Html.Partial("~/Views/Shared/Partials/_Footer.cshtml")
         </div>
-        <div class="clearfix"></div>
-        @Html.Partial("~/Views/Shared/Partials/_Footer.cshtml")
     </div>
-</div>
 
 
-@Scripts.Render("~/bundles/bootstrap")
-@Scripts.Render("~/bundles/jquery-ui")
-@Scripts.Render("~/bundles/theme")
-@Scripts.Render("~/bundles/ajax")
-@*<script src="https://apis.google.com/js/platform.js" async defer></script>*@
-@RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquery-ui")
+    @Scripts.Render("~/bundles/theme")
+    @Scripts.Render("~/bundles/ajax")
+    @*<script src="https://apis.google.com/js/platform.js" async defer></script>*@
+    @RenderSection("scripts", required: false)
 
-<script>
-    $(function() {
-        var notificationLabel = $('.notification-label');
-        if (notificationLabel.length !== 0) {
-            notificationLabel.delay(3000).fadeOut(200);
-        }
-    });
-</script>
+    <script>
+        $(function () {
+
+            //var mainElement = $('#main');
+            //var mainElementWidth = mainElement.width();
+
+            //var mainElementOffset = mainElement.offset();
+            //var topOffset = mainElementOffset.top;
+            //var leftOffset = mainElementOffset.left;
+
+            //var bottom = $(window).height() - (topOffset - mainElement.height());
+
+            //var elementPosition = mainElement.position();
+            //var bottomRightX = elementPosition.left + mainElement.width() + (leftOffset * 2);
+
+            //console.log("bottonRightX : " + bottomRightX);
+            //console.log('bottomOfMainElement : ' + (bottom - topOffset));
+            //var elementFromPosition = document.elementFromPoint(bottomRightX + 40, bottom - 20);
+            //console.log('ELEMENT TUK' + elementFromPosition);
+
+            var $mainElement = $('#main');
+            var mainElementHeight = $mainElement.height() + $mainElement.offset().top;
+            var sideBarArticles = $('#sidebar article');
+            
+            var elHeights = sideBarArticles.each(function (index, element) {
+                var el = $(element);
+                var currentOffset = el.offset().top;
+                if (currentOffset > mainElementHeight) {
+                    var prevEl = el.prev().prev();
+                    prevEl.nextAll('*').hide();
+                    return false;
+                }
+            });
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            var notificationLabel = $('.notification-label');
+            if (notificationLabel.length !== 0) {
+                notificationLabel.delay(3000).fadeOut(200);
+            }
+        });
+    </script>
 </body>
 </html>
-

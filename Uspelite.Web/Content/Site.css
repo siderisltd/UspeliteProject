@@ -53,23 +53,39 @@ menu, nav, section {
 }*/
 
 #header-branding > div > div > form > div > div {
-    width:400px;
-    position:absolute;
-    top:40px;
-    left:250px;
+    width: 400px;
+    position: absolute;
+    top: 40px;
+    left: 250px;
 }
 
-#article-post {
+/*#article-post {
     width: 690px;
-}
+}*/
 
-#article-post img  {
+#article-post img {
     max-width: 100%;
-    height:auto;
+    height: auto;
+}
+
+@media ( min-width: 992px ) {
+    #related-articles-section article img {
+        max-height: 130px;
+    }
 }
 
 
+#page-slider .col-sm-8 article img, #page-slider .col-sm-3 article img {
+    height: auto;
+    max-width: 100%;
+    max-height: inherit;
+}
 
+#page-slider .col-sm-4 article img {
+    max-height: inherit;
+    height: auto;
+}
 
-
-
+#slider-carousel .col-sm-8 .overlay, #slider-carousel .col-sm-4 .overlay {
+    padding-bottom: 5px;
+}

@@ -13,6 +13,7 @@
     using System.Web.Mvc;
     using ActionFilters;
     using Data.Common.Roles;
+    using Data.Models;
     using Infrastructure.Mapping.Contracts;
     using Models.Articles;
     using Services.Data.Contracts;
@@ -52,15 +53,65 @@
                 return this.HttpNotFound();
             }
 
-            if (this.User.Identity.IsAuthenticated)
+            this.ShouldShowEditButton(model);
+
+            var modelRelatedArticlesNumber = 6;
+            string searchWord = this.GetSearchWord(model.Title);
+
+            model.RelatedArticles = new List<ArticleViewModel>();
+            if (!string.IsNullOrEmpty(searchWord))
             {
-                if (this.User.IsInRole(AppRoles.ADMIN_ROLE) || this.User.IsInRole(AppRoles.MANAGER_ROLE) || (this.User.IsInRole(AppRoles.EDITOR_ROLE) && this.User.Identity.GetUserId() == model.Author.Id))
+                model.RelatedArticles = this.articlesService.FullTextSearch(searchWord).Take(modelRelatedArticlesNumber).To<ArticleViewModel>().ToList();
+            }
+           
+            var actualRelatedArticlesCount = model.RelatedArticles.Count;
+
+            if (actualRelatedArticlesCount < modelRelatedArticlesNumber)
+            {
+                var currentModelCategory = model.Category;
+                var articlesToTake = modelRelatedArticlesNumber - actualRelatedArticlesCount;
+                var newestArticlesInCategory  = this.articlesService.GetNewestPosts(articlesToTake, currentModelCategory).To<ArticleViewModel>().ToList();
+
+                foreach (var article in newestArticlesInCategory)
                 {
-                    model.ShowEdit = true;
+                    model.RelatedArticles.Add(article);
+                }
+            }
+            if (actualRelatedArticlesCount < modelRelatedArticlesNumber)
+            {
+                var currentModelCategory = model.Category;
+                var articlesToTake = modelRelatedArticlesNumber - actualRelatedArticlesCount;
+                var newestArticles = this.articlesService.GetNewestPosts(articlesToTake).To<ArticleViewModel>().ToList();
+
+                foreach (var article in newestArticles)
+                {
+                    model.RelatedArticles.Add(article);
                 }
             }
 
             return this.View(model);
+        }
+
+        private string GetSearchWord(string title)
+        {
+            var minWordLength = 3;
+            var allWords = title.Split(new char[] { ' ', '.', '/' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            var words = allWords.Where(x => x.Length > minWordLength).ToList();
+            var result = words.Count > 0 ? words[0] : string.Empty;
+
+            return result;
+        }
+
+        private void ShouldShowEditButton(ConcreteArticleViewModel model)
+        {
+            if (this.User.Identity.IsAuthenticated)
+            {
+                if (this.User.IsInRole(AppRoles.ADMIN_ROLE) || this.User.IsInRole(AppRoles.MANAGER_ROLE) ||
+                    (this.User.IsInRole(AppRoles.EDITOR_ROLE) && this.User.Identity.GetUserId() == model.Author.Id))
+                {
+                    model.ShowEdit = true;
+                }
+            }
         }
 
         [HttpGet]

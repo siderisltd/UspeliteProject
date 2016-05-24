@@ -76,6 +76,8 @@
 
         public bool ShowEdit { get; set; }
 
+        public IList<ArticleViewModel> RelatedArticles { get; set; }
+
         public virtual void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Article, ConcreteArticleViewModel>()
