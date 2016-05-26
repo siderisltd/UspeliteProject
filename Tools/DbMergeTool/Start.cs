@@ -55,15 +55,12 @@
                 ctx.SaveChanges();
             }
 
-            //ReplaceCaption(allArticles, ctx);
-            //ReplaceQuote(allArticles, ctx);
-            //ReplaceZero(allArticles, ctx);
-            //ReplaceHighlight(allArticles, ctx);
-
             AddParagraphsToEmptyRows(allArticles, ctx);
             AddDefaultUserPictureAndDescIfNone(users, ctx);
 
             ReplaceVideos(allArticles, ctx);
+
+            ctx.SaveChanges();
         }
 
         private static void RemoveSquareBrackets(List<Article> allArticles, UspeliteDbContext ctx)

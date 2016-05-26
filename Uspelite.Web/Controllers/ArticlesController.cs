@@ -64,7 +64,11 @@
 
             if (!string.IsNullOrEmpty(searchWord))
             {
-                model.RelatedArticles = relatedArticlesDto.ResultsInTitles.To<ArticleViewModel>().ToList();
+                model.RelatedArticles = relatedArticlesDto.
+                    ResultsInTitles
+                    .Select(x => x.Item)
+                    .To<ArticleViewModel>()
+                    .ToList();
             }
            
             var actualRelatedArticlesCount = model.RelatedArticles.Count;
@@ -72,7 +76,12 @@
             if (actualRelatedArticlesCount < modelRelatedArticlesNumber)
             {
                 var articlesToTake = modelRelatedArticlesNumber - actualRelatedArticlesCount;
-                model.RelatedArticles = relatedArticlesDto.ResultsInContents.Take(articlesToTake).To<ArticleViewModel>().ToList();
+                model.RelatedArticles = relatedArticlesDto
+                    .ResultsInContents
+                    .Take(articlesToTake)
+                    .Select(x => x.Item)
+                    .To<ArticleViewModel>()
+                    .ToList();
             }
             if (actualRelatedArticlesCount < modelRelatedArticlesNumber)
             {
