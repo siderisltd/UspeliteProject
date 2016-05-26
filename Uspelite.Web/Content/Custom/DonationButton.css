@@ -1,0 +1,38 @@
+﻿/* Start Donation button */
+
+.donation-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.donate-button, .donate-button:hover, .donate-button:active, .donate-button:focus, .donate-button:active:focus, .donate-button.active, .donate-button:active:hover {
+    background-color: #f89406;
+    color: #fff;
+}
+
+.donate-button {
+    margin: 20px;
+    padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-family: "Open Sans", 'sans serif';
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 0px;
+    border: none;
+}
+
+.btn.btn-default.donate-button:hover {
+    border: 0px solid #f89406;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.donate-button:hover {
+    background-color: #F78D02;
+}
+
+/* End Donation button */

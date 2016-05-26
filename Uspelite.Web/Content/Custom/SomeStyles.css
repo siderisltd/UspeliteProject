@@ -1,0 +1,268 @@
+﻿
+a {
+    cursor: pointer;
+}
+
+
+/*Nav styles* comment to the pic/
+
+/*.navbar-inverse {
+    background-color: white;
+    font-size: 10px;
+    padding: 0pxpx;
+    margin-bottom: 200px;
+}
+.navbar-inverse li:hover {
+    background-color: green;
+}
+
+#menu {
+	height: 25px;
+}
+
+#header-navigation {
+    position: relative;
+    height: 25px;
+    background: #3f3f3f;
+}
+
+.container {
+	height: 25px
+}
+
+.jumbotron {
+    margin-top: 200px;
+}
+
+#logo {
+    background: url("Pics/uspeliteLogo.png") no-repeat; 
+    display:block; 
+    height:150px; 
+    width: 300px;
+}*/
+
+
+#header-branding {
+    height: 80px border-top: 5px solid #444;
+}
+
+#header-branding {
+    position: relative;
+    background: #444;
+    border-top: 5px solid #444;
+    border-bottom: 1px solid #4d4d4d;
+    overflow: hidden;
+}
+
+/* Start Navigation */
+
+#header-navigation {
+    position: relative;
+    height: 35px;
+    background: #3f3f3f;
+}
+
+    #header-navigation ul li a {
+        line-height: 35px;
+    }
+
+    #header-navigation nav#menu {
+        display: inline-block;
+    }
+
+#page-header #header-branding span.heading {
+    font-family: 'Oswald';
+    padding-left: 0px;
+    font-size: 40px;
+    font-weight: lighter;
+    padding-top: 10px;
+    margin-top: px;
+    margin-left: 20px;
+}
+
+.top-nav {
+    padding: 10px 0;
+    background-color: #3f3f3f;
+    ;
+    border-bottom: 1px solid #4d4d4d;
+}
+
+    .top-nav nav.top ul {
+        float: left;
+    }
+
+    .top-nav a {
+        color: #c3c3c3;
+    }
+
+        .top-nav a:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+
+ul.inline .clearfix {
+    line-height: 35px;
+    list-style: none;
+    display: inline;
+    margin-top: 5px;
+    float: left;
+}
+
+.top-nav li {
+    border-left: 1px solid #4d4d4d;
+}
+
+    .top-nav li.options {
+        list-style: none;
+        float: right;
+    }
+
+li.topnav {
+    display: inline;
+    position: relative;
+    padding-left: 18px;
+    padding-right: 18px;
+    font-weight: bold;
+    font-size: 12px;
+    border-style: right left 1px;
+}
+
+a li.topnav ul.inline nav.top {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#header-navigation .dropnav-container, #header-navigation .subnav-container {
+    top: inherit;
+}
+
+#header-navigation ul li.cat-news .subnav-menu {
+    border: none;
+}
+
+/* Search */
+
+#header-navigation .search-form-wrapper {
+    float: right;
+}
+
+#header-navigation #search-form input {
+    border-radius: 20px 0 0 20px;
+    border-right: none;
+    border-color: #757575;
+    background-color: #444;
+}
+
+#header-navigation #search-form .btn.btn-default {
+    border-radius: 0 20px 20px 0;
+    border-color: #757575;
+    background-color: #444;
+}
+
+    #header-navigation #search-form .btn.btn-default:focus, #header-navigation #search-form input {
+        outline: none;
+    }
+
+.btn.btn-default span.glyphicon.glyphicon-search {
+    color: #FF8800;
+}
+
+/* End Search */
+
+/* End Navigation */
+
+/* Single article */
+
+#page-content #article-post .post-meta-box {
+    border-bottom: 1px solid #f2f2f2;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #aaa;
+    padding: 5px;
+}
+
+.home {
+    height: 35px;
+    line-height: 35px;
+}
+
+
+
+#logo-img {
+    display: block;
+    position: relative;
+    top: -5px;
+    left: 0px;
+    float: left;
+    padding-right: 0px;
+}
+
+div.container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.partial-text * {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+#page-content {
+}
+
+#slider-carousel .col-sm-8 .overlay, #slider-carousel .col-sm-4 .overlay {
+    padding-top: 5px;
+}
+
+.large .overlay {
+    padding: 5px 20px;
+}
+
+#slider-carousel .col-sm-8 .overlay, #slider-carousel .col-sm-4 .overlay {
+    padding-bottom: 5px;
+}
+
+/* Start Images */
+
+#page-slider .col-sm-8 article img, #page-slider .col-sm-3 article img {
+    height: auto;
+    max-width: 100%;
+    max-height: inherit;
+}
+
+#page-slider .col-sm-4 article img {
+    max-height: inherit;
+    height: auto;
+}
+
+#slider-carousel .col-sm-8 .overlay, #slider-carousel .col-sm-4 .overlay {
+    padding-bottom: 5px;
+}
+
+#header-navigation .dropnav-container {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    background: #3f3f3f;
+    margin: 0;
+    line-height: 25px;
+}
+
+.subnav-container .subnav-menu .current {
+    background-color: #3f3f3f;
+}
+
+.col-sm-6 .overlay {
+    padding: 5px 15px;
+}
+
+/* End Images */
+
+
+
+/* Home page */
+#page-content #main .row {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
