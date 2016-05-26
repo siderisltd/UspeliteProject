@@ -124,6 +124,7 @@
     <Compile Include="DTO\PagedVideoDTO.cs" />
     <Compile Include="DTO\PagedImageDTO.cs" />
     <Compile Include="DTO\RssDTO.cs" />
+    <Compile Include="DTO\SearchArticleResultsDTO.cs" />
     <Compile Include="ImagesService.cs" />
     <Compile Include="ArticlesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -7,6 +7,7 @@
     using Contracts;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Uspelite.Data;
     using Uspelite.Data.Common.Roles;
     using Uspelite.Data.Models;
     using Uspelite.Data.Repositories;
@@ -14,9 +15,10 @@
     public class UsersService : IUsersService
     {
         private readonly IRepository<User> repo;
-
+    
         public UsersService(IRepository<User> repo)
         {
+            //ATTENTION: The context instantiated and used role Ids in method GetRoleIdsByNames
             this.repo = repo;
         }
 
@@ -78,21 +80,35 @@
         {
             var asd = userManager.Create(user, pass);
             IdentityResult result = new IdentityResult();
-            try
+
+            result = userManager.Create(user, pass);
+
+            if (result.Succeeded)
             {
-                result = userManager.Create(user, pass);
+                userManager.AddToRole(user.Id, AppRoles.CLIENT_ROLE);
             }
-            catch (Exception ex)
-            {     
+            else
+            {
+                throw new InvalidOperationException($"User is not created [username] = {user.UserName}");
             }
-
-            //if (result.Succeeded)
-            //{
-            //    userManager.AddToRole(user.Id, AppRoles.CLIENT_ROLE);
-            //}
-
 
             return user;
         }
+
+        public IQueryable<User> GetUsersByRoleNames(params string[] names)
+        {
+            var roleManager =  new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new UspeliteDbContext()));
+            var roleIds =  roleManager.Roles.Where(x => names.Contains(x.Name)).Select(x => x.Id).ToArray();
+
+            var result = this.repo
+                             .All()
+                             .Where(x => x.Roles.Any(r => roleIds.Contains(r.RoleId)));
+
+
+
+
+            return result;
+        }
+
     }
 }

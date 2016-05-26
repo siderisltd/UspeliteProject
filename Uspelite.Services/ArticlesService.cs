@@ -38,7 +38,7 @@
                 Images = new List<Image>() { image }
             };
 
-            if(CreatedOn != null)
+            if (CreatedOn != null)
             {
                 article.CreatedOn = (DateTime)CreatedOn;
             }
@@ -224,9 +224,9 @@
 
             if (topFactor == ArticleTopFactor.Rating)
             {
-                query = query.OrderByDescending(x => x.Ratings.Sum(y => y.Value)/x.Ratings.Count);
+                query = query.OrderByDescending(x => x.Ratings.Sum(y => y.Value) / x.Ratings.Count);
             }
-            else if(topFactor == ArticleTopFactor.Newest)
+            else if (topFactor == ArticleTopFactor.Newest)
             {
                 query = query.OrderByDescending(x => x.CreatedOn);
             }
@@ -261,23 +261,32 @@
             return query;
         }
 
-        public IQueryable<Article> FullTextSearch(string query)
+        public SearchArticleResultsDTO FullTextSearch(string query, int page = 1, int pageSize = 10)
         {
-            var result = this.repo
-                             .All()
-                             .Search(x => x.Title.ToLower())
-                             .Containing(query.ToLower())
-                             .ToRanked()
-                             .OrderByDescending(r => r.Hits)
-                             .Select(x => x.Item)
-                             .Union(this.repo.All()
+            var itemsToSkip = (page - 1) * pageSize;
+
+            var resultsInTitles = this.repo
+                                      .All()
+                                      .Search(x => x.Title.ToLower())
+                                      .Containing(query.ToLower())
+                                      .ToRanked()
+                                      .OrderByDescending(r => r.Hits);
+
+            var resultsInContents = this.repo.All()
                                         .Search(x => x.Content.ToLower())
                                         .Containing(query.ToLower())
                                         .ToRanked()
-                                        .OrderByDescending(x => x.Hits)
-                                        .Select(x => x.Item));
+                                        .OrderByDescending(x => x.Hits);
 
-            return result;
+
+            var dtoModel = new SearchArticleResultsDTO
+                           {
+                                ResultsInTitles = resultsInTitles,
+                                ResultsInContents = resultsInContents
+                           };
+
+
+            return dtoModel;
         }
     }
 }

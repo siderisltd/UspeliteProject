@@ -32,6 +32,8 @@
 
         public IDbSet<Articles_Videos> Article_Videos { get; set; }
 
+        public IDbSet<IdentityUserRole> AspNetUserRoles { get; set; }
+
         public static UspeliteDbContext Create()
         {
             return new UspeliteDbContext();

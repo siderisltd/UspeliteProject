@@ -14,5 +14,21 @@
         public IList<ArticleViewModel> HighRatedInCategory { get; set; }
 
         public ArticleViewModel TopArticle { get; set; }
+
+        public bool IsSearchResult { get; set; }
+
+        public string Query { get; set; }
+
+        public int CurrentPage { get; set; }
+
+        public int TotalPages { get; set; }
+
+        public int AllItemsCount { get; set; }
+
+        public int PageSize { get; set; }
+
+        public int DisplayPageFrom { get; set; }
+
+        public int DisplayPageTo { get; set; }
     }
 }

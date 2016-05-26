@@ -9,7 +9,7 @@
     using System;
     public interface IArticlesService
     {
-        IQueryable<Article> FullTextSearch(string query);
+        SearchArticleResultsDTO FullTextSearch(string query, int page = 1, int pageSize = 10);
 
         IQueryable<Article> GetNewestPosts(int count = 6, string category = null);
 

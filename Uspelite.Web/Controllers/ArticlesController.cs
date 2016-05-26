@@ -55,17 +55,25 @@
 
             this.ShouldShowEditButton(model);
 
-            var modelRelatedArticlesNumber = 6;
+            int  modelRelatedArticlesNumber = 6;
             string searchWord = this.GetSearchWord(model.Title);
 
             model.RelatedArticles = new List<ArticleViewModel>();
+
+            var relatedArticlesDto = this.articlesService.FullTextSearch(searchWord, pageSize: modelRelatedArticlesNumber);
+
             if (!string.IsNullOrEmpty(searchWord))
             {
-                model.RelatedArticles = this.articlesService.FullTextSearch(searchWord).Take(modelRelatedArticlesNumber).To<ArticleViewModel>().ToList();
+                model.RelatedArticles = relatedArticlesDto.ResultsInTitles.To<ArticleViewModel>().ToList();
             }
            
             var actualRelatedArticlesCount = model.RelatedArticles.Count;
 
+            if (actualRelatedArticlesCount < modelRelatedArticlesNumber)
+            {
+                var articlesToTake = modelRelatedArticlesNumber - actualRelatedArticlesCount;
+                model.RelatedArticles = relatedArticlesDto.ResultsInContents.Take(articlesToTake).To<ArticleViewModel>().ToList();
+            }
             if (actualRelatedArticlesCount < modelRelatedArticlesNumber)
             {
                 var currentModelCategory = model.Category;

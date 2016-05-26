@@ -25,5 +25,7 @@
         ICollection<IdentityUserRole> GetAllRolesOfUser(string userId);
 
         User Create(User user, string pass, UserManager<User> userManager);
+
+        IQueryable<User> GetUsersByRoleNames(params string[] names);
     }
 }

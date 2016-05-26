@@ -3,6 +3,7 @@
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
 
     public interface IUspeliteDbContext : IDisposable

@@ -75,17 +75,3 @@ menu, nav, section {
 }
 
 
-#page-slider .col-sm-8 article img, #page-slider .col-sm-3 article img {
-    height: auto;
-    max-width: 100%;
-    max-height: inherit;
-}
-
-#page-slider .col-sm-4 article img {
-    max-height: inherit;
-    height: auto;
-}
-
-#slider-carousel .col-sm-8 .overlay, #slider-carousel .col-sm-4 .overlay {
-    padding-bottom: 5px;
-}

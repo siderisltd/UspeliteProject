@@ -7,7 +7,9 @@
     using Infrastructure.Mapping.Contracts;
     using Models.Articles;
     using System.Collections.Generic;
+    using System.Web.Security;
     using Areas.Administration.Models.Users;
+    using Data.Common.Roles;
     using Models.Authors;
 
     public class HomeController : BaseController
@@ -62,9 +64,20 @@
         [HttpGet]
         public ActionResult About()
         {
-            var model = new AboutViewModel();
-            model.Users = this.usersService.All().To<AuthorsUserViewModel>().ToList();
-           
+
+            var usersWithAllowedRoles = this.Cache.Get("usersWithAllowedRoles", () =>     
+            this.usersService
+                          .GetUsersByRoleNames(AppRoles.ADMIN_ROLE, AppRoles.MANAGER_ROLE)
+                          .OrderBy(x => x.CreatedOn)
+                          .To<AuthorsUserViewModel>()
+                          .ToList(), 10 * 5);
+
+
+            var model = new AboutViewModel
+            {
+                Users = usersWithAllowedRoles
+            };
+
             return this.View(model);
         }
     }
