@@ -93,12 +93,12 @@
                               .Name("Add link to article")
                               .ToolTip("Add link to article")
                               .Exec("addLinkToArticle")
+                          )
+                          .CustomButton(cb => cb
+                              .Name("Add video to article")
+                              .ToolTip("Add video to article")
+                              .Exec("addVideoToArticle")
                           ))
-                          //.CustomButton(cb => cb
-                          //    .Name("Add video to article")
-                          //    .ToolTip("Add video to article")
-                          //    .Exec("addVideoToArticle")
-                          //))
                           .Encode(false)
                           .ImageBrowser(imageBrowser => imageBrowser
                                  .Image("~/Content/Uploads/Images/{0}")

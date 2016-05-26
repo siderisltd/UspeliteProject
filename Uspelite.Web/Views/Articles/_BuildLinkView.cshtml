@@ -1,62 +1,64 @@
 ﻿@model Uspelite.Web.Models.Articles.ArticlesSearchByTitleViewModel
 
-
-<div class="form-group">
-    <div class="col-md-5 col-md-offset-2">
-        @Html.LabelFor(x => x.Url)
-        @Html.EditorFor(x => x.Url)
-    </div>
-</div>
-
-<div class="form-group">
-    <div class="col-md-5 col-md-offset-2">
-        @Html.LabelFor(x => x.Title)
-        @Html.EditorFor(x => x.Title)
-    </div>
-</div>
-
-<div class="form-group">
-    <div class="col-md-5 col-md-offset-2">
-        @Html.LabelFor(x => x.ToolTip)
-        @Html.EditorFor(x => x.ToolTip)
-    </div>
-</div>
-<br />
-<br />
-@using (Ajax.BeginForm("GetArticlesFilteredByTitle", "Articles", null, new AjaxOptions()
-{
-    HttpMethod = "GET",
-    InsertionMode = InsertionMode.Replace,
-    UpdateTargetId = "articles-container"
-}))
-{
+<div class="add-link-container">
+    <span class="uspelite-close-button">&times;</span>
+    
     <div class="form-group">
         <div class="col-md-5 col-md-offset-2">
-            <input type="text" name="searchQuery" class="form-control" placeholder="Search articles" />
-            <input type="submit" class="btn btn-success" value="Search" />
+            @Html.LabelFor(x => x.Url)
+            @Html.EditorFor(x => x.Url)
         </div>
     </div>
-}
-<br />
-<div class="form-group">
-    <div class="col-lg-10 col-md-offset-2">
-        <div id="articles-container"></div>
+
+    <div class="form-group">
+        <div class="col-md-5 col-md-offset-2">
+            @Html.LabelFor(x => x.Title)
+            @Html.EditorFor(x => x.Title)
+        </div>
     </div>
-</div>
 
-
-<div class="form-group">
-    <div class="col-md-5 col-md-offset-2">
-        @Html.LabelFor(x => x.OpenInNewWindow)
-        @Html.EditorFor(x => x.OpenInNewWindow)
+    <div class="form-group">
+        <div class="col-md-5 col-md-offset-2">
+            @Html.LabelFor(x => x.ToolTip)
+            @Html.EditorFor(x => x.ToolTip)
+        </div>
     </div>
-</div>
-
-
-<div class="form-group">
-    <div class="col-md-5 col-md-offset-2">
-        <input type="button" class="btn btn-success" onclick="addLink()" value="Add" />
+    <br />
+    <br />
+    @using (Ajax.BeginForm("GetArticlesFilteredByTitle", "Articles", null, new AjaxOptions()
+    {
+        HttpMethod = "GET",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "articles-container"
+    }))
+    {
+        <div class="form-group">
+            <div class="col-md-5 col-md-offset-2">
+                <input type="text" name="searchQuery" class="form-control" placeholder="Search articles" />
+                <input type="submit" class="btn btn-success" value="Search" />
+            </div>
+        </div>
+    }
+    <br />
+    <div class="form-group">
+        <div class="col-lg-10 col-md-offset-2">
+            <div id="articles-container"></div>
+        </div>
     </div>
+
+
+    <div class="form-group">
+        <div class="col-md-5 col-md-offset-2">
+            @Html.LabelFor(x => x.OpenInNewWindow)
+            @Html.EditorFor(x => x.OpenInNewWindow)
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-5 col-md-offset-2">
+            <input type="button" class="btn btn-success" onclick="addLink()" value="Add" />
+        </div>
+    </div>
+
 </div>
-
-

@@ -26,8 +26,8 @@
         [HttpGet]
         public ActionResult Index()
         {
-                //Should get even number of items
-              var  newestPosts = this.Cache.Get(
+            //Should get even number of items
+            var newestPosts = this.Cache.Get(
                     "newestPosts",
                     () => this.articlesService.GetNewestPosts(36).To<ArticleViewModel>().ToList(), 10);
 
@@ -65,7 +65,7 @@
         public ActionResult About()
         {
 
-            var usersWithAllowedRoles = this.Cache.Get("usersWithAllowedRoles", () =>     
+            var usersWithAllowedRoles = this.Cache.Get("usersWithAllowedRoles", () =>
             this.usersService
                           .GetUsersByRoleNames(AppRoles.ADMIN_ROLE, AppRoles.MANAGER_ROLE)
                           .OrderBy(x => x.CreatedOn)

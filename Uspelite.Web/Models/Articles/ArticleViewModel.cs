@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using AutoMapper;
+    using Categories;
     using Common;
     using Data.Models;
     using Infrastructure.Mapping.Contracts;
@@ -55,7 +56,7 @@
 
         public DateTime CreatedOn { get; set; }
         
-        public string Category { get; set; }
+        public CategoryInfoViewModel Category { get; set; }
 
         public string PartialContent { get; set; }
 
@@ -73,7 +74,6 @@
         {
             configuration.CreateMap<Article, ArticleViewModel>()
                          .ForMember(x => x.Rating, opt => opt.MapFrom(x => x.Ratings.Any() ? (x.Ratings.Sum(y => y.Value) / x.Ratings.Count) : 0))
-                         .ForMember(x => x.Category, opt => opt.MapFrom(x => x.Category.Slug))
                          .ForMember(x => x.PartialContent, opt => opt.MapFrom(x => x.Content.Substring(0, 45) + "..."))
                          .ForMember(x => x.MainArticlePic, opt => opt.MapFrom(x => x.Images.FirstOrDefault(u => u.IsMain)));
         }

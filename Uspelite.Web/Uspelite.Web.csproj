@@ -292,6 +292,7 @@
     <Compile Include="Models\Articles\BuildLinkArticleModel.cs" />
     <Compile Include="Models\Authors\AuthorArticleViewModel.cs" />
     <Compile Include="Models\Authors\AuthorsUserViewModel.cs" />
+    <Compile Include="Models\Categories\CategoryInfoViewModel.cs" />
     <Compile Include="Models\Comments\CommentViewModel.cs" />
     <Compile Include="Models\Articles\ConcreteArticleViewModel.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />

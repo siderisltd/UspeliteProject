@@ -62,49 +62,64 @@
 
             var relatedArticlesDto = this.articlesService.FullTextSearch(searchWord, pageSize: modelRelatedArticlesNumber);
 
+            List<ArticleViewModel> relatedArticles = new List<ArticleViewModel>();
             if (!string.IsNullOrEmpty(searchWord))
             {
-                model.RelatedArticles = relatedArticlesDto.
+                relatedArticles.AddRange(relatedArticlesDto.
                     ResultsInTitles
                     .Select(x => x.Item)
+                    .Where(x => x.Title != model.Title)
                     .To<ArticleViewModel>()
-                    .ToList();
+                    .ToList());
             }
            
-            var actualRelatedArticlesCount = model.RelatedArticles.Count;
+            var actualRelatedArticlesCount = relatedArticles.Count;
 
             if (actualRelatedArticlesCount < modelRelatedArticlesNumber)
             {
                 var articlesToTake = modelRelatedArticlesNumber - actualRelatedArticlesCount;
-                model.RelatedArticles = relatedArticlesDto
+                relatedArticles.AddRange(relatedArticlesDto
                     .ResultsInContents
                     .Take(articlesToTake)
                     .Select(x => x.Item)
+                    .Where(x => x.Title != model.Title)
                     .To<ArticleViewModel>()
-                    .ToList();
+                    .ToList());
             }
+            actualRelatedArticlesCount = relatedArticles.Count;
             if (actualRelatedArticlesCount < modelRelatedArticlesNumber)
             {
                 var currentModelCategory = model.Category;
                 var articlesToTake = modelRelatedArticlesNumber - actualRelatedArticlesCount;
-                var newestArticlesInCategory  = this.articlesService.GetNewestPosts(articlesToTake, currentModelCategory).To<ArticleViewModel>().ToList();
+                var newestArticlesInCategory  = this.articlesService
+                    .GetNewestPosts(articlesToTake, currentModelCategory.Title)
+                    .Where(x => x.Title != model.Title)
+                    .To<ArticleViewModel>()
+                    .ToList();
 
                 foreach (var article in newestArticlesInCategory)
                 {
-                    model.RelatedArticles.Add(article);
+                    relatedArticles.Add(article);
                 }
             }
+            actualRelatedArticlesCount = relatedArticles.Count;
             if (actualRelatedArticlesCount < modelRelatedArticlesNumber)
             {
                 var currentModelCategory = model.Category;
                 var articlesToTake = modelRelatedArticlesNumber - actualRelatedArticlesCount;
-                var newestArticles = this.articlesService.GetNewestPosts(articlesToTake).To<ArticleViewModel>().ToList();
+                var newestArticles = this.articlesService
+                    .GetNewestPosts(articlesToTake)
+                    .Where(x => x.Title != model.Title)
+                    .To<ArticleViewModel>()
+                    .ToList();
 
                 foreach (var article in newestArticles)
                 {
-                    model.RelatedArticles.Add(article);
+                    relatedArticles.Add(article);
                 }
             }
+
+            model.RelatedArticles = relatedArticles;
 
             return this.View(model);
         }

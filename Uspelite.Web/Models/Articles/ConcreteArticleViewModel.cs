@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using AutoMapper;
+    using Categories;
     using Comments;
     using Common;
     using Data.Models;
@@ -55,7 +56,7 @@
 
         public DateTime CreatedOn { get; set; }
 
-        public string Category { get; set; }
+        public CategoryInfoViewModel Category { get; set; }
 
         public string PartialContent { get; set; }
 
@@ -82,7 +83,6 @@
         {
             configuration.CreateMap<Article, ConcreteArticleViewModel>()
                 .ForMember(x => x.Rating, opt => opt.MapFrom(x => x.Ratings.Any() ? (x.Ratings.Sum(y => y.Value) / x.Ratings.Count) : 0))
-                .ForMember(x => x.Category, opt => opt.MapFrom(x => x.Category.Slug))
                 .ForMember(x => x.FullContent, opt => opt.MapFrom(x => x.Content))
                 .ForMember(x => x.MainArticlePic, opt => opt.MapFrom(x => x.Images.FirstOrDefault(u => u.IsMain)));
         }

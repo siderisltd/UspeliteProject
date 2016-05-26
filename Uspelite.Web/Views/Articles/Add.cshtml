@@ -86,14 +86,14 @@
                 var width = $that.css('width');
                 var height = $that.css('height');
                 debugger;
-                showResizeBox($that);
+                showResizeBox($that, ev);
 
                 //$that.css('width', '100px');
                 //$that.css('height', '100px');
             });
         });
 
-        function showResizeBox(clickedImg) {
+        function showResizeBox(clickedImg, ev) {
             var width = clickedImg.css('width');
             var height = clickedImg.css('height');
 
@@ -106,6 +106,12 @@
                     '</div>';
 
             $('#containerBox').append(resizingBox);
+            var resizeBoxHolder = $('#resize-box');
+
+            resizeBoxHolder.css('display', 'table-cell');
+            resizeBoxHolder.css('position', 'absolute');
+            resizeBoxHolder.css('top', $("#Content").position().top);
+            resizeBoxHolder.css('z-index', 100);
 
             $('#resizeImg').click({ img: clickedImg }, resizeImg);
         }
@@ -125,7 +131,7 @@
             $('#resize-box').remove();
         }
 
-    </script>'
+    </script>
     <script>
         //custom link tool's scripts
         $(function() {
@@ -133,21 +139,36 @@
                 var selectedArticleSlug = this[this.selectedIndex].value;
                 var selectedArticleTitle = this[this.selectedIndex].text;
                 $('#Url').val('/' + selectedArticleSlug);
-                $('#copyText').val(selectedArticleTitle);
+                //$('#copyText').val(selectedArticleTitle);
+                $('#Title').val(selectedArticleTitle.toUpperCase());
+            });
+
+            $('body').on('click', '.uspelite-close-button', function() {
+                var $that = $(this);
+                debugger;
+                $that.parent().remove();
             });
         });
 
         function addLinkToArticle(e) {
             $.get('/Articles/BuildLinkView', null, function(data) {
-                $('#addLinkHolder').html(data);
-                $('#addLinkHolder').css('display', 'table-cell');
+                var linkHolder = $('#addLinkHolder');
+                linkHolder.html(data);
+                linkHolder.css('display', 'table-cell');
+                linkHolder.css('position', 'absolute');
+                linkHolder.css('top', $("#Content").position().top);
             });
         }
 
-        function addViceoToArticle(e) {
-            $.get('/Articles/InsertVideo', null, function (data) {
-                $('#addViceoHolder').html(data);
-                $('#addViceoHolder').css('display', 'table-cell');
+        function addVideoToArticle(e) {
+            $.get('/Articles/InsertVideo', null, function(data) {
+                var videoHolder = $('#addVideoHolder');
+                videoHolder.html(data);
+                videoHolder.css('display', 'block');
+                videoHolder.css('position', 'absolute');
+                videoHolder.css('top', $("#Content").position().top);
+                videoHolder.css('margin', '0 auto');
+                videoHolder.css('z-index', 100);
             });
         }
 
@@ -179,9 +200,10 @@
 
         function GenerateVideoEmbedUrl(videoUrl) {
             debugger;
-            //TODO: generate video embed url if the url does not contain embed
-
-            //we can use some viewModel to create the url with ajax ...
+            $.get('/Videos/GetEmbedLink', { videoUrl: videoUrl }, function (embedLink) {
+                var htmlEmbedLink = '<div class="video-container" id="video-container"><iframe width="560" height="315" src="' + embedLink + ' frameborder="0" allowfullscreen></iframe></div>';
+                return htmlEmbedLink;
+            });
         }
 
         function GenerateLink(linkText, location, title, blank) {
@@ -339,7 +361,7 @@
         var onlyCyrillicSymbolsAndSpaces = /[^А-я A-z0-9\"'$%#&№)(+=!?,.;:/-]/i;
         var $titleInput = $("#Title");
 
-        $titleInput.keyup(function () {
+        $titleInput.keyup(function() {
             if (this.value.match(onlyCyrillicSymbolsAndSpaces)) {
                 this.value = this.value.replace(onlyCyrillicSymbolsAndSpaces, "");
             }

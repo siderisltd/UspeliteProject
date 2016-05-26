@@ -22,7 +22,7 @@
                                     <p>@Html.Raw(Model.NavCenter.SanitizedPartialContent)</p>
                                 </div>
                             </a>
-                            <a href="/Categories/Show/@Model.NavCenter.Category" class="theme">@Model.NavCenter.Category</a>
+                            <a href="/Categories/Show/@Model.NavCenter.Category.Slug" class="theme">@Model.NavCenter.Category.Title</a>
                         </article>
 
                     </div>
@@ -35,7 +35,7 @@
                                     <h3>@Model.NavRightTop.Title</h3>
                                 </div>
                             </a>
-                            <a href="/Categories/Show/@Model.NavRightTop.Category" class="theme">@Model.NavRightTop.Category</a>
+                            <a href="/Categories/Show/@Model.NavRightTop.Category.Slug" class="theme">@Model.NavRightTop.Category.Title</a>
                            
                         </article>
 
@@ -46,7 +46,7 @@
                                     <h3>@Model.NavRightCenter.Title</h3>
                                 </div>
                             </a>
-                            <a href="/Categories/Show/@Model.NavRightCenter.Category" class="theme">@Model.NavRightCenter.Category</a>
+                            <a href="/Categories/Show/@Model.NavRightCenter.Category.Slug" class="theme">@Model.NavRightCenter.Category.Title</a>
                             
                         </article>
 
@@ -57,7 +57,7 @@
                                     <h3>@Model.NavRightBottom.Title</h3>
                                 </div>
                             </a>
-                            <a href="/Categories/Show/@Model.NavRightBottom.Category" class="theme">@Model.NavRightBottom.Category</a>
+                            <a href="/Categories/Show/@Model.NavRightBottom.Category.Slug" class="theme">@Model.NavRightBottom.Category.Title</a>
                            
                         </article>
                     </div>

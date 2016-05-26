@@ -36,5 +36,12 @@
 
             return this.View(model);
         }
+
+        [HttpGet]
+        public string GetEmbedLink(string videoUrl)
+        {
+            var model = new VideoViewModel(videoUrl);
+            return model.EmbedUrl;
+        }
     }
 }

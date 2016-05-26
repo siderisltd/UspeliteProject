@@ -21,7 +21,7 @@
                     <h2>@Html.Raw(Model.TopArticle.SanitizedTitle)</h2>
                 </div>
             </a>
-            <a href="/Categories/Show/@Model.TopArticle.Category" class="theme">@Model.TopArticle.Category</a>
+            <a href="/Categories/Show/@Model.TopArticle.Category.Slug" class="theme">@Model.TopArticle.Category.Title</a>
         </article>    
     }
 
@@ -44,7 +44,7 @@
                             <h3>@post.Title</h3>
                         </div>
                     </a>
-                    <a href="/Categories/Show/@post.Category" class="theme">@post.Category</a>
+                    <a href="/Categories/Show/@post.Category.Slug" class="theme">@post.Category.Title</a>
                 </article>
                 @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", post)*@
             </div>

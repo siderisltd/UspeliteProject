@@ -30,7 +30,7 @@
 
     <div class="head-image thumb-wrap relative">
         <a href="article-sport.php">@Html.Image(x => Model.MainArticlePic.OriginalSizedPicture, "Alt responsive picture", "770", "470", new { @class = "img-responsive" })</a>
-        <a href="/Categories/Show/@Model.Category" class="theme">@Model.Category</a>
+        <a href="/Categories/Show/@Model.Category.Slug" class="theme">@Model.Category.Title</a>
     </div>
     <p class="post-meta-box">
         <span>Публикувано от <a href="#" target="_blank" title="@Model.Author.FullName">@Model.Author.FullName</a></span>
@@ -73,13 +73,11 @@
                         <a href="~/@post.Slug">
                             <div class="thumb-wrap relative">
                                 @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
-                                <a href="/Categories/Show/@post.Category" class="theme">
-                                    @post.Category
-                                </a>
+                                <a href="/Categories/Show/@post.Category.Slug" class="theme">@post.Category.Title</a>
                             </div>
                             <span class="published">@Html.DisplayFor(x => post.CreatedOn)</span>
                             <h3>
-                                @(post.Title.Substring(0, post.Title.Length > 40 ? 40 : post.Title.Length) + "...")
+                                @(post.Title.Substring(0, post.Title.Length > 30 ? 30 : post.Title.Length) + "...")
                             </h3>
                         </a>
                     </article>
@@ -93,13 +91,11 @@
                         <a href="~/@post.Slug">
                             <div class="thumb-wrap relative">
                                 @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
-                                <a href="/Categories/Show/@post.Category" class="theme">
-                                    @post.Category
-                                </a>
+                                <a href="/Categories/Show/@post.Category.Slug" class="theme">@post.Category.Title</a>
                             </div>
                             <span class="published">@Html.DisplayFor(x => post.CreatedOn)</span>
                             <h3>
-                                @(post.Title.Substring(0, post.Title.Length > 40 ? 40 : post.Title.Length) + "...")
+                                @(post.Title.Substring(0, post.Title.Length > 30 ? 30 : post.Title.Length) + "...")
                             </h3>
                         </a>
                     </article>
@@ -137,13 +133,13 @@
 
             <div id="comment-box" style="display: none">
                 @using (Ajax.BeginForm("AddToArticle", "Comments", null, new AjaxOptions
-                                                                         {
-                                                                             HttpMethod = "POST",
-                                                                             InsertionMode = InsertionMode.InsertBefore,
-                                                                             UpdateTargetId = "comments-list",
-                                                                             OnSuccess = "acceptedComment",
-                                                                             OnFailure = "rejectedComment"
-                                                                         }))
+                {
+                    HttpMethod = "POST",
+                    InsertionMode = InsertionMode.InsertBefore,
+                    UpdateTargetId = "comments-list",
+                    OnSuccess = "acceptedComment",
+                    OnFailure = "rejectedComment"
+                }))
                 {
                     @Html.AntiForgeryToken()
 
