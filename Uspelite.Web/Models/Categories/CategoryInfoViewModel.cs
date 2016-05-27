@@ -8,5 +8,7 @@
         public string Title { get; set; }
 
         public string Slug { get; set; }
+
+        public int HomePriority { get; set; }
     }
 }

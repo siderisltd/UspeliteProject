@@ -49,7 +49,8 @@
 
             var model = new HomeIndexViewModel
                 {
-                    NewestPosts = foundItems,
+                    SearchResults = foundItems,
+                    NewestPostsAndCategories = null,
                     HighRatedPosts = null,
                     MostCommentedPosts = null,
                     HighRatedInCategory = null,

@@ -290,6 +290,7 @@
     <Compile Include="Models\Articles\ArticlesBindingModel.cs" />
     <Compile Include="Models\Articles\ArticlesSearchByTitleViewModel.cs" />
     <Compile Include="Models\Articles\BuildLinkArticleModel.cs" />
+    <Compile Include="Models\Articles\CategoriesAndArticlesViewModel.cs" />
     <Compile Include="Models\Authors\AuthorArticleViewModel.cs" />
     <Compile Include="Models\Authors\AuthorsUserViewModel.cs" />
     <Compile Include="Models\Categories\CategoryInfoViewModel.cs" />

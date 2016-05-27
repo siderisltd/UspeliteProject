@@ -5,7 +5,9 @@
 
     public class HomeIndexViewModel
     {
-        public IList<ArticleViewModel> NewestPosts { get; set; }
+        public IList<CategoriesAndArticlesViewModel> NewestPostsAndCategories { get; set; }
+
+        public IList<ArticleViewModel> SearchResults { get; set; }
 
         public IList<ArticleViewModel> HighRatedPosts { get; set; }
 

@@ -235,6 +235,7 @@
                             .GroupBy(x => x.Category)
                             .Select(x => new CategoryAndPostsDTO { Category = x.Key, Posts = x.Take(count) });
 
+           
             return newQuery;
         }
 

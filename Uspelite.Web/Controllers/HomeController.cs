@@ -1,5 +1,6 @@
 ﻿namespace Uspelite.Web.Controllers
 {
+    using System;
     using System.Web.Mvc;
     using Services.Data.Contracts;
     using System.Linq;
@@ -16,49 +17,67 @@
     {
         private readonly IArticlesService articlesService;
         private readonly IUsersService usersService;
+        private readonly ICategoriesService categoriesService;
 
-        public HomeController(IArticlesService articlesService, IUsersService usersService)
+        public HomeController(IArticlesService articlesService, IUsersService usersService, ICategoriesService categoriesService)
         {
             this.articlesService = articlesService;
             this.usersService = usersService;
+            this.categoriesService = categoriesService;
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 10)
         {
-            //Should get even number of items
-            var newestPosts = this.Cache.Get(
-                    "newestPosts",
-                    () => this.articlesService.GetNewestPosts(36).To<ArticleViewModel>().ToList(), 10);
+            var itemsToSkip = (page - 1) * pageSize;
+            var articlesCount = 3;
+
+            var newestArticlesInEachCategory = this.Cache.Get(
+                "newestArticlesInEachCategory",
+                () => this.articlesService
+                          .GetTopArticles(Infrastructure.Enums.ArticleTopFactor.Newest, articlesCount)
+                          .To<CategoriesAndArticlesViewModel>()
+                          .OrderByDescending(x => x.Category.HomePriority)
+                          .Skip(itemsToSkip)
+                          .Take(pageSize)
+                          .ToList(), 10);
 
 
             //Should get even number of items
             var highRatedPosts = this.Cache.Get(
                 "highRatedPosts",
-                () => this.articlesService.GetTopPostsByRating(16).To<ArticleViewModel>().ToList(), 10);
+                () => this.articlesService.GetTopPostsByRating(31).To<ArticleViewModel>().ToList(), 10);
 
             var mostCommentedPosts = this.Cache.Get(
                 "mostCommentedPosts",
                 () => this.articlesService.GetMostCommented(6).To<ArticleViewModel>().ToList(), 10);
 
-            var highRatedInCategory = this.Cache.Get(
-                 "highRatedPostsInCategory",
-                 () => this.articlesService.GetTopPostsByRating(6, "Test1").To<ArticleViewModel>().ToList(), 14);
 
-            var topArticleByRating = this.Cache.Get(
-                "topArticleByRating",
-                () => this.articlesService.GetTopPostsByRating(1).To<ArticleViewModel>().FirstOrDefault(), 10);
-
-            var indexViewModel = new HomeIndexViewModel
+            var model = new HomeIndexViewModel
             {
                 HighRatedPosts = highRatedPosts,
-                NewestPosts = newestPosts,
-                MostCommentedPosts = mostCommentedPosts,
-                HighRatedInCategory = highRatedInCategory,
-                TopArticle = topArticleByRating
+                NewestPostsAndCategories = newestArticlesInEachCategory,
+                MostCommentedPosts = mostCommentedPosts
             };
+ 
+            model.AllItemsCount = this.Cache.Get("allArticlesCount", () => (this.categoriesService.GetAll().Count(x => x.Articles.Any()) * articlesCount), 10);
+            model.TotalPages = (int)Math.Ceiling(model.AllItemsCount / ((decimal)pageSize * articlesCount));
+            model.PageSize = pageSize;
+            model.CurrentPage = page;
 
-            return this.View(indexViewModel);
+            if (page <= 6)
+            {
+                model.DisplayPageFrom = 1;
+                model.DisplayPageTo = 10 > model.TotalPages ? model.TotalPages : 10;
+            }
+            else if (page > 6)
+            {
+                var displayTo = page + 4;
+                model.DisplayPageTo = model.TotalPages <= displayTo ? model.TotalPages : displayTo;
+                model.DisplayPageFrom = model.DisplayPageTo - 9;
+            }
+
+            return this.View(model);
         }
 
         [HttpGet]

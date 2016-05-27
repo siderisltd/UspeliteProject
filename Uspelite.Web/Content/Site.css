@@ -92,3 +92,8 @@ menu, nav, section {
         opacity: 0.4;
         cursor:pointer;
     }
+
+
+#slider-wrapper{
+    left:-42px !important;
+}
