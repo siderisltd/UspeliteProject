@@ -224,19 +224,24 @@
 
             if (topFactor == ArticleTopFactor.Rating)
             {
-                query = query.OrderByDescending(x => x.Ratings.Sum(y => y.Value) / x.Ratings.Count);
+                var newQuery = query
+                .GroupBy(x => x.Category)
+                .Select(x => new CategoryAndPostsDTO { Category = x.Key, Posts = x.OrderByDescending(y => y.Ratings.Sum(z => z.Value) / y.Ratings.Count).Take(count) });
+
+                return newQuery;
             }
             else if (topFactor == ArticleTopFactor.Newest)
             {
-                query = query.OrderByDescending(x => x.CreatedOn);
+                var newQuery = query
+                .GroupBy(x => x.Category)
+                .Select(x => new CategoryAndPostsDTO { Category = x.Key, Posts = x.OrderByDescending(y => y.CreatedOn).Take(count) });
+
+                return newQuery;
             }
-
-            var newQuery = query
-                            .GroupBy(x => x.Category)
-                            .Select(x => new CategoryAndPostsDTO { Category = x.Key, Posts = x.Take(count) });
-
-           
-            return newQuery;
+            else
+            {
+                throw new ArgumentException("Invalid TopFactor");
+            }
         }
 
         public IQueryable<Article> GetBySlug(string slug)

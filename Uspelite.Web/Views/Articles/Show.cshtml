@@ -35,7 +35,7 @@
     <p class="post-meta-box">
         <span>Публикувано от <a href="#" target="_blank" title="@Model.Author.FullName">@Model.Author.FullName</a></span>
         <span> на @Html.DisplayFor(x => Model.CreatedOn)</span>
-        <span> в @Model.Category </span>
+        <span> в @Model.Category.Title</span>
     </p>
     <p>
         @Html.Raw(Model.SanitizedFullContent)
