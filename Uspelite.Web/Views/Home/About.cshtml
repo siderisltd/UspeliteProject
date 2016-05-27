@@ -43,12 +43,12 @@
                 <div class="member-picture vertical-align">
                     @if (currentUser.ProfileImage != null)
                     {
-                        @Html.Image(x => currentUser.ProfileImage.Resized400Picture, currentUser.FullName + " profile picture", "115", "115", new { @class = "img-circle" })
+                        @Html.Image(x => currentUser.ProfileImage.Resized400Picture, currentUser.FullName + " profile picture", "140", "140", new { @class = "img-circle" })
                     }
                 </div>
 
                 <div class="member-info vertical-align">
-                    <div class="member-name">@currentUser.FullName</div>
+                    <div class="member-name"><a class="name" href="/Authors/Info/@currentUser.Id/@currentUser.FullName.Replace(' ', '-')">@currentUser.FullName</a></div>
                     <div class="member-position">[No position]</div>
                     <p class="member-bio">@currentUser.ShortInfo</p>
                     <span class="member-social-profiles">

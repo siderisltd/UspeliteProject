@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uspelite.Web", "Uspelite.Web\Uspelite.Web.csproj", "{7DCC5EB8-1D99-4D39-BC02-822E8D82277C}"
 EndProject
@@ -34,8 +34,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uspelite.Web.Controllers.Tests", "Uspelite.Web.Controllers.Tests\Uspelite.Web.Controllers.Tests.csproj", "{9F4BDDAD-7DCE-46E1-A01B-F4531E435A48}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{4ED22223-A23E-4D7C-AEA4-67C27C1B7BBC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbMergeTool", "Tools\DbMergeTool\DbMergeTool.csproj", "{7A5C3364-F809-41CE-BEE1-2B1483BD860A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,10 +85,6 @@ Global
 		{9F4BDDAD-7DCE-46E1-A01B-F4531E435A48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F4BDDAD-7DCE-46E1-A01B-F4531E435A48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F4BDDAD-7DCE-46E1-A01B-F4531E435A48}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7A5C3364-F809-41CE-BEE1-2B1483BD860A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7A5C3364-F809-41CE-BEE1-2B1483BD860A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7A5C3364-F809-41CE-BEE1-2B1483BD860A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7A5C3364-F809-41CE-BEE1-2B1483BD860A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +101,5 @@ Global
 		{9F3F4576-0C24-4619-9EDE-CECF0CBF0A08} = {73EC3886-2060-4280-B6A5-8E000251E952}
 		{C554F37C-32AE-48DB-A2AE-E6A2A3221714} = {74FD5040-AFC0-4B11-9ECB-BDA744799A0B}
 		{9F4BDDAD-7DCE-46E1-A01B-F4531E435A48} = {C85BA21E-0C70-4299-9473-D0B33AC66943}
-		{7A5C3364-F809-41CE-BEE1-2B1483BD860A} = {4ED22223-A23E-4D7C-AEA4-67C27C1B7BBC}
 	EndGlobalSection
 EndGlobal

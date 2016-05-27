@@ -76,74 +76,10 @@
     <Compile Include="MergeWorker.cs" />
     <Compile Include="Start.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UspeliteOldDb.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UspeliteOldDb.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UspeliteOldDb.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UspeliteOldDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UspeliteOldDb.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UspeliteOldDb.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="wp_commentmeta.cs">
-      <DependentUpon>UspeliteOldDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="wp_comments.cs">
-      <DependentUpon>UspeliteOldDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="wp_ewwwio_images.cs">
-      <DependentUpon>UspeliteOldDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="wp_links.cs">
-      <DependentUpon>UspeliteOldDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="wp_options.cs">
-      <DependentUpon>UspeliteOldDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="wp_postmeta.cs">
-      <DependentUpon>UspeliteOldDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="wp_posts.cs">
-      <DependentUpon>UspeliteOldDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="wp_post_views.cs">
-      <DependentUpon>UspeliteOldDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="wp_termmeta.cs">
-      <DependentUpon>UspeliteOldDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="wp_terms.cs">
-      <DependentUpon>UspeliteOldDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="wp_term_relationships.cs">
-      <DependentUpon>UspeliteOldDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="wp_term_taxonomy.cs">
-      <DependentUpon>UspeliteOldDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="wp_usermeta.cs">
-      <DependentUpon>UspeliteOldDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="wp_users.cs">
-      <DependentUpon>UspeliteOldDb.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="UspeliteOldDb.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>UspeliteOldDb.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="UspeliteOldDb.edmx.diagram">
-      <DependentUpon>UspeliteOldDb.edmx</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Uspelite.Data.Common\Uspelite.Data.Common.csproj">
@@ -178,18 +114,6 @@
       <Project>{7DCC5EB8-1D99-4D39-BC02-822E8D82277C}</Project>
       <Name>Uspelite.Web</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="UspeliteOldDb.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>UspeliteOldDb.edmx</DependentUpon>
-      <LastGenOutput>UspeliteOldDb.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="UspeliteOldDb.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>UspeliteOldDb.edmx</DependentUpon>
-      <LastGenOutput>UspeliteOldDb.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

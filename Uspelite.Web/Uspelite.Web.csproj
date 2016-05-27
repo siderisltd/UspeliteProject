@@ -293,6 +293,7 @@
     <Compile Include="Models\Articles\CategoriesAndArticlesViewModel.cs" />
     <Compile Include="Models\Authors\AuthorArticleViewModel.cs" />
     <Compile Include="Models\Authors\AuthorsUserViewModel.cs" />
+    <Compile Include="Models\Base\PaginationModel.cs" />
     <Compile Include="Models\Categories\CategoryInfoViewModel.cs" />
     <Compile Include="Models\Comments\CommentViewModel.cs" />
     <Compile Include="Models\Articles\ConcreteArticleViewModel.cs" />

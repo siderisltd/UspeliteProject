@@ -34,28 +34,31 @@
                             .Returns(new User() { Id= "asdasdasd", FirstName = "Gosho", LastName = "Peshev", ShortInfo = "asdad", ProfileImages = new List<Image> { new Image { IsMainProfilePicture = true} } });
 
 
-            this.controller = new AuthorsController(usersServiceMock.Object);
+            var articlesServiceMock = new Mock<IArticlesService>();
+
+
+            this.controller = new AuthorsController(usersServiceMock.Object, articlesServiceMock.Object);
             this.controller.Cache = cacheServiceMock.Object;
         }
 
         [TestMethod]
         public void ControllerShouldReturnNotFoundToUserWithOneName()
         {
-            this.controller.WithCallTo(x => x.Info("asdsad", "nasdada"))
+            this.controller.WithCallTo(x => x.Info("asdsad", "nasdada", 1, 10))
                 .ShouldGiveHttpStatus(HttpStatusCode.NotFound);
         }
 
         [TestMethod]
         public void ControllerShouldFindUserAndRenderProperView()
         {
-            this.controller.WithCallTo(x => x.Info("asdsad", "nasdada aasdadas"))
+            this.controller.WithCallTo(x => x.Info("asdsad", "nasdada aasdadas", 1, 10))
                 .ShouldRenderDefaultView();
         }
 
         [TestMethod]
         public void ControllerShouldNotFindUserWithOneName()
         {
-            this.controller.WithCallTo(x => x.Info("asdsad", ""))
+            this.controller.WithCallTo(x => x.Info("asdsad", "", 1, 10))
                 .ShouldGiveHttpStatus(HttpStatusCode.NotFound);
         }
 

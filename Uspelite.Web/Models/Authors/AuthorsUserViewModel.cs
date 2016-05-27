@@ -10,8 +10,9 @@
     using Images;
     using Infrastructure.Mapping.Contracts;
     using Videos;
+    using Base;
 
-    public class AuthorsUserViewModel : IMapFrom<User>, IHaveCustomMappings
+    public class AuthorsUserViewModel : PaginationModel, IMapFrom<User>, IHaveCustomMappings
     {
         public string Id { get; set; }
 
@@ -21,14 +22,13 @@
 
         public ImageViewModel ProfileImage { get; set; }
 
-        public ICollection<AuthorArticleViewModel> Articles { get; set; }
+        public ICollection<AuthorArticleViewModel> UserArticles { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<User, AuthorsUserViewModel>()
                          .ForMember(x => x.FullName, opt => opt.MapFrom(x => x.FirstName + " " + x.LastName))
-                         .ForMember(x => x.ProfileImage, opt => opt.MapFrom(x => x.ProfileImages.FirstOrDefault()))
-                         .ForMember(x => x.Articles, opt => opt.MapFrom(x => x.Articles.OrderBy(y => y.CreatedOn).Skip(0).Take(10)));
+                         .ForMember(x => x.ProfileImage, opt => opt.MapFrom(x => x.ProfileImages.FirstOrDefault()));
         }
 
     }

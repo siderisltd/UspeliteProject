@@ -25,7 +25,7 @@
         <div class="row">
 
             @{ int counter = 0;}
-            @foreach (var article in Model.Articles)
+            @foreach (var article in Model.UserArticles)
             {
                 <article class="col-md-4 cat-sports">
                     <div class="thumb-wrap relative">
@@ -45,6 +45,37 @@
                 }
             }
         </div>
+
+        <nav>
+            <ul class="pagination">
+                @if (Model.CurrentPage != 1)
+                {
+                    <li>
+                        <a href="/Authors/Info?authorId=@Model.Id&authorName=@Model.FullName&page=@(Model.CurrentPage - 1)&pageSize=@Model.PageSize" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                }
+                @for (int i = Model.DisplayPageFrom; i <= Model.DisplayPageTo; i++)
+                {
+                    var className = string.Empty;
+                    if (Model.CurrentPage == i)
+                    {
+                        className = "active";
+                    }
+                    <li class="@className">@Html.ActionLink(i.ToString(), "Info", "Authors", new { authorId = Model.Id, authorName = Model.FullName, page = i, pageSize = Model.PageSize }, null)</li>
+                }
+                @if (Model.DisplayPageTo != Model.TotalPages)
+                {
+                    <li>
+                        <a href="/Authors/Info?authorId=@Model.Id&authorName=@Model.FullName&page=@(Model.CurrentPage + 1)&pageSize=@Model.PageSize" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </nav>
+
     </section>
 </section>
 
