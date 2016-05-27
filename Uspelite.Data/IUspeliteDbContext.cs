@@ -24,6 +24,8 @@
 
         IDbSet<Article> Articles { get; set; }
 
+        IDbSet<SocialProfile> SocialProfiles { get; set; }
+
         IDbSet<Articles_Videos> Article_Videos { get; set; }
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;

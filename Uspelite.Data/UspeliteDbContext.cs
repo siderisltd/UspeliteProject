@@ -30,6 +30,8 @@
 
         public IDbSet<Article> Articles { get; set; }
 
+        public IDbSet<SocialProfile> SocialProfiles { get; set; }
+
         public IDbSet<Articles_Videos> Article_Videos { get; set; }
 
         public IDbSet<IdentityUserRole> AspNetUserRoles { get; set; }

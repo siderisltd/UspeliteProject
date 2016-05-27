@@ -74,10 +74,12 @@
     <Compile Include="Enum\CrawlType.cs" />
     <Compile Include="Enum\ImageType.cs" />
     <Compile Include="Enum\PostStatus.cs" />
+    <Compile Include="Enum\SocialProfileType.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="Article.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rate.cs" />
+    <Compile Include="SocialProfile.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Video.cs" />
   </ItemGroup>

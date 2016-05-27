@@ -24,6 +24,8 @@
 
         private ICollection<Comment> comments;
 
+        private ICollection<SocialProfile> socialProfiles;
+
         public User()
         {
             this.ratings = new HashSet<Rate>();
@@ -31,6 +33,7 @@
             this.articles = new HashSet<Article>();
             this.images = new HashSet<Image>();
             this.comments = new HashSet<Comment>();
+            this.socialProfiles = new HashSet<SocialProfile>();
             this.CreatedOn = DateTime.Now;
         }
 
@@ -39,6 +42,12 @@
 
         [MaxLength(100)]
         public string LastName { get; set; }
+
+        public virtual ICollection<SocialProfile> SocialProfiles
+        {
+            get { return this.socialProfiles; }
+            set { this.socialProfiles = value; }
+        }
 
         public virtual ICollection<Article> Articles
         {
