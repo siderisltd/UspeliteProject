@@ -4,6 +4,8 @@
     {
         Facebook = 1,
         LinkedIn = 2,
-        GooglePlus = 3
+        GooglePlus = 3,
+        Twitter = 4,
+        Vimeo = 5
     }
 }

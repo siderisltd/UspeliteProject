@@ -7,8 +7,16 @@
     using Data.Models;
     using Infrastructure.Mapping.Contracts;
     using System.Text.RegularExpressions;
+    using Data.Models.Enum;
+    using System.ComponentModel;
+
     public class ArticlesBindingModel : IMapFrom<Article>, IValidatableObject
     {
+        public ArticlesBindingModel()
+        {
+            this.Status = PostStatus.Draft;
+        }
+
         public int Id { get; set; }
 
         public string Title { get; set; }
@@ -32,6 +40,9 @@
 
         public IEnumerable<SelectListItem> AllCategories { get; set; }
 
+        [DefaultValue(PostStatus.Draft)]
+        public PostStatus Status { get; set; }
+
         public string X1 { get; set; }
 
         public string Y1 { get; set; }
@@ -44,7 +55,11 @@
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            var isInvalid = Regex.IsMatch(this.Title, "[^А-я A-z0-9\"'$%#&№)(+=!?,.;:/-]");
+            var isInvalid = true;
+            if (!string.IsNullOrEmpty(this.Title))
+            {
+                isInvalid = Regex.IsMatch(this.Title, "[^А-я A-z0-9\"'$%#&№)(+=!?,.;:/-]");
+            }
 
             if (isInvalid)
             {

@@ -1,13 +1,26 @@
 ﻿@model Uspelite.Web.Models.Account.Manage.IndexViewModel
 
 @using (Html.BeginForm("UpdateInfo", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{      
+{
      @Html.AntiForgeryToken()
     <span id="user-information">
          @Html.LabelFor(x => Model.User.FullName)
         <p class="name">@Html.EditorFor(x => Model.User.FullName)</p>
         @Html.LabelFor(x => Model.User.ShortInfo)
         <p>@Html.TextAreaFor(x => Model.User.ShortInfo)</p>
+
+        <h3>Social Profiles</h3>
+
+            <span>Facebook profile</span>
+            @{ var facebook = Model.User.SocialProfiles.Where(y => y.SocialProfileType == Uspelite.Data.Models.Enum.SocialProfileType.Facebook); }
+            @Html.Hidden("User.SocialProfiles[0].SocialProfileType", Uspelite.Data.Models.Enum.SocialProfileType.Facebook)
+            @Html.EditorFor(x => facebook.FirstOrDefault().Url, "Text", "User.SocialProfiles[0].Url", new { @class = "social-update-inputs" })
+        <br />
+            <span>Google plus profile</span>
+            @{ var googlePlus = Model.User.SocialProfiles.Where(y => y.SocialProfileType == Uspelite.Data.Models.Enum.SocialProfileType.GooglePlus); }
+            @Html.Hidden("User.SocialProfiles[1].SocialProfileType", Uspelite.Data.Models.Enum.SocialProfileType.GooglePlus)
+            @Html.EditorFor(x => googlePlus.FirstOrDefault().Url, "Text", "User.SocialProfiles[1].Url", new { @class = "social-update-inputs"})
+
         <input id="upload-image" type="file" name="ProfileImage" />
     </span>
 

@@ -1,7 +1,9 @@
 ﻿namespace Uspelite.Web.Models.Comments
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
+    using AutoMapper;
     using Common;
     using Data.Models;
     using Infrastructure.Mapping.Contracts;
@@ -24,6 +26,8 @@
 
         public int Id { get; set; }
 
+        public int? ParentId { get; set; }
+
         public string Content { get; set; }
 
         public string SanitizedContent
@@ -34,5 +38,8 @@
         public UserViewModel Author { get; set; }
 
         public DateTime CreatedOn { get; set; }
+
+        //public ICollection<CommentViewModel> ChildrenComments { get; set; }
+
     }
 }

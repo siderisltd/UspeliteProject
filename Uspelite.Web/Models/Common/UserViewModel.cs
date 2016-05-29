@@ -5,8 +5,8 @@
     using AutoMapper;
     using Data.Models;
     using Images;
-
     using Infrastructure.Mapping.Contracts;
+    using System.Collections.Generic;
 
     public class UserViewModel : IMapFrom<User>, IHaveCustomMappings
     {
@@ -17,6 +17,8 @@
         public string ShortInfo { get; set; }
 
         public ImageViewModel ProfileImage { get; set; }
+
+        public ICollection<SocialProfileViewModel> SocialProfiles { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)
         {

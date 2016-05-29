@@ -112,6 +112,7 @@
     <Compile Include="Contracts\IImagesService.cs" />
     <Compile Include="Contracts\IArticlesService.cs" />
     <Compile Include="Contracts\IRatesService.cs" />
+    <Compile Include="Contracts\ISocialProfilesService.cs" />
     <Compile Include="Contracts\IUsersService.cs" />
     <Compile Include="Contracts\IVideosService.cs" />
     <Compile Include="Crawl\CrawlService.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Rss\IRssXmlReader.cs" />
     <Compile Include="Rss\RssService.cs" />
     <Compile Include="Rss\RssXmlReader.cs" />
+    <Compile Include="SocialProfilesService.cs" />
     <Compile Include="UsersService.cs" />
     <Compile Include="VideosService.cs" />
   </ItemGroup>

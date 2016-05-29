@@ -28,11 +28,29 @@
         </div>
 
         <p>
-            <a href=""><i class="fa fa-twitter fa-lg"></i></a>
-            <a href=""><i class="fa fa-facebook-square fa-lg"></i></a>
-            <a href=""><i class="fa fa-linkedin-square fa-lg"></i></a>
-            <a href=""><i class="fa fa-google-plus-square fa-lg"></i></a>
-            <a href=""><i class="fa fa-vimeo-square fa-lg"></i></a>
+            @foreach (var profile in Model.User.SocialProfiles)
+            {
+                if (profile.SocialProfileType == Uspelite.Data.Models.Enum.SocialProfileType.Facebook)
+                {
+                    <a href="@profile.Url"><i class="fa fa-facebook-square fa-lg"></i></a>
+                }
+                else if (profile.SocialProfileType == Uspelite.Data.Models.Enum.SocialProfileType.GooglePlus)
+                {
+                    <a href="@profile.Url"><i class="fa fa-google-plus-square fa-lg"></i></a>
+                }
+                else if (profile.SocialProfileType == Uspelite.Data.Models.Enum.SocialProfileType.LinkedIn)
+                {
+                    <a href="@profile.Url"><i class="fa fa-linkedin-square fa-lg"></i></a>
+                }
+                else if (profile.SocialProfileType == Uspelite.Data.Models.Enum.SocialProfileType.Twitter)
+                {
+                    <a href="@profile.Url"><i class="fa fa-twitter fa-lg"></i></a>
+                }
+                else if (profile.SocialProfileType == Uspelite.Data.Models.Enum.SocialProfileType.Vimeo)
+                {
+                    <a href="@profile.Url"><i class="fa fa-vimeo-square fa-lg"></i></a>
+                }
+            }
         </p>
     </div>
 

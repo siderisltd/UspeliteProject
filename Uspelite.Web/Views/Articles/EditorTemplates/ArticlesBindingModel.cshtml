@@ -8,7 +8,11 @@
 
         <br />
 
+        @Html.EnumDropDownListFor(x => x.Status, new { })  @*new { style = "display: none" }*@
+
         @Html.HiddenFor(x => x.Id)
+
+        @Html.HiddenFor(x => x.Slug)
 
         <div class="form-group">
             @Html.LabelFor(x => x.Title, new {@class = "col-lg-2 control-label"})

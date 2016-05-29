@@ -90,7 +90,7 @@
             if (actualRelatedArticlesCount < modelRelatedArticlesNumber)
             {
                 var currentModelCategory = model.Category;
-                var articlesToTake = modelRelatedArticlesNumber - actualRelatedArticlesCount;
+                var articlesToTake = modelRelatedArticlesNumber - actualRelatedArticlesCount + 1;
                 var newestArticlesInCategory  = this.articlesService
                     .GetNewestPosts(articlesToTake, currentModelCategory.Title)
                     .Where(x => x.Title != model.Title)
@@ -106,7 +106,7 @@
             if (actualRelatedArticlesCount < modelRelatedArticlesNumber)
             {
                 var currentModelCategory = model.Category;
-                var articlesToTake = modelRelatedArticlesNumber - actualRelatedArticlesCount;
+                var articlesToTake = modelRelatedArticlesNumber - actualRelatedArticlesCount + 1; // because we don't show the same article in the related ones
                 var newestArticles = this.articlesService
                     .GetNewestPosts(articlesToTake)
                     .Where(x => x.Title != model.Title)
@@ -294,10 +294,14 @@
                                                                      model.Title,
                                                                      userId,
                                                                      model.Content,
-                                                                     PostStatus.Published,
+                                                                     model.Status,
                                                                      model.CategoryId,
                                                                      articleImage.Slug == null ? null : articleImage);
 
+                        if (Request.IsAjaxRequest())
+                        {
+                            return this.Json(new { Added = true, Id = articleId, Slug = model.Slug });
+                        }
                         this.TempData["Notification"] = "Статията беше редактирана успешно! ID:" + articleId;
                     }
                     else
@@ -307,9 +311,14 @@
                                            model.Slug,
                                            userId,
                                            model.Content,
-                                           PostStatus.Published,
+                                           model.Status,
                                            model.CategoryId,
                                            articleImage);
+
+                        if (Request.IsAjaxRequest())
+                        {
+                            return this.Json(new { Added = true, Id = articleId, Slug = model.Slug });
+                        }
 
                         this.TempData["Notification"] = "Статията беше добавена успешно! ID:" + articleId;
                     }
@@ -323,6 +332,26 @@
                 }
 
                 return this.RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                List<string> errors = new List<string>();
+                var modelErrors = this.ModelState.Where(x => x.Value.Errors.Any()).Select(x => x.Value);
+
+                foreach (var error in modelErrors)
+                {
+                    foreach (var er in error.Errors)
+                    {
+                        errors.Add(er.ErrorMessage);
+                    }
+                }
+
+                this.TempData["Alert"] = errors;
+
+                if (Request.IsAjaxRequest())
+                {
+                    return this.Json(new { alert = this.TempData["Alert"]});
+                }
             }
 
             model.AllCategories = this.GetAllCategories();

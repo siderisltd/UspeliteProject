@@ -1,4 +1,5 @@
-﻿using Uspelite.Data.Models.BaseModels;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Uspelite.Data.Models.BaseModels;
 using Uspelite.Data.Models.Enum;
 
 namespace Uspelite.Data.Models
@@ -10,5 +11,10 @@ namespace Uspelite.Data.Models
         public string Url { get; set; }
 
         public SocialProfileType SocialProfileType { get; set; }
+
+        public string UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
     }
 }

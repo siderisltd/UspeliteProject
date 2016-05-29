@@ -48,31 +48,31 @@
         public string Slug { get; set; }
 
         [InverseProperty(nameof(Parent))]
-        public ICollection<Category> Children
+        public virtual ICollection<Category> Children
         {
             get { return this.children; }
             set { this.children = value; }
         }
 
-        public ICollection<Article> Articles
+        public virtual ICollection<Article> Articles
         {
             get { return this.articles; }
             set { this.articles = value; }
         }
 
-        public ICollection<Video> Videos
+        public virtual ICollection<Video> Videos
         {
             get { return this.videos; }
             set { this.videos = value; }
         }
 
-        public ICollection<Image> Images
+        public virtual ICollection<Image> Images
         {
             get { return this.images; }
             set { this.images = value; }
         }
 
-        public ICollection<Rate> Ratings
+        public virtual ICollection<Rate> Ratings
         {
             get { return this.ratings; }
             set { this.ratings = value; }

@@ -24,6 +24,8 @@
 
         public ICollection<AuthorArticleViewModel> UserArticles { get; set; }
 
+        public ICollection<SocialProfileViewModel> SocialProfiles { get; set; }
+
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<User, AuthorsUserViewModel>()

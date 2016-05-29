@@ -8,7 +8,7 @@
     <div id="addLinkHolder"></div>
     <div id="addVideoHolder"></div>
 
-    @using (Html.BeginForm("Add", "Articles", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Add", "Articles", FormMethod.Post, new { id="article-form", enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
@@ -30,17 +30,21 @@
                 <input type="reset" class="btn btn-danger" value="Reset form"/>
                 @if (Model.Id == 0)
                 {
-                    <input type="submit" class="btn btn-success" value="Add article" />
+                    <input id="add-article-button" type="submit" class="btn btn-success" value="Add article" />
                 }
                 else
                 {
-                    <input type="submit" class="btn btn-success" value="Edit article" />
+                    <input id="edit-article-button" type="button" class="btn btn-success" value="Edit article" />
                 }
 
+                <input id="save-draft-button" type="button" class="btn btn-success" value="Save Draft" />
+
+                <input id="preview-button" type="button" class="btn btn-success" value="Preview" />
             </div>
         </div>
     }
 </div>
+
 @section styles {
     @Styles.Render("~/bundles/kendoStyles")
     <link href="~/Scripts/Libraries/JCrop/css/jquery.Jcrop.min.css" rel="stylesheet" />
@@ -76,6 +80,108 @@
 
     @*<script src="~/Scripts/Libraries/JCrop/js/jquery.color.js"></script>*@
     <script src="~/Scripts/Libraries/JCrop/js/jquery.Jcrop.js"></script>
+
+
+
+    <script>
+        $(function () {
+            var editor = $("#Content").data("kendoEditor");
+            var editorBody = $(editor.body);
+
+
+
+            if (typeof (Storage) != 'undefined') {
+                var content = localStorage.getItem('articleContent');
+                if (content) {
+                    editor.exec("inserthtml", { value: content });
+                }
+            }
+
+            var hitCount = 0;
+
+            editorBody.on('keypress', function () {
+                hitCount += 1;
+                if (hitCount % 10 == 0) {
+                    localStorage.setItem('articleContent', editorBody.html());
+                }
+                if (hitCount % 50 == 0) {
+                    saveAs('Draft');
+                }
+            });
+
+            $('input[type="submit"]').on('click', function () {
+                debugger;
+                var optionText = 'Published';
+                var statusDropdownOptions = $('#Status option');
+                changeDropDownValueByText(statusDropdownOptions, optionText);
+                localStorage.removeItem('articleContent');
+            });
+
+        });
+
+
+        function saveAs(optionName) {
+
+            debugger;
+            var optionText = optionName;
+            var statusDropdownOptions = $('#Status option');
+            changeDropDownValueByText(statusDropdownOptions, optionText);
+
+            var form = $("#article-form");
+            var data = new FormData(form[0]);
+
+            data.append('TitleImage', $('#image-upload-input')[0].files[0]);
+
+            $.ajax({
+                url: '/Articles/Add',
+                data: data,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (data) {
+                    if (data.Added) {
+                        $("#Id").val(data.Id);
+                        $("#Slug").val(data.Slug);
+                    }
+                },
+                error: function (data) {
+                    console.log('error in autosaving article');
+                }
+            });
+
+            //$.post('/Articles/Add', data, function (result) {
+            //    debugger;
+            //    console.log('updated');
+            //});
+        }
+
+        function changeDropDownValueByText(jqueryOptionsSelector, optionText) {
+            jqueryOptionsSelector.prop('selected', false).filter(function () {
+                return $(this).text() == optionText;
+            }).prop('selected', true);
+        }
+
+
+        //START EVENTS
+        $('#save-draft-button').on('click', function () {
+            saveAs('Draft');
+        });
+
+        $('#edit-article-button').on('click', function () {
+            saveAs('Published');
+            var form = $("#article-form");
+            form.submit();
+        });
+
+        $('#preview-button').on('click', function () {
+            saveAs('Draft');
+            var slug = $('#Slug').val();
+
+            window.open(document.location.origin + '/' + slug, '_blank');
+        });
+        //END EVENTS
+
+    </script>
 
     <script>
         //editor image's css properties

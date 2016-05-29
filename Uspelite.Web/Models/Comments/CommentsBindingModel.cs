@@ -7,6 +7,8 @@
     {
         public int toId { get; set; }
 
+        public int? ToParentId { get; set; }
+
         [MaxLength(1000)]
         public string Content { get; set; }
     }

@@ -179,7 +179,7 @@
 
             var itemsToSkip = (page - 1) * pageSize;
 
-            var query = this.repo.All();
+            var query = this.repo.All().Where(x => !x.IsMainProfilePicture);
 
             if (categoryId != null)
             {

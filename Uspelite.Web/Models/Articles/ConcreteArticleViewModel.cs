@@ -84,7 +84,8 @@
             configuration.CreateMap<Article, ConcreteArticleViewModel>()
                 .ForMember(x => x.Rating, opt => opt.MapFrom(x => x.Ratings.Any() ? (x.Ratings.Sum(y => y.Value) / x.Ratings.Count) : 0))
                 .ForMember(x => x.FullContent, opt => opt.MapFrom(x => x.Content))
-                .ForMember(x => x.MainArticlePic, opt => opt.MapFrom(x => x.Images.FirstOrDefault(u => u.IsMain)));
+                .ForMember(x => x.MainArticlePic, opt => opt.MapFrom(x => x.Images.FirstOrDefault(u => u.IsMain)))
+                .ForMember(x => x.Comments, opt => opt.MapFrom(x => x.Comments.OrderByDescending(y => y.CreatedOn)));
         }
     }
 

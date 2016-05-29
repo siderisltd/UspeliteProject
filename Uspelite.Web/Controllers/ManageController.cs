@@ -16,7 +16,8 @@ namespace Uspelite.Web.Controllers
     using Models.Account.Manage;
     using Models.Common;
     using Services.Data.Contracts;
-
+    using System.Collections.Generic;
+    using Infrastructure.Mapping.Contracts;
     [Authorize]
     public class ManageController : BaseController
     {
@@ -24,11 +25,13 @@ namespace Uspelite.Web.Controllers
         private ApplicationUserManager _userManager;
         private readonly IUsersService usersService;
         private readonly IImagesService imagesService;
+        private readonly ISocialProfilesService socialProfilesService;
 
-        public ManageController(IUsersService usersService, IImagesService imagesService)
+        public ManageController(IUsersService usersService, IImagesService imagesService, ISocialProfilesService socialProfilesService)
         {
             this.usersService = usersService;
             this.imagesService = imagesService;
+            this.socialProfilesService = socialProfilesService;
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -65,7 +68,7 @@ namespace Uspelite.Web.Controllers
         [AjaxActionFilter]
         public ActionResult GetEditPartial(UserViewModel model)
         {
-            var viewModel = new IndexViewModel {User = model};
+            var viewModel = new IndexViewModel {User = this.usersService.All().To<UserViewModel>().FirstOrDefault(y => y.Id == model.Id) };
             return this.PartialView("_EditProfileInfo", viewModel);
         }
 
@@ -79,6 +82,19 @@ namespace Uspelite.Web.Controllers
             user.FirstName = names[0] ?? string.Empty;
             user.LastName = names[1] ?? string.Empty;
             user.ShortInfo = model.ShortInfo;
+
+
+            List<SocialProfile> socialProfiles = new List<SocialProfile>();
+            this.socialProfilesService.RemoveAllRelatedToUser(user.Id);
+            foreach (var socialProfile in userModel.User.SocialProfiles)
+            {
+                if (!string.IsNullOrEmpty(socialProfile.Url))
+                {
+                    socialProfiles.Add(new SocialProfile { Url = socialProfile.Url, SocialProfileType = socialProfile.SocialProfileType, UserId = user.Id });
+                }
+            }
+
+            this.socialProfilesService.Add(socialProfiles);
 
             if (userModel.ProfileImage != null)
             {

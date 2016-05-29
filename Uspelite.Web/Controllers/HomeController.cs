@@ -12,7 +12,7 @@
     using Areas.Administration.Models.Users;
     using Data.Common.Roles;
     using Models.Authors;
-
+    using Data.Models.Enum;
     public class HomeController : BaseController
     {
         private readonly IArticlesService articlesService;
@@ -60,7 +60,7 @@
                 MostCommentedPosts = mostCommentedPosts
             };
  
-            model.AllItemsCount = this.Cache.Get("allArticlesCount", () => (this.categoriesService.GetAll().Count(x => x.Articles.Any()) * articlesCount), 10);
+            model.AllItemsCount = this.Cache.Get("allArticlesCount", () => (this.categoriesService.GetAll().Count(x => x.Articles.Any() && x.Articles.Any(y => y.Status == PostStatus.Published)) * articlesCount), 10);
             model.TotalPages = (int)Math.Ceiling(model.AllItemsCount / ((decimal)pageSize * articlesCount));
             model.PageSize = pageSize;
             model.CurrentPage = page;

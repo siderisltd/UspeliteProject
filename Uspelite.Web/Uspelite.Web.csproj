@@ -419,6 +419,7 @@
     <Compile Include="Models\Comments\CommentsBindingModel.cs" />
     <Compile Include="Models\Common\IRateable.cs" />
     <Compile Include="Models\Common\RateableType.cs" />
+    <Compile Include="Models\Common\SocialProfileViewModel.cs" />
     <Compile Include="Models\Common\UserViewModel.cs" />
     <Compile Include="Models\Home\AboutViewModel.cs" />
     <Compile Include="Models\Home\HomeIndexViewModel.cs" />

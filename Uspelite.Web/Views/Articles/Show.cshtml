@@ -144,6 +144,7 @@
                     @Html.AntiForgeryToken()
 
                     <input type="hidden" value="@Model.Id" name="toId"/>
+
                     <div class="row bottom-margin">
                         <div class="col-md-12">
                             <textarea id="comment-area" class="form-control" placeholder="Коментар" rows="5" name="content"></textarea>
@@ -159,7 +160,7 @@
 
     <!-- start:comments-list -->
     <ol id="comments-list">
-        @foreach (var comment in Model.Comments.OrderByDescending(x => x.CreatedOn))
+        @foreach (var comment in Model.Comments)
         {
             @Html.Partial("~/Views/Comments/_CommentPartial.cshtml", comment);
         }

@@ -9,6 +9,13 @@
 
     public class Comment : CommentableRateableBaseModel, IBaseModel, ICommentableEntity, IRateableEntity, IAuditInfo, IDeletableEntity
     {
+        private ICollection<Comment> children;
+
+        public Comment()
+        {
+            this.children = new HashSet<Comment>();
+        }
+
         public int Id { get; set; }
 
         [MaxLength(1000)]
@@ -40,5 +47,12 @@
 
         [ForeignKey("ImageId")]
         public virtual Image Image { get; set; }
+
+        [InverseProperty(nameof(Parent))]
+        public virtual ICollection<Comment> Children
+        {
+            get { return this.children; }
+            set { this.children = value; }
+        }
     }
 }

@@ -47,7 +47,7 @@
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Could not find article with Id: " + model.toId);
             }
-            var commentToAdd = new Comment { Author = user, Content = model.Content };
+            var commentToAdd = new Comment { Author = user, Content = model.Content, ParentId = model.ToParentId };
             var comment = this.articlesService.AddCommentTo(foundArticle, commentToAdd);
 
             var returnObject = this.Mapper.Map<Comment, CommentViewModel>(comment);
