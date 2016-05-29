@@ -89,10 +89,9 @@
 
 
     <script>
-        $(function () {
+        $(function() {
             var editor = $("#Content").data("kendoEditor");
             var editorBody = $(editor.body);
-
 
 
             if (typeof (Storage) != 'undefined') {
@@ -104,7 +103,7 @@
 
             var hitCount = 0;
 
-            editorBody.on('keypress', function () {
+            editorBody.on('keypress', function() {
                 hitCount += 1;
                 if (hitCount % 10 == 0) {
                     localStorage.setItem('articleContent', editorBody.html());
@@ -114,7 +113,7 @@
                 }
             });
 
-            $('input[type="submit"]').on('click', function () {
+            $('input[type="submit"]').on('click', function() {
                 debugger;
                 var optionText = 'Published';
                 var statusDropdownOptions = $('#Status option');
@@ -143,13 +142,13 @@
                 processData: false,
                 contentType: false,
                 type: 'POST',
-                success: function (data) {
+                success: function(data) {
                     if (data.Added) {
                         $("#Id").val(data.Id);
                         $("#Slug").val(data.Slug);
                     }
                 },
-                error: function (data) {
+                error: function(data) {
                     console.log('error in autosaving article');
                 }
             });
@@ -161,31 +160,32 @@
         }
 
         function changeDropDownValueByText(jqueryOptionsSelector, optionText) {
-            jqueryOptionsSelector.prop('selected', false).filter(function () {
+            jqueryOptionsSelector.prop('selected', false).filter(function() {
                 return $(this).text() == optionText;
             }).prop('selected', true);
         }
 
 
         //START EVENTS
-        $('#ScheduledPublish').on('change', function () {
+        $('#ScheduledPublish').on('change', function() {
             debugger;
             var timePickerWrapper = $('#article-publish-timepicker-wrapper');
             timePickerWrapper.toggleClass('display-none');
         });
 
-        $('#save-draft-button').on('click', function () {
+        $('#save-draft-button').on('click', function() {
             saveAs('Draft');
+            //TODO Await here 
             window.location.href = '/';
         });
 
-        $('#edit-article-button').on('click', function () {
+        $('#edit-article-button').on('click', function() {
             saveAs('Published');
             var form = $("#article-form");
             form.submit();
         });
 
-        $('#preview-button').on('click', function () {
+        $('#preview-button').on('click', function() {
             saveAs('Draft');
             var slug = $('#Slug').val();
 
@@ -310,17 +310,27 @@
             var editor = $("#Content").data("kendoEditor");
             var videoUrl = $('#insert-video-url-input').val();
 
-            var videoHtml = GenerateVideoEmbedUrl(videoUrl);
-            editor.exec("inserthtml", { value: videoHtml });
+            var videoLinkPromise = new Promise(function (resolve, reject) {
+                resolve(GenerateVideoEmbedUrl(videoUrl));
+
+                if (false) {
+                    reject("error inserting video");
+                }
+            });
+
+            videoLinkPromise.then(function(result) {
+                debugger;
+                var htmlEmbedLink = '<div class="video-container" id="video-container"><iframe width="560" height="315" src="' + result + '" frameborder="0" allowfullscreen></iframe></div>';
+
+                editor.exec("inserthtml", { value: htmlEmbedLink });
+            });
+
 
             $('#addVideoHolder').empty();
         }
 
         function GenerateVideoEmbedUrl(videoUrl) {
-            debugger;
-            $.get('/Videos/GetEmbedLink', { videoUrl: videoUrl }, function (embedLink) {
-                var htmlEmbedLink = '<div class="video-container" id="video-container"><iframe width="560" height="315" src="' + embedLink + ' frameborder="0" allowfullscreen></iframe></div>';
-                return htmlEmbedLink;
+            return $.get('/Videos/GetEmbedLink', { videoUrl: videoUrl }, function(embedLink) {
             });
         }
 
