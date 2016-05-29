@@ -10,7 +10,7 @@
     using Uspelite.Data.Models;
     using Uspelite.Data.Models.Enum;
     using Uspelite.Data.Repositories;
-
+    using Web.Contracts;
     public class CrawlService : ICrawlService
     {
         private readonly IRepository<CrawlNews> repo;
@@ -19,13 +19,16 @@
 
         private readonly IImagesService imagesService;
 
+        private readonly IShliokavitsaConvertService shliokavitsaService;
+
         ICategoriesService categoriesService;
 
-        public CrawlService(IRepository<CrawlNews> repo, IArticlesService articlesService, ICategoriesService categoriesService, IImagesService imagesService)
+        public CrawlService(IRepository<CrawlNews> repo, IArticlesService articlesService, ICategoriesService categoriesService, IImagesService imagesService, IShliokavitsaConvertService shliokavitsaService)
         {
             this.imagesService = imagesService;
             this.categoriesService = categoriesService;
             this.articlesService = articlesService;
+            this.shliokavitsaService = shliokavitsaService;
             this.repo = repo;
         }
 
@@ -102,6 +105,8 @@
 
         private void DarikNewsCrowler(int id, int from, string userId, int portionCount)
         {
+    
+
             var configuration = Configuration.Default.WithDefaultLoader();
             var browsingContext = BrowsingContext.New(configuration);
             var to = from + portionCount;
@@ -147,8 +152,8 @@
                     
                     var image = this.imagesService.SaveImageFromWeb(imageUrl, title, ImageFormat.Jpeg, userId);
                     image.IsMain = true;
-
-                    var createdArticleId = this.articlesService.Add(title, userId, content, PostStatus.Draft, categoryId, image);
+                    
+                    var createdArticleId = this.articlesService.Add(title, this.shliokavitsaService.Convert(title), userId, content, PostStatus.Draft, categoryId, null, image, null, DateTime.Now);
                 }
             }
             this.UpdateCount(id, to);

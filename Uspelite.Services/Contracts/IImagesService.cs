@@ -23,5 +23,6 @@
         void RemoveAllRelatedToArticle(int id);
 
         byte[] ToByteArray(Stream inputStream);
+
     }
 }

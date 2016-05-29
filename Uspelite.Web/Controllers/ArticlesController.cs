@@ -288,6 +288,12 @@
                             imageId = this.imagesService.SaveImage(articleImage, ImageFormat.Jpeg);
                         }
                     }
+
+                    if (!model.ScheduledPublish)
+                    {
+                        model.PublishOn = null;
+                    }
+
                     if (model.Id != 0)
                     {
                         var articleId = this.articlesService.Update(model.Id,
@@ -296,6 +302,7 @@
                                                                      model.Content,
                                                                      model.Status,
                                                                      model.CategoryId,
+                                                                     model.PublishOn,
                                                                      articleImage.Slug == null ? null : articleImage);
 
                         if (Request.IsAjaxRequest())
@@ -313,6 +320,7 @@
                                            model.Content,
                                            model.Status,
                                            model.CategoryId,
+                                           model.PublishOn,
                                            articleImage);
 
                         if (Request.IsAjaxRequest())

@@ -12,7 +12,7 @@
     using System.Data.Entity;
     using Fissoft.EntityFramework.Fts;
     using NinjaNye.SearchExtensions;
-
+    using Uspelite.Web.Infrastructure;
     public class ArticlesService : IArticlesService
     {
         private readonly IRepository<Article> repo;
@@ -26,31 +26,14 @@
             this.imagesService = imagesService;
         }
 
-        public int Add(string title, string authorId, string content, PostStatus status, int categoryId, Image image, DateTime? CreatedOn = null)
+        public int Add(string title, string slug, string authorId, string content, PostStatus status, int categoryId, DateTime? publishOn, Image image, IList<Comment> comments = null, DateTime? CreatedOn = null)
         {
-            var article = new Article
+            DateTime? dateToPublish = null;
+            if (publishOn != null)
             {
-                Title = title,
-                AuthorId = authorId,
-                Content = content,
-                Status = status,
-                CategoryId = categoryId,
-                Images = new List<Image>() { image }
-            };
-
-            if (CreatedOn != null)
-            {
-                article.CreatedOn = (DateTime)CreatedOn;
+                dateToPublish = publishOn.Value.AddMinutes(-1);
             }
 
-            this.repo.Add(article);
-            this.repo.SaveChanges();
-
-            return article.Id;
-        }
-
-        public int Add(string title, string slug, string authorId, string content, PostStatus status, int categoryId, Image image, IList<Comment> comments = null, DateTime? CreatedOn = null)
-        {
             var article = new Article
             {
                 Title = title,
@@ -59,6 +42,7 @@
                 Content = content,
                 Status = status,
                 CategoryId = categoryId,
+                PublishOn = dateToPublish,
                 Images = new List<Image>() { image }
             };
 
@@ -78,8 +62,14 @@
             return article.Id;
         }
 
-        public int Update(int id, string title, string authorId, string content, PostStatus status, int categoryId, Image image)
+        public int Update(int id, string title, string authorId, string content, PostStatus status, int categoryId, DateTime? publishOn, Image image)
         {
+            DateTime? dateToPublish = null;
+            if(publishOn != null)
+            {
+                dateToPublish = publishOn.Value.AddMinutes(-1);
+            }
+
             var article = this.repo.GetById(id);
             if (article != null)
             {
@@ -88,8 +78,11 @@
                 article.Content = content;
                 article.Status = status;
                 article.CategoryId = categoryId;
+                article.PublishOn = dateToPublish;
+
                 if (image != null)
                 {
+                    image.Slug += "_" + Guid.NewGuid().ToString();
                     this.imagesService.RemoveAllRelatedToArticle(id);
                     article.Images = new List<Image> { image };
                 }
@@ -293,6 +286,16 @@
 
 
             return dtoModel;
+        }
+
+        public void PublishScheduledArticles()
+        {
+            this.repo
+                .All()
+                .Where(x => x.PublishOn != null && DateTime.Now >= x.PublishOn)
+                .ForEach(x => x.Status = PostStatus.Published);
+
+            this.repo.SaveChanges();
         }
     }
 }

@@ -54,6 +54,8 @@
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
 
+        public virtual DateTime? PublishOn { get; set; }
+
         [DefaultValue(ArticlePlaceType.Normal)]
         public ArticlePlaceType Place { get; set; }
 

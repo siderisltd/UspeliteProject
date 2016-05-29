@@ -1,4 +1,39 @@
-﻿<form class="epay-form" action="https://www.epay.bg/v3main/paylogin" method="POST" target="_blank">
+﻿@section sidebar{
+    @(Html.Action<ChildActionsController>(x => x.GetSideBar()))
+}
+
+
+<div class="team-layout">
+    <div class="title">
+        <h2>Почерпете ни чаша кафе</h2>
+    </div>
+    <div class="text">
+        <p>
+            <h3>Защо заслужаваме от вашата подкрепа?</h3>
+            Ние сме млад екип от момичета и момчета, гладни за положителни новини. Работим здраво, за да ви усмихваме всеки ден.
+            Искаме да ви вдъхновим като ви разкажем свежите истории на онези млади българи, доказали, че възможностите за реализация
+            в България са също толкова много, колкото и вкусните български гозби (ако не и повече). Противопоставяйки се на традиционните
+            медии в страната, ние се стараем да ви показваме положителното, като го обличаме в нестандарни думи и свежи снимки.
+            Знайте, че всички постъпления в нашата касичка се реинвенстират в развитието на сайта. Защото оставаме тук заради вас.
+
+        </p>
+        <h3>Как може да ни подкрепите?</h3>
+        <p>
+            Дали ще ни черпите едно кафе, за да сме по-бодри сутрин, докато пишем любимите ви статии, или ще направите възможна реализацията
+            на някои наш мащабен бъдещ проект – нека е по ваша преценка. Изберете любимо си число или се свържете с нас,
+            за да станем дългосрочни партьори в една добра кауза!
+        </p>
+    </div>
+
+    <div class="title">
+        <h2>А ние сме:</h2>
+    </div>
+
+</div>
+
+
+
+<form class="epay-form" action="https://www.epay.bg/v3main/paylogin" method="POST" target="_blank">
     <table class="epay-view" width="350" cellspacing="1" cellpadding="4">
         <tbody>
             <tr>
@@ -18,5 +53,4 @@
         </tbody>
     </table>
     <input name="MIN" type="hidden" value="0054344954" /><input name="DESCR" type="hidden" value="Подрепете Младите Успели Българи" /><input name="URL_OK" type="hidden" value="http://uspelite.com/donation?success=1" /><input name="URL_CANCEL" type="hidden" value="http://uspelite.com/donation" /><input name="ENCODING" type="hidden" value="utf8" /> <input name="CHECKSUM" type="hidden" value="f81a9c366d2f5714c21affb7c74f702f7af14f5a" />
-
 </form>

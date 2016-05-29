@@ -8,7 +8,7 @@
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using Models.BaseModels.Contracts;
-
+    using System.Diagnostics;
     public class UspeliteDbContext : IdentityDbContext<User>, IUspeliteDbContext
     {
         public UspeliteDbContext()
@@ -50,7 +50,7 @@
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
             }
             return 1;
         }

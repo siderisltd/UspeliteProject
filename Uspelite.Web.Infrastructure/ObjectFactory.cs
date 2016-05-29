@@ -31,5 +31,10 @@
         {
             return kernel.TryGet(type);
         }
+
+        public static IKernel GetKernal()
+        {
+            return kernel;
+        }
     }
 }

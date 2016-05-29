@@ -98,7 +98,7 @@
 
         public void RemoveAllRelatedToArticle(int id)
         {
-            var images = this.repo.All().Where(x => x.ArticleId == id);
+            var images = this.repo.All().Where(x => x.ArticleId == id).AsEnumerable();
 
             foreach (var img in images)
             {

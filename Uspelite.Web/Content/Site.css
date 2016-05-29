@@ -97,3 +97,7 @@ menu, nav, section {
 #slider-wrapper{
     left:-42px !important;
 }
+
+.display-none{
+    display:none;
+}

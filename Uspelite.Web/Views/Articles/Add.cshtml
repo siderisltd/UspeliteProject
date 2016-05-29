@@ -40,8 +40,13 @@
                 <input id="save-draft-button" type="button" class="btn btn-success" value="Save Draft" />
 
                 <input id="preview-button" type="button" class="btn btn-success" value="Preview" />
+
+                @Html.LabelFor(x => x.ScheduledPublish)
+                @Html.CheckBoxFor(x => x.ScheduledPublish)
             </div>
         </div>
+
+        
     }
 </div>
 
@@ -163,8 +168,15 @@
 
 
         //START EVENTS
+        $('#ScheduledPublish').on('change', function () {
+            debugger;
+            var timePickerWrapper = $('#article-publish-timepicker-wrapper');
+            timePickerWrapper.toggleClass('display-none');
+        });
+
         $('#save-draft-button').on('click', function () {
             saveAs('Draft');
+            window.location.href = '/';
         });
 
         $('#edit-article-button').on('click', function () {

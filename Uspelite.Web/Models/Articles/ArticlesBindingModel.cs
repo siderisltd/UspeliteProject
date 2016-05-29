@@ -9,7 +9,7 @@
     using System.Text.RegularExpressions;
     using Data.Models.Enum;
     using System.ComponentModel;
-
+    using System;
     public class ArticlesBindingModel : IMapFrom<Article>, IValidatableObject
     {
         public ArticlesBindingModel()
@@ -32,8 +32,13 @@
 
         public HttpPostedFileBase TitleImage { get; set; }
 
+        public DateTime? PublishOn { get; set; }
+
         [Required]
         public bool ImportBranding { get; set; }
+
+        [Required]
+        public bool ScheduledPublish { get; set; }
 
         [Required]
         public bool MirrorFlip { get; set; }

@@ -15,6 +15,8 @@
 
         IQueryable<Article> GetTopPostsByRating(int count = 6, string category = null);
 
+        void PublishScheduledArticles();
+
         IQueryable<Article> GetMostCommented(int count = 6, string category = null);
 
         IQueryable<CategoryAndPostsDTO> GetTopArticles(ArticleTopFactor topFactor = ArticleTopFactor.Rating, int count = 3, IEnumerable<Category> categories = null);
@@ -27,9 +29,7 @@
 
         IQueryable<ArticleStatusDTO> GetPossibleArticleStatuses();
 
-        int Add(string title, string authorId, string content, PostStatus status, int categoryId, Image image, DateTime? CreatedOn = null);
-
-        int Add(string title, string slug, string authorId, string content, PostStatus status, int categoryId, Image image, IList<Comment> comments = null, DateTime? CreatedOn = null);
+        int Add(string title, string slug, string authorId, string content, PostStatus status, int categoryId, DateTime? publishOn , Image image, IList<Comment> comments = null, DateTime? CreatedOn = null);
 
         bool Exists(string title);
 
@@ -43,6 +43,6 @@
 
         int SaveChanges();
 
-        int Update(int id, string title, string authorId, string content, PostStatus status, int categoryId, Image image);
+        int Update(int id, string title, string authorId, string content, PostStatus status, int categoryId, DateTime? publishOn, Image image);
     }
 }
