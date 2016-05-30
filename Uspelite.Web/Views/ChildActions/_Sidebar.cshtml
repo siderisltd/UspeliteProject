@@ -21,9 +21,9 @@
         </header>
 		<div class="essbfc-container essbfc-nospace essbfc-col-3 essbfc-template-metro">
 			<ul>
-				<li class="essbfc-facebook">
+				<li id="facebook-total-likes" class="essbfc-facebook">
 					<a href="https://www.facebook.com/envato" target="_blank" rel="nofollow">
-						<div class="essbfc-network"><i class="essbfc-icon essbfc-icon-facebook essbfc-icon-buzz-out"></i><span class="essbfc-followers-count">179k</span><span class="essbfc-followers-text">Фена</span>
+						<div class="essbfc-network"><i class="essbfc-icon essbfc-icon-facebook essbfc-icon-buzz-out"></i><span class="essbfc-followers-count value">179k</span><span class="essbfc-followers-text">Фена</span>
 						</div>
 					</a>
 				</li><!--
@@ -70,12 +70,14 @@
         <div class="article-container">
             @for (int i = 0; i < Model.Count; i++)
             {
-                var category = Model[i].Category.Title;
+                var categoryTitle = Model[i].Category.Title;
+                var categorySlug = Model[i].Category.Slug;
+
                 foreach (var post in Model[i].Posts)
                 {
                     <article class="clearfix">
                         <a href="/@post.Slug">@Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "100", "80")</a>
-                        <span class="published">@Html.DisplayFor(x => post.CreatedOn)<span class="category cat-sports">@Html.ActionLink(@category, "Show", "Categories", new {slug = category}, null)</span></span>
+                        <span class="published">@Html.DisplayFor(x => post.CreatedOn)<span class="category cat-sports">@Html.ActionLink(@categoryTitle, "Show", "Categories", new {slug = categorySlug }, null)</span></span>
                         <h3>
                             <a href="/@post.Slug">@Html.Raw(post.SanitizedPartialContent)</a>
                         </h3>

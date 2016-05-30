@@ -78,30 +78,13 @@
     @*<script src="https://apis.google.com/js/platform.js" async defer></script>*@
     @RenderSection("scripts", required: false)
 
+
     <script>
         $(function () {
-
-            //var mainElement = $('#main');
-            //var mainElementWidth = mainElement.width();
-
-            //var mainElementOffset = mainElement.offset();
-            //var topOffset = mainElementOffset.top;
-            //var leftOffset = mainElementOffset.left;
-
-            //var bottom = $(window).height() - (topOffset - mainElement.height());
-
-            //var elementPosition = mainElement.position();
-            //var bottomRightX = elementPosition.left + mainElement.width() + (leftOffset * 2);
-
-            //console.log("bottonRightX : " + bottomRightX);
-            //console.log('bottomOfMainElement : ' + (bottom - topOffset));
-            //var elementFromPosition = document.elementFromPoint(bottomRightX + 40, bottom - 20);
-            //console.log('ELEMENT TUK' + elementFromPosition);
-
             var $mainElement = $('#main');
             var mainElementHeight = $mainElement.height() + $mainElement.offset().top;
             var sideBarArticles = $('#sidebar article');
-            
+
             var elHeights = sideBarArticles.each(function (index, element) {
                 var el = $(element);
                 var currentOffset = el.offset().top;

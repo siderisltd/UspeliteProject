@@ -27,16 +27,16 @@
         }
 
         [HttpGet]
-        public ActionResult Index(int page = 1, int pageSize = 10)
+        public ActionResult Index(int page = 1, int pageSize = 5)
         {
             var itemsToSkip = (page - 1) * pageSize;
-            var articlesCount = 3;
+            var articlesCount = 5;
 
             var newestArticlesInEachCategory = this.Cache.Get(
                 "newestArticlesInEachCategory",
                 () => this.articlesService
                           .GetTopArticles(Infrastructure.Enums.ArticleTopFactor.Newest, articlesCount)
-                          .To<CategoriesAndArticlesViewModel>()
+                          .To<CategoriesAndArticlesViewModel>()      
                           .OrderByDescending(x => x.Category.HomePriority)
                           .Skip(itemsToSkip)
                           .Take(pageSize)
@@ -46,11 +46,11 @@
             //Should get even number of items
             var highRatedPosts = this.Cache.Get(
                 "highRatedPosts",
-                () => this.articlesService.GetTopPostsByRating(31).To<ArticleViewModel>().ToList(), 10);
+                () => this.articlesService.GetTopPostsByRating(9).To<ArticleViewModel>().ToList(), 10);
 
             var mostCommentedPosts = this.Cache.Get(
                 "mostCommentedPosts",
-                () => this.articlesService.GetMostCommented(6).To<ArticleViewModel>().ToList(), 10);
+                () => this.articlesService.GetMostCommented(9).To<ArticleViewModel>().ToList(), 10);
 
 
             var model = new HomeIndexViewModel

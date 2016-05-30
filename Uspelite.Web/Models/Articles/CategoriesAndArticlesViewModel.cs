@@ -11,7 +11,7 @@
     {
         public CategoryInfoViewModel Category { get; set; }
 
-        public IEnumerable<ArticleViewModel> Posts { get; set; }
+        public IList<ArticleViewModel> Posts { get; set; }
 
         public int AllSearchedResultsCount { get; set; }
     }

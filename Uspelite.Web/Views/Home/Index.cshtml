@@ -12,7 +12,7 @@
 }
 
 <div class="row">
-<div class="col-md-9 separator-right">
+<div class="col-md-9 home-main-column">
 
     @{ int linesCounter = 0; }
 
@@ -51,12 +51,45 @@
         var counter = 0;
         foreach (var categoryAndPosts in Model.NewestPostsAndCategories)
         {
-            <div class="row">
-            @foreach (var post in categoryAndPosts.Posts)
+            var postsCount = categoryAndPosts.Posts.Count();
+            var isMainPost = true;
+            var count = 3;
+
+            switch (postsCount)
             {
-                if (counter % 3 != 0)
+                case 3:
+                case 4:
+                    postsCount = 3;
+                    break;
+                case 5:
+                    postsCount = 5;
+                    break;
+
+                default:
+                    continue;
+            }
+
+            <div class="row">
+            @for (var i = 0; i < postsCount; i += 1)
+            {
+                var post = categoryAndPosts.Posts[i];
+                if (isMainPost)
                 {
-                    <div class="col-sm-6">
+                    isMainPost = false;
+                    <article class="linkbox large cat-news">
+                        <a href="/@post.Slug">
+                            @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "560", "390", new { @class = "img-responsive" })
+                            <div class="overlay">
+                                <h2>@Html.Raw(post.SanitizedTitle)</h2>
+                            </div>
+                        </a>
+                        <a href="/Categories/Show/@post.Category.Slug" class="theme">@post.Category.Title</a>
+                    </article>
+                }
+                else
+                {
+
+                    <div class="col-sm-6 small-articles">
                         <article class="linkbox cat-sports">
                             <a href="~/@post.Slug">
                                 @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
@@ -70,20 +103,8 @@
                         @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", post)*@
                     </div>
                 }
-                else
-                {
-                    <article class="linkbox large cat-news">
-                        <a href="/@post.Slug">
-                            @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "560", "390", new { @class = "img-responsive" })
-                            <div class="overlay">
-                                <h2>@Html.Raw(post.SanitizedTitle)</h2>
-                            </div>
-                        </a>
-                        <a href="/Categories/Show/@post.Category.Slug" class="theme">@post.Category.Title</a>
-                    </article>
-                }
-                counter++;
             }
+
            </div>
         }
     }
@@ -188,38 +209,39 @@
         action = "Index";
         controller = "Home";
     }
-
-    <nav>
-            <ul class="pagination">
-                @if (Model.CurrentPage != 1)
-                {
-                    <li>
-                        <a href="@controllerActionUrl?query=@Model.Query&page=@(Model.CurrentPage - 1)&pageSize=@Model.PageSize" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                }
-                @for (int i = Model.DisplayPageFrom; i <= Model.DisplayPageTo; i++)
-                {
-                    var className = string.Empty;
-                    if (Model.CurrentPage == i)
-                    {
-                        className = "active";
-                    }
-                    <li class="@className">@Html.ActionLink(i.ToString(), action, controller, new { query = Model.Query, page = i, pageSize = Model.PageSize }, null)</li>
-                }
-                @if (Model.DisplayPageTo != Model.TotalPages)
-                {
-                    <li>
-                        <a href="@controllerActionUrl?query=@Model.Query&page=@(Model.CurrentPage + 1)&pageSize=@Model.PageSize" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                }
-            </ul>
-        </nav>
-
 </div>
+<div class="row">
+    <nav id="home-pagination-nav">
+        <ul class="pagination">
+            @if (Model.CurrentPage != 1)
+            {
+                <li>
+                    <a href="@controllerActionUrl?query=@Model.Query&page=@(Model.CurrentPage - 1)&pageSize=@Model.PageSize" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+            @for (int i = Model.DisplayPageFrom; i <= Model.DisplayPageTo; i++)
+            {
+                var className = string.Empty;
+                if (Model.CurrentPage == i)
+                {
+                    className = "active";
+                }
+                <li class="@className">@Html.ActionLink(i.ToString(), action, controller, new { query = Model.Query, page = i, pageSize = Model.PageSize }, null)</li>
+            }
+            @if (Model.DisplayPageTo != Model.TotalPages)
+            {
+                <li>
+                    <a href="@controllerActionUrl?query=@Model.Query&page=@(Model.CurrentPage + 1)&pageSize=@Model.PageSize" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
 
 
 @section scripts {

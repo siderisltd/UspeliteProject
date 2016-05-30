@@ -90,14 +90,24 @@ menu, nav, section {
         color: #000000;
         text-decoration: none;
         opacity: 0.4;
-        cursor:pointer;
+        cursor: pointer;
     }
 
 
-#slider-wrapper{
-    left:-42px !important;
+#slider-wrapper {
+    left: -42px !important;
 }
 
-.display-none{
-    display:none;
+.display-none {
+    display: none;
+}
+
+#home-pagination-nav {
+    text-align: center;
+}
+
+/*vsqka lqva statiq s klas da image*/
+
+.small-articles{
+    margin-top: 15px;
 }
