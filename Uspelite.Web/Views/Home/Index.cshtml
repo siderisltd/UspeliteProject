@@ -95,7 +95,7 @@
                                 @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
 
                                 <div class="overlay">
-                                    <h3>@post.Title</h3>
+                                    <h3>@Html.Raw(post.SanitizedTitle)</h3>
                                 </div>
                             </a>
                             <a href="/Categories/Show/@post.Category.Slug" class="theme">@post.Category.Title</a>
@@ -148,7 +148,7 @@
             </header>
             <div class="row">
                 @if (Model.HighRatedPosts != null && Model.HighRatedPosts.Count != 0)
-            {
+                {
                 foreach (var post in Model.HighRatedPosts)
                 {
                         <div class="col-xs-4 col-sm-12">

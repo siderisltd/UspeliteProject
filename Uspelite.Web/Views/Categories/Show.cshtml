@@ -5,7 +5,7 @@
     @(Html.Action<ChildActionsController>(x => x.GetSideBar()))
 }
 
-<div class="col-md-12 separator-right">
+<div class="col-md-12 separator-right categories-wrapper">
 
     @*<article class="linkbox large cat-showtime">
         <a href="/Articles/@Model.TopArticle.Slug">
@@ -23,6 +23,10 @@
     <div class="row">
         @foreach (var mod in Model.Articles)
         {
+            if (counter == 1)
+            {
+                <a href="/Categories/Show/@mod.Category.Slug" class="theme category-link">Категория: @mod.Category.Title</a>
+            }
             <!-- start:col -->
             <div class="col-sm-6">
                 <!-- start:article.linkbox -->
@@ -33,7 +37,7 @@
                             <h3>@mod.Title</h3>
                         </div>
                     </a>
-                    <a href="/Categories/Show/@mod.Category" class="theme">@mod.Category</a>
+                    @*<a href="/Categories/Show/@mod.Category.Slug" class="theme category-link">@mod.Category.Title</a>*@
                 </article>
                 <!-- end:article.linkbox -->
             </div>

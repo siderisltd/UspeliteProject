@@ -37,7 +37,7 @@
 
         public string SanitizedTitle
         {
-            get { return this.sanitizer.Sanitize(this.PartialContent); }
+            get { return this.sanitizer.Sanitize(this.Title); }
         }
 
         public string Slug { get; set; }

@@ -106,8 +106,16 @@ menu, nav, section {
     text-align: center;
 }
 
-/*vsqka lqva statiq s klas da image*/
-
 .small-articles{
     margin-top: 15px;
+}
+
+.categories-wrapper img{
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+}
+
+.categories-wrapper .category-link {
+    width: 100%;
 }
