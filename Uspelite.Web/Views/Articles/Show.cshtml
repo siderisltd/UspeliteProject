@@ -34,9 +34,15 @@
     </div>
     <p class="post-meta-box">
         <span>Публикувано от <a class="name" href="/Authors/Info/@Model.Author.Id/@Model.Author.FullName.Replace(' ', '-')">@Model.Author.FullName</a></span>
-        <span> на @Html.DisplayFor(x => Model.CreatedOn)</span>
-        <span> в @Model.Category.Title</span>
+        <span> на @Model.CreatedOn.ToString("dd MM yyyy г. в HH:mm", CultureInfo.GetCultureInfo("bg-BG"))</span>
+        <span> в категория <a href="/Categories/Show/@Model.Category.Slug">@Model.Category.Title</a></span>
     </p>
+
+    @*<p class="post-meta-box">
+        <span>Автор <a class="name" href="/Authors/Info/@Model.Author.Id/@Model.Author.FullName.Replace(' ', '-')">@Model.Author.FullName</a></span>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Дата @Model.CreatedOn.ToString("M dd yyyy", CultureInfo.GetCultureInfo("bg-BG"))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Час @Model.CreatedOn.ToString("HH:mm", CultureInfo.GetCultureInfo("bg-BG")) </span>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="/Categories/Show/@Model.Category.Slug">@Model.Category.Title</a></span>
+    </p>*@
     <p>
         @Html.Raw(Model.SanitizedFullContent)
     </p>
@@ -58,8 +64,7 @@
         <section id="related-articles-section" class="news-lay-3 bottom-margin">
 
             <header>
-                <h2><a href="">Recommended for you</a>
-                </h2>
+                <h1>ПРЕПОРЪЧАНИ СТАТИИ</h1>
                 <span class="borderline"></span>
             </header>
 

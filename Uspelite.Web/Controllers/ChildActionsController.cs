@@ -68,14 +68,14 @@
             return this.PartialView("_Slider", model);
         }
 
-        [OutputCache(Duration = 5 * 60, VaryByParam = "none")]
+        [OutputCache(Duration = 5, VaryByParam = "none")]
         public ActionResult GetSideBar()
         {
             var model = this.articlesService.GetTopArticles(ArticleTopFactor.Rating, 3).To<CategoryAndPostsViewModel>().ToList();
             return this.PartialView("_Sidebar", model);
         }
 
-        [OutputCache(Duration = 5 * 60, VaryByParam = "none")]
+        [OutputCache(Duration = 5, VaryByParam = "none")]
         public ActionResult GetClientNavigation()
         {
             Dictionary<CategoryViewModel, Dictionary<CategoryViewModel, IEnumerable<ArticleViewModel>>> model =

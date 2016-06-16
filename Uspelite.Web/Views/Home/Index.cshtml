@@ -12,131 +12,131 @@
 }
 
 <div class="row">
-<div class="col-md-9 home-main-column">
+    <div class="col-md-9 home-main-column">
 
-    @{ int linesCounter = 0; }
+        @{ int linesCounter = 0; }
 
-    @if(Model.IsSearchResult && Model.SearchResults != null && Model.SearchResults.Count != 0)
-    {
-        foreach (var post in Model.SearchResults)
+        @if (Model.IsSearchResult && Model.SearchResults != null && Model.SearchResults.Count != 0)
         {
-            if (linesCounter%2 == 0)
+            foreach (var post in Model.SearchResults)
             {
-                @:<div class="row">
-            }
-                <div class="col-sm-6">
-                    <article class="linkbox cat-sports">
-                        <a href="~/@post.Slug">
-                            @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
+                if (linesCounter % 2 == 0)
+                {
+                    @:<div class="row">
+                }
+                     <div class="col-sm-6">
+                         <article class="linkbox cat-sports">
+                             <a href="~/@post.Slug">
+                                 @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
 
-                            <div class="overlay">
-                                <h3>@post.Title</h3>
+                                 <div class="overlay">
+                                     <h3>@post.Title</h3>
+                                 </div>
+                             </a>
+                             <a href="/Categories/Show/@post.Category.Slug" class="theme">@post.Category.Title</a>
+                         </article>
+                         @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", post)*@
+                     </div>
+
+                if (linesCounter % 2 != 0)
+                {
+                    @: </div>
+                }
+
+                linesCounter++;
+            }
+        }
+        else
+        {
+            var counter = 0;
+            foreach (var categoryAndPosts in Model.NewestPostsAndCategories)
+            {
+                var postsCount = categoryAndPosts.Posts.Count();
+                var isMainPost = true;
+                var count = 3;
+
+                switch (postsCount)
+                {
+                    case 3:
+                    case 4:
+                        postsCount = 3;
+                        break;
+                    case 5:
+                        postsCount = 5;
+                        break;
+
+                    default:
+                        continue;
+                }
+
+                <div class="row">
+                    @for (var i = 0; i < postsCount; i += 1)
+                    {
+                        var post = categoryAndPosts.Posts[i];
+                        if (isMainPost)
+                        {
+                            isMainPost = false;
+                            <article class="linkbox large cat-news">
+                                <a href="/@post.Slug">
+                                    @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "560", "300", new { @class = "img-responsive" })
+                                    <div class="overlay">
+                                        <h2>@Html.Raw(post.SanitizedTitle)</h2>
+                                    </div>
+                                </a>
+                                <a href="/Categories/Show/@post.Category.Slug" class="theme">@post.Category.Title</a>
+                            </article>
+                        }
+                        else
+                        {
+
+                            <div class="col-sm-6 small-articles">
+                                <article class="linkbox cat-sports">
+                                    <a href="~/@post.Slug">
+                                        @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
+
+                                        <div class="overlay">
+                                            <h3>@Html.Raw(post.SanitizedTitle)</h3>
+                                        </div>
+                                    </a>
+                                    <a href="/Categories/Show/@post.Category.Slug" class="theme">@post.Category.Title</a>
+                                </article>
+                                @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", post)*@
                             </div>
-                        </a>
-                        <a href="/Categories/Show/@post.Category.Slug" class="theme">@post.Category.Title</a>
-                    </article>
-                    @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", post)*@
+                        }
+                    }
+
                 </div>
-
-            if (linesCounter % 2 != 0)
-            {
-                @:</div>
             }
-
-            linesCounter++;
         }
-    }
-    else
-    {
-        var counter = 0;
-        foreach (var categoryAndPosts in Model.NewestPostsAndCategories)
+
+        @if (Model.MostCommentedPosts != null && Model.MostCommentedPosts.Count >= 4)
         {
-            var postsCount = categoryAndPosts.Posts.Count();
-            var isMainPost = true;
-            var count = 3;
-
-            switch (postsCount)
-            {
-                case 3:
-                case 4:
-                    postsCount = 3;
-                    break;
-                case 5:
-                    postsCount = 5;
-                    break;
-
-                default:
-                    continue;
-            }
-
-            <div class="row">
-            @for (var i = 0; i < postsCount; i += 1)
-            {
-                var post = categoryAndPosts.Posts[i];
-                if (isMainPost)
-                {
-                    isMainPost = false;
-                    <article class="linkbox large cat-news">
-                        <a href="/@post.Slug">
-                            @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "560", "390", new { @class = "img-responsive" })
-                            <div class="overlay">
-                                <h2>@Html.Raw(post.SanitizedTitle)</h2>
-                            </div>
-                        </a>
-                        <a href="/Categories/Show/@post.Category.Slug" class="theme">@post.Category.Title</a>
-                    </article>
-                }
-                else
-                {
-
-                    <div class="col-sm-6 small-articles">
-                        <article class="linkbox cat-sports">
-                            <a href="~/@post.Slug">
-                                @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
-
-                                <div class="overlay">
-                                    <h3>@Html.Raw(post.SanitizedTitle)</h3>
-                                </div>
-                            </a>
-                            <a href="/Categories/Show/@post.Category.Slug" class="theme">@post.Category.Title</a>
-                        </article>
-                        @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", post)*@
-                    </div>
-                }
-            }
-
-           </div>
-        }
-    }
-
-    @if (Model.MostCommentedPosts != null && Model.MostCommentedPosts.Count >= 4)
-    {
-        <section class="section-full top-padding cat-reviews news-layout news-lay-2">
-            <header>
-                <h2>Най-коментирани статии</h2>
-                <span class="borderline"></span>
-            </header>
-            <div class="row">
-                @for (int i = 0; i < 4; i++)
+            <section class="section-full top-padding cat-reviews news-layout news-lay-2">
+                <header>
+                    <h2>Най-коментирани статии</h2>
+                    <span class="borderline"></span>
+                </header>
+                <div class="row">
+                    @for (int i = 0; i < 4; i++)
                 {
                     var current = Model.MostCommentedPosts[i];
 
-                    <div class="col-xs-6 col-sm-3">
-                        <article class="review">
-                            <a href="/@current.Slug">
-                                @Html.Image(x => current.MainArticlePic.Resized400Picture, "Alt responsive picture", "120", "105", new { @class = "img-responsive" })
-                                <h3>@Html.Raw(current.Title)</h3>
-                            </a>
+                        <div class="col-xs-6 col-sm-3">
+                            <article class="review">
+                                <a href="/@current.Slug">
+                                    @Html.Image(x => current.MainArticlePic.Resized400Picture, "Alt responsive picture", "120", "105", new { @class = "img-responsive" })
+                                    <h3>@Html.Raw(current.Title)</h3>
+                                </a>
 
-                            @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", current)*@
+                                @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", current)*@
 
-                        </article>
-                    </div>
-                }
-            </div>
-        </section>
-    }
-</div>
+                            </article>
+                        </div>
+                    }
+                </div>
+            </section>
+        }
+    </div>
 
     <div class="col-md-3">
         <section class="section-news news-layout">
@@ -149,8 +149,8 @@
             <div class="row">
                 @if (Model.HighRatedPosts != null && Model.HighRatedPosts.Count != 0)
                 {
-                foreach (var post in Model.HighRatedPosts)
-                {
+                    foreach (var post in Model.HighRatedPosts)
+                    {
                         <div class="col-xs-4 col-sm-12">
                             <article>
                                 <h3>@(Html.ActionLink<ArticlesController>(post.Title, x => x.Show(post.Slug)))</h3>
@@ -195,7 +195,7 @@
     @{
         string controllerActionUrl = string.Empty;
         string action = string.Empty;
-        string controller = string.Empty;     
+        string controller = string.Empty;
     }
     @if (Model.IsSearchResult)
     {
@@ -246,4 +246,65 @@
 
 @section scripts {
     @Scripts.Render("~/Scripts/Custom/ratingScript.js")
+}
+
+@section overridingStyles {
+    <style>
+
+        @@media ( min-width: 991px ) {
+            article.large.cat-news img.img-responsive {
+                height: 280px ;
+                width: 560px ;
+                margin: 0 auto;
+            }
+
+            
+            article.large.cat-news a.theme{
+                left:20px;
+            }
+
+             article.large.cat-news div.overlay {
+                 width: 400px;
+                 margin: 0 auto;
+             }  
+
+        }
+
+        @@media ( min-width: 768px ) {
+            article.large.cat-news img.img-responsive {
+                height: 250px ;
+                width: 700px ;
+                margin: 0 auto;
+            }
+
+            article.large.cat-news a.theme{
+
+            }
+
+              article.large.cat-news div.overlay {
+                 width: 560px;
+                 margin: 0 auto;
+             }  
+
+        }
+
+        @@media ( min-width: 430px ) {
+            article.large.cat-news img.img-responsive {
+                width: 437px;
+                height: 300px;
+                width: 560px;
+                margin: 0 auto;
+            }
+
+            
+            article.large.cat-news a.theme{
+
+            }
+
+            article.large.cat-news div.overlay h2{
+                 text-align:left;
+             }  
+
+        }
+    </style>
 }

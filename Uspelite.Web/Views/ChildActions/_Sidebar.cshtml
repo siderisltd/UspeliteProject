@@ -8,10 +8,9 @@
     </div>
 	
 	<section class="donation-section">
-		<a class="btn btn-default donate-button" href="/Payments/Index">
-		        Почерпете ни чаша кафе
-		<span></span>
-		</a>
+        <a  href="/Payments/Index" >
+            <img src="~/Content/Pics/donations-button.png" />
+        </a>
 	</section>
 	
 	<section>
@@ -19,46 +18,18 @@
             <h2>В социалните мрежи</h2>
             <span class="borderline"></span>
         </header>
-		<div class="essbfc-container essbfc-nospace essbfc-col-3 essbfc-template-metro">
-			<ul>
-				<li id="facebook-total-likes" class="essbfc-facebook">
-					<a href="https://www.facebook.com/envato" target="_blank" rel="nofollow">
-						<div class="essbfc-network"><i class="essbfc-icon essbfc-icon-facebook essbfc-icon-buzz-out"></i><span class="essbfc-followers-count value">179k</span><span class="essbfc-followers-text">Фена</span>
-						</div>
-					</a>
-				</li><!--
-				--><li class="essbfc-twitter">
-					<a href="https://www.twitter.com/appscreo" target="_blank" rel="nofollow">
-						<div class="essbfc-network"><i class="essbfc-icon essbfc-icon-twitter essbfc-icon-buzz-out"></i><span class="essbfc-followers-count">103</span><span class="essbfc-followers-text">Последователи</span>
-						</div>
-					</a>
-				</li><!--
-				--><li class="essbfc-google">
-					<a href="https://plus.google.com/+android" target="_blank" rel="nofollow">
-						<div class="essbfc-network"><i class="essbfc-icon essbfc-icon-google essbfc-icon-buzz-out"></i><span class="essbfc-followers-count">27.8M</span><span class="essbfc-followers-text">Фена</span>
-						</div>
-					</a>
-				</li><!--
-				--><li class="essbfc-linkedin">
-					<a href="https://www.linkedin.com/company/envato" target="_blank" rel="nofollow">
-						<div class="essbfc-network"><i class="essbfc-icon essbfc-icon-linkedin essbfc-icon-buzz-out"></i><span class="essbfc-followers-count">8.4k</span><span class="essbfc-followers-text">Последователи</span>
-						</div>
-					</a>
-				</li><!--
-				--><li class="essbfc-mailchimp">
-					<a href="http://list.to.address" target="_blank" rel="nofollow">
-						<div class="essbfc-network"><i class="essbfc-icon essbfc-icon-mailchimp essbfc-icon-buzz-out"></i><span class="essbfc-followers-count">268</span><span class="essbfc-followers-text">Абоната</span>
-						</div>
-					</a>
-				</li><!--
-				--><li class="essbfc-instagram">
-					<a href="http://instagram.com/envato" target="_blank" rel="nofollow">
-						<div class="essbfc-network"><i class="essbfc-icon essbfc-icon-instagram essbfc-icon-buzz-out"></i><span class="essbfc-followers-count">4.6k</span><span class="essbfc-followers-text">Последователи</span>
-						</div>
-					</a>
-				</li>
-			</ul>
-		</div>
+		<div class="social-buttons-wrapper">
+            <img src="~/Content/Pics/socialButtons/сиви/facebook-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon"/>
+            <img src="~/Content/Pics/socialButtons/сиви/google-plus-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
+            <img src="~/Content/Pics/socialButtons/сиви/linkedin-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
+            <img src="~/Content/Pics/socialButtons/сиви/pinterest-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
+            <img src="~/Content/Pics/socialButtons/сиви/twitter-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
+            <img src="~/Content/Pics/socialButtons/сиви/youtube-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
+            <img src="~/Content/Pics/socialButtons/сиви/flickr-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
+            <img src="~/Content/Pics/socialButtons/сиви/instagram-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
+            <img src="~/Content/Pics/socialButtons/сиви/vbox7-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
+            <img src="~/Content/Pics/socialButtons/сиви/vimeo-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
+        </div>
 	</section>
 
     <section class="module-news top-margin">
@@ -76,8 +47,8 @@
                 foreach (var post in Model[i].Posts)
                 {
                     <article class="clearfix">
-                        <a href="/@post.Slug">@Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "100", "80")</a>
-                        <span class="published">@Html.DisplayFor(x => post.CreatedOn)<span class="category cat-sports">@Html.ActionLink(@categoryTitle, "Show", "Categories", new {slug = categorySlug }, null)</span></span>
+                        <a href="/@post.Slug">@Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "100", "56")</a>
+                        @*<span class="published">@Html.DisplayFor(x => post.CreatedOn)<span class="category cat-sports">@Html.ActionLink(@categoryTitle, "Show", "Categories", new {slug = categorySlug }, null)</span></span>*@
                         <h3>
                             <a href="/@post.Slug">@Html.Raw(post.SanitizedPartialContent)</a>
                         </h3>

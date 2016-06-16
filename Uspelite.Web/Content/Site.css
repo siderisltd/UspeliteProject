@@ -106,11 +106,11 @@ menu, nav, section {
     text-align: center;
 }
 
-.small-articles{
+.small-articles {
     margin-top: 15px;
 }
 
-.categories-wrapper img{
+.categories-wrapper img {
     width: 100%;
     height: auto;
     max-height: 200px;
@@ -119,3 +119,4 @@ menu, nav, section {
 .categories-wrapper .category-link {
     width: 100%;
 }
+
