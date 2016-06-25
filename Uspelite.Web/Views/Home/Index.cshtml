@@ -26,14 +26,14 @@
                 }
                      <div class="col-sm-6">
                          <article class="linkbox cat-sports">
-                             <a href="~/@post.Slug">
+                             <a href="~/@post.Slug" class="cuprum-regular">
                                  @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
 
                                  <div class="overlay">
-                                     <h3>@post.Title</h3>
+                                     <h3 class="cuprum-regular">@post.Title</h3>
                                  </div>
                              </a>
-                             <a href="/Categories/Show/@post.Category.Slug" class="theme">@post.Category.Title</a>
+                             <a href="/Categories/Show/@post.Category.Slug" class="theme cuprum-regular">@post.Category.Title</a>
                          </article>
                          @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", post)*@
                      </div>
@@ -77,13 +77,13 @@
                         {
                             isMainPost = false;
                             <article class="linkbox large cat-news">
-                                <a href="/@post.Slug">
+                                <a href="/@post.Slug" class="cuprum-regular">
                                     @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "560", "300", new { @class = "img-responsive" })
                                     <div class="overlay">
-                                        <h2>@Html.Raw(post.SanitizedTitle)</h2>
+                                        <h2 class="cuprum-regular">@Html.Raw(post.SanitizedTitle)</h2>
                                     </div>
                                 </a>
-                                <a href="/Categories/Show/@post.Category.Slug" class="theme">@post.Category.Title</a>
+                                <a href="/Categories/Show/@post.Category.Slug" class="theme cuprum-regular">@post.Category.Title</a>
                             </article>
                         }
                         else
@@ -91,14 +91,14 @@
 
                             <div class="col-sm-6 small-articles">
                                 <article class="linkbox cat-sports">
-                                    <a href="~/@post.Slug">
+                                    <a href="~/@post.Slug" class="cuprum-regular">
                                         @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
 
                                         <div class="overlay">
-                                            <h3>@Html.Raw(post.SanitizedTitle)</h3>
+                                            <h3 class="cuprum-regular">@Html.Raw(post.SanitizedTitle)</h3>
                                         </div>
                                     </a>
-                                    <a href="/Categories/Show/@post.Category.Slug" class="theme">@post.Category.Title</a>
+                                    <a href="/Categories/Show/@post.Category.Slug" class="theme cuprum-regular">@post.Category.Title</a>
                                 </article>
                                 @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", post)*@
                             </div>
@@ -125,7 +125,7 @@
                             <article class="review">
                                 <a href="/@current.Slug">
                                     @Html.Image(x => current.MainArticlePic.Resized400Picture, "Alt responsive picture", "120", "105", new { @class = "img-responsive" })
-                                    <h3>@Html.Raw(current.Title)</h3>
+                                    <h3 class="cuprum-regular">@Html.Raw(current.Title)</h3>
                                 </a>
 
                                 @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", current)*@
@@ -154,8 +154,8 @@
                         <div class="col-xs-4 col-sm-12">
                             <article>
                                 <h3>@(Html.ActionLink<ArticlesController>(post.Title, x => x.Show(post.Slug)))</h3>
-                                <span class="text partial-text">@Html.Raw(@post.SanitizedPartialContent)</span>
                                 <span class="published">@Html.DisplayFor(x => post.CreatedOn)</span>
+                                <span class="text partial-text">@Html.Raw(@post.SanitizedPartialContent)</span>
                             </article>
                         </div>
                     }

@@ -1,4 +1,25 @@
-﻿html, body, div, span,
+﻿@font-face {
+    font-family: 'Cuprum-Bold';
+    src: url('Custom/Fonts/Cuprum-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Cuprum-BoldItalic';
+    src: url('Custom/Fonts/Cuprum-BoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Cuprum-Italic';
+    src: url('Custom/Fonts/Cuprum-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Cuprum-Regular';
+    src: url('Custom/Fonts/Cuprum-Regular.ttf') format('truetype');
+}
+
+
+html, body, div, span,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, address, em, img, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -120,3 +141,18 @@ menu, nav, section {
     width: 100%;
 }
 
+.cuprum-bold {
+    font-family: "Cuprum-Bold", "Times New Roman", Times, serif !important;
+}
+
+.cuprum-bold-italic {
+    font-family: "Cuprum-BoldItalic", "Times New Roman", Times, serif !important;
+}
+
+.cuprum-italic {
+    font-family: "Cuprum-Italic", "Times New Roman", Times, serif !important;
+}
+
+.cuprum-regular {
+    font-family: "Cuprum-Regular", "Times New Roman", Times, serif !important;
+}

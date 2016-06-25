@@ -19,22 +19,31 @@
             <span class="borderline"></span>
         </header>
 		<div class="social-buttons-wrapper">
-            <img src="~/Content/Pics/socialButtons/сиви/facebook-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon"/>
-            <img src="~/Content/Pics/socialButtons/сиви/google-plus-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
-            <img src="~/Content/Pics/socialButtons/сиви/linkedin-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
-            <img src="~/Content/Pics/socialButtons/сиви/pinterest-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
-            <img src="~/Content/Pics/socialButtons/сиви/twitter-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
-            <img src="~/Content/Pics/socialButtons/сиви/youtube-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
-            <img src="~/Content/Pics/socialButtons/сиви/flickr-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
-            <img src="~/Content/Pics/socialButtons/сиви/instagram-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
-            <img src="~/Content/Pics/socialButtons/сиви/vbox7-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
-            <img src="~/Content/Pics/socialButtons/сиви/vimeo-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
+            <a href="https://www.facebook.com/MladiteUspeliBulgari/">
+                <img src="~/Content/Pics/socialButtons/сиви/facebook-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
+            </a>
+            <a href="https://www.instagram.com/uspelite/">
+                <img src="~/Content/Pics/socialButtons/сиви/instagram-social-icon.png" width="50" height="50" class="img-circle" alt="instagram-social-icon" />
+            </a>
+            <a href="https://plus.google.com/+Uspelitebg">
+                <img src="~/Content/Pics/socialButtons/сиви/google-plus-social-icon.png" width="50" height="50" class="img-circle" alt="google-plus-social-icon" />
+            </a>
+            <a href="https://twitter.com/uspelite">
+                <img src="~/Content/Pics/socialButtons/сиви/twitter-social-icon.png" width="50" height="50" class="img-circle" alt="twitter-social-icon" />
+            </a>
+
+            @*<img src="~/Content/Pics/socialButtons/сиви/linkedin-social-icon.png" width="50" height="50" class="img-circle" alt="linkedin-social-icon" />
+            <img src="~/Content/Pics/socialButtons/сиви/pinterest-social-icon.png" width="50" height="50" class="img-circle" alt="pinterest-social-icon" />
+            <img src="~/Content/Pics/socialButtons/сиви/youtube-social-icon.png" width="50" height="50" class="img-circle" alt="youtube-social-icon" />
+            <img src="~/Content/Pics/socialButtons/сиви/flickr-social-icon.png" width="50" height="50" class="img-circle" alt="flickr-social-icon" />
+            <img src="~/Content/Pics/socialButtons/сиви/vbox7-social-icon.png" width="50" height="50" class="img-circle" alt="vbox7-social-icon" />
+            <img src="~/Content/Pics/socialButtons/сиви/vimeo-social-icon.png" width="50" height="50" class="img-circle" alt="vimeo-social-icon" />*@
         </div>
 	</section>
 
     <section class="module-news top-margin">
         <header>
-            <h2>Не изпускайте тези истории</h2>
+            <h2 class="cuprum-regular">Не изпускайте тези истории</h2>
             <span class="borderline"></span>
         </header>
         <!-- end:header -->
@@ -49,6 +58,7 @@
                     <article class="clearfix">
                         <a href="/@post.Slug">@Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "100", "56")</a>
                         @*<span class="published">@Html.DisplayFor(x => post.CreatedOn)<span class="category cat-sports">@Html.ActionLink(@categoryTitle, "Show", "Categories", new {slug = categorySlug }, null)</span></span>*@
+                        <span class="published"><span class="category cat-sports">@Html.ActionLink(@categoryTitle, "Show", "Categories", new {slug = categorySlug }, new { @class = "cuprum-regular" })</span></span>
                         <h3>
                             <a href="/@post.Slug">@Html.Raw(post.SanitizedPartialContent)</a>
                         </h3>

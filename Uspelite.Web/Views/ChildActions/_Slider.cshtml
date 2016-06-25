@@ -18,11 +18,11 @@
                             <a href="/@Model.NavCenter.Slug">
                                 @Html.Image(x => Model.NavCenter.MainArticlePic.OriginalSizedPicture, "Alt responsive picture", "819", "452", new { @class = "img-responsive" })
                                 <div class="overlay">
-                                    <h2>@Model.NavCenter.Title</h2>
-                                    <p>@Html.Raw(Model.NavCenter.SanitizedPartialContent)</p>
+                                    <h2 class="cuprum-regular">@Model.NavCenter.Title</h2>
+                                    <p class="cuprum-regular">@Html.Raw(Model.NavCenter.SanitizedPartialContent)</p>
                                 </div>
                             </a>
-                            <a href="/Categories/Show/@Model.NavCenter.Category.Slug" class="theme">@Model.NavCenter.Category.Title</a>
+                            <a href="/Categories/Show/@Model.NavCenter.Category.Slug" class="theme cuprum-regular">@Model.NavCenter.Category.Title</a>
                         </article>
 
                     </div>
@@ -32,10 +32,10 @@
                             <a href="/@Model.NavRightTop.Slug">
                                 @Html.Image(x => Model.NavRightTop.MainArticlePic.Resized400Picture, "Alt responsive picture", "450", "390", new { @class = "img-responsive slider-small-article" })
                                 <div class="overlay">
-                                    <h3>@Model.NavRightTop.Title</h3>
+                                    <h3 class="cuprum-regular">@Model.NavRightTop.Title</h3>
                                 </div>
                             </a>
-                            <a href="/Categories/Show/@Model.NavRightTop.Category.Slug" class="theme">@Model.NavRightTop.Category.Title</a>
+                            <a href="/Categories/Show/@Model.NavRightTop.Category.Slug" class="theme cuprum-regular">@Model.NavRightTop.Category.Title</a>
                            
                         </article>
 
@@ -43,10 +43,10 @@
                             <a href="/@Model.NavRightCenter.Slug">
                                 @Html.Image(x => Model.NavRightCenter.MainArticlePic.Resized400Picture, "Alt responsive picture", "450", "390", new { @class = "img-responsive slider-small-article" })
                                 <div class="overlay">
-                                    <h3>@Model.NavRightCenter.Title</h3>
+                                    <h3 class="cuprum-regular">@Model.NavRightCenter.Title</h3>
                                 </div>
                             </a>
-                            <a href="/Categories/Show/@Model.NavRightCenter.Category.Slug" class="theme">@Model.NavRightCenter.Category.Title</a>
+                            <a href="/Categories/Show/@Model.NavRightCenter.Category.Slug" class="theme cuprum-regular">@Model.NavRightCenter.Category.Title</a>
                             
                         </article>
 
@@ -57,7 +57,7 @@
                                     <h3>@Model.NavRightBottom.Title</h3>
                                 </div>
                             </a>
-                            <a href="/Categories/Show/@Model.NavRightBottom.Category.Slug" class="theme">@Model.NavRightBottom.Category.Title</a>
+                            <a href="/Categories/Show/@Model.NavRightBottom.Category.Slug" class="theme cuprum-regular">@Model.NavRightBottom.Category.Title</a>
                            
                         </article>
                     </div>

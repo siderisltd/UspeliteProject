@@ -27,7 +27,7 @@
                                             <article>
                                                 <a href="/@art.Slug"><img src="/@art.MainArticlePic.Resized400Picture" width="190" height="140" alt=""></a>
                                                 <h3>
-                                                    <a href="/@art.Slug">@art.Title</a>
+                                                    <a href="/@art.Slug">@art.Title.Substring(0, art.Title.Length -1 > 65? 65 : art.Title.Length - 1) ...</a>
                                                 </h3>
                                             </article>
                                         }

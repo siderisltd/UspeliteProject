@@ -667,6 +667,10 @@
     <Content Include="Content\Custom\Fonts\essb-socialfollowers.ttf" />
     <Content Include="Content\Custom\Fonts\essb-socialfollowers.woff" />
     <Content Include="Areas\Management\Views\ManageArticles\Index.cshtml" />
+    <Content Include="Content\Custom\Fonts\Cuprum-Bold.ttf" />
+    <Content Include="Content\Custom\Fonts\Cuprum-BoldItalic.ttf" />
+    <Content Include="Content\Custom\Fonts\Cuprum-Italic.ttf" />
+    <Content Include="Content\Custom\Fonts\Cuprum-Regular.ttf" />
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
