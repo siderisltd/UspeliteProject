@@ -25,7 +25,7 @@
         }
 
         //TODO: Make generic cache that recaches the top from all categories when entity is inserted
-        [OutputCache(Duration = 5, VaryByParam = "none")]
+        [OutputCache(Duration = 5 * 60, VaryByParam = "none")]
         public ActionResult GetSlider()
         {
             var sliderArticles = this.articlesService.All().Where(x => x.Place != ArticlePlaceType.Normal).ToList().AsQueryable();
@@ -68,21 +68,21 @@
             return this.PartialView("_Slider", model);
         }
 
-        [OutputCache(Duration = 5, VaryByParam = "none")]
+        [OutputCache(Duration = 5 * 60, VaryByParam = "none")]
         public ActionResult GetSideBar()
         {
             var model = this.articlesService.GetTopArticles(ArticleTopFactor.Rating, 3).To<CategoryAndPostsViewModel>().ToList();
             return this.PartialView("_Sidebar", model);
         }
 
-        [OutputCache(Duration = 5, VaryByParam = "none")]
+        [OutputCache(Duration = 5 * 60, VaryByParam = "none")]
         public ActionResult GetClientNavigation()
         {
             Dictionary<CategoryViewModel, Dictionary<CategoryViewModel, IEnumerable<ArticleViewModel>>> model = GetCategoriesAndSubCategories();
             return this.PartialView("_ClientNavigation", model);
         }
 
-        [OutputCache(Duration = 5, VaryByParam = "none")]
+        [OutputCache(Duration = 5 * 60, VaryByParam = "none")]
         public ActionResult GetMobileClientNavigation()
         {
             Dictionary<CategoryViewModel, Dictionary<CategoryViewModel, IEnumerable<ArticleViewModel>>> model = GetCategoriesAndSubCategories();

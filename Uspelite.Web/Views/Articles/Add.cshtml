@@ -188,8 +188,9 @@
         $('#preview-button').on('click', function() {
             saveAs('Draft');
             var slug = $('#Slug').val();
-
-            window.open(document.location.origin + '/' + slug, '_blank');
+            setTimeout(function () {
+                window.open(document.location.origin + '/' + slug, '_blank');
+            }, 1000);
         });
         //END EVENTS
 
@@ -309,17 +310,25 @@
             debugger;
             var editor = $("#Content").data("kendoEditor");
             var videoUrl = $('#insert-video-url-input').val();
+            
+            var isYoutubeVideoPattern = /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&"'>]+)/;
+            var isYoutubeVideo = isYoutubeVideoPattern.test(videoUrl);
+
+            if (!isYoutubeVideo) {
+                editor.exec("inserthtml", { value: "Only youtube videos are allowed" });
+            }
 
             var videoLinkPromise = new Promise(function (resolve, reject) {
                 resolve(GenerateVideoEmbedUrl(videoUrl));
 
                 if (false) {
-                    reject("error inserting video");
+                    reject("error inserting video.");
                 }
             });
 
             videoLinkPromise.then(function(result) {
                 debugger;
+                
                 var htmlEmbedLink = '<div class="video-container" id="video-container"><iframe width="560" height="315" src="' + result + '" frameborder="0" allowfullscreen></iframe></div>';
 
                 editor.exec("inserthtml", { value: htmlEmbedLink });
@@ -330,7 +339,7 @@
         }
 
         function GenerateVideoEmbedUrl(videoUrl) {
-            return $.get('/Videos/GetEmbedLink', { videoUrl: videoUrl }, function(embedLink) {
+            return $.get('/Videos/GetEmbedLink', { videoUrl: videoUrl }, function (embedLink) {
             });
         }
 

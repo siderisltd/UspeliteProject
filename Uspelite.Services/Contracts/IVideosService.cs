@@ -9,5 +9,9 @@
         IQueryable<Video> All();
 
         PagedVideoDTO AllPaged(int page, int pageSize, int? categoryId = null);
+
+        void SaveChanges();
+
+        void Add(Video videoAsDbModel);
     }
 }

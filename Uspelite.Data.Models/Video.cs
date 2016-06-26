@@ -35,9 +35,9 @@
         [Required]
         public string VideoUrl { get; set; }
 
+        [Required]
         public int CategoryId { get; set; }
 
-        [Required]
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
 

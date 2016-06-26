@@ -287,6 +287,11 @@
         {
             var itemsToSkip = (page - 1) * pageSize;
 
+            if (string.IsNullOrEmpty(query))
+            {
+                query = "успелите";
+            }
+
             var resultsInTitles = this.repo
                                       .All()
                                       .Search(x => x.Title.ToLower())

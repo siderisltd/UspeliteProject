@@ -50,6 +50,16 @@
 
             return dto;
         }
+
+        public void SaveChanges()
+        {
+            this.repo.SaveChanges();
+        }
+
+        public void Add(Video videoAsDbModel)
+        {
+            this.repo.Add(videoAsDbModel);
+        }
     }
 }
 
