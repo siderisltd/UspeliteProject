@@ -7,11 +7,18 @@
     <nav id="menu" class="both">
         <ul class="nav clearfix">
 
+            @{
+                var availableNavClasses = new string[] { "cat-news", "cat-interview", "cat-society", "cat-business", "cat-sports", "cat-culture", "cat-personal" };
+                var counter = 0;
+            }
+
+
             @foreach (var mod in Model)
             {
                 var chosenClassName = "current";
+                var currentClassName = availableNavClasses[counter % (availableNavClasses.Length)];
 
-                <li class="cat-news">
+                <li class="cat-news @currentClassName">
                     <a href="/Categories/Show/@mod.Key.Slug">@mod.Key.Title</a>
                     <!-- start:submenu-news -->
                     <div class="subnav-container">
@@ -34,6 +41,7 @@
                                     </div>
                                 </li>
                                 @(chosenClassName = "")
+                                counter++;
                             }
                         </ul>
                     </div>

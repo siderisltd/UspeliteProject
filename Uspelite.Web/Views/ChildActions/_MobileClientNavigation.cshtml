@@ -2,6 +2,12 @@
 
 
 
+@{
+    var availableNavClasses = new string[] { "cat-news", "cat-interview", "cat-society", "cat-business", "cat-sports", "cat-culture", "cat-personal" };
+    var counter = 0;
+}
+
+
 
 <div id="sidr" class="sidr right" style="display: none;">
 
@@ -14,7 +20,9 @@
     <ul>
         @foreach (var parent in Model)
         {
-            <li class="cat-news">
+            var currentClassName = availableNavClasses[counter % (availableNavClasses.Length)];
+
+            <li class="cat-news @currentClassName">
                 <a class="more" href="#"><i class="fa fa-angle-down"></i></a>
                 <a href="/Categories/Show/@parent.Key.Slug">@parent.Key.Title</a>
                 @foreach (var category in parent.Value)
@@ -24,6 +32,7 @@
                     </ul>
                 }
             </li>
+            counter++;
         }
 
         <li class="cat-news">
