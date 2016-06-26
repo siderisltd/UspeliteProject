@@ -1,100 +1,91 @@
-﻿@font-face {
-    font-family: 'Cuprum-Bold';
-    src: url('Custom/Fonts/Cuprum-Bold.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Cuprum-BoldItalic';
-    src: url('Custom/Fonts/Cuprum-BoldItalic.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Cuprum-Italic';
-    src: url('Custom/Fonts/Cuprum-Italic.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Cuprum-Regular';
-    src: url('Custom/Fonts/Cuprum-Regular.ttf') format('truetype');
-}
-
-
-html, body, div, span,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, address, em, img, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li, input,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, figure, figcaption, footer, header, hgroup,
-menu, nav, section {
+﻿html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+address,
+em,
+img,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+input,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
     margin: 0;
     padding: 0;
 }
-
-
 .dl-horizontal dt {
     white-space: normal;
 }
-
-
 .rating-container {
     display: block;
     width: 100%;
 }
-
-
-
-
 #page-slider {
     margin: 0 auto;
     left: 42px;
 }
-
-@media ( min-width: 991px ) {
-    div.col-sm-6 article a img.img-responsive {
-        height: 150px;
-        width: 266px;
-    }
-}
-
-@media ( min-width: 768px ) {
-    div.col-sm-6 article a img.img-responsive {
-        height: 150px;
-        width: 266px;
-    }
-}
-
-/*@media ( min-width: 430px ) {
-    div.col-sm-6 article a img.img-responsive {
-        height: 150px;
-        width: 266px;
-    }
-}*/
-
 #header-branding > div > div > form > div > div {
     width: 400px;
     position: absolute;
     top: 40px;
     left: 250px;
 }
-
-/*#article-post {
-    width: 690px;
-}*/
-
-#article-post img {
-    max-width: 100%;
-    height: auto;
+#header-branding #search-form input {
+    width: 90%;
 }
-
-@media ( min-width: 992px ) {
-    #related-articles-section article img {
-        max-height: 130px;
-    }
+#header-branding #search-form button {
+    width: 10%;
+    float: right;
 }
-
 
 .uspelite-close-button {
     font-size: 20px;
@@ -106,46 +97,684 @@ menu, nav, section {
     filter: alpha(opacity=20);
     text-decoration: none;
 }
-
-    .uspelite-close-button:hover {
-        color: #000000;
-        text-decoration: none;
-        opacity: 0.4;
-        cursor: pointer;
-    }
-
-
+.uspelite-close-button:hover {
+    color: #000000;
+    text-decoration: none;
+    opacity: 0.4;
+    cursor: pointer;
+}
 #slider-wrapper {
     left: -42px !important;
 }
-
 .display-none {
     display: none;
 }
-
 #home-pagination-nav {
     text-align: center;
 }
-
 .small-articles {
     margin-top: 15px;
 }
-
 .categories-wrapper img {
     width: 100%;
     height: auto;
     max-height: 200px;
 }
-
 .categories-wrapper .category-link {
     width: 100%;
 }
+/* Navigation */
+
+#menu ul > li > a {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+@media (max-width: 1169px) {
+    #header-navigation .subnav-posts article:last-child {
+	display:none;
+    }
+}
+
+/* Featured Articles */
+.container.featured-articles .row{
+    margin-right: 0;
+    margin-left: 0;
+}
+.container.featured-articles .row .col-sm-8 {
+    padding:0;
+}
+.container.featured-articles .row .col-sm-4 {
+    padding:0;
+    padding-left: 8px;
+}
+.container.featured-articles .row article {
+    overflow: hidden;
+}
+.container.featured-articles .row .col-sm-4 article:last-child {
+    margin-top: 10px;
+}
+
+.container.featured-articles .row article .overlay {
+    padding-bottom: 5px;
+}
+
+.container.featured-articles .row article .overlay p {
+    margin:0;
+}
+
+.container.featured-articles .row article .overlay h2 {
+    font: 400 30px/36px "Cuprum", sans-serif;
+}
+.container.featured-articles .row article .overlay h3 {
+    font: 400 18px "Cuprum", sans-serif;
+}
+
+@media (max-width: 767px) {
+    .container.featured-articles .row .col-sm-4,
+    .container.featured-articles .row .col-sm-8 {
+	padding-left: 10px;
+	padding-right: 10px;
+    }
+    .container.featured-articles .row .col-sm-8 {
+	margin-bottom: 10px;
+    }
+}
+
+/* Sidebar */
+#page-content #sidebar header h2 {
+    font: 400 20px 'Cuprum', sans-serif;
+}
+
+#sidebar header .social-buttons-wrapper img {
+    width: 20%;
+    height: auto;
+}
+
+/* Newest Articles */
+#page-content #main .row .row:first-child {
+    background-color: #51A88E;
+    border-bottom: 1px solid #ddd;
+}
+#page-content #main .row .row:first-child header {
+    padding: 15px;
+    border: none;
+}
+#page-content #main .row .row:first-child header h2 {
+    border: none;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    font: 400 26px "Cuprum", sans-serif;
+    text-transform: uppercase;
+}
+/* Start Article */
+
+#article-post {
+    font: 300 15px "Roboto Condensed", sans-serif;
+}
+
+#article-post img {
+    max-width: 100%;
+}
+#article-post blockquote p {
+    font-size: 16px;
+}
+#article-post blockquote {
+    background: none;
+}
+#article-post iframe {
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#article-post blockquote:before,
+#article-post blockquote:after,
+#article-post footer .author-box a,
+#article-post .post-meta-box a {
+    color: #50A78D;
+}
+/*  Start Images main column */
+
+.col-sm-6.small-articles .linkbox.cat-sports,
+.col-md-9.home-main-column .linkbox.large.cat-news {
+    overflow: hidden;
+}
+.col-md-9.home-main-column .linkbox.large.cat-news {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.col-sm-6.small-articles .img-responsive,
+.col-sm-6 .img-responsive {
+    width: 100%;
+    max-height: 400%;
+    height: auto;
+}
+.linkbox.cat-sports,
+.linkbox.large.cat-news {
+    position: relative;
+}
+.linkbox.cat-sports:before,
+.linkbox.large.cat-news:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: 56.25%;
+}
+.linkbox.cat-sports > a > img,
+.linkbox.large.cat-news > a > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 100%;
+    width: 100%;
+    max-height: inherit;
+}
+#sidebar article.clearfix a {
+    overflow: hidden;
+    float: left;
+    height: 56px;
+}
+#sidebar article.clearfix a img {
+    float: none;
+    width: 100px;
+}
+@media (max-width: 844px) {
+    .col-sm-6.small-articles .linkbox.cat-sports > a > img {
+        width: 100%;
+    }
+}
+/* Start Category */
+
+article.linkbox.cat-showtime {
+    overflow: hidden;
+}
+article.linkbox.cat-showtime:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: 56.25%;
+}
+article.linkbox.cat-showtime {
+    position: relative;
+    height: auto;
+}
+article.linkbox.cat-showtime:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: 56.25%;
+}
+article.linkbox.cat-showtime > a > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 100%;
+    width: 100%;
+    max-height: inherit;
+}
+@media (max-width: 768px) {
+    .categories-wrapper .row .col-sm-6:last-child {
+        padding-top: 15px;
+    }
+}
+
+/* Fonts */
+
+#page-header #header-branding h1 span.heading {
+    font: 400 42px/46px 'Cuprum', sans-serif;
+}
+article.linkbox .overlay h2 {
+    font: 400 30px/36px 'Roboto Condensed', sans-serif;
+}
+#article-post header h1 {
+    font: 400 30px/36px 'Cuprum', sans-serif;
+}
+.home-main-column article.linkbox .overlay h2 {
+    font: 400 30px/36px 'Cuprum', sans-serif;
+}
+
+article.linkbox .overlay h3 {
+    font: 400 18px/20px 'Cuprum', sans-serif;
+}
+#sidebar .module-news article h3,
+.news-layout .row article h3 {
+    font: 400 16px 'Roboto Condensed', sans-serif;
+}
+#page-content header h2 {
+    font: 300 17px/17px 'Roboto Condensed', sans-serif;
+}
+article.linkbox a.theme {
+    font: 700 13px "Roboto Condensed", sans-serif;
+    text-transform: uppercase;
+    padding: 5px 10px 5px 3px;
+}
+#header-navigation .subnav-posts article h3 {
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 700;
+    text-align: left;
+}
+
+#header-navigation ul li .subnav-posts h3 a {
+    font-size: 14px;
+}
+
+#page-content .news-layout header h2 {
+    font: 400 20px "Cuprum", sans-serif;
+}
+
+#page-content .col-md-3 .news-layout header h2,
+#page-content .col-md-3 .news-layout header h2 a {
+    color: #50A78D;
+}
+
+article span.published {
+    font: 300 11px "Roboto Condensed", sans-serif;
+    color: #444;
+}
+
+section.news-layout article span.text p {
+    font: 300 italic 14px "Roboto Condensed", sans-serif;
+}
+
+/* Remove .ad styles to fix the bonation button*/
+
+.social-buttons-wrapper img {
+    margin-right: 12px;
+    width: 20%;
+    height: auto;
+}
+/* Start Donation Page */
+
+.dark-bg-page {
+    background-color: #444;
+}
+.dark-bg-page .title h2
+ {
+    font: 400 36px "Cuprum", sans-serif;
+    color: #50A78D;
+}
+.dark-bg-page .team-layout h3 {
+    padding: 20px 0;
+    font: 400 26px "Cuprum", sans-serif;
+    color: #fff;
+}
+.dark-bg-page .team-layout .text {
+    font: 300 15px "Roboto Condensed", sans-serif;
+}
+.dark-bg-page .team-layout form.epay-form {
+    text-align: center;
+    padding: 20px 0;
+}
+.dark-bg-page .team-layout .donation-form {
+    display: inline-block;
+    color: #3e3e3e;
+}
+.dark-bg-page .team-layout .donation-form input[name="TOTAL"] {
+    height: 30px;
+    font-size: 24px;
+    text-align: right;
+    width: 70px;
+    font-family: "Cuprum", sans-serif;
+    font-weight: bold;
+    border: none;
+    padding: 3px;
+}
+.dark-bg-page .team-layout .donation-form span.currency {
+    font-size: 26px;
+    color: #fff;
+    font-family: "Cuprum", sans-serif;
+    font-weight: bold;
+    position: relative;
+    top: 2px;
+    padding: 0 10px;
+}
+.dark-bg-page .team-layout .donation-form input.epay-button {
+    background-color: #fcde59;
+    border: none;
+    padding: 5px 20px;
+    font-family: "Cuprum", sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+}
+.dark-bg-page .team-layout .donation-form .description {
+    color: #ccc9c7;
+    font: 400 13px "Roboto Condensed", sans-serif;
+}
+.dark-bg-page .team-layout .donation-form .description a {
+    font: 400 13px "Cuprum", sans-serif;
+}
+.dark-bg-page .team-layout .coffee {}
+/* End Donation Page */
+
+
+/* Colors Header */
+
+  /* Good from the day */
+
+#header-navigation ul li.cat-news a,
+#header-navigation ul li.cat-news .dropnav-container ul.dropnav-menu,
+#header-navigation ul li.cat-news .dropnav-container ul.dropnav-menu li,
+.sidr ul li.cat-news a {
+    border-color: #51A88E;
+}
+
+#header-navigation ul li.cat-news .subnav-menu,
+#header-navigation ul li.cat-news:hover .subnav-menu a,
+#header-navigation ul li.cat-news .dropnav-container ul li a:hover {
+    background: #51A88E;
+}
+
+#header-navigation ul li.cat-news a:hover,
+#header-navigation ul li.cat-news:hover a,
+#header-navigation ul li.cat-news.current a,
+#header-navigation ul li.cat-news .subnav-container,
+#header-navigation ul li.cat-news .subnav-menu a:hover,
+#header-navigation ul li.cat-news .subnav-menu .current a,
+#header-navigation-sub nav.cat-news,
+.sidr ul li.cat-news a:hover {
+    background: #45987f;
+}
+
+.linkbox.cat-news a:hover .overlay {
+    background: rgba(69,152,127, 0.8);
+}
+
+  /* Sports */
+#header-navigation ul li.cat-sports a,
+#header-navigation ul li.cat-sports .dropnav-container ul.dropnav-menu,
+#header-navigation ul li.cat-sports .dropnav-container ul.dropnav-menu li,
+.sidr ul li.cat-sports a {
+    border-color: #59C9FC;
+}
+
+#header-navigation ul li.cat-sports .subnav-menu,
+#header-navigation ul li.cat-sports:hover .subnav-menu a,
+#header-navigation ul li.cat-sports .dropnav-container ul li a:hover {
+    background: #59C9FC;
+}
+
+#header-navigation ul li.cat-sports a:hover,
+#header-navigation ul li.cat-sports:hover a,
+#header-navigation ul li.cat-sports.current a,
+#header-navigation ul li.cat-sports .subnav-container,
+#header-navigation ul li.cat-sports .subnav-menu a:hover,
+#header-navigation ul li.cat-sports .subnav-menu .current a,
+#header-navigation-sub nav.cat-sports,
+.sidr ul li.cat-sports a:hover {
+    background: #41b4e8;
+}
+
+.linkbox.cat-sports a:hover .overlay {
+    background: rgba(89,201,252, 0.8);
+}
+
+  /* Business */
+#header-navigation ul li.cat-business a,
+#header-navigation ul li.cat-business .dropnav-container ul.dropnav-menu,
+#header-navigation ul li.cat-business .dropnav-container ul.dropnav-menu li,
+.sidr ul li.cat-business a {
+    border-color: #5978FC;
+}
+
+#header-navigation ul li.cat-business .subnav-menu,
+#header-navigation ul li.cat-business:hover .subnav-menu a,
+#header-navigation ul li.cat-business .dropnav-container ul li a:hover {
+    background: #5978FC;
+}
+
+#header-navigation ul li.cat-business a:hover,
+#header-navigation ul li.cat-business:hover a,
+#header-navigation ul li.cat-business.current a,
+#header-navigation ul li.cat-business .subnav-container,
+#header-navigation ul li.cat-business .subnav-menu a:hover,
+#header-navigation ul li.cat-business .subnav-menu .current a,
+#header-navigation-sub nav.cat-business,
+.sidr ul li.cat-business a:hover {
+    background: #415fe0;
+}
+
+.linkbox.cat-business a:hover .overlay {
+    background: rgba(89,120,252, 0.8);
+}
+
+  /* Culture */
+#header-navigation ul li.cat-culture a,
+#header-navigation ul li.cat-culture .dropnav-container ul.dropnav-menu,
+#header-navigation ul li.cat-culture .dropnav-container ul.dropnav-menu li,
+.sidr ul li.cat-culture a {
+    border-color: #FC8B59;
+}
+
+#header-navigation ul li.cat-culture .subnav-menu,
+#header-navigation ul li.cat-culture:hover .subnav-menu a,
+#header-navigation ul li.cat-culture .dropnav-container ul li a:hover {
+    background: #FC8B59;
+}
+
+#header-navigation ul li.cat-culture a:hover,
+#header-navigation ul li.cat-culture:hover a,
+#header-navigation ul li.cat-culture.current a,
+#header-navigation ul li.cat-culture .subnav-container,
+#header-navigation ul li.cat-culture .subnav-menu a:hover,
+#header-navigation ul li.cat-culture .subnav-menu .current a,
+#header-navigation-sub nav.cat-culture,
+.sidr ul li.cat-culture a:hover {
+    background: #e27341;
+}
+
+.linkbox.cat-culture a:hover .overlay {
+    background: rgba(252,139,89, 0.8);
+}
+
+  /* Interviews */
+#header-navigation ul li.cat-interview a,
+#header-navigation ul li.cat-interview .dropnav-container ul.dropnav-menu,
+#header-navigation ul li.cat-interview .dropnav-container ul.dropnav-menu li,
+.sidr ul li.cat-interview a {
+    border-color: #FCDD59;
+}
+
+#header-navigation ul li.cat-interview .subnav-menu,
+#header-navigation ul li.cat-interview:hover .subnav-menu a,
+#header-navigation ul li.cat-interview .dropnav-container ul li a:hover {
+    background: #FCDD59;
+}
+
+#header-navigation ul li.cat-interview a:hover,
+#header-navigation ul li.cat-interview:hover a,
+#header-navigation ul li.cat-interview.current a,
+#header-navigation ul li.cat-interview .subnav-container,
+#header-navigation ul li.cat-interview .subnav-menu a:hover,
+#header-navigation ul li.cat-interview .subnav-menu .current a,
+#header-navigation-sub nav.cat-interview,
+.sidr ul li.cat-culture a:hover {
+    background: #e4c43b;
+}
+
+.linkbox.cat-interview a:hover .overlay {
+    background: rgba(252,221,89, 0.8);
+}
+
+  /* Society */
+#header-navigation ul li.cat-society a,
+#header-navigation ul li.cat-society .dropnav-container ul.dropnav-menu,
+#header-navigation ul li.cat-society .dropnav-container ul.dropnav-menu li,
+.sidr ul li.cat-society a {
+    border-color: #82A551;
+}
+
+#header-navigation ul li.cat-society .subnav-menu,
+#header-navigation ul li.cat-society:hover .subnav-menu a,
+#header-navigation ul li.cat-society .dropnav-container ul li a:hover {
+    background: #82A551;
+}
+
+#header-navigation ul li.cat-society a:hover,
+#header-navigation ul li.cat-society:hover a,
+#header-navigation ul li.cat-society.current a,
+#header-navigation ul li.cat-society .subnav-container,
+#header-navigation ul li.cat-society .subnav-menu a:hover,
+#header-navigation ul li.cat-society .subnav-menu .current a,
+#header-navigation-sub nav.cat-society,
+.sidr ul li.cat-society a:hover {
+    background: #6f923f;
+}
+
+.linkbox.cat-society a:hover .overlay {
+    background: rgba(130,165,81, 0.8);
+}
+
+    /* Personal */
+#header-navigation ul li.cat-personal a,
+#header-navigation ul li.cat-personal .dropnav-container ul.dropnav-menu,
+#header-navigation ul li.cat-personal .dropnav-container ul.dropnav-menu li,
+.sidr ul li.cat-personal a {
+    border-color: #FC5978;
+}
+
+#header-navigation ul li.cat-personal .subnav-menu,
+#header-navigation ul li.cat-personal:hover .subnav-menu a,
+#header-navigation ul li.cat-personal .dropnav-container ul li a:hover {
+    background: #FC5978;
+}
+
+#header-navigation ul li.cat-personal a:hover,
+#header-navigation ul li.cat-personal:hover a,
+#header-navigation ul li.cat-personal.current a,
+#header-navigation ul li.cat-personal .subnav-container,
+#header-navigation ul li.cat-personal .subnav-menu a:hover,
+#header-navigation ul li.cat-personal .subnav-menu .current a,
+#header-navigation-sub nav.cat-personal,
+.sidr ul li.cat-personal a:hover {
+    background: #da4863;
+}
+
+.linkbox.cat-personal a:hover .overlay {
+    background: rgba(252,89,120, 0.8);
+}
+
+/* Colors Content */
+
+  /* Article */
+
+    /* Good from the day */
+article.cat-news a.theme,
+article a.theme.cat-news,
+#page-content .section-news header span.borderline,
+#page-content .cat-news .theme,
+#article-post.cat-news .progress-bar,
+#article-post.cat-news .score-overall {
+    background: #51A88E;
+}
+
+.section-news header h2 a,
+#article-post.cat-news .review ul.good li i.fa {
+    color: #51A88E;
+}
+
+    /* Sports */
+article.cat-sports a.theme,
+article a.theme.cat-sports,
+#page-content .section-sports header span.borderline,
+#page-content .cat-sports .theme,
+#article-post.cat-sports .progress-bar,
+#article-post.cat-sports .score-overall {
+    background: #59C9FC;
+}
+
+.section-sports header h2 a,
+#article-post.cat-sports .review ul.good li i.fa {
+    color: #59C9FC;
+}
+
+    /* Business */
+article.cat-business a.theme,
+article a.theme.cat-business,
+#page-content .section-business header span.borderline,
+#page-content .cat-business .theme,
+#article-post.cat-business .progress-bar,
+#article-post.cat-business .score-overall {
+    background: #5978FC;
+}
+
+.section-business header h2 a,
+#article-post.cat-business .review ul.good li i.fa {
+    color: #5978FC;
+}
+
+    /* Culture */
+article.cat-culture a.theme,
+article a.theme.cat-culture,
+#page-content .section-culture header span.borderline,
+#page-content .cat-culture .theme,
+#article-post.cat-culture .progress-bar,
+#article-post.cat-culture .score-overall {
+    background: #FC8B59;
+}
+
+.section-culture header h2 a,
+#article-post.cat-culture .review ul.good li i.fa {
+    color: #FC8B59;
+}
+
+    /* Interview */
+article.cat-interview a.theme,
+article a.theme.cat-interview,
+#page-content .section-interview header span.borderline,
+#page-content .cat-interview .theme,
+#article-post.cat-interview .progress-bar,
+#article-post.cat-interview .score-overall {
+    background: #FCDD59;
+}
+
+.section-interview header h2 a,
+#article-post.cat-interview .review ul.good li i.fa {
+    color: #FCDD59;
+}
+
+    /* Society */
+article.cat-society a.theme,
+article a.theme.cat-society,
+#page-content .section-society header span.borderline,
+#page-content .cat-society .theme,
+#article-post.cat-society .progress-bar,
+#article-post.cat-society .score-overall {
+    background: #82A551;
+}
+
+.section-society header h2 a,
+#article-post.cat-society .review ul.good li i.fa {
+    color: #82A551;
+}
+
+    /* Personal */
+article.cat-personal a.theme,
+article a.theme.cat-personal,
+#page-content .section-personal header span.borderline,
+#page-content .cat-personal .theme,
+#article-post.cat-personal .progress-bar,
+#article-post.cat-personal .score-overall {
+    background: #FC5978;
+}
+
+.section-personal header h2 a,
+#article-post.cat-personal .review ul.good li i.fa {
+    color: #FC5978;
+}
+
 
 .cuprum-bold {
     font-family: "Cuprum-Bold", "Times New Roman", Times, serif !important;
-}
 
-.cuprum-bold-italic {
+
+    .cuprum-bold-italic {
     font-family: "Cuprum-BoldItalic", "Times New Roman", Times, serif !important;
 }
 

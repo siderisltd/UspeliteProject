@@ -6,20 +6,20 @@
 </header>
 
 
-<div class="top-nav">
-    <div class="container">
-        <nav class="top">
-            <ul class="inline">
-                <li class="topnav"><a href="/">ИНИЦИАТИВИ</a></li>
-                <li class="topnav"><a href="/">ВЪЗМОЖНОСТИ</a></li>
-                <li class="topnav">@(Html.ActionLink<HomeController>("КОИ СМЕ НИЕ?", x => x.About()))</li>
-                <li class="topnav"><a href="/">ПАРТНЬОРИ</a></li>
-            </ul>
-            <div class="login">
-                @Html.Partial("~/Views/Shared/_LoginPartial.cshtml")
-            </div>
-        </nav>
-    </div>
+<div class="top-nav"> 
+	<div class="container">
+		<nav class="top">
+			<ul class="inline">
+				<li class="topnav"><a href="/">ИНИЦИАТИВИ</a></li>
+				<li class="topnav"><a href="/">ВЪЗМОЖНОСТИ</a></li>
+			    <li class="topnav">@(Html.ActionLink<HomeController>("КОИ СМЕ НИЕ?", x => x.About()))</li>
+				<li class="topnav"><a href="/">ПАРТНЬОРИ</a></li>
+			</ul>
+			<div class="login">
+			    @Html.Partial("~/Views/Shared/_LoginPartial.cshtml")
+			</div>
+		</nav>
+	</div>
 </div>
 
 <header id="page-header" class="hidden-xs">
@@ -28,31 +28,24 @@
             <div class="row">
                 <div class="col-sm-6 col-md-4">
                     <h1>
-                        <a href="/"><img id="logo-img" src="~/Content/Pics/UspeliteLogoNew.png" alt="uspelite"></a>
+                        <a href="/"><img id="logo-img" src="~/Content/Pics/UspeliteLogoNew.png" alt="uspelite"></a> 
                         <span class="heading cuprum-regular">Успелите.БГ</span>
                     </h1>
                 </div>
-
-                @using (Html.BeginForm("Articles", "Search", FormMethod.Get))
-                {
-                    <div class="col-sm-6 col-md-4 text-center">
-                        <!-- start search -->
-                        <div class="search-form-wrapper col-sm-4">
-                            <form id="search-form" name="search-form">
-                                <div class="input-group">
-                                    <input class="form-control" name="query" placeholder="Търсете..." type="text" />
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-                                    </span>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- end search -->
-                    </div>
-                }
+		<div class="col-sm-6 col-md-4 col-md-offset-4">
+		
+		
+                    @using (Html.BeginForm("Articles", "Search", FormMethod.Get, new {id = "search-form"}))
+                    {
+                                <form id="search-form" name="search-form">
+                                        <input name="query" placeholder="Търсете..." type="text" />
+                                            <button type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                                </form>
+                    }
+                   </div>
+		</div>
             </div>
         </div>
-    </div>
 
     <div id="header-navigation">
         @(Html.Action<ChildActionsController>(x => x.GetClientNavigation()))

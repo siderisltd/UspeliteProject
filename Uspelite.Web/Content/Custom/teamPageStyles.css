@@ -10,34 +10,39 @@
 	background-color: #444444;
 	font-family: 'Cuprum', sans-serif;
 	color: #ccc9c7;
+	padding: 20px 0;
  }
  
-.title h2, .logo-container .logo {
+.title h2, .logo-container .logo, .divider .coffee {
   display: inline-block;
   padding: 0 15px;
   position: relative;
-  color: #86e2d5;
+  color: #fff;
   font-size: 36px;
 }
 
 .title h2:before,
 .title h2:after,
 .logo-container .logo:before,
-.logo-container .logo:after {
+.logo-container .logo:after,
+.divider .coffee:after,
+.divider .coffee:before {
   background: #c8c5c3;
   content: "";
   display: block;
   height: 1px;
   position: absolute;
     top: 50%;
-  width: 400%;
+  width: 500%;
 }
 .title h2:before,
-.logo-container .logo:before {
+.logo-container .logo:before,
+.divider .coffee:before {
   right: 100%;
 }
 .title h2:after,
-.logo-container .logo:after {
+.logo-container .logo:after,
+.divider .coffee:after {
   left: 100%;
 }
 .title,
@@ -83,22 +88,22 @@
 }
 
 .team-member-left .member-name, .team-member-right .member-name {
-	font-size: 20px;
 	color: #fff;
+	font: 400 20px "Cuprum", sans-serif;
 }
 
 .team-member-left .member-position, .team-member-right .member-position {
 	color: #86e2d5;
-	font-size: 18px;
+	font: 400 18px "Roboto Condensed", sans-serif;
 }
 
 .team-member-left .member-bio {
-	
+	font: 300 14px "Roboto Condensed", sans-serif;
 }
 
 .team-member-left .member-social-profiles, .team-member-right .member-social-profiles {
 	color: #86e2d5;
-	font-size: 16px;
+	font: 400 16px "Cuprum", sans-serif;
 }
 
 

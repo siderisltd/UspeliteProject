@@ -25,32 +25,24 @@
         </p>
     </div>
 
-    <div class="title">
-        <h2>А ние сме:</h2>
-    </div>
-
-</div>
-
-
 
 <form class="epay-form" action="https://www.epay.bg/v3main/paylogin" method="POST" target="_blank">
-    <table class="epay-view" width="350" cellspacing="1" cellpadding="4">
-        <tbody>
-            <tr>
-                <td class="epay-view-header" align="center">Описание</td>
-                <td class="epay-view-header" align="center">Сума</td>
-            </tr>
-            <tr>
-                <td class="epay-view-value"><b>Подрепете Младите Успели Българи</b></td>
-                <td class="epay-view-name"><input name="TOTAL" size="5" type="text" value="10.00" /> BGN</td>
-            </tr>
-            <tr>
-                <td class="epay-view-name" colspan="2"><input class="epay-button" name="BUTTON:EPAYNOW" type="submit" value="Подкрепи" /></td>
-            </tr>
-            <tr>
-                <td class="epay-view-value" style="white-space: normal; font-size: x-small;" colspan="2">Плащането се осъществява чрез <a class="epay" href="https://www.epay.bg/">ePay.bg</a> - Интернет системата за плащане с банкови карти и микросметки</td>
-            </tr>
-        </tbody>
-    </table>
+
+	<div class="donation-form">
+		<input name="TOTAL" size="5" type="text" value="10" />
+		<span class="currency">BGN</span>
+		<input class="epay-button" name="BUTTON:EPAYNOW" type="submit" value="Почерпи" />
+		<div class="description">Плащането се осъществява чрез <a class="epay" href="https://www.epay.bg/">ePay.bg</a></div>
+	</div> 
+
     <input name="MIN" type="hidden" value="0054344954" /><input name="DESCR" type="hidden" value="Подрепете Младите Успели Българи" /><input name="URL_OK" type="hidden" value="http://uspelite.com/donation?success=1" /><input name="URL_CANCEL" type="hidden" value="http://uspelite.com/donation" /><input name="ENCODING" type="hidden" value="utf8" /> <input name="CHECKSUM" type="hidden" value="f81a9c366d2f5714c21affb7c74f702f7af14f5a" />
 </form>
+
+<div class="divider title">
+<div class="coffee" style="display: inline-block">
+<img src="/Content/Imgs/chashka-kafe.png">
+</div>
+  
+</div>
+
+</div>

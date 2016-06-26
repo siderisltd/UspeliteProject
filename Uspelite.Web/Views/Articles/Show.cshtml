@@ -43,6 +43,9 @@
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Дата @Model.CreatedOn.ToString("M dd yyyy", CultureInfo.GetCultureInfo("bg-BG"))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Час @Model.CreatedOn.ToString("HH:mm", CultureInfo.GetCultureInfo("bg-BG")) </span>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="/Categories/Show/@Model.Category.Slug">@Model.Category.Title</a></span>
     </p>*@
+
+    @Html.Partial("_ShareButtons")
+
     <p>
         @Html.Raw(Model.SanitizedFullContent)
     </p>
@@ -52,7 +55,7 @@
     <footer>
         <h3>Споделете статията</h3>
 
-       @Html.Partial("_ShareButtons")
+       
 
         <div class="author-box">
             <img src="/@Model.Author.ProfileImage.Resized400Picture" width="115" height="115" alt="" class="img-circle">

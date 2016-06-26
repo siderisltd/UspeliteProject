@@ -13,12 +13,12 @@
         </a>
 	</section>
 	
-	<section>
-		<header>
+    <section>
+        <header>
             <h2>В социалните мрежи</h2>
             <span class="borderline"></span>
         </header>
-		<div class="social-buttons-wrapper">
+        <div class="social-buttons-wrapper">
             <a href="https://www.facebook.com/MladiteUspeliBulgari/">
                 <img src="~/Content/Pics/socialButtons/сиви/facebook-social-icon.png" width="50" height="50" class="img-circle" alt="facebook-social-icon" />
             </a>
@@ -33,11 +33,11 @@
             </a>
 
             @*<img src="~/Content/Pics/socialButtons/сиви/linkedin-social-icon.png" width="50" height="50" class="img-circle" alt="linkedin-social-icon" />
-            <img src="~/Content/Pics/socialButtons/сиви/pinterest-social-icon.png" width="50" height="50" class="img-circle" alt="pinterest-social-icon" />
-            <img src="~/Content/Pics/socialButtons/сиви/youtube-social-icon.png" width="50" height="50" class="img-circle" alt="youtube-social-icon" />
-            <img src="~/Content/Pics/socialButtons/сиви/flickr-social-icon.png" width="50" height="50" class="img-circle" alt="flickr-social-icon" />
-            <img src="~/Content/Pics/socialButtons/сиви/vbox7-social-icon.png" width="50" height="50" class="img-circle" alt="vbox7-social-icon" />
-            <img src="~/Content/Pics/socialButtons/сиви/vimeo-social-icon.png" width="50" height="50" class="img-circle" alt="vimeo-social-icon" />*@
+                <img src="~/Content/Pics/socialButtons/сиви/pinterest-social-icon.png" width="50" height="50" class="img-circle" alt="pinterest-social-icon" />
+                <img src="~/Content/Pics/socialButtons/сиви/youtube-social-icon.png" width="50" height="50" class="img-circle" alt="youtube-social-icon" />
+                <img src="~/Content/Pics/socialButtons/сиви/flickr-social-icon.png" width="50" height="50" class="img-circle" alt="flickr-social-icon" />
+                <img src="~/Content/Pics/socialButtons/сиви/vbox7-social-icon.png" width="50" height="50" class="img-circle" alt="vbox7-social-icon" />
+                <img src="~/Content/Pics/socialButtons/сиви/vimeo-social-icon.png" width="50" height="50" class="img-circle" alt="vimeo-social-icon" />*@
         </div>
 	</section>
 
@@ -58,13 +58,12 @@
                     <article class="clearfix">
                         <a href="/@post.Slug">@Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "100", "56")</a>
                         @*<span class="published">@Html.DisplayFor(x => post.CreatedOn)<span class="category cat-sports">@Html.ActionLink(@categoryTitle, "Show", "Categories", new {slug = categorySlug }, null)</span></span>*@
-                        <span class="published"><span class="category cat-sports">@Html.ActionLink(@categoryTitle, "Show", "Categories", new {slug = categorySlug }, new { @class = "cuprum-regular" })</span></span>
+                        <span class="published"><span class="category cat-sports">@Html.ActionLink(@categoryTitle, "Show", "Categories", new { slug = categorySlug }, new { @class = "cuprum-regular" })</span></span>
                         <h3>
                             <a href="/@post.Slug">@Html.Raw(post.SanitizedPartialContent)</a>
                         </h3>
                     </article>
                 }
-
                 if (i % 2 == 0)
                 {
                     <div class="ad ad-separator">

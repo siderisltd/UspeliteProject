@@ -27,7 +27,7 @@
                             //large article
                             <article class="linkbox large cat-news">
                                 <a href="~/@currentArticle.Slug" class="cuprum-regular">
-                                   @Html.Image(x => currentArticle.MainArticlePic.Resized400Picture, "Alt responsive picture", "560", "300", new { @class = "img-responsive" })
+                                    @Html.Image(x => currentArticle.MainArticlePic.Resized400Picture, "Alt responsive picture", "560", "300", new { @class = "img-responsive" })
                                     <div class="overlay">
                                         <h2 class="cuprum-regular">@currentArticle.Title</h2>
                                     </div>
@@ -67,19 +67,19 @@
                 {
                     @:<div class="row">
                 }
-                <div class="col-sm-6">
-                    <article class="linkbox cat-sports">
-                        <a href="~/@post.Slug" class="cuprum-regular">
-                            @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
+                     <div class="col-sm-6">
+                         <article class="linkbox cat-sports">
+                             <a href="~/@post.Slug" class="cuprum-regular">
+                                 @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
 
-                            <div class="overlay">
-                                <h3 class="cuprum-regular">@post.Title</h3>
-                            </div>
-                        </a>
-                        <a href="/Categories/Show/@post.Category.Slug" class="theme cuprum-regular">@post.Category.Title</a>
-                    </article>
-                    @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", post)*@
-                </div>
+                                 <div class="overlay">
+                                     <h3 class="cuprum-regular">@post.Title</h3>
+                                 </div>
+                             </a>
+                             <a href="/Categories/Show/@post.Category.Slug" class="theme cuprum-regular">@post.Category.Title</a>
+                         </article>
+                         @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", post)*@
+                     </div>
 
                 if (linesCounter % 2 != 0)
                 {
@@ -116,43 +116,43 @@
                             continue;
                     }
 
-                    <div class="row">
-                        @for (var i = 0; i < postsCount; i += 1)
+                <div class="row">
+                    @for (var i = 0; i < postsCount; i += 1)
+                    {
+                        var post = categoryAndPosts.Posts[i];
+                        if (isMainPost)
                         {
-                            var post = categoryAndPosts.Posts[i];
-                            if (isMainPost)
-                            {
-                                isMainPost = false;
-                                <article class="linkbox large cat-news">
-                                    <a href="/@post.Slug" class="cuprum-regular">
-                                        @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "560", "300", new { @class = "img-responsive" })
+                            isMainPost = false;
+                            <article class="linkbox large cat-news">
+                                <a href="/@post.Slug" class="cuprum-regular">
+                                    @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "560", "300", new { @class = "img-responsive" })
+                                    <div class="overlay">
+                                        <h2 class="cuprum-regular">@Html.Raw(post.SanitizedTitle)</h2>
+                                    </div>
+                                </a>
+                                <a href="/Categories/Show/@post.Category.Slug" class="theme cuprum-regular">@post.Category.Title</a>
+                            </article>
+                        }
+                        else
+                        {
+
+                            <div class="col-sm-6 small-articles">
+                                <article class="linkbox cat-sports">
+                                    <a href="~/@post.Slug" class="cuprum-regular">
+                                        @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
+
                                         <div class="overlay">
-                                            <h2 class="cuprum-regular">@Html.Raw(post.SanitizedTitle)</h2>
+                                            <h3 class="cuprum-regular">@Html.Raw(post.SanitizedTitle)</h3>
                                         </div>
                                     </a>
                                     <a href="/Categories/Show/@post.Category.Slug" class="theme cuprum-regular">@post.Category.Title</a>
                                 </article>
-                            }
-                            else
-                            {
-
-                                <div class="col-sm-6 small-articles">
-                                    <article class="linkbox cat-sports">
-                                        <a href="~/@post.Slug" class="cuprum-regular">
-                                            @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
-
-                                            <div class="overlay">
-                                                <h3 class="cuprum-regular">@Html.Raw(post.SanitizedTitle)</h3>
-                                            </div>
-                                        </a>
-                                        <a href="/Categories/Show/@post.Category.Slug" class="theme cuprum-regular">@post.Category.Title</a>
-                                    </article>
-                                    @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", post)*@
-                                </div>
-                            }
+                                @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", post)*@
+                            </div>
                         }
+                    }
 
-                    </div>
+                </div>
                 }
 
             }
@@ -295,59 +295,4 @@
 
 @section scripts {
     @Scripts.Render("~/Scripts/Custom/ratingScript.js")
-}
-
-@section overridingStyles {
-    <style>
-        @@media ( min-width: 991px ) {
-            article.large.cat-news img.img-responsive {
-                height: 280px;
-                width: 560px;
-                margin: 0 auto;
-            }
-
-
-            article.large.cat-news a.theme {
-                left: 20px;
-            }
-
-            article.large.cat-news div.overlay {
-                width: 400px;
-                margin: 0 auto;
-            }
-        }
-
-        @@media ( min-width: 768px ) {
-            article.large.cat-news img.img-responsive {
-                height: 250px;
-                width: 700px;
-                margin: 0 auto;
-            }
-
-            article.large.cat-news a.theme {
-            }
-
-            article.large.cat-news div.overlay {
-                width: 560px;
-                margin: 0 auto;
-            }
-        }
-
-        @@media ( min-width: 430px ) {
-            article.large.cat-news img.img-responsive {
-                width: 437px;
-                height: 300px;
-                width: 560px;
-                margin: 0 auto;
-            }
-
-
-            article.large.cat-news a.theme {
-            }
-
-            article.large.cat-news div.overlay h2 {
-                text-align: left;
-            }
-        }
-    </style>
 }
