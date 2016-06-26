@@ -65,7 +65,7 @@
         public int Update(int id, string title, string authorId, string content, PostStatus status, int categoryId, DateTime? publishOn, Image image)
         {
             DateTime? dateToPublish = null;
-            if(publishOn != null)
+            if (publishOn != null)
             {
                 dateToPublish = publishOn.Value.AddMinutes(-1);
             }
@@ -203,13 +203,24 @@
             return query;
         }
 
-        public IQueryable<CategoryAndPostsDTO> GetTopArticles(ArticleTopFactor topFactor = ArticleTopFactor.Rating, int count = 3, IEnumerable<Category> categories = null)
+        public IQueryable<CategoryAndPostsDTO> GetTopArticles(ArticleTopFactor topFactor = ArticleTopFactor.Rating, int count = 3, IEnumerable<Category> categories = null, IEnumerable<int> skipArticlesIds = null)
         {
             if (categories == null)
             {
                 //TODO: Fix this bullshit
                 categories = this.categoriesService.GetAll().AsEnumerable();
             }
+
+            var articlesToSkip = new List<int>();
+            
+            if(skipArticlesIds != null)
+            {
+                foreach (var artId in skipArticlesIds)
+                {
+                    articlesToSkip.Add(artId);
+                }
+            }
+
 
             var query = this.repo
                                .All()
@@ -219,7 +230,13 @@
             {
                 var newQuery = query
                 .GroupBy(x => x.Category)
-                .Select(x => new CategoryAndPostsDTO { Category = x.Key, Posts = x.Where(y => y.Status == PostStatus.Published).OrderByDescending(y => y.Ratings.Sum(z => z.Value) / y.Ratings.Count).Take(count) });
+                .Select(x => new CategoryAndPostsDTO
+                {
+                    Category = x.Key,
+                    Posts = x.Where(y => y.Status == PostStatus.Published && !articlesToSkip.Contains(y.Id))
+                                            .OrderByDescending(y => y.Ratings.Sum(z => z.Value) / y.Ratings.Count)
+                                            .Take(count)
+                });
 
                 return newQuery;
             }
@@ -227,7 +244,13 @@
             {
                 var newQuery = query
                 .GroupBy(x => x.Category)
-                .Select(x => new CategoryAndPostsDTO { Category = x.Key, Posts = x.Where(y => y.Status == PostStatus.Published).OrderByDescending(y => y.CreatedOn).Take(count) });
+                .Select(x => new CategoryAndPostsDTO
+                {
+                    Category = x.Key,
+                    Posts = x.Where(y => y.Status == PostStatus.Published && !articlesToSkip.Contains(y.Id))
+                                           .OrderByDescending(y => y.CreatedOn)
+                                           .Take(count)
+                });                 
 
                 return newQuery;
             }
@@ -279,10 +302,10 @@
 
 
             var dtoModel = new SearchArticleResultsDTO
-                           {
-                                ResultsInTitles = resultsInTitles,
-                                ResultsInContents = resultsInContents
-                           };
+            {
+                ResultsInTitles = resultsInTitles,
+                ResultsInContents = resultsInContents
+            };
 
 
             return dtoModel;

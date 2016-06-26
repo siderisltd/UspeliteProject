@@ -1,0 +1,59 @@
+﻿@model Dictionary<Uspelite.Web.Models.Categories.CategoryViewModel, Dictionary<Uspelite.Web.Models.Categories.CategoryViewModel, IEnumerable<Uspelite.Web.Models.Articles.ArticleViewModel>>>
+
+
+
+
+<div id="sidr" class="sidr right" style="display: none;">
+
+    @using (Html.BeginForm("Articles", "Search", FormMethod.Get))
+    {
+        <form id="search-form-mobile">
+            <input type="text" name="query" placeholder="Търсене">
+        </form>
+    }
+    <ul>
+        @foreach (var parent in Model)
+        {
+            <li class="cat-news">
+                <a class="more" href="#"><i class="fa fa-angle-down"></i></a>
+                <a href="/Categories/Show/@parent.Key.Slug">@parent.Key.Title</a>
+                @foreach (var category in parent.Value)
+                {
+                    <ul class="subnav-menu">
+                         <li><a href="/Categories/Show/@category.Key.Slug">@category.Key.Title</a></li>
+                    </ul>
+                }
+            </li>
+        }
+
+        <li class="cat-news">
+            <a class="more" href="#"><i class="fa fa-angle-down"></i></a>
+            <a href="#">CategoryName and link to it</a>
+            <ul class="subnav-menu">
+                <li><a href="#">subcategories and links to them</a></li>
+  
+            </ul>
+        </li>
+
+    </ul>
+
+</div>
+<!-- end:sidr -->
+<!-- start:row -->
+<div class="row">
+
+    <!-- start:col -->
+    <div class="col-xs-6">
+        <!-- start:logo -->
+        <h1><a href="/"><img src="~/Content/Pics/100x67white-transperant.png" alt="uspelite"></a></h1>
+        <!-- end:logo -->
+    </div>
+    <!-- end:col -->
+    <!-- start:col -->
+    <div class="col-xs-6 text-right">
+        <a id="nav-expander" href=""><span class="glyphicon glyphicon-th"></span></a>
+    </div>
+    <!-- end:col -->
+
+</div>
+<!-- end:row -->

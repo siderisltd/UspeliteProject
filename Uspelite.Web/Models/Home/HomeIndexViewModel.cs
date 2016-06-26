@@ -16,6 +16,8 @@
 
         public IList<ArticleViewModel> HighRatedInCategory { get; set; }
 
+        public IList<ArticleViewModel> NewestArticles { get; set; }
+
         public ArticleViewModel TopArticle { get; set; }
 
         public bool IsSearchResult { get; set; }

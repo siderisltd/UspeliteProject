@@ -14,6 +14,49 @@
 <div class="row">
     <div class="col-md-9 home-main-column">
 
+        @if (Model.CurrentPage == 1)
+        {
+            if (Model.NewestArticles != null && Model.NewestArticles.Count >= 5)
+            {
+                <div class="row">
+                    @for (int i = 0; i < 5; i++)
+                    {
+                        var currentArticle = Model.NewestArticles[i];
+                        if (i == 0)
+                        {
+                            //large article
+                            <article class="linkbox large cat-news">
+                                <a href="~/@currentArticle.Slug" class="cuprum-regular">
+                                   @Html.Image(x => currentArticle.MainArticlePic.Resized400Picture, "Alt responsive picture", "560", "300", new { @class = "img-responsive" })
+                                    <div class="overlay">
+                                        <h2 class="cuprum-regular">@currentArticle.Title</h2>
+                                    </div>
+                                </a>
+                                <a href="/" class="theme cuprum-regular">НАЙ-НОВИ</a>
+                            </article>
+                        }
+                        else
+                        {
+                            <div class="col-sm-6 small-articles">
+                                <article class="linkbox cat-sports">
+                                    <a href="~/@currentArticle.Slug" class="cuprum-regular">
+                                        @Html.Image(x => currentArticle.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
+
+                                        <div class="overlay">
+                                            <h3 class="cuprum-regular">@currentArticle.Title</h3>
+                                        </div>
+                                    </a>
+                                    <a href="/" class="theme cuprum-regular">НАЙ-НОВИ</a>
+                                </article>
+
+                            </div>
+                        }
+                    }
+                </div>
+            }
+        }
+
+
         @{ int linesCounter = 0; }
 
         @if (Model.IsSearchResult && Model.SearchResults != null && Model.SearchResults.Count != 0)
@@ -24,23 +67,23 @@
                 {
                     @:<div class="row">
                 }
-                     <div class="col-sm-6">
-                         <article class="linkbox cat-sports">
-                             <a href="~/@post.Slug" class="cuprum-regular">
-                                 @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
+                <div class="col-sm-6">
+                    <article class="linkbox cat-sports">
+                        <a href="~/@post.Slug" class="cuprum-regular">
+                            @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
 
-                                 <div class="overlay">
-                                     <h3 class="cuprum-regular">@post.Title</h3>
-                                 </div>
-                             </a>
-                             <a href="/Categories/Show/@post.Category.Slug" class="theme cuprum-regular">@post.Category.Title</a>
-                         </article>
-                         @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", post)*@
-                     </div>
+                            <div class="overlay">
+                                <h3 class="cuprum-regular">@post.Title</h3>
+                            </div>
+                        </a>
+                        <a href="/Categories/Show/@post.Category.Slug" class="theme cuprum-regular">@post.Category.Title</a>
+                    </article>
+                    @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", post)*@
+                </div>
 
                 if (linesCounter % 2 != 0)
                 {
-                    @: </div>
+                    @:</div>
                 }
 
                 linesCounter++;
@@ -49,63 +92,69 @@
         else
         {
             var counter = 0;
-            foreach (var categoryAndPosts in Model.NewestPostsAndCategories)
+
+            if (Model.NewestPostsAndCategories != null && Model.NewestPostsAndCategories.Count > 0)
             {
-                var postsCount = categoryAndPosts.Posts.Count();
-                var isMainPost = true;
-                var count = 3;
 
-                switch (postsCount)
+                foreach (var categoryAndPosts in Model.NewestPostsAndCategories)
                 {
-                    case 3:
-                    case 4:
-                        postsCount = 3;
-                        break;
-                    case 5:
-                        postsCount = 5;
-                        break;
+                    var postsCount = categoryAndPosts.Posts.Count();
+                    var isMainPost = true;
+                    var count = 3;
 
-                    default:
-                        continue;
-                }
-
-                <div class="row">
-                    @for (var i = 0; i < postsCount; i += 1)
+                    switch (postsCount)
                     {
-                        var post = categoryAndPosts.Posts[i];
-                        if (isMainPost)
-                        {
-                            isMainPost = false;
-                            <article class="linkbox large cat-news">
-                                <a href="/@post.Slug" class="cuprum-regular">
-                                    @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "560", "300", new { @class = "img-responsive" })
-                                    <div class="overlay">
-                                        <h2 class="cuprum-regular">@Html.Raw(post.SanitizedTitle)</h2>
-                                    </div>
-                                </a>
-                                <a href="/Categories/Show/@post.Category.Slug" class="theme cuprum-regular">@post.Category.Title</a>
-                            </article>
-                        }
-                        else
-                        {
+                        case 3:
+                        case 4:
+                            postsCount = 3;
+                            break;
+                        case 5:
+                            postsCount = 5;
+                            break;
 
-                            <div class="col-sm-6 small-articles">
-                                <article class="linkbox cat-sports">
-                                    <a href="~/@post.Slug" class="cuprum-regular">
-                                        @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
+                        default:
+                            continue;
+                    }
 
+                    <div class="row">
+                        @for (var i = 0; i < postsCount; i += 1)
+                        {
+                            var post = categoryAndPosts.Posts[i];
+                            if (isMainPost)
+                            {
+                                isMainPost = false;
+                                <article class="linkbox large cat-news">
+                                    <a href="/@post.Slug" class="cuprum-regular">
+                                        @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "560", "300", new { @class = "img-responsive" })
                                         <div class="overlay">
-                                            <h3 class="cuprum-regular">@Html.Raw(post.SanitizedTitle)</h3>
+                                            <h2 class="cuprum-regular">@Html.Raw(post.SanitizedTitle)</h2>
                                         </div>
                                     </a>
                                     <a href="/Categories/Show/@post.Category.Slug" class="theme cuprum-regular">@post.Category.Title</a>
                                 </article>
-                                @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", post)*@
-                            </div>
-                        }
-                    }
+                            }
+                            else
+                            {
 
-                </div>
+                                <div class="col-sm-6 small-articles">
+                                    <article class="linkbox cat-sports">
+                                        <a href="~/@post.Slug" class="cuprum-regular">
+                                            @Html.Image(x => post.MainArticlePic.Resized400Picture, "Alt responsive picture", "265", "160", new { @class = "img-responsive" })
+
+                                            <div class="overlay">
+                                                <h3 class="cuprum-regular">@Html.Raw(post.SanitizedTitle)</h3>
+                                            </div>
+                                        </a>
+                                        <a href="/Categories/Show/@post.Category.Slug" class="theme cuprum-regular">@post.Category.Title</a>
+                                    </article>
+                                    @*@Html.Partial("~/Views/Shared/Partials/_RatingStars.cshtml", post)*@
+                                </div>
+                            }
+                        }
+
+                    </div>
+                }
+
             }
         }
 
@@ -250,42 +299,38 @@
 
 @section overridingStyles {
     <style>
-
         @@media ( min-width: 991px ) {
             article.large.cat-news img.img-responsive {
-                height: 280px ;
-                width: 560px ;
+                height: 280px;
+                width: 560px;
                 margin: 0 auto;
             }
 
-            
-            article.large.cat-news a.theme{
-                left:20px;
+
+            article.large.cat-news a.theme {
+                left: 20px;
             }
 
-             article.large.cat-news div.overlay {
-                 width: 400px;
-                 margin: 0 auto;
-             }  
-
+            article.large.cat-news div.overlay {
+                width: 400px;
+                margin: 0 auto;
+            }
         }
 
         @@media ( min-width: 768px ) {
             article.large.cat-news img.img-responsive {
-                height: 250px ;
-                width: 700px ;
+                height: 250px;
+                width: 700px;
                 margin: 0 auto;
             }
 
-            article.large.cat-news a.theme{
-
+            article.large.cat-news a.theme {
             }
 
-              article.large.cat-news div.overlay {
-                 width: 560px;
-                 margin: 0 auto;
-             }  
-
+            article.large.cat-news div.overlay {
+                width: 560px;
+                margin: 0 auto;
+            }
         }
 
         @@media ( min-width: 430px ) {
@@ -296,15 +341,13 @@
                 margin: 0 auto;
             }
 
-            
-            article.large.cat-news a.theme{
 
+            article.large.cat-news a.theme {
             }
 
-            article.large.cat-news div.overlay h2{
-                 text-align:left;
-             }  
-
+            article.large.cat-news div.overlay h2 {
+                text-align: left;
+            }
         }
     </style>
 }

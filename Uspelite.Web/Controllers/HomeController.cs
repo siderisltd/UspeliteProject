@@ -31,33 +31,38 @@
         {
             var itemsToSkip = (page - 1) * pageSize;
             var articlesCount = 5;
+            var defaultCacheMinutes = 5;
+
+            var newestArticles = this.Cache.Get(
+                "newestArticles", () => this.articlesService.GetNewestPosts(count: 5).To<ArticleViewModel>().ToList(), defaultCacheMinutes * 60);
 
             var newestArticlesInEachCategory = this.Cache.Get(
                 "newestArticlesInEachCategory",
                 () => this.articlesService
-                          .GetTopArticles(Infrastructure.Enums.ArticleTopFactor.Newest, articlesCount)
+                          .GetTopArticles(Infrastructure.Enums.ArticleTopFactor.Newest, articlesCount, skipArticlesIds: newestArticles.Select(x => x.Id).ToList())
                           .To<CategoriesAndArticlesViewModel>()      
                           .OrderByDescending(x => x.Category.HomePriority)
                           .Skip(itemsToSkip)
                           .Take(pageSize)
-                          .ToList(), 10);
+                          .ToList(), defaultCacheMinutes * 60);
 
 
             //Should get even number of items
             var highRatedPosts = this.Cache.Get(
                 "highRatedPosts",
-                () => this.articlesService.GetTopPostsByRating(9).To<ArticleViewModel>().ToList(), 10);
+                () => this.articlesService.GetTopPostsByRating(9).To<ArticleViewModel>().ToList(), defaultCacheMinutes * 60);
 
             var mostCommentedPosts = this.Cache.Get(
                 "mostCommentedPosts",
-                () => this.articlesService.GetMostCommented(9).To<ArticleViewModel>().ToList(), 10);
+                () => this.articlesService.GetMostCommented(9).To<ArticleViewModel>().ToList(), defaultCacheMinutes * 60);
 
 
             var model = new HomeIndexViewModel
             {
                 HighRatedPosts = highRatedPosts,
                 NewestPostsAndCategories = newestArticlesInEachCategory,
-                MostCommentedPosts = mostCommentedPosts
+                MostCommentedPosts = mostCommentedPosts,
+                NewestArticles = newestArticles
             };
  
             model.AllItemsCount = this.Cache.Get("allArticlesCount", () => (this.categoriesService.GetAll().Count(x => x.Articles.Any() && x.Articles.Any(y => y.Status == PostStatus.Published)) * articlesCount), 10);

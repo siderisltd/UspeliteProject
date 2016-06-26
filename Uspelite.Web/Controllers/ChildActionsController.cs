@@ -78,10 +78,24 @@
         [OutputCache(Duration = 5, VaryByParam = "none")]
         public ActionResult GetClientNavigation()
         {
+            Dictionary<CategoryViewModel, Dictionary<CategoryViewModel, IEnumerable<ArticleViewModel>>> model = GetCategoriesAndSubCategories();
+            return this.PartialView("_ClientNavigation", model);
+        }
+
+        [OutputCache(Duration = 5, VaryByParam = "none")]
+        public ActionResult GetMobileClientNavigation()
+        {
+            Dictionary<CategoryViewModel, Dictionary<CategoryViewModel, IEnumerable<ArticleViewModel>>> model = GetCategoriesAndSubCategories();
+            return this.PartialView("_MobileClientNavigation", model);
+        }
+
+        private Dictionary<CategoryViewModel, Dictionary<CategoryViewModel, IEnumerable<ArticleViewModel>>> GetCategoriesAndSubCategories()
+        {
             Dictionary<CategoryViewModel, Dictionary<CategoryViewModel, IEnumerable<ArticleViewModel>>> model =
     new Dictionary<CategoryViewModel, Dictionary<CategoryViewModel, IEnumerable<ArticleViewModel>>>();
 
-            var parentCategories = this.categoriesService.GetParentCategories().Where(x => x.Children.Count > 0).ToList();
+            var parentCategories = this.Cache.Get("parentCategories", () => this.categoriesService.GetParentCategories().Where(x => x.Children.Count > 0).ToList(), 60 * 60);
+                
 
             foreach (var parentCat in parentCategories)
             {
@@ -93,17 +107,13 @@
                             this.articlesService.GetTopArticles(ArticleTopFactor.Newest, 4, childCategories)
                                 .To<CategoryAndPostsViewModel>()
                                 .ToDictionary(x => x.Category, x => x.Posts);
-                   
+
                     model.Add(this.Mapper.Map<Category, CategoryViewModel>(parentCat), allChildCategoriesAndTopArticles);
 
                 }
             }
 
-            //var allCategoriesAndTopArticles = this.articlesService.GetTopArticles(ArticleTopFactor.Newest, 4).To<CategoryAndPostsViewModel>().ToDictionary(x => x.CategoryName, x => x.Posts);  
-
-
-
-            return this.PartialView("_ClientNavigation", model);
+            return model;
         }
     }
 }

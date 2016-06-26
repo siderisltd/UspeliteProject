@@ -786,6 +786,7 @@
     <Content Include="Views\Comments\_CommentPartial.cshtml" />
     <Content Include="Views\Articles\Add.cshtml" />
     <Content Include="Views\Articles\_BuildLinkView.cshtml" />
+    <Content Include="Views\ChildActions\_MobileClientNavigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Uspelite.Data.Common\Uspelite.Data.Common.csproj">

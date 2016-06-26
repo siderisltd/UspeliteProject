@@ -19,7 +19,7 @@
 
         IQueryable<Article> GetMostCommented(int count = 6, string category = null);
 
-        IQueryable<CategoryAndPostsDTO> GetTopArticles(ArticleTopFactor topFactor = ArticleTopFactor.Rating, int count = 3, IEnumerable<Category> categories = null);
+        IQueryable<CategoryAndPostsDTO> GetTopArticles(ArticleTopFactor topFactor = ArticleTopFactor.Rating, int count = 3, IEnumerable<Category> categories = null, IEnumerable<int> skipArticlesIds = null);
 
         IQueryable<Article> GetBySlug(string title);
 
